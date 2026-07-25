@@ -53,13 +53,15 @@ Use of DocsBot is subject to the [DocsBot Privacy Policy](https://docsbot.ai/pri
 
 1. Upload the plugin directory to `/wp-content/plugins/` or install the ZIP from **Plugins > Add New Plugin > Upload Plugin**.
 2. Activate **DocsBot**.
-3. Open **DocsBot > Connection**.
+3. Open **Settings > DocsBot > Connection**.
 4. Get your user API key from the [DocsBot API Keys page](https://docsbot.ai/app/api), paste it into WordPress, and connect.
 5. Choose a team, save, then choose a bot.
 6. Configure Content, Design, and Actions.
 7. Open Deploy, choose your audience and pages, then enable the widget.
 
-For a private bot, copy its signature key from the bot's Widget Embed page and save it under Deploy before enabling the widget.
+PHP's OpenSSL extension is required to encrypt saved credentials and sign private-bot tokens.
+
+For a private bot, select the bot normally. The plugin retrieves its signing key in the authorized server-side bot response, encrypts it immediately, and never renders it in WordPress.
 
 == Frequently Asked Questions ==
 
@@ -100,6 +102,10 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 == Changelog ==
 
 = 1.0.2 =
+* Added dashboard-matched Content, Design, Actions, Deploy, and live widget preview screens.
+* Added automatic private-bot signing-key retrieval and encrypted server-side storage.
+* Added role, membership, page-prefix, and opt-in conversation identity controls.
+* Added release validation and installable ZIP packaging with GitHub Actions.
 * Standardized the plugin slug, text domain, PHP symbols, options, hooks, REST namespace, and package files on DocsBot.
 
 = 1.0.1 =

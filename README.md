@@ -33,15 +33,15 @@ The plugin connects to the DocsBot Admin API from your WordPress server, lets an
 1. Download the release ZIP.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**.
 3. Activate **DocsBot**.
-4. Open **DocsBot → Connection**.
+4. Open **Settings → DocsBot → Connection**.
 5. Create or copy your key from the [DocsBot API Keys page](https://docsbot.ai/app/api), then choose a team and bot.
 6. Configure the widget and enable it from the Deploy tab.
 
-Private bots also require the signature key from the selected bot’s Widget Embed page.
+For private bots, the plugin retrieves the signing key with the authorized bot response and encrypts it immediately. There is no signing-key field in WordPress.
 
 ## Security model
 
-The DocsBot user API key and optional signature key are encrypted with AES-256-GCM using installation-specific WordPress salts and stored in a non-autoloaded option. High-security installations can set `DOCSBOT_API_KEY` and `DOCSBOT_SIGNATURE_KEY` in `wp-config.php` instead.
+The DocsBot user API key and private-bot signing key are encrypted with AES-256-GCM using installation-specific WordPress salts and stored in a non-autoloaded option. High-security installations can set `DOCSBOT_API_KEY` and `DOCSBOT_SIGNATURE_KEY` in `wp-config.php` instead.
 
 The API key never reaches browser JavaScript. For private bots, WordPress checks page, login, role, and membership rules before issuing a token. The browser receives a short-lived JWT—not the signing key—through a no-store REST response.
 

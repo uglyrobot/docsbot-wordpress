@@ -13,6 +13,7 @@ function docsbot_fixture_bot() {
 		'name'              => 'DocsBot Product Guide',
 		'description'       => 'Instant answers from our product documentation.',
 		'privacy'           => 'private',
+		'signatureKey'      => 'fixture-signature-key',
 		'status'            => 'ready',
 		'color'             => '#0891b8',
 		'icon'              => 'robot',

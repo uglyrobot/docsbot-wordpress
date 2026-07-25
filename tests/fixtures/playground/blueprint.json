@@ -4,7 +4,7 @@
 		"php": "8.3",
 		"wp": "latest"
 	},
-	"landingPage": "/wp-admin/admin.php?page=plugin-check",
+	"landingPage": "/wp-admin/options-general.php?page=docsbot",
 	"login": true,
 	"steps": [
 		{

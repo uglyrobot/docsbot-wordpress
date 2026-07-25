@@ -69,5 +69,6 @@ function wpmem_user_has_access( $products, $user_id ) {
 }
 
 require_once dirname( __DIR__ ) . '/docsbot/includes/class-docsbot-crypto.php';
+require_once dirname( __DIR__ ) . '/docsbot/includes/class-docsbot-api.php';
 require_once dirname( __DIR__ ) . '/docsbot/includes/class-docsbot-memberships.php';
 require_once dirname( __DIR__ ) . '/docsbot/includes/class-docsbot-widget.php';

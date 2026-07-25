@@ -137,7 +137,7 @@
 
 .docsbot-layout {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 280px;
+	grid-template-columns: minmax(0, 1fr) 360px;
 	gap: 22px;
 	align-items: start;
 	margin-top: 22px;
@@ -257,22 +257,34 @@
 	flex: 1;
 }
 
-.docsbot-check-grid {
+.docsbot-media-field {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.docsbot-media-field input {
+	flex: 1;
+}
+
+.docsbot-toggle-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 10px 18px;
 	margin: 18px 0 22px;
 }
 
-.docsbot-check {
-	display: inline-flex;
-	gap: 8px;
-	align-items: flex-start;
+.docsbot-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	min-height: 24px;
+	padding: 12px 14px;
+	border-radius: 8px;
+	background: #f1f5f9;
 	color: #334155;
-}
-
-.docsbot-check input {
-	margin-top: 1px;
+	font-weight: 600;
 }
 
 .docsbot-fieldset {
@@ -282,7 +294,7 @@
 	border-radius: 9px;
 }
 
-.docsbot-fieldset .docsbot-check-grid {
+.docsbot-fieldset .docsbot-toggle-grid {
 	margin-bottom: 0;
 }
 
@@ -302,21 +314,49 @@
 }
 
 .docsbot-option-list {
+	display: grid;
+	gap: 10px;
 	margin: 22px 0;
-	border-top: 1px solid var(--docsbot-border);
 }
 
 .docsbot-option {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	gap: 24px;
-	padding: 17px 2px;
-	border-bottom: 1px solid var(--docsbot-border);
+	gap: 14px;
+	padding: 14px 16px;
+	border: 1px solid #e2e8f0;
+	border-radius: 10px;
+	background: #f8fafc;
+	transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.docsbot-option:hover {
+	border-color: #bae6fd;
+	background: #f0fdfa;
+}
+
+.docsbot-option__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	flex: 0 0 40px;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+	color: #334155;
+}
+
+.docsbot-option__icon svg {
+	width: 21px;
+	height: 21px;
 }
 
 .docsbot-option__copy {
 	display: grid;
+	flex: 1;
 	gap: 4px;
 }
 
@@ -327,6 +367,648 @@
 
 .docsbot-option__copy > span {
 	color: var(--docsbot-slate);
+	font-size: 12px;
+	line-height: 1.45;
+}
+
+.docsbot-connected-account {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 22px 0 16px;
+	padding: 14px 16px;
+	border: 1px solid #a7f3d0;
+	border-radius: 10px;
+	background: #ecfdf5;
+	color: #065f46;
+}
+
+.docsbot-connected-account__icon {
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	flex: 0 0 32px;
+	border-radius: 999px;
+	background: #10b981;
+	color: #fff;
+	font-weight: 800;
+}
+
+.docsbot-connected-account div {
+	display: grid;
+	gap: 2px;
+}
+
+.docsbot-connected-account span {
+	font-size: 12px;
+}
+
+.docsbot-reconnect-panel[hidden] {
+	display: none;
+}
+
+.docsbot-disconnect-form {
+	display: inline-block;
+	margin: 0 0 0 10px;
+}
+
+.docsbot-signing-status {
+	display: flex;
+	gap: 12px;
+	margin: 16px 0;
+	padding: 14px;
+	border: 1px solid #a7f3d0;
+	border-radius: 9px;
+	background: #ecfdf5;
+	color: #065f46;
+}
+
+.docsbot-signing-status.is-warning {
+	border-color: #fde68a;
+	background: #fffbeb;
+	color: #854d0e;
+}
+
+.docsbot-signing-status > span {
+	display: grid;
+	place-items: center;
+	width: 26px;
+	height: 26px;
+	flex: 0 0 26px;
+	border-radius: 999px;
+	background: #10b981;
+	color: #fff;
+	font-weight: 800;
+}
+
+.docsbot-signing-status.is-warning > span {
+	background: #d97706;
+}
+
+.docsbot-signing-status p {
+	margin: 4px 0 0;
+	color: inherit;
+}
+
+.docsbot-preview-card {
+	padding: 16px;
+}
+
+.docsbot-preview-card__heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin-bottom: 14px;
+}
+
+.docsbot-preview-card__heading h2 {
+	margin: 0;
+	font-size: 16px;
+}
+
+.docsbot-preview-mode {
+	display: inline-flex;
+	padding: 2px;
+	border-radius: 7px;
+	background: #e2e8f0;
+}
+
+.docsbot-preview-mode button {
+	padding: 4px 8px;
+	border: 0;
+	border-radius: 5px;
+	background: transparent;
+	color: #475569;
+	cursor: pointer;
+	font-size: 11px;
+	font-weight: 650;
+}
+
+.docsbot-preview-mode button.is-active {
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
+	color: #0f172a;
+}
+
+.docsbot-preview-mode button:focus-visible {
+	outline: 2px solid var(--docsbot-cyan);
+	outline-offset: 2px;
+}
+
+.docsbot-preview-stage {
+	min-height: 405px;
+	padding: 12px;
+	border-radius: 12px;
+	background: linear-gradient(145deg, #e2e8f0, #f8fafc);
+}
+
+.docsbot-widget-preview {
+	overflow: hidden;
+	border: 1px solid #cbd5e1;
+	border-radius: 13px;
+	background: #fff;
+	box-shadow: 0 10px 26px rgba(15, 23, 42, 0.16);
+	transition: max-width 0.2s ease;
+}
+
+.docsbot-preview-card.is-embed .docsbot-widget-preview {
+	max-width: 280px;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+
+.docsbot-widget-preview__header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 48px;
+	padding: 10px 12px;
+	background: var(--docsbot-preview-color);
+	color: var(--docsbot-preview-foreground, #fff);
+}
+
+.docsbot-widget-preview__header div {
+	display: grid;
+	flex: 1;
+	gap: 1px;
+	text-align: center;
+}
+
+.docsbot-preview-card.has-left-header .docsbot-widget-preview__header div {
+	text-align: left;
+}
+
+.docsbot-widget-preview__header strong {
+	overflow: hidden;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.docsbot-widget-preview__header div span {
+	overflow: hidden;
+	opacity: 0.82;
+	font-size: 9px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.docsbot-widget-preview__avatar {
+	display: grid;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	flex: 0 0 28px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.docsbot-widget-preview__avatar img {
+	width: 22px;
+	height: 22px;
+	object-fit: contain;
+}
+
+.docsbot-widget-preview__avatar b {
+	font-weight: 700;
+}
+
+.docsbot-widget-preview__conversation {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-height: 220px;
+	padding: 14px 12px 10px;
+	background: #f8fafc;
+}
+
+.docsbot-preview-message {
+	max-width: 78%;
+	padding: 8px 10px;
+	border-radius: 10px 10px 10px 3px;
+	background: #e2e8f0;
+	color: #334155;
+	font-size: 10px;
+	line-height: 1.4;
+}
+
+.docsbot-preview-message.is-user {
+	align-self: flex-end;
+	border-radius: 10px 10px 3px;
+	background: var(--docsbot-preview-color);
+	color: var(--docsbot-preview-foreground, #fff);
+}
+
+.docsbot-preview-tools {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-top: auto;
+}
+
+.docsbot-preview-tools span {
+	padding: 4px 6px;
+	border: 1px solid #cbd5e1;
+	border-radius: 6px;
+	background: #fff;
+	color: #475569;
+	font-size: 8px;
+}
+
+.docsbot-widget-preview__composer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 10px 12px;
+	border-top: 1px solid #e2e8f0;
+	color: #94a3b8;
+	font-size: 10px;
+}
+
+.docsbot-widget-preview__composer b {
+	color: var(--docsbot-preview-color);
+}
+
+.docsbot-widget-preview__footer {
+	padding: 5px;
+	border-top: 1px solid #f1f5f9;
+	color: #94a3b8;
+	font-size: 8px;
+	text-align: center;
+}
+
+.docsbot-widget-preview__notice {
+	padding: 6px 10px;
+	border-top: 1px solid #f1f5f9;
+	background: #f8fafc;
+	color: #64748b;
+	font-size: 8px;
+	line-height: 1.35;
+	text-align: center;
+}
+
+.docsbot-widget-preview__launcher {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 6px;
+	margin-top: 10px;
+	color: var(--docsbot-preview-color);
+	font-size: 10px;
+}
+
+.docsbot-preview-card.is-left .docsbot-widget-preview__launcher {
+	justify-content: flex-start;
+}
+
+.docsbot-widget-preview__launcher span {
+	display: grid;
+	place-items: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 999px;
+	background: var(--docsbot-preview-color);
+	box-shadow: 0 5px 12px rgba(15, 23, 42, 0.18);
+	color: var(--docsbot-preview-foreground, #fff);
+	font-size: 20px;
+}
+
+.docsbot-preview-note {
+	margin: 11px 0 0;
+	color: #64748b;
+	font-size: 11px;
+	line-height: 1.45;
+}
+
+/* Mirrors the production DocsBot widget and dashboard WidgetPreview component. */
+.docsbot-preview-card {
+	padding: 20px;
+}
+
+.docsbot-preview-card__heading {
+	margin-bottom: 16px;
+}
+
+.docsbot-preview-card__heading h2 {
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.docsbot-preview-stage {
+	min-height: 0;
+	padding: 0;
+	background: transparent;
+}
+
+.docsbot-preview-card .docsbot-widget-preview {
+	overflow: hidden;
+	width: 100%;
+	max-width: 448px;
+	margin: 0 auto;
+	border: 0;
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.14), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.docsbot-preview-card.is-embed .docsbot-widget-preview {
+	max-width: none;
+	margin: 0;
+	border-radius: 12px;
+}
+
+.docsbot-preview-card.is-embed .docsbot-widget-preview__launcher {
+	display: none;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 56px;
+	padding: 8px 36px 8px 12px;
+	background: var(--docsbot-preview-color);
+	color: var(--docsbot-preview-foreground, #fff);
+	text-align: center;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__header > div {
+	display: grid;
+	flex: none;
+	gap: 5px;
+	text-align: center;
+}
+
+.docsbot-preview-card.has-left-header .docsbot-widget-preview__header {
+	justify-content: flex-start;
+}
+
+.docsbot-preview-card.has-left-header .docsbot-widget-preview__header > div {
+	text-align: left;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__header strong {
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 20px;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__header div span {
+	font-size: 11px;
+	line-height: 15px;
+	opacity: 1;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__header > img {
+	display: block;
+	width: auto;
+	max-width: 50%;
+	max-height: 36px;
+	object-fit: contain;
+}
+
+.docsbot-widget-preview__reset {
+	position: absolute;
+	top: 50%;
+	right: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border: 2px solid var(--docsbot-preview-color);
+	border-radius: 4px;
+	background: var(--docsbot-preview-color);
+	color: var(--docsbot-preview-foreground, #fff);
+	transform: translateY(-50%);
+}
+
+.docsbot-widget-preview__reset svg {
+	width: 16px;
+	height: 16px;
+	fill: currentColor;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__conversation {
+	display: block;
+	min-height: 0;
+	padding: 16px 12px 20px;
+	background: #fff;
+}
+
+.docsbot-preview-row {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin-bottom: 12px;
+}
+
+.docsbot-preview-row.is-user {
+	justify-content: flex-end;
+	padding-left: 32px;
+}
+
+.docsbot-preview-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	flex: 0 0 24px;
+	margin-right: 8px;
+	border-radius: 999px;
+	background: var(--docsbot-preview-avatar-bg, #b8def5);
+	color: var(--docsbot-preview-avatar-foreground, #0f172a);
+}
+
+.docsbot-preview-avatar svg {
+	width: 13px;
+	height: 13px;
+	fill: currentColor;
+}
+
+.docsbot-preview-avatar[hidden] {
+	display: none;
+}
+
+.docsbot-preview-card .docsbot-preview-message {
+	box-sizing: border-box;
+	width: fit-content;
+	max-width: 100%;
+	padding: 12px;
+	border-radius: 16px;
+	border-top-left-radius: 4px;
+	background: #f1f3f5;
+	color: #374151;
+	font-size: 14px;
+	line-height: 20px;
+	overflow-wrap: break-word;
+}
+
+.docsbot-preview-card .docsbot-preview-message p {
+	margin: 0;
+}
+
+.docsbot-preview-card .is-user .docsbot-preview-message {
+	padding: 8px 16px;
+	border-radius: 16px;
+	border-top-right-radius: 4px;
+	background: var(--docsbot-preview-color);
+	color: var(--docsbot-preview-foreground, #fff);
+}
+
+.docsbot-preview-sources {
+	margin-top: 8px;
+	font-size: 11px;
+	line-height: 15px;
+}
+
+.docsbot-preview-sources > div {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 8px;
+	padding-top: 8px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #d1d5db;
+	color: #374151;
+}
+
+.docsbot-preview-sources > span {
+	display: block;
+	color: #4b5563;
+}
+
+.docsbot-preview-copy-icon {
+	display: block;
+	width: 16px;
+	height: 16px;
+}
+
+.docsbot-preview-feedback {
+	display: flex;
+	gap: 8px;
+	margin: -4px 0 16px 32px;
+}
+
+.docsbot-preview-feedback button,
+.docsbot-preview-support > button {
+	padding: 2px 8px;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	background: #fff;
+	color: #374151;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.docsbot-preview-support > button {
+	margin: -4px 0 16px 32px;
+	font-weight: 500;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__composer {
+	display: block;
+	padding: 0 16px 12px;
+	border: 0;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__composer > div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 48px;
+	padding: 0 6px 0 16px;
+	border: 1px solid var(--docsbot-preview-color);
+	border-radius: 16px;
+	color: #6b7280;
+	font-size: 14px;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__composer b {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	color: #d1d5db;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__composer b svg {
+	width: 16px;
+	height: 16px;
+	fill: currentColor;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__notice {
+	padding: 0 16px 4px;
+	border: 0;
+	background: #fff;
+	color: #6b7280;
+	font-size: 11px;
+	line-height: 14px;
+	text-align: center;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__footer {
+	padding: 0 16px 14px;
+	border: 0;
+	color: #6b7280;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 14px;
+	text-align: center;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__launcher {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 56px;
+	height: 56px;
+	margin: 24px 0 0 auto;
+	border-radius: 24px;
+	background: var(--docsbot-preview-color);
+	box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.05) 0 3px 3px;
+	color: var(--docsbot-preview-foreground, #fff);
+}
+
+.docsbot-preview-card .docsbot-widget-preview__launcher.has-label {
+	width: auto;
+	height: 48px;
+	padding: 0 24px;
+	border-radius: 22px;
+}
+
+.docsbot-preview-card.is-left .docsbot-widget-preview__launcher {
+	margin-right: auto;
+	margin-left: 0;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__launcher span {
+	display: block;
+	width: 24px;
+	height: 24px;
+	background: transparent;
+	box-shadow: none;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__launcher svg {
+	width: 24px;
+	height: 24px;
+	fill: currentColor;
+}
+
+.docsbot-preview-card .docsbot-widget-preview__launcher b {
+	margin-left: 8px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 14px;
 }
 
 .docsbot-switch {
@@ -565,7 +1247,7 @@
 
 	.docsbot-grid--2,
 	.docsbot-grid--3,
-	.docsbot-check-grid,
+	.docsbot-toggle-grid,
 	.docsbot-sidebar {
 		grid-template-columns: 1fr;
 	}

@@ -41,7 +41,23 @@ final class DocsBot_API {
 
 		$response = $this->request( 'GET', '/teams/' . rawurlencode( $team_id ) . '/bots' );
 
-		return is_wp_error( $response ) || ! is_array( $response ) ? $response : array_values( $response );
+		return is_wp_error( $response ) || ! is_array( $response ) ? $response : $this->sanitize_bot_list( array_values( $response ) );
+	}
+
+	/**
+	 * Remove signing credentials from list responses before callers can cache them.
+	 *
+	 * @param array<int,mixed> $bots Bot list.
+	 * @return array<int,mixed>
+	 */
+	public function sanitize_bot_list( $bots ) {
+		foreach ( $bots as &$bot ) {
+			if ( is_array( $bot ) ) {
+				unset( $bot['signatureKey'] );
+			}
+		}
+		unset( $bot );
+		return $bots;
 	}
 
 	/**
@@ -85,6 +101,8 @@ final class DocsBot_API {
 			'botIcon',
 			'logo',
 			'branding',
+			'headerAlignment',
+			'linkSafetyEnabled',
 			'supportLink',
 			'showButtonLabel',
 			'showCopyButton',

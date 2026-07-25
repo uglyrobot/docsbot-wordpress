@@ -1,0 +1,133 @@
+name: Package release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate plugin
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Validate Composer package
+        run: composer validate --strict
+
+      - name: Install test dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run WordPress coding standards
+        run: composer lint
+
+      - name: Run unit tests
+        run: composer test
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check docsbot/assets/js/admin.js
+          node --check docsbot/assets/js/widget.js
+
+      - name: Run official WordPress Plugin Check
+        uses: wordpress/plugin-check-action@18573eb38f13543484a1f095672dae3849a4fbb0 # v1.1.6
+        with:
+          build-dir: "./docsbot"
+          strict: true
+
+  package:
+    name: Build DocsBot ZIP
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: validate
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Validate release metadata
+        id: metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f docsbot/docsbot.php
+          test -f docsbot/readme.txt
+          grep -q 'Text Domain:       docsbot' docsbot/docsbot.php
+
+          version="$(
+            sed -nE 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*([0-9.]+).*/\1/p' \
+              docsbot/docsbot.php
+          )"
+          test -n "${version}"
+
+          stable_tag="$(
+            sed -nE 's/^Stable tag:[[:space:]]*([0-9.]+).*/\1/p' \
+              docsbot/readme.txt
+          )"
+          test -n "${stable_tag}"
+
+          if [[ "${stable_tag}" != "${version}" ]]; then
+            echo "Stable tag ${stable_tag} does not match plugin version ${version}." >&2
+            exit 1
+          fi
+
+          if [[ "${GITHUB_REF_TYPE}" == "tag" && "${GITHUB_REF_NAME}" != "v${version}" ]]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match plugin version ${version}." >&2
+            exit 1
+          fi
+
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+
+      - name: Build installable archive
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p build
+          cp -R docsbot build/docsbot
+          find build/docsbot -name '.DS_Store' -delete
+          (
+            cd build
+            zip -q -r ../docsbot.zip docsbot
+          )
+
+          unzip -t docsbot.zip
+          test "$(unzip -Z1 docsbot.zip | head -n 1)" = "docsbot/"
+          unzip -p docsbot.zip docsbot/docsbot.php | grep -q \
+            "Version:           ${{ steps.metadata.outputs.version }}"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: docsbot-wordpress-${{ steps.metadata.outputs.version }}
+          path: docsbot.zip
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Attach ZIP to GitHub release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release upload "${GITHUB_REF_NAME}" docsbot.zip --clobber
+          else
+            gh release create "${GITHUB_REF_NAME}" docsbot.zip \
+              --title "DocsBot for WordPress ${{ steps.metadata.outputs.version }}" \
+              --generate-notes
+          fi

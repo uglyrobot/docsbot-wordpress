@@ -93,7 +93,7 @@ final class DocsBot_Widget {
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'rest_widget_config' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'rest_widget_permission' ),
 				'args'                => array(
 					'path' => array(
 						'type'              => 'string',
@@ -112,6 +112,26 @@ final class DocsBot_Widget {
 	}
 
 	/**
+	 * Confirm that a config request originated from this site's deployed embed.
+	 *
+	 * Audience authorization remains in the callback because it depends on the
+	 * current WordPress user, role, and membership state.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 * @return bool|WP_Error
+	 */
+	public function rest_widget_permission( $request ) {
+		$path   = (string) $request->get_param( 'path' );
+		$ticket = (string) $request->get_param( 'ticket' );
+
+		if ( ! $this->validate_path( $path ) || ! $this->deployment_ticket_is_valid( $path, $ticket ) ) {
+			return new WP_Error( 'docsbot_forbidden', __( 'This widget request could not be verified.', 'docsbot' ), array( 'status' => 403 ) );
+		}
+
+		return true;
+	}
+
+	/**
 	 * Return an access-checked, non-cacheable widget configuration.
 	 *
 	 * @param WP_REST_Request $request Request object.
@@ -120,11 +140,9 @@ final class DocsBot_Widget {
 	public function rest_widget_config( $request ) {
 		$settings = DocsBot_Plugin::settings();
 		$path     = (string) $request->get_param( 'path' );
-		$ticket   = (string) $request->get_param( 'ticket' );
 
 		if (
-			! $this->deployment_ticket_is_valid( $path, $ticket )
-			|| empty( $settings['enabled'] )
+			empty( $settings['enabled'] )
 			|| empty( $settings['team_id'] )
 			|| empty( $settings['bot_id'] )
 			|| ! $this->path_is_allowed( $path, $settings )
