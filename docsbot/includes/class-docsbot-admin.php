@@ -1522,13 +1522,13 @@ final class DocsBot_Admin {
 	 *
 	 * @param string            $name    Name.
 	 * @param array<int,string> $allowed Allowed values.
-	 * @param string            $default Default.
+	 * @param string            $fallback Default value.
 	 * @return string
 	 */
-	private function posted_enum( $name, $allowed, $default ) {
+	private function posted_enum( $name, $allowed, $fallback ) {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- All callers verify their action nonce before using submitted values.
-		$value = isset( $_POST[ $name ] ) ? sanitize_text_field( wp_unslash( $_POST[ $name ] ) ) : $default;
-		return in_array( $value, $allowed, true ) ? $value : $default;
+		$value = isset( $_POST[ $name ] ) ? sanitize_text_field( wp_unslash( $_POST[ $name ] ) ) : $fallback;
+		return in_array( $value, $allowed, true ) ? $value : $fallback;
 	}
 
 	/**
