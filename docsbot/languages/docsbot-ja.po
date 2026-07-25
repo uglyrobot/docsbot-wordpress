@@ -1070,3 +1070,19 @@ msgstr "Calendly、Cal.com、TidyCalの埋め込み予約ウィジェットを�
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Web Search"
 msgstr "ウェブ検索"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server in DocsBot"
+msgstr "DocsBotでMCPサーバーを追加"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill in DocsBot"
+msgstr "DocsBotでスキルを追加"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot authentication failed. Replace the API key and reconnect."
+msgstr "DocsBotの認証に失敗しました。APIキーを交換して再接続してください。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
+msgstr "このAPIキーには、そのDocsBot操作を行う権限がありません。必要なボットアクセス権をチームの所有者または管理者に依頼してください。"

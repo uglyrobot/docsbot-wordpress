@@ -1001,3 +1001,19 @@ msgstr ""
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Web Search"
 msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server in DocsBot"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill in DocsBot"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot authentication failed. Replace the API key and reconnect."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
+msgstr ""

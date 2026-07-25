@@ -116,6 +116,101 @@ final class DocsBot_API {
 	}
 
 	/**
+	 * List skills available to a bot.
+	 *
+	 * @param string $team_id Team ID.
+	 * @param string $bot_id  Bot ID.
+	 * @return array<int,array<string,mixed>>|WP_Error
+	 */
+	public function list_skills( $team_id, $bot_id ) {
+		if ( ! $this->valid_id( $team_id ) || ! $this->valid_id( $bot_id ) ) {
+			return new WP_Error( 'docsbot_invalid_bot', __( 'The selected bot ID is invalid.', 'docsbot' ) );
+		}
+
+		$response = $this->request(
+			'GET',
+			'/teams/' . rawurlencode( $team_id ) . '/bots/' . rawurlencode( $bot_id ) . '/skills'
+		);
+
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
+
+		return isset( $response['skills'] ) && is_array( $response['skills'] )
+			? array_values( $response['skills'] )
+			: array();
+	}
+
+	/**
+	 * Return only healthy MCP servers enabled for widget actions.
+	 *
+	 * @param array<int,mixed> $servers MCP server records.
+	 * @return array<int,array<string,mixed>>
+	 */
+	public function available_mcp_servers( $servers ) {
+		if ( ! is_array( $servers ) ) {
+			return array();
+		}
+
+		return array_values(
+			array_filter(
+				$servers,
+				static function ( $server ) {
+					return is_array( $server )
+						&& true === ( $server['enabled'] ?? false )
+						&& true === ( $server['isConnected'] ?? false )
+						&& true !== ( $server['tokenExpired'] ?? false );
+				}
+			)
+		);
+	}
+
+	/**
+	 * Return only skills enabled for widget actions.
+	 *
+	 * @param array<int,mixed> $skills Skill summaries.
+	 * @return array<int,array<string,mixed>>
+	 */
+	public function available_widget_skills( $skills ) {
+		if ( ! is_array( $skills ) ) {
+			return array();
+		}
+
+		return array_values(
+			array_filter(
+				$skills,
+				static function ( $skill ) {
+					return is_array( $skill ) && true === ( $skill['enabledWidget'] ?? false );
+				}
+			)
+		);
+	}
+
+	/**
+	 * Build a safe, actionable API error message.
+	 *
+	 * @param int                 $status  HTTP status.
+	 * @param array<string,mixed> $decoded Decoded response.
+	 * @return string
+	 */
+	public function error_message_for_status( $status, $decoded = array() ) {
+		if ( 401 === $status ) {
+			return __( 'DocsBot authentication failed. Replace the API key and reconnect.', 'docsbot' );
+		}
+		if ( 403 === $status ) {
+			return __( 'This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access.', 'docsbot' );
+		}
+		if ( ! empty( $decoded['message'] ) ) {
+			return sanitize_text_field( $decoded['message'] );
+		}
+		return sprintf(
+			/* translators: %d: HTTP status code. */
+			__( 'DocsBot returned HTTP %d.', 'docsbot' ),
+			$status
+		);
+	}
+
+	/**
 	 * Update allowlisted bot fields.
 	 *
 	 * @param string              $team_id Team ID.
@@ -217,13 +312,7 @@ final class DocsBot_API {
 		$decoded = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( $status < 200 || $status >= 300 ) {
-			$message = is_array( $decoded ) && ! empty( $decoded['message'] )
-				? sanitize_text_field( $decoded['message'] )
-				: sprintf(
-					/* translators: %d: HTTP status code. */
-					__( 'DocsBot returned HTTP %d.', 'docsbot' ),
-					$status
-				);
+			$message = $this->error_message_for_status( $status, is_array( $decoded ) ? $decoded : array() );
 
 			return new WP_Error( 'docsbot_api_error', $message, array( 'status' => $status ) );
 		}

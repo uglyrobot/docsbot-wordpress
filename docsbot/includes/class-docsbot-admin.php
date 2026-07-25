@@ -232,7 +232,7 @@ final class DocsBot_Admin {
 			<p class="docsbot-eyebrow"><?php esc_html_e( 'Step 1', 'docsbot' ); ?></p>
 			<h2><?php esc_html_e( 'Connect your DocsBot account', 'docsbot' ); ?></h2>
 			<p><?php esc_html_e( 'Your API key is used only by your WordPress server to load teams, bots, and settings. It is never sent to site visitors.', 'docsbot' ); ?></p>
-			<?php if ( $has_key ) : ?>
+			<?php if ( $has_key && ! is_wp_error( $teams ) ) : ?>
 				<div class="docsbot-connected-account">
 					<span class="docsbot-connected-account__icon" aria-hidden="true">✓</span>
 					<div>
@@ -483,6 +483,9 @@ final class DocsBot_Admin {
 		$labels   = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
 		$bot_id   = isset( $bot['id'] ) && is_string( $bot['id'] ) ? $bot['id'] : (string) $settings['bot_id'];
 		$bot_root = 'https://docsbot.ai/app/bots/' . rawurlencode( $bot_id ) . '/configure/';
+		$skills   = $this->cached_skills( $settings['team_id'], $bot_id );
+		$skills   = is_wp_error( $skills ) ? $skills : $this->api->available_widget_skills( $skills );
+		$servers  = $this->api->available_mcp_servers( $bot['mcpServers'] ?? array() );
 		?>
 		<div class="docsbot-card">
 			<p class="docsbot-eyebrow"><?php esc_html_e( 'Actions', 'docsbot' ); ?></p>
@@ -530,8 +533,26 @@ final class DocsBot_Admin {
 						<h3 id="docsbot-skills-title"><?php esc_html_e( 'Skills', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
 						<p><?php esc_html_e( 'Enable bot skills to give your bot special abilities.', 'docsbot' ); ?></p>
 					</div>
+					<?php if ( is_wp_error( $skills ) ) : ?>
+						<p class="docsbot-action-load-error" role="status"><?php echo esc_html( $skills->get_error_message() ); ?></p>
+					<?php else : ?>
+						<div class="docsbot-action-available">
+							<?php foreach ( $skills as $skill ) : ?>
+								<?php
+								$skill_name = $skill['displayName'] ?? ( $skill['name'] ?? ( $skill['skillName'] ?? '' ) );
+								if ( ! is_string( $skill_name ) || '' === trim( $skill_name ) ) {
+									continue;
+								}
+								?>
+								<div class="docsbot-action-available__item">
+									<span class="docsbot-action-available__icon" aria-hidden="true"><?php echo $this->action_icon( 'skills' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?></span>
+									<strong><?php echo esc_html( $skill_name ); ?></strong>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
 					<a class="docsbot-action-add" href="<?php echo esc_url( $bot_root . 'skills' ); ?>" target="_blank" rel="noopener noreferrer">
-						<span aria-hidden="true">+</span><?php esc_html_e( 'Add skill', 'docsbot' ); ?>
+						<span aria-hidden="true">+</span><?php esc_html_e( 'Add skill in DocsBot', 'docsbot' ); ?>
 					</a>
 				</section>
 
@@ -540,8 +561,22 @@ final class DocsBot_Admin {
 						<h3 id="docsbot-mcp-title"><?php esc_html_e( 'MCP Servers', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
 						<p><?php esc_html_e( 'Connect your bot to external tools and data from your services.', 'docsbot' ); ?></p>
 					</div>
+					<div class="docsbot-action-available">
+						<?php foreach ( $servers as $server ) : ?>
+							<?php
+							$server_name = $server['serverLabel'] ?? ( $server['name'] ?? '' );
+							if ( ! is_string( $server_name ) || '' === trim( $server_name ) ) {
+								continue;
+							}
+							?>
+							<div class="docsbot-action-available__item">
+								<span class="docsbot-action-available__icon" aria-hidden="true"><?php echo $this->action_icon( 'server' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?></span>
+								<strong><?php echo esc_html( $server_name ); ?></strong>
+							</div>
+						<?php endforeach; ?>
+					</div>
 					<a class="docsbot-action-add" href="<?php echo esc_url( $bot_root . 'mcp-connections' ); ?>" target="_blank" rel="noopener noreferrer">
-						<span aria-hidden="true">+</span><?php esc_html_e( 'Add MCP server', 'docsbot' ); ?>
+						<span aria-hidden="true">+</span><?php esc_html_e( 'Add MCP server in DocsBot', 'docsbot' ); ?>
 					</a>
 				</section>
 
@@ -1354,6 +1389,27 @@ final class DocsBot_Admin {
 	}
 
 	/**
+	 * Cached widget skill summaries.
+	 *
+	 * @param string $team_id Team ID.
+	 * @param string $bot_id  Bot ID.
+	 * @return array<int,array<string,mixed>>|WP_Error
+	 */
+	private function cached_skills( $team_id, $bot_id ) {
+		$key    = 'docsbot_skills_' . md5( $team_id . '|' . $bot_id );
+		$cached = get_transient( $key );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
+		$skills = $this->api->list_skills( $team_id, $bot_id );
+		if ( ! is_wp_error( $skills ) ) {
+			set_transient( $key, $skills, 5 * MINUTE_IN_SECONDS );
+		}
+		return $skills;
+	}
+
+	/**
 	 * Cache bot response.
 	 *
 	 * @param string              $team_id Team ID.
@@ -1385,6 +1441,7 @@ final class DocsBot_Admin {
 		}
 		if ( $team_id && $bot_id ) {
 			delete_transient( 'docsbot_bot_' . md5( $team_id . '|' . $bot_id ) );
+			delete_transient( 'docsbot_skills_' . md5( $team_id . '|' . $bot_id ) );
 		}
 	}
 
@@ -1559,6 +1616,8 @@ final class DocsBot_Admin {
 			'calendar' => '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2M14 14h2M8 17h2"/>',
 			'button'   => '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M8 12h8"/>',
 			'activity' => '<path d="M4 12h3l2-6 4 12 2-6h5"/>',
+			'skills'   => '<path d="M12 3 4 7l8 4 8-4-8-4Z"/><path d="m4 11 8 4 8-4M4 15l8 4 8-4"/>',
+			'server'   => '<rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/>',
 		);
 		$path  = isset( $paths[ $icon ] ) ? $paths[ $icon ] : $paths['button'];
 		return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' . $path . '</svg>';

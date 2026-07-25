@@ -1088,3 +1088,19 @@ msgstr "Öffnen Sie ein eingebettetes Buchungs-Widget für Calendly, Cal.com ode
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Web Search"
 msgstr "Websuche"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server in DocsBot"
+msgstr "MCP-Server in DocsBot hinzufügen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill in DocsBot"
+msgstr "Skill in DocsBot hinzufügen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot authentication failed. Replace the API key and reconnect."
+msgstr "Die DocsBot-Authentifizierung ist fehlgeschlagen. Ersetzen Sie den API-Schlüssel und stellen Sie die Verbindung erneut her."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
+msgstr "Dieser API-Schlüssel hat keine Berechtigung für diesen DocsBot-Vorgang. Bitten Sie einen Team-Inhaber oder Administrator um den erforderlichen Bot-Zugriff."

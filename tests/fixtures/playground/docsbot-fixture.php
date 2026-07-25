@@ -30,6 +30,22 @@ function docsbot_fixture_bot() {
 		'showCopyButton'    => true,
 		'hideSources'       => false,
 		'allowedDomains'    => array( '127.0.0.1' ),
+		'mcpServers'        => array(
+			array(
+				'id'           => 'mcpDemo12345',
+				'serverLabel'  => 'DocsBot CRM',
+				'enabled'      => true,
+				'isConnected'  => true,
+				'tokenExpired' => false,
+			),
+			array(
+				'id'           => 'mcpExpired12345',
+				'serverLabel'  => 'Expired server',
+				'enabled'      => true,
+				'isConnected'  => true,
+				'tokenExpired' => true,
+			),
+		),
 		'labels'            => array(
 			'firstMessage'     => 'Hi! What would you like to learn about DocsBot?',
 			'inputPlaceholder' => 'Ask a product question…',
@@ -54,6 +70,27 @@ add_filter(
 		$bot    = docsbot_fixture_bot();
 		$data   = array();
 		$status = 200;
+		$auth   = $args['headers']['Authorization'] ?? '';
+
+		if ( 'Bearer expired-fixture-key' === $auth ) {
+			return array(
+				'headers'  => array( 'content-type' => 'application/json' ),
+				'body'     => wp_json_encode( array( 'message' => 'Invalid API key' ) ),
+				'response' => array( 'code' => 401, 'message' => 'Unauthorized' ),
+				'cookies'  => array(),
+				'filename' => null,
+			);
+		}
+
+		if ( 'Bearer viewer-fixture-key' === $auth && 'PUT' === $method ) {
+			return array(
+				'headers'  => array( 'content-type' => 'application/json' ),
+				'body'     => wp_json_encode( array( 'message' => 'You are not allowed to edit this bot.' ) ),
+				'response' => array( 'code' => 403, 'message' => 'Forbidden' ),
+				'cookies'  => array(),
+				'filename' => null,
+			);
+		}
 
 		if ( '/api/teams' === $path ) {
 			$data = array(
@@ -68,6 +105,21 @@ add_filter(
 			);
 		} elseif ( '/api/teams/teamDemo12345/bots' === $path ) {
 			$data = array( $bot );
+		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765/skills' === $path ) {
+			$data = array(
+				'skills' => array(
+					array(
+						'id'            => 'skillDemo12345',
+						'displayName'   => 'Product Recommendations',
+						'enabledWidget' => true,
+					),
+					array(
+						'id'            => 'skillHidden12345',
+						'displayName'   => 'Internal Reports',
+						'enabledWidget' => false,
+					),
+				),
+			);
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765' === $path && 'PUT' === $method ) {
 			$changes = json_decode( $args['body'] ?? '{}', true );
 			$bot     = array_merge( $bot, is_array( $changes ) ? $changes : array() );

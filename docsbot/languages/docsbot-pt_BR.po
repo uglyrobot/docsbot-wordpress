@@ -1079,3 +1079,19 @@ msgstr "Abre um widget de agendamento incorporado para Calendly, Cal.com ou Tidy
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Web Search"
 msgstr "Pesquisa na web"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server in DocsBot"
+msgstr "Adicionar servidor MCP no DocsBot"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill in DocsBot"
+msgstr "Adicionar habilidade no DocsBot"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot authentication failed. Replace the API key and reconnect."
+msgstr "A autenticação do DocsBot falhou. Substitua a chave de API e reconecte."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
+msgstr "Esta chave de API não tem permissão para essa operação do DocsBot. Solicite ao proprietário ou administrador da equipe o acesso necessário ao bot."

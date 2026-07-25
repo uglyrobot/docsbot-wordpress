@@ -1038,3 +1038,19 @@ msgstr "打开 Calendly、Cal.com 或 TidyCal 的嵌入式预约组件。"
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Web Search"
 msgstr "网页搜索"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server in DocsBot"
+msgstr "在 DocsBot 中添加 MCP 服务器"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill in DocsBot"
+msgstr "在 DocsBot 中添加技能"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot authentication failed. Replace the API key and reconnect."
+msgstr "DocsBot 身份验证失败。请更换 API 密钥并重新连接。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
+msgstr "此 API 密钥无权执行该 DocsBot 操作。请向团队所有者或管理员申请所需的机器人访问权限。"

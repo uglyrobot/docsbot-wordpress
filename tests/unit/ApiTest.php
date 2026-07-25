@@ -39,4 +39,46 @@ final class ApiTest extends TestCase {
 			$api->with_allowed_domain( array( 'www.example.com', 'WWW.EXAMPLE.COM.' ), 'www.example.com' )
 		);
 	}
+
+	public function test_only_healthy_enabled_mcp_servers_are_available() {
+		$api = new DocsBot_API();
+
+		$available = $api->available_mcp_servers(
+			array(
+				array( 'id' => 'healthy', 'enabled' => true, 'isConnected' => true, 'tokenExpired' => false ),
+				array( 'id' => 'disabled', 'enabled' => false, 'isConnected' => true, 'tokenExpired' => false ),
+				array( 'id' => 'expired', 'enabled' => true, 'isConnected' => true, 'tokenExpired' => true ),
+				array( 'id' => 'offline', 'enabled' => true, 'isConnected' => false, 'tokenExpired' => false ),
+			)
+		);
+
+		$this->assertSame( array( 'healthy' ), array_column( $available, 'id' ) );
+	}
+
+	public function test_only_widget_enabled_skills_are_available() {
+		$api = new DocsBot_API();
+
+		$available = $api->available_widget_skills(
+			array(
+				array( 'id' => 'widget', 'enabledWidget' => true ),
+				array( 'id' => 'disabled', 'enabledWidget' => false ),
+				array( 'id' => 'missing' ),
+			)
+		);
+
+		$this->assertSame( array( 'widget' ), array_column( $available, 'id' ) );
+	}
+
+	public function test_authentication_and_permission_errors_are_actionable() {
+		$api = new DocsBot_API();
+
+		$this->assertSame(
+			'DocsBot authentication failed. Replace the API key and reconnect.',
+			$api->error_message_for_status( 401, array( 'message' => 'Invalid API key' ) )
+		);
+		$this->assertSame(
+			'This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access.',
+			$api->error_message_for_status( 403, array( 'message' => 'Forbidden' ) )
+		);
+	}
 }
