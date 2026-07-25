@@ -81,4 +81,12 @@ final class ApiTest extends TestCase {
 			$api->error_message_for_status( 403, array( 'message' => 'Forbidden' ) )
 		);
 	}
+
+	public function test_widget_skill_updates_reject_invalid_resource_ids() {
+		$api    = new DocsBot_API();
+		$result = $api->update_widget_skill( 'team12345', 'bot12345', '../skill', false );
+
+		$this->assertInstanceOf( WP_Error::class, $result );
+		$this->assertSame( 'docsbot_invalid_skill', $result->get_error_code() );
+	}
 }

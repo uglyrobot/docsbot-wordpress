@@ -109,6 +109,69 @@
 		updatePanel();
 	} );
 
+	var bookingActions = document.querySelector( '[data-booking-actions]' );
+	if ( bookingActions ) {
+		var bookingToggles = bookingActions.querySelectorAll( '[data-booking-toggle]' );
+		var updateBooking = function ( changed ) {
+			if ( changed && changed.checked ) {
+				bookingToggles.forEach( function ( toggle ) {
+					if ( toggle !== changed ) {
+						toggle.checked = false;
+					}
+				} );
+			}
+			bookingActions.querySelectorAll( '[data-booking-action]' ).forEach( function ( editor ) {
+				var toggle = editor.querySelector( '[data-booking-toggle]' );
+				editor.classList.toggle( 'is-enabled', Boolean( toggle && toggle.checked ) );
+			} );
+		};
+		bookingToggles.forEach( function ( toggle ) {
+			toggle.addEventListener( 'change', function () {
+				updateBooking( toggle );
+			} );
+		} );
+		updateBooking();
+	}
+
+	var customButtons = document.querySelector( '[data-custom-buttons]' );
+	var customButtonTemplate = document.getElementById( 'docsbot-custom-button-template' );
+	var addCustomButton = document.querySelector( '[data-add-custom-button]' );
+	if ( customButtons ) {
+		var bindCustomButton = function ( editor ) {
+			var remove = editor.querySelector( '.docsbot-remove-custom-button' );
+			var name = editor.querySelector( '[data-custom-button-name]' );
+			var title = editor.querySelector( '[data-custom-button-title]' );
+			if ( remove ) {
+				remove.addEventListener( 'click', function () {
+					editor.remove();
+				} );
+			}
+			if ( name && title ) {
+				name.addEventListener( 'input', function () {
+					title.textContent = name.value.trim() || editor.dataset.newTitle;
+				} );
+			}
+		};
+		customButtons.querySelectorAll( '.docsbot-custom-button-editor' ).forEach( bindCustomButton );
+		if ( addCustomButton && customButtonTemplate ) {
+			addCustomButton.addEventListener( 'click', function () {
+				var nextIndex = parseInt( customButtons.dataset.nextIndex || '0', 10 );
+				customButtons.dataset.nextIndex = String( nextIndex + 1 );
+				var wrapper = document.createElement( 'div' );
+				wrapper.innerHTML = customButtonTemplate.innerHTML.split( '__INDEX__' ).join( String( nextIndex ) );
+				var editor = wrapper.firstElementChild;
+				if ( editor ) {
+					customButtons.appendChild( editor );
+					bindCustomButton( editor );
+					var firstInput = editor.querySelector( 'input[type="text"]' );
+					if ( firstInput ) {
+						firstInput.focus();
+					}
+				}
+			} );
+		}
+	}
+
 	var colorPicker = document.getElementById( 'docsbot-color-picker' );
 	var colorText = document.getElementById( 'docsbot-color' );
 	if ( colorPicker && colorText ) {

@@ -1086,3 +1086,119 @@ msgstr "DocsBotの認証に失敗しました。APIキーを交換して再接�
 #: docsbot/includes/class-docsbot-admin.php
 msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
 msgstr "このAPIキーには、そのDocsBot操作を行う権限がありません。必要なボットアクセス権をチームの所有者または管理者に依頼してください。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add custom button"
+msgstr "カスタムボタンを追加"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Booking action"
+msgstr "予約アクション"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button text"
+msgstr "ボタンのテキスト"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Calendar"
+msgstr "カレンダー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cart"
+msgstr "カート"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chat"
+msgstr "チャット"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom button"
+msgstr "カスタムボタン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Email"
+msgstr "メール"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Every custom button needs a unique key."
+msgstr "各カスタムボタンには一意のキーが必要です。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "External link"
+msgstr "外部リンク"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide event details"
+msgstr "イベントの詳細を非表示"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the cookie banner"
+msgstr "Cookieバナーを非表示"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the profile avatar"
+msgstr "プロフィール画像を非表示"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Icon"
+msgstr "アイコン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Key"
+msgstr "キー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP server removed from the widget."
+msgstr "MCPサーバーをウィジェットから削除しました。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Name"
+msgstr "名前"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New custom button"
+msgstr "新しいカスタムボタン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Phone"
+msgstr "電話"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove"
+msgstr "削除"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove button"
+msgstr "ボタンを削除"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skill removed from the widget."
+msgstr "スキルをウィジェットから削除しました。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That MCP server is not available for this bot."
+msgstr "そのMCPサーバーはこのボットでは利用できません。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That skill is not available for this bot."
+msgstr "そのスキルはこのボットでは利用できません。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "The selected skill ID is invalid."
+msgstr "選択したスキルIDは無効です。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Ticket"
+msgstr "チケット"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "URL"
+msgstr "URL"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to trigger"
+msgstr "実行するタイミング"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to use"
+msgstr "使用するタイミング"

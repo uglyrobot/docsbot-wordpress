@@ -1017,3 +1017,119 @@ msgstr ""
 #: docsbot/includes/class-docsbot-admin.php
 msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
 msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add custom button"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Booking action"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button text"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Calendar"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cart"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chat"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom button"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Email"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Every custom button needs a unique key."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "External link"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide event details"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the cookie banner"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the profile avatar"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Icon"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Key"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP server removed from the widget."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Name"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New custom button"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Phone"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove button"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skill removed from the widget."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That MCP server is not available for this bot."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That skill is not available for this bot."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "The selected skill ID is invalid."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Ticket"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "URL"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to trigger"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to use"
+msgstr ""

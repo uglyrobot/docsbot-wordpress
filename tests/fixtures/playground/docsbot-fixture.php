@@ -30,6 +30,38 @@ function docsbot_fixture_bot() {
 		'showCopyButton'    => true,
 		'hideSources'       => false,
 		'allowedDomains'    => array( '127.0.0.1' ),
+		'tools'             => array(
+			'calendly'     => array(
+				'enabled'          => true,
+				'url'              => 'https://calendly.com/docsbot/demo',
+				'instructions'     => 'Use this when the user asks to schedule a meeting, call, office hours, or demo.',
+				'hideEventDetails' => false,
+				'hideCookieBanner' => true,
+			),
+			'calcom'       => array(
+				'enabled'          => false,
+				'url'              => 'https://cal.com/docsbot/demo',
+				'instructions'     => 'Use this when the user asks to schedule a meeting, call, office hours, or demo.',
+				'hideEventDetails' => false,
+			),
+			'tidycal'      => array(
+				'enabled'          => false,
+				'url'              => 'https://tidycal.com/docsbot/demo',
+				'instructions'     => 'Use this when the user asks to schedule a meeting, call, office hours, or demo.',
+				'hideEventDetails' => false,
+			),
+			'customButtons' => array(
+				array(
+					'enabled'      => true,
+					'name'         => 'View pricing',
+					'functionKey'  => 'button_view_pricing',
+					'instructions' => 'Use when the visitor asks about plans or pricing.',
+					'buttonText'   => 'View pricing',
+					'icon'         => 'ArrowTopRightOnSquareIcon',
+					'url'          => 'https://docsbot.ai/pricing',
+				),
+			),
+		),
 		'mcpServers'        => array(
 			array(
 				'id'           => 'mcpDemo12345',
@@ -106,12 +138,13 @@ add_filter(
 		} elseif ( '/api/teams/teamDemo12345/bots' === $path ) {
 			$data = array( $bot );
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765/skills' === $path ) {
+			$disabled_skills = (array) get_option( 'docsbot_fixture_disabled_skills', array() );
 			$data = array(
 				'skills' => array(
 					array(
 						'id'            => 'skillDemo12345',
 						'displayName'   => 'Product Recommendations',
-						'enabledWidget' => true,
+						'enabledWidget' => ! in_array( 'skillDemo12345', $disabled_skills, true ),
 					),
 					array(
 						'id'            => 'skillHidden12345',
@@ -120,6 +153,14 @@ add_filter(
 					),
 				),
 			);
+		} elseif ( preg_match( '#^/api/teams/teamDemo12345/bots/botDemo98765/skills/([A-Za-z0-9_-]+)$#', $path, $matches ) && 'PUT' === $method ) {
+			$skill_changes = json_decode( $args['body'] ?? '{}', true );
+			$disabled      = (array) get_option( 'docsbot_fixture_disabled_skills', array() );
+			if ( false === ( $skill_changes['manifest']['enabledWidget'] ?? true ) ) {
+				$disabled[] = $matches[1];
+			}
+			update_option( 'docsbot_fixture_disabled_skills', array_values( array_unique( $disabled ) ), false );
+			$data = array( 'id' => $matches[1], 'manifest' => $skill_changes['manifest'] ?? array() );
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765' === $path && 'PUT' === $method ) {
 			$changes = json_decode( $args['body'] ?? '{}', true );
 			$bot     = array_merge( $bot, is_array( $changes ) ? $changes : array() );

@@ -1054,3 +1054,119 @@ msgstr "DocsBot 身份验证失败。请更换 API 密钥并重新连接。"
 #: docsbot/includes/class-docsbot-admin.php
 msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
 msgstr "此 API 密钥无权执行该 DocsBot 操作。请向团队所有者或管理员申请所需的机器人访问权限。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add custom button"
+msgstr "添加自定义按钮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Booking action"
+msgstr "预约操作"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button text"
+msgstr "按钮文本"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Calendar"
+msgstr "日历"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cart"
+msgstr "购物车"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chat"
+msgstr "聊天"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom button"
+msgstr "自定义按钮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Email"
+msgstr "电子邮件"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Every custom button needs a unique key."
+msgstr "每个自定义按钮都需要唯一的键。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "External link"
+msgstr "外部链接"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide event details"
+msgstr "隐藏活动详情"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the cookie banner"
+msgstr "隐藏 Cookie 横幅"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the profile avatar"
+msgstr "隐藏个人资料头像"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Icon"
+msgstr "图标"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Key"
+msgstr "键"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP server removed from the widget."
+msgstr "已从小工具中移除 MCP 服务器。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Name"
+msgstr "名称"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New custom button"
+msgstr "新建自定义按钮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Phone"
+msgstr "电话"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove"
+msgstr "移除"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove button"
+msgstr "移除按钮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skill removed from the widget."
+msgstr "已从小工具中移除技能。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That MCP server is not available for this bot."
+msgstr "该 MCP 服务器不适用于此机器人。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That skill is not available for this bot."
+msgstr "该技能不适用于此机器人。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "The selected skill ID is invalid."
+msgstr "所选技能 ID 无效。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Ticket"
+msgstr "工单"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "URL"
+msgstr "URL"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to trigger"
+msgstr "触发时机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to use"
+msgstr "使用时机"

@@ -142,6 +142,29 @@ final class DocsBot_API {
 	}
 
 	/**
+	 * Enable or disable a skill in the widget.
+	 *
+	 * @param string $team_id  Team ID.
+	 * @param string $bot_id   Bot ID.
+	 * @param string $skill_id Skill ID.
+	 * @param bool   $enabled  Enabled state.
+	 * @return array<string,mixed>|WP_Error
+	 */
+	public function update_widget_skill( $team_id, $bot_id, $skill_id, $enabled ) {
+		if ( ! $this->valid_id( $team_id ) || ! $this->valid_id( $bot_id ) || ! $this->valid_id( $skill_id ) ) {
+			return new WP_Error( 'docsbot_invalid_skill', __( 'The selected skill ID is invalid.', 'docsbot' ) );
+		}
+
+		return $this->request(
+			'PUT',
+			'/teams/' . rawurlencode( $team_id ) . '/bots/' . rawurlencode( $bot_id ) . '/skills/' . rawurlencode( $skill_id ),
+			array(
+				'manifest' => array( 'enabledWidget' => (bool) $enabled ),
+			)
+		);
+	}
+
+	/**
 	 * Return only healthy MCP servers enabled for widget actions.
 	 *
 	 * @param array<int,mixed> $servers MCP server records.
@@ -240,6 +263,8 @@ final class DocsBot_API {
 			'showCopyButton',
 			'hideSources',
 			'labels',
+			'tools',
+			'mcpServers',
 		);
 		$body    = array_intersect_key( $fields, array_flip( $allowed ) );
 

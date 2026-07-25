@@ -1095,3 +1095,119 @@ msgstr "La autenticación de DocsBot ha fallado. Sustituye la clave de API y vue
 #: docsbot/includes/class-docsbot-admin.php
 msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
 msgstr "Esta clave de API no tiene permiso para esa operación de DocsBot. Solicita al propietario o administrador del equipo el acceso necesario al bot."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add custom button"
+msgstr "Añadir botón personalizado"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Booking action"
+msgstr "Acción de reserva"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button text"
+msgstr "Texto del botón"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Calendar"
+msgstr "Calendario"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cart"
+msgstr "Carrito"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chat"
+msgstr "Chat"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom button"
+msgstr "Botón personalizado"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Every custom button needs a unique key."
+msgstr "Cada botón personalizado necesita una clave única."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "External link"
+msgstr "Enlace externo"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide event details"
+msgstr "Ocultar detalles del evento"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the cookie banner"
+msgstr "Ocultar el aviso de cookies"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hide the profile avatar"
+msgstr "Ocultar el avatar del perfil"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Icon"
+msgstr "Icono"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Key"
+msgstr "Clave"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP server removed from the widget."
+msgstr "Servidor MCP eliminado del widget."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Name"
+msgstr "Nombre"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New custom button"
+msgstr "Nuevo botón personalizado"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Phone"
+msgstr "Teléfono"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove"
+msgstr "Eliminar"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Remove button"
+msgstr "Eliminar botón"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skill removed from the widget."
+msgstr "Habilidad eliminada del widget."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That MCP server is not available for this bot."
+msgstr "Ese servidor MCP no está disponible para este bot."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "That skill is not available for this bot."
+msgstr "Esa habilidad no está disponible para este bot."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "The selected skill ID is invalid."
+msgstr "El ID de habilidad seleccionado no es válido."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Ticket"
+msgstr "Ticket"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "URL"
+msgstr "URL"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to trigger"
+msgstr "Cuándo activar"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "When to use"
+msgstr "Cuándo usar"

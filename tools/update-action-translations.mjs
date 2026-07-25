@@ -148,6 +148,59 @@ const translations = {
 	},
 };
 
+const editorTranslations = {
+	"de_DE": {
+		"Add custom button": "Benutzerdefinierte Schaltfläche hinzufügen",
+		"Booking action": "Buchungsaktion",
+		"Button text": "Schaltflächentext",
+		"Calendar": "Kalender",
+		"Cart": "Warenkorb",
+		"Chat": "Chat",
+		"Custom button": "Benutzerdefinierte Schaltfläche",
+		"Email": "E-Mail",
+		"Every custom button needs a unique key.": "Jede benutzerdefinierte Schaltfläche benötigt einen eindeutigen Schlüssel.",
+		"External link": "Externer Link",
+		"Hide event details": "Veranstaltungsdetails ausblenden",
+		"Hide the cookie banner": "Cookie-Banner ausblenden",
+		"Hide the profile avatar": "Profilbild ausblenden",
+		"Icon": "Symbol",
+		"Key": "Schlüssel",
+		"MCP server removed from the widget.": "MCP-Server aus dem Widget entfernt.",
+		"Name": "Name",
+		"New custom button": "Neue benutzerdefinierte Schaltfläche",
+		"Phone": "Telefon",
+		"Remove": "Entfernen",
+		"Remove button": "Schaltfläche entfernen",
+		"Skill removed from the widget.": "Skill aus dem Widget entfernt.",
+		"That MCP server is not available for this bot.": "Dieser MCP-Server ist für diesen Bot nicht verfügbar.",
+		"That skill is not available for this bot.": "Dieser Skill ist für diesen Bot nicht verfügbar.",
+		"The selected skill ID is invalid.": "Die ausgewählte Skill-ID ist ungültig.",
+		"Ticket": "Ticket",
+		"URL": "URL",
+		"When to trigger": "Wann auslösen",
+		"When to use": "Wann verwenden",
+	},
+	"es_ES": {
+		"Add custom button": "Añadir botón personalizado", "Booking action": "Acción de reserva", "Button text": "Texto del botón", "Calendar": "Calendario", "Cart": "Carrito", "Chat": "Chat", "Custom button": "Botón personalizado", "Email": "Correo electrónico", "Every custom button needs a unique key.": "Cada botón personalizado necesita una clave única.", "External link": "Enlace externo", "Hide event details": "Ocultar detalles del evento", "Hide the cookie banner": "Ocultar el aviso de cookies", "Hide the profile avatar": "Ocultar el avatar del perfil", "Icon": "Icono", "Key": "Clave", "MCP server removed from the widget.": "Servidor MCP eliminado del widget.", "Name": "Nombre", "New custom button": "Nuevo botón personalizado", "Phone": "Teléfono", "Remove": "Eliminar", "Remove button": "Eliminar botón", "Skill removed from the widget.": "Habilidad eliminada del widget.", "That MCP server is not available for this bot.": "Ese servidor MCP no está disponible para este bot.", "That skill is not available for this bot.": "Esa habilidad no está disponible para este bot.", "The selected skill ID is invalid.": "El ID de habilidad seleccionado no es válido.", "Ticket": "Ticket", "URL": "URL", "When to trigger": "Cuándo activar", "When to use": "Cuándo usar",
+	},
+	"fr_FR": {
+		"Add custom button": "Ajouter un bouton personnalisé", "Booking action": "Action de réservation", "Button text": "Texte du bouton", "Calendar": "Calendrier", "Cart": "Panier", "Chat": "Discussion", "Custom button": "Bouton personnalisé", "Email": "E-mail", "Every custom button needs a unique key.": "Chaque bouton personnalisé doit avoir une clé unique.", "External link": "Lien externe", "Hide event details": "Masquer les détails de l’événement", "Hide the cookie banner": "Masquer la bannière de cookies", "Hide the profile avatar": "Masquer l’avatar du profil", "Icon": "Icône", "Key": "Clé", "MCP server removed from the widget.": "Serveur MCP retiré du widget.", "Name": "Nom", "New custom button": "Nouveau bouton personnalisé", "Phone": "Téléphone", "Remove": "Retirer", "Remove button": "Retirer le bouton", "Skill removed from the widget.": "Compétence retirée du widget.", "That MCP server is not available for this bot.": "Ce serveur MCP n’est pas disponible pour ce bot.", "That skill is not available for this bot.": "Cette compétence n’est pas disponible pour ce bot.", "The selected skill ID is invalid.": "L’identifiant de compétence sélectionné n’est pas valide.", "Ticket": "Ticket", "URL": "URL", "When to trigger": "Quand déclencher", "When to use": "Quand utiliser",
+	},
+	"ja": {
+		"Add custom button": "カスタムボタンを追加", "Booking action": "予約アクション", "Button text": "ボタンのテキスト", "Calendar": "カレンダー", "Cart": "カート", "Chat": "チャット", "Custom button": "カスタムボタン", "Email": "メール", "Every custom button needs a unique key.": "各カスタムボタンには一意のキーが必要です。", "External link": "外部リンク", "Hide event details": "イベントの詳細を非表示", "Hide the cookie banner": "Cookieバナーを非表示", "Hide the profile avatar": "プロフィール画像を非表示", "Icon": "アイコン", "Key": "キー", "MCP server removed from the widget.": "MCPサーバーをウィジェットから削除しました。", "Name": "名前", "New custom button": "新しいカスタムボタン", "Phone": "電話", "Remove": "削除", "Remove button": "ボタンを削除", "Skill removed from the widget.": "スキルをウィジェットから削除しました。", "That MCP server is not available for this bot.": "そのMCPサーバーはこのボットでは利用できません。", "That skill is not available for this bot.": "そのスキルはこのボットでは利用できません。", "The selected skill ID is invalid.": "選択したスキルIDは無効です。", "Ticket": "チケット", "URL": "URL", "When to trigger": "実行するタイミング", "When to use": "使用するタイミング",
+	},
+	"pt_BR": {
+		"Add custom button": "Adicionar botão personalizado", "Booking action": "Ação de agendamento", "Button text": "Texto do botão", "Calendar": "Calendário", "Cart": "Carrinho", "Chat": "Chat", "Custom button": "Botão personalizado", "Email": "E-mail", "Every custom button needs a unique key.": "Cada botão personalizado precisa de uma chave exclusiva.", "External link": "Link externo", "Hide event details": "Ocultar detalhes do evento", "Hide the cookie banner": "Ocultar o banner de cookies", "Hide the profile avatar": "Ocultar o avatar do perfil", "Icon": "Ícone", "Key": "Chave", "MCP server removed from the widget.": "Servidor MCP removido do widget.", "Name": "Nome", "New custom button": "Novo botão personalizado", "Phone": "Telefone", "Remove": "Remover", "Remove button": "Remover botão", "Skill removed from the widget.": "Habilidade removida do widget.", "That MCP server is not available for this bot.": "Esse servidor MCP não está disponível para este bot.", "That skill is not available for this bot.": "Essa habilidade não está disponível para este bot.", "The selected skill ID is invalid.": "O ID da habilidade selecionada é inválido.", "Ticket": "Ticket", "URL": "URL", "When to trigger": "Quando acionar", "When to use": "Quando usar",
+	},
+	"zh_CN": {
+		"Add custom button": "添加自定义按钮", "Booking action": "预约操作", "Button text": "按钮文本", "Calendar": "日历", "Cart": "购物车", "Chat": "聊天", "Custom button": "自定义按钮", "Email": "电子邮件", "Every custom button needs a unique key.": "每个自定义按钮都需要唯一的键。", "External link": "外部链接", "Hide event details": "隐藏活动详情", "Hide the cookie banner": "隐藏 Cookie 横幅", "Hide the profile avatar": "隐藏个人资料头像", "Icon": "图标", "Key": "键", "MCP server removed from the widget.": "已从小工具中移除 MCP 服务器。", "Name": "名称", "New custom button": "新建自定义按钮", "Phone": "电话", "Remove": "移除", "Remove button": "移除按钮", "Skill removed from the widget.": "已从小工具中移除技能。", "That MCP server is not available for this bot.": "该 MCP 服务器不适用于此机器人。", "That skill is not available for this bot.": "该技能不适用于此机器人。", "The selected skill ID is invalid.": "所选技能 ID 无效。", "Ticket": "工单", "URL": "URL", "When to trigger": "触发时机", "When to use": "使用时机",
+	},
+};
+
+for (const [locale, messages] of Object.entries(editorTranslations)) {
+	Object.assign(translations[locale], messages);
+}
+
 function quotePo(value) {
 	return `"${value.replaceAll("\\", "\\\\").replaceAll('"', '\\"').replaceAll("\n", "\\n")}"`;
 }

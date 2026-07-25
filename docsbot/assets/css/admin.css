@@ -538,6 +538,93 @@
 	font-size: 14px;
 }
 
+.docsbot-action-available__item strong {
+	flex: 1;
+}
+
+.docsbot-action-remove {
+	margin-left: auto;
+}
+
+.docsbot-action-editors {
+	display: grid;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.docsbot-action-editor {
+	overflow: hidden;
+	border: 1px solid #dbe4ea;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.docsbot-action-editor__header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+	background: #f8fafc;
+}
+
+.docsbot-action-editor__header > img {
+	width: 36px;
+	height: 36px;
+	flex: 0 0 36px;
+	object-fit: contain;
+}
+
+.docsbot-action-editor__header > span:nth-child(2) {
+	display: grid;
+	flex: 1;
+	gap: 2px;
+}
+
+.docsbot-action-editor__header strong {
+	color: #1f2937;
+	font-size: 14px;
+}
+
+.docsbot-action-editor__header small {
+	color: #64748b;
+	font-size: 12px;
+}
+
+.docsbot-action-editor__body {
+	display: grid;
+	gap: 14px;
+	padding: 16px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.docsbot-action-editor:not(.is-enabled) .docsbot-action-editor__body {
+	background: #fcfcfd;
+}
+
+.docsbot-input-prefix {
+	display: flex;
+	align-items: stretch;
+}
+
+.docsbot-input-prefix > span {
+	display: flex;
+	align-items: center;
+	padding: 0 10px;
+	border: 1px solid #cbd5e1;
+	border-right: 0;
+	border-radius: 6px 0 0 6px;
+	background: #f8fafc;
+	color: #64748b;
+}
+
+.docsbot-input-prefix input {
+	border-radius: 0 6px 6px 0;
+}
+
+.docsbot-remove-custom-button {
+	justify-self: start;
+}
+
 .docsbot-action-available__icon {
 	display: grid;
 	place-items: center;
@@ -1243,7 +1330,8 @@
 }
 
 .docsbot-preview-card .docsbot-widget-preview__launcher.has-label {
-	width: auto;
+	width: fit-content;
+	max-width: calc(100% - 24px);
 	height: 48px;
 	padding: 0 24px;
 	border-radius: 22px;
@@ -1276,10 +1364,13 @@
 }
 
 .docsbot-preview-card .docsbot-widget-preview__launcher b {
+	overflow: hidden;
 	margin-left: 8px;
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 14px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .docsbot-switch {
