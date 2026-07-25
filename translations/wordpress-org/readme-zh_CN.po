@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: DocsBot WordPress.org Listing 1.0.3\n"
+"Project-Id-Version: DocsBot WordPress.org Listing 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
 "PO-Revision-Date: 2026-07-25 14:00-0500\n"
 "Last-Translator: DocsBot\n"
@@ -70,9 +70,19 @@ msgstr "从您的 DocsBot 用户可访问的所有团队和机器人中进行选
 #. names, URLs, paths, Markdown, and code formatting.
 #: docsbot/readme.txt:22
 msgid ""
-"Configure the greeting, labels, support link, branding, color, icons, and "
-"placement."
-msgstr "配置问候语、标签、支持链接、品牌标识、颜色、图标和显示位置。"
+"Configure the greeting, labels, support link, branding, color, visual icon "
+"choices, and placement."
+msgstr "配置问候语、标签、支持链接、品牌标识、颜色、可视化图标选项和显示位置。"
+
+msgid ""
+"Host custom launcher icons, bot avatars, and header logos in the WordPress "
+"Media Library."
+msgstr "在 WordPress 媒体库中托管自定义启动图标、机器人头像和页眉徽标。"
+
+msgid ""
+"Enable image uploads, voice input, external-link confirmation, and agent "
+"activity."
+msgstr "启用图片上传、语音输入、外部链接确认和智能体活动。"
 
 #. translators: WordPress.org readme Description list item. Preserve product
 #. names, URLs, paths, Markdown, and code formatting.
@@ -458,6 +468,29 @@ msgstr "更新日志"
 
 #. translators: WordPress.org readme Changelog heading.
 #: docsbot/readme.txt:104
+msgid "1.0.4"
+msgstr "1.0.4"
+
+msgid ""
+"Added WordPress Media Library selection for custom launcher icons, bot "
+"avatars, and header logos."
+msgstr "新增从 WordPress 媒体库选择自定义启动图标、机器人头像和页眉徽标。"
+
+msgid ""
+"Added dashboard-style visual icon choices, grouped expandable actions, image "
+"uploads, voice input, and matching preview controls."
+msgstr "新增仪表盘风格的可视化图标选项、分组可展开操作、图片上传、语音输入和相应的预览控件。"
+
+msgid ""
+"Moved support settings into Human Support Escalation and content-related "
+"options into Content."
+msgstr "将支持设置移至人工支持升级，并将内容相关选项移至内容。"
+
+msgid ""
+"Removed editable domain restrictions and now preserves unrestricted bots "
+"while transparently adding the WordPress hostname to existing allowlists."
+msgstr "移除可编辑的域名限制；保留不受限制的机器人，并将 WordPress 主机名透明地添加到现有允许列表。"
+
 msgid "1.0.3"
 msgstr "1.0.3"
 

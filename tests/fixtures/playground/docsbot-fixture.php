@@ -23,6 +23,8 @@ function docsbot_fixture_bot() {
 		'branding'          => true,
 		'headerAlignment'   => 'center',
 		'linkSafetyEnabled' => true,
+		'imageUploads'      => true,
+		'audioUploads'      => true,
 		'supportLink'       => 'https://docsbot.ai/support',
 		'showButtonLabel'   => true,
 		'showCopyButton'    => true,
@@ -119,6 +121,8 @@ add_action(
 				'share_user_id'       => true,
 				'use_web_search'      => true,
 				'use_custom_buttons'  => true,
+				'use_image_upload'    => true,
+				'use_audio_upload'    => true,
 			)
 		);
 

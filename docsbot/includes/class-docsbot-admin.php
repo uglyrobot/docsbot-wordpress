@@ -91,14 +91,14 @@ final class DocsBot_Admin {
 			array(),
 			DOCSBOT_VERSION
 		);
+		wp_enqueue_media();
 		wp_enqueue_script(
 			'docsbot-admin',
 			DOCSBOT_URL . 'assets/js/admin.js',
-			array(),
+			array( 'media-editor' ),
 			DOCSBOT_VERSION,
 			true
 		);
-		wp_enqueue_media();
 	}
 
 	/**
@@ -363,21 +363,20 @@ final class DocsBot_Admin {
 					<?php $this->text_field( 'first_message', __( 'First message', 'docsbot' ), $labels['firstMessage'] ?? '', 500 ); ?>
 					<?php $this->text_field( 'input_placeholder', __( 'Input placeholder', 'docsbot' ), $labels['inputPlaceholder'] ?? '', 120 ); ?>
 					<?php $this->text_field( 'floating_button', __( 'Floating button label', 'docsbot' ), $labels['floatingButton'] ?? '', 80 ); ?>
-					<?php $this->text_field( 'support_label', __( 'Support button label', 'docsbot' ), $labels['getSupport'] ?? '', 80 ); ?>
 				</div>
 				<div class="docsbot-field">
 					<label for="docsbot-footer-message"><?php esc_html_e( 'Footer message', 'docsbot' ); ?></label>
 					<textarea id="docsbot-footer-message" name="footer_message" rows="3" maxlength="1000"><?php echo esc_textarea( $labels['footerMessage'] ?? '' ); ?></textarea>
 					<p class="description"><?php esc_html_e( 'A good place for privacy or acceptable-use guidance. Basic Markdown is supported by the widget.', 'docsbot' ); ?></p>
 				</div>
-				<div class="docsbot-field">
-					<label for="docsbot-support-link"><?php esc_html_e( 'Support URL', 'docsbot' ); ?></label>
-					<input type="url" id="docsbot-support-link" name="support_link" value="<?php echo esc_attr( $bot['supportLink'] ?? '' ); ?>" placeholder="https://example.com/support">
-				</div>
 				<div class="docsbot-toggle-grid">
 					<?php $this->checkbox( 'show_button_label', __( 'Show floating button text', 'docsbot' ), ! empty( $bot['showButtonLabel'] ) ); ?>
 					<?php $this->checkbox( 'show_copy_button', __( 'Let visitors copy answers', 'docsbot' ), ! empty( $bot['showCopyButton'] ) ); ?>
 					<?php $this->checkbox( 'hide_sources', __( 'Hide answer sources', 'docsbot' ), ! empty( $bot['hideSources'] ) ); ?>
+					<?php $this->checkbox( 'link_safety_enabled', __( 'Confirm external links', 'docsbot' ), ! empty( $settings['link_safety_enabled'] ) ); ?>
+					<?php $this->checkbox( 'show_agent_activity', __( 'Agent activity', 'docsbot' ), ! empty( $settings['show_agent_activity'] ) ); ?>
+					<?php $this->checkbox( 'use_image_upload', __( 'Image uploads', 'docsbot' ), ! empty( $settings['use_image_upload'] ) ); ?>
+					<?php $this->checkbox( 'use_audio_upload', __( 'Voice input', 'docsbot' ), ! empty( $settings['use_audio_upload'] ) ); ?>
 				</div>
 				<?php submit_button( __( 'Save content', 'docsbot' ), 'primary', 'submit', false ); ?>
 			</form>
@@ -402,7 +401,7 @@ final class DocsBot_Admin {
 			<h2><?php esc_html_e( 'Match your site', 'docsbot' ); ?></h2>
 			<p><?php esc_html_e( 'Use your brand color, placement, and imagery while keeping the widget accessible.', 'docsbot' ); ?></p>
 			<?php $this->form_open( 'docsbot_remote_design' ); ?>
-				<div class="docsbot-grid docsbot-grid--3">
+				<div class="docsbot-grid docsbot-grid--2">
 					<div class="docsbot-field">
 						<label for="docsbot-color"><?php esc_html_e( 'Accent color', 'docsbot' ); ?></label>
 						<div class="docsbot-color">
@@ -412,21 +411,6 @@ final class DocsBot_Admin {
 					</div>
 					<?php
 					$this->select_field(
-						'icon',
-						__( 'Button icon', 'docsbot' ),
-						array(
-							'default'   => __( 'Comments', 'docsbot' ),
-							'comments'  => __( 'Comments (classic)', 'docsbot' ),
-							'robot'     => __( 'Robot', 'docsbot' ),
-							'life-ring' => __( 'Life ring', 'docsbot' ),
-							'question'  => __( 'Question', 'docsbot' ),
-							'book'      => __( 'Book', 'docsbot' ),
-						),
-						$bot['icon'] ?? 'default'
-					);
-					?>
-					<?php
-					$this->select_field(
 						'alignment',
 						__( 'Button side', 'docsbot' ),
 						array(
@@ -434,21 +418,6 @@ final class DocsBot_Admin {
 							'left'  => __( 'Left', 'docsbot' ),
 						),
 						$bot['alignment'] ?? 'right'
-					);
-					?>
-					<?php
-					$this->select_field(
-						'bot_icon',
-						__( 'Bot avatar', 'docsbot' ),
-						array(
-							''          => __( 'None', 'docsbot' ),
-							'comment'   => __( 'Comment', 'docsbot' ),
-							'robot'     => __( 'Robot', 'docsbot' ),
-							'life-ring' => __( 'Life ring', 'docsbot' ),
-							'info'      => __( 'Info', 'docsbot' ),
-							'book'      => __( 'Book', 'docsbot' ),
-						),
-						$bot['botIcon'] ?? ''
 					);
 					?>
 					<?php
@@ -463,17 +432,36 @@ final class DocsBot_Admin {
 					);
 					?>
 				</div>
+				<?php
+				$launcher_icons = array(
+					'default'   => __( 'Comments', 'docsbot' ),
+					'comments'  => __( 'Classic', 'docsbot' ),
+					'robot'     => __( 'Robot', 'docsbot' ),
+					'life-ring' => __( 'Life ring', 'docsbot' ),
+					'question'  => __( 'Question', 'docsbot' ),
+					'book'      => __( 'Book', 'docsbot' ),
+				);
+				$avatar_icons = array(
+					''          => __( 'None', 'docsbot' ),
+					'comment'   => __( 'Comment', 'docsbot' ),
+					'robot'     => __( 'Robot', 'docsbot' ),
+					'life-ring' => __( 'Life ring', 'docsbot' ),
+					'info'      => __( 'Info', 'docsbot' ),
+					'book'      => __( 'Book', 'docsbot' ),
+				);
+				$this->icon_choice_field( 'icon', __( 'Button icon', 'docsbot' ), $launcher_icons, $bot['icon'] ?? 'default', 'docsbot-icon-custom' );
+				$this->icon_choice_field( 'bot_icon', __( 'Bot avatar', 'docsbot' ), $avatar_icons, $bot['botIcon'] ?? '', 'docsbot-bot-icon-custom' );
+				?>
 				<div class="docsbot-field">
 					<label for="docsbot-logo"><?php esc_html_e( 'Header logo URL', 'docsbot' ); ?></label>
 					<div class="docsbot-media-field">
 						<input type="url" id="docsbot-logo" name="logo" value="<?php echo esc_attr( is_string( $bot['logo'] ?? '' ) ? $bot['logo'] : '' ); ?>" placeholder="https://example.com/logo.png">
-						<button type="button" class="button docsbot-choose-logo" data-media-title="<?php esc_attr_e( 'Choose widget header logo', 'docsbot' ); ?>" data-media-button="<?php esc_attr_e( 'Use this image', 'docsbot' ); ?>"><?php esc_html_e( 'Choose image', 'docsbot' ); ?></button>
+						<button type="button" class="button docsbot-choose-image" data-media-target="docsbot-logo" data-media-title="<?php esc_attr_e( 'Choose widget header logo', 'docsbot' ); ?>" data-media-button="<?php esc_attr_e( 'Use this image', 'docsbot' ); ?>"><?php esc_html_e( 'Choose image', 'docsbot' ); ?></button>
 					</div>
 					<p class="description"><?php esc_html_e( 'Use a public HTTPS image URL. A maximum displayed height of 36px works best.', 'docsbot' ); ?></p>
 				</div>
 				<div class="docsbot-toggle-grid">
 					<?php $this->checkbox( 'branding', __( 'Show DocsBot branding', 'docsbot' ), ! isset( $bot['branding'] ) || ! empty( $bot['branding'] ) ); ?>
-					<?php $this->checkbox( 'link_safety_enabled', __( 'Confirm external links', 'docsbot' ), ! empty( $settings['link_safety_enabled'] ) ); ?>
 				</div>
 				<?php submit_button( __( 'Save design', 'docsbot' ), 'primary', 'submit', false ); ?>
 			</form>
@@ -488,22 +476,48 @@ final class DocsBot_Admin {
 	 * @return void
 	 */
 	private function render_actions( $settings ) {
+		$bot = $this->current_bot_or_prompt( $settings );
+		if ( ! is_array( $bot ) ) {
+			return;
+		}
+		$labels = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
 		?>
 		<div class="docsbot-card">
 			<p class="docsbot-eyebrow"><?php esc_html_e( 'Actions', 'docsbot' ); ?></p>
 			<h2><?php esc_html_e( 'Choose what the widget can do', 'docsbot' ); ?></h2>
 			<p><?php esc_html_e( 'These WordPress embed options activate features already enabled and configured for your bot and plan in DocsBot.', 'docsbot' ); ?></p>
 			<?php $this->form_open( 'docsbot_actions' ); ?>
-				<div class="docsbot-option-list docsbot-action-list">
-					<?php $this->option_toggle( 'use_feedback', __( 'Answer feedback', 'docsbot' ), __( 'Let visitors rate answers as helpful or unhelpful.', 'docsbot' ), $settings['use_feedback'], 'feedback' ); ?>
-					<?php $this->option_toggle( 'use_escalation', __( 'Human support escalation', 'docsbot' ), __( 'Show escalation when it is configured for the selected bot.', 'docsbot' ), $settings['use_escalation'], 'support' ); ?>
-					<?php $this->option_toggle( 'use_web_search', __( 'Web search', 'docsbot' ), __( 'Allow agent-mode web search when your plan and bot support it.', 'docsbot' ), $settings['use_web_search'], 'globe' ); ?>
-					<?php $this->option_toggle( 'use_calendly', __( 'Calendly booking', 'docsbot' ), __( 'Allow the configured Calendly scheduling action.', 'docsbot' ), $settings['use_calendly'], 'calendar' ); ?>
-					<?php $this->option_toggle( 'use_calcom', __( 'Cal.com booking', 'docsbot' ), __( 'Allow the configured Cal.com scheduling action.', 'docsbot' ), $settings['use_calcom'], 'calendar' ); ?>
-					<?php $this->option_toggle( 'use_tidycal', __( 'TidyCal booking', 'docsbot' ), __( 'Allow the configured TidyCal scheduling action.', 'docsbot' ), $settings['use_tidycal'], 'calendar' ); ?>
-					<?php $this->option_toggle( 'use_custom_buttons', __( 'Custom action buttons', 'docsbot' ), __( 'Allow custom button tools configured in DocsBot.', 'docsbot' ), $settings['use_custom_buttons'], 'button' ); ?>
-					<?php $this->option_toggle( 'show_agent_activity', __( 'Agent activity', 'docsbot' ), __( 'Show concise thinking and tool progress while the agent works.', 'docsbot' ), $settings['show_agent_activity'], 'activity' ); ?>
-				</div>
+				<details class="docsbot-action-group" open>
+					<summary><span><?php esc_html_e( 'Built-in actions', 'docsbot' ); ?></span></summary>
+					<div class="docsbot-option-list docsbot-action-list">
+						<?php $this->option_toggle( 'use_feedback', __( 'Answer feedback', 'docsbot' ), __( 'Let visitors rate answers as helpful or unhelpful.', 'docsbot' ), $settings['use_feedback'], 'feedback' ); ?>
+						<div>
+							<?php $this->option_toggle( 'use_escalation', __( 'Human support escalation', 'docsbot' ), __( 'Show a direct path to your support team.', 'docsbot' ), $settings['use_escalation'], 'support' ); ?>
+							<div class="docsbot-action-nested" data-depends-on="use_escalation">
+								<?php $this->text_field( 'support_label', __( 'Support button label', 'docsbot' ), $labels['getSupport'] ?? '', 80 ); ?>
+								<div class="docsbot-field">
+									<label for="docsbot-support-link"><?php esc_html_e( 'Contact or support URL', 'docsbot' ); ?></label>
+									<input type="url" id="docsbot-support-link" name="support_link" value="<?php echo esc_attr( is_array( $bot ) ? ( $bot['supportLink'] ?? '' ) : '' ); ?>" placeholder="https://example.com/support">
+								</div>
+							</div>
+						</div>
+					</div>
+				</details>
+				<details class="docsbot-action-group">
+					<summary><span><?php esc_html_e( 'Scheduling', 'docsbot' ); ?></span></summary>
+					<div class="docsbot-option-list docsbot-action-list">
+						<?php $this->option_toggle( 'use_calendly', __( 'Calendly booking', 'docsbot' ), __( 'Allow the configured Calendly scheduling action.', 'docsbot' ), $settings['use_calendly'], 'calendar' ); ?>
+						<?php $this->option_toggle( 'use_calcom', __( 'Cal.com booking', 'docsbot' ), __( 'Allow the configured Cal.com scheduling action.', 'docsbot' ), $settings['use_calcom'], 'calendar' ); ?>
+						<?php $this->option_toggle( 'use_tidycal', __( 'TidyCal booking', 'docsbot' ), __( 'Allow the configured TidyCal scheduling action.', 'docsbot' ), $settings['use_tidycal'], 'calendar' ); ?>
+					</div>
+				</details>
+				<details class="docsbot-action-group">
+					<summary><span><?php esc_html_e( 'Agent tools', 'docsbot' ); ?></span></summary>
+					<div class="docsbot-option-list docsbot-action-list">
+						<?php $this->option_toggle( 'use_web_search', __( 'Web search', 'docsbot' ), __( 'Allow agent-mode web search when your plan and bot support it.', 'docsbot' ), $settings['use_web_search'], 'globe' ); ?>
+						<?php $this->option_toggle( 'use_custom_buttons', __( 'Custom action buttons', 'docsbot' ), __( 'Allow custom button tools configured in DocsBot.', 'docsbot' ), $settings['use_custom_buttons'], 'button' ); ?>
+					</div>
+				</details>
 				<?php submit_button( __( 'Save actions', 'docsbot' ), 'primary', 'submit', false ); ?>
 			</form>
 		</div>
@@ -552,11 +566,6 @@ final class DocsBot_Admin {
 						<textarea id="docsbot-excludes" name="exclude_prefixes" rows="5" placeholder="/checkout/&#10;/privacy/"><?php echo esc_textarea( $settings['exclude_prefixes'] ); ?></textarea>
 						<p class="description"><?php esc_html_e( 'Exclusions always win over inclusions.', 'docsbot' ); ?></p>
 					</div>
-				</div>
-				<div class="docsbot-field">
-					<label for="docsbot-domains"><?php esc_html_e( 'Allowed embed domains', 'docsbot' ); ?></label>
-					<textarea id="docsbot-domains" name="allowed_domains" rows="3" placeholder="<?php echo esc_attr( wp_parse_url( home_url(), PHP_URL_HOST ) ); ?>"><?php echo esc_textarea( $settings['allowed_domains'] ); ?></textarea>
-					<p class="description"><?php esc_html_e( 'One hostname per line, without a scheme or wildcard. Saved to DocsBot as defense in depth.', 'docsbot' ); ?></p>
 				</div>
 			</div>
 
@@ -752,6 +761,8 @@ final class DocsBot_Admin {
 			'allowed_domains'     => $this->lines_from_array( $bot['allowedDomains'] ?? array() ),
 			'header_alignment'    => in_array( $bot['headerAlignment'] ?? 'center', array( 'left', 'center' ), true ) ? $bot['headerAlignment'] : 'center',
 			'link_safety_enabled' => ! empty( $bot['linkSafetyEnabled'] ),
+			'use_image_upload'    => ! empty( $bot['imageUploads'] ),
+			'use_audio_upload'    => ! empty( $bot['audioUploads'] ),
 		);
 		$signature_key     = isset( $bot['signatureKey'] ) && is_string( $bot['signatureKey'] )
 			? trim( $bot['signatureKey'] )
@@ -786,26 +797,43 @@ final class DocsBot_Admin {
 		$this->guard( 'docsbot_remote_content' );
 		check_admin_referer( 'docsbot_remote_content' );
 		$settings = DocsBot_Plugin::settings();
-		$labels   = array(
-			'firstMessage'     => $this->post_textarea( 'first_message', 500 ),
-			'inputPlaceholder' => $this->post_text( 'input_placeholder', 120 ),
-			'floatingButton'   => $this->post_text( 'floating_button', 80 ),
-			'getSupport'       => $this->post_text( 'support_label', 80 ),
-			'footerMessage'    => $this->post_textarea( 'footer_message', 1000 ),
+		$bot      = $this->cached_bot( $settings['team_id'], $settings['bot_id'] );
+		if ( is_wp_error( $bot ) ) {
+			$this->redirect_feedback( 'content', 'error', $bot->get_error_message() );
+		}
+		$labels = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$labels = array_merge(
+			$labels,
+			array(
+				'firstMessage'     => $this->post_textarea( 'first_message', 500 ),
+				'inputPlaceholder' => $this->post_text( 'input_placeholder', 120 ),
+				'floatingButton'   => $this->post_text( 'floating_button', 80 ),
+				'footerMessage'    => $this->post_textarea( 'footer_message', 1000 ),
+			)
 		);
-		$result   = $this->api->update_bot(
+		$result = $this->api->update_bot(
 			$settings['team_id'],
 			$settings['bot_id'],
 			array(
-				'name'            => $this->post_text( 'name', 100 ),
-				'description'     => $this->post_textarea( 'description', 500 ),
-				'supportLink'     => $this->post_url( 'support_link' ),
-				'showButtonLabel' => $this->posted_bool( 'show_button_label' ),
-				'showCopyButton'  => $this->posted_bool( 'show_copy_button' ),
-				'hideSources'     => $this->posted_bool( 'hide_sources' ),
-				'labels'          => $labels,
+				'name'              => $this->post_text( 'name', 100 ),
+				'description'       => $this->post_textarea( 'description', 500 ),
+				'showButtonLabel'   => $this->posted_bool( 'show_button_label' ),
+				'showCopyButton'    => $this->posted_bool( 'show_copy_button' ),
+				'hideSources'       => $this->posted_bool( 'hide_sources' ),
+				'linkSafetyEnabled' => $this->posted_bool( 'link_safety_enabled' ),
+				'labels'            => $labels,
 			)
 		);
+		if ( ! is_wp_error( $result ) ) {
+			DocsBot_Plugin::update_settings(
+				array(
+					'link_safety_enabled' => $this->posted_bool( 'link_safety_enabled' ),
+					'show_agent_activity' => $this->posted_bool( 'show_agent_activity' ),
+					'use_image_upload'    => $this->posted_bool( 'use_image_upload' ),
+					'use_audio_upload'    => $this->posted_bool( 'use_audio_upload' ),
+				)
+			);
+		}
 		$this->finish_remote_save( 'content', $result, __( 'Content saved to DocsBot.', 'docsbot' ) );
 	}
 
@@ -821,12 +849,20 @@ final class DocsBot_Admin {
 		$color            = isset( $_POST['color'] ) ? sanitize_hex_color( wp_unslash( $_POST['color'] ) ) : '';
 		$alignment        = $this->posted_enum( 'alignment', array( 'left', 'right' ), 'right' );
 		$header_alignment = $this->posted_enum( 'header_alignment', array( 'left', 'center' ), 'center' );
-		$icon             = $this->posted_enum( 'icon', array( 'default', 'comments', 'robot', 'life-ring', 'question', 'book' ), 'default' );
-		$bot_icon         = $this->posted_enum( 'bot_icon', array( '', 'comment', 'robot', 'life-ring', 'info', 'book' ), '' );
+		$icon_choice      = $this->posted_enum( 'icon', array( 'default', 'comments', 'robot', 'life-ring', 'question', 'book', 'custom' ), 'default' );
+		$bot_icon_choice  = $this->posted_enum( 'bot_icon', array( '', 'comment', 'robot', 'life-ring', 'info', 'book', 'custom' ), '' );
+		$icon             = 'custom' === $icon_choice ? $this->post_url( 'icon_custom' ) : $icon_choice;
+		$bot_icon         = 'custom' === $bot_icon_choice ? $this->post_url( 'bot_icon_custom' ) : $bot_icon_choice;
 		$logo             = $this->post_url( 'logo' );
 
 		if ( ! $color ) {
 			$this->redirect_feedback( 'design', 'error', __( 'Enter a valid six-digit hex color.', 'docsbot' ) );
+		}
+		if ( 'custom' === $icon_choice && '' === $icon ) {
+			$this->redirect_feedback( 'design', 'error', __( 'Choose a valid HTTPS button icon image.', 'docsbot' ) );
+		}
+		if ( 'custom' === $bot_icon_choice && '' === $bot_icon ) {
+			$this->redirect_feedback( 'design', 'error', __( 'Choose a valid HTTPS bot avatar image.', 'docsbot' ) );
 		}
 
 		$result = $this->api->update_bot(
@@ -840,15 +876,13 @@ final class DocsBot_Admin {
 				'logo'              => '' === $logo ? false : $logo,
 				'headerAlignment'   => $header_alignment,
 				'branding'          => $this->posted_bool( 'branding' ),
-				'linkSafetyEnabled' => $this->posted_bool( 'link_safety_enabled' ),
 			)
 		);
 
 		if ( ! is_wp_error( $result ) ) {
 			DocsBot_Plugin::update_settings(
 				array(
-					'header_alignment'    => $header_alignment,
-					'link_safety_enabled' => $this->posted_bool( 'link_safety_enabled' ),
+					'header_alignment' => $header_alignment,
 				)
 			);
 		}
@@ -863,13 +897,30 @@ final class DocsBot_Admin {
 	public function save_actions() {
 		$this->guard( 'docsbot_actions' );
 		check_admin_referer( 'docsbot_actions' );
-		$fields  = array( 'use_feedback', 'use_escalation', 'use_web_search', 'use_calendly', 'use_calcom', 'use_tidycal', 'use_custom_buttons', 'show_agent_activity' );
-		$changes = array();
+		$settings = DocsBot_Plugin::settings();
+		$fields   = array( 'use_feedback', 'use_escalation', 'use_web_search', 'use_calendly', 'use_calcom', 'use_tidycal', 'use_custom_buttons' );
+		$changes  = array();
 		foreach ( $fields as $field ) {
 			$changes[ $field ] = $this->posted_bool( $field );
 		}
-		DocsBot_Plugin::update_settings( $changes );
-		$this->redirect_feedback( 'actions', 'success', __( 'Widget actions saved.', 'docsbot' ) );
+		$bot = $this->cached_bot( $settings['team_id'], $settings['bot_id'] );
+		if ( is_wp_error( $bot ) ) {
+			$this->redirect_feedback( 'actions', 'error', $bot->get_error_message() );
+		}
+		$labels = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$labels['getSupport'] = $this->post_text( 'support_label', 80 );
+		$result = $this->api->update_bot(
+			$settings['team_id'],
+			$settings['bot_id'],
+			array(
+				'supportLink' => $this->post_url( 'support_link' ),
+				'labels'      => $labels,
+			)
+		);
+		if ( ! is_wp_error( $result ) ) {
+			DocsBot_Plugin::update_settings( $changes );
+		}
+		$this->finish_remote_save( 'actions', $result, __( 'Widget actions saved.', 'docsbot' ) );
 	}
 
 	/**
@@ -893,7 +944,6 @@ final class DocsBot_Admin {
 			'enabled'             => $this->posted_bool( 'enabled' ),
 			'include_prefixes'    => $this->sanitize_prefix_lines( isset( $_POST['include_prefixes'] ) ? sanitize_textarea_field( wp_unslash( $_POST['include_prefixes'] ) ) : '' ),
 			'exclude_prefixes'    => $this->sanitize_prefix_lines( isset( $_POST['exclude_prefixes'] ) ? sanitize_textarea_field( wp_unslash( $_POST['exclude_prefixes'] ) ) : '' ),
-			'allowed_domains'     => $this->sanitize_domain_lines( isset( $_POST['allowed_domains'] ) ? sanitize_textarea_field( wp_unslash( $_POST['allowed_domains'] ) ) : '' ),
 			'logged_in_only'      => $this->posted_bool( 'logged_in_only' ),
 			'allowed_roles'       => $roles,
 			'membership_provider' => $provider,
@@ -927,13 +977,24 @@ final class DocsBot_Admin {
 		DocsBot_Plugin::update_settings( $changes );
 
 		if ( $settings['team_id'] && $settings['bot_id'] ) {
-			$domains = array_values( array_filter( preg_split( '/\r\n|\r|\n/', $changes['allowed_domains'] ) ) );
-			$result  = $this->api->update_bot( $settings['team_id'], $settings['bot_id'], array( 'allowedDomains' => $domains ) );
-			if ( is_wp_error( $result ) ) {
+			$bot = $this->api->get_bot( $settings['team_id'], $settings['bot_id'] );
+			if ( is_wp_error( $bot ) ) {
 				/* translators: %s: DocsBot API error message. */
-				$this->redirect_feedback( 'deploy', 'warning', sprintf( __( 'Deployment saved, but DocsBot domain restrictions were not updated: %s', 'docsbot' ), $result->get_error_message() ) );
+				$this->redirect_feedback( 'deploy', 'warning', sprintf( __( 'Deployment saved, but DocsBot domain restrictions could not be checked: %s', 'docsbot' ), $bot->get_error_message() ) );
 			}
-			$this->cache_bot( $settings['team_id'], $settings['bot_id'], $result );
+			$remote_domains = isset( $bot['allowedDomains'] ) && is_array( $bot['allowedDomains'] ) ? $bot['allowedDomains'] : array();
+			$site_host      = (string) wp_parse_url( home_url(), PHP_URL_HOST );
+			$domains        = $this->api->with_allowed_domain( $remote_domains, $site_host );
+			DocsBot_Plugin::update_settings( array( 'allowed_domains' => $this->lines_from_array( $domains ) ) );
+			if ( ! empty( $remote_domains ) && $domains !== $remote_domains ) {
+				$result = $this->api->update_bot( $settings['team_id'], $settings['bot_id'], array( 'allowedDomains' => $domains ) );
+				if ( is_wp_error( $result ) ) {
+					/* translators: %s: DocsBot API error message. */
+					$this->redirect_feedback( 'deploy', 'warning', sprintf( __( 'Deployment saved, but this site could not be added to DocsBot domain restrictions: %s', 'docsbot' ), $result->get_error_message() ) );
+				}
+				$bot = $result;
+			}
+			$this->cache_bot( $settings['team_id'], $settings['bot_id'], $bot );
 		}
 
 		$this->redirect_feedback( 'deploy', 'success', __( 'Deployment settings saved.', 'docsbot' ) );
@@ -1007,9 +1068,12 @@ final class DocsBot_Admin {
 		$avatar_text   = ( ( $avatar_red * 299 + $avatar_green * 587 + $avatar_blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
 		$alignment     = 'left' === ( $bot['alignment'] ?? 'right' ) ? ' is-left' : '';
 		$header_align  = 'left' === ( $bot['headerAlignment'] ?? 'center' ) ? ' has-left-header' : '';
-		$launcher_icon = $this->preview_icon_data( $bot['icon'] ?? 'default' );
+		$launcher_value = is_string( $bot['icon'] ?? '' ) ? $bot['icon'] : 'default';
+		$launcher_icon = $this->preview_icon_data( $launcher_value );
+		$launcher_url  = 0 === strpos( $launcher_value, 'https://' ) ? esc_url( $launcher_value, array( 'https' ) ) : '';
 		$bot_icon      = is_string( $bot['botIcon'] ?? '' ) ? $bot['botIcon'] : '';
 		$bot_icon_data = $this->preview_icon_data( $bot_icon );
+		$bot_icon_url  = 0 === strpos( $bot_icon, 'https://' ) ? esc_url( $bot_icon, array( 'https' ) ) : '';
 		$preview_style = sprintf(
 			'--docsbot-preview-color: %1$s; --docsbot-preview-foreground: %2$s; --docsbot-preview-avatar-bg: %3$s; --docsbot-preview-avatar-foreground: %4$s',
 			$color,
@@ -1036,12 +1100,12 @@ final class DocsBot_Admin {
 					</div>
 					<div class="docsbot-widget-preview__conversation">
 						<div class="docsbot-preview-row is-bot">
-							<span class="docsbot-preview-avatar" <?php echo $bot_icon ? '' : 'hidden'; ?>><svg data-preview-icon-svg viewBox="<?php echo esc_attr( $bot_icon_data['view_box'] ); ?>" aria-hidden="true"><path data-preview-icon-path d="<?php echo esc_attr( $bot_icon_data['path'] ); ?>"/></svg></span>
+							<span class="docsbot-preview-avatar" <?php echo $bot_icon ? '' : 'hidden'; ?>><img data-preview-bot-image src="<?php echo esc_url( $bot_icon_url ); ?>" alt="" <?php echo $bot_icon_url ? '' : 'hidden'; ?>><svg data-preview-icon-svg viewBox="<?php echo esc_attr( $bot_icon_data['view_box'] ); ?>" aria-hidden="true" <?php echo $bot_icon_url ? 'hidden' : ''; ?>><path data-preview-icon-path d="<?php echo esc_attr( $bot_icon_data['path'] ); ?>"/></svg></span>
 							<div class="docsbot-preview-message" data-preview="first-message"><?php echo esc_html( $first_message ); ?></div>
 						</div>
 						<div class="docsbot-preview-row is-user"><div class="docsbot-preview-message"><?php esc_html_e( 'Why are you so amazing?', 'docsbot' ); ?></div></div>
 						<div class="docsbot-preview-row is-bot">
-							<span class="docsbot-preview-avatar" <?php echo $bot_icon ? '' : 'hidden'; ?>><svg data-preview-icon-svg viewBox="<?php echo esc_attr( $bot_icon_data['view_box'] ); ?>" aria-hidden="true"><path data-preview-icon-path d="<?php echo esc_attr( $bot_icon_data['path'] ); ?>"/></svg></span>
+							<span class="docsbot-preview-avatar" <?php echo $bot_icon ? '' : 'hidden'; ?>><img data-preview-bot-image src="<?php echo esc_url( $bot_icon_url ); ?>" alt="" <?php echo $bot_icon_url ? '' : 'hidden'; ?>><svg data-preview-icon-svg viewBox="<?php echo esc_attr( $bot_icon_data['view_box'] ); ?>" aria-hidden="true" <?php echo $bot_icon_url ? 'hidden' : ''; ?>><path data-preview-icon-path d="<?php echo esc_attr( $bot_icon_data['path'] ); ?>"/></svg></span>
 							<div class="docsbot-preview-message">
 								<p><?php esc_html_e( 'Thanks! What would you like to know about DocsBot?', 'docsbot' ); ?></p>
 								<div class="docsbot-preview-sources" data-preview-toggle-inverse="hide_sources" <?php echo ! empty( $bot['hideSources'] ) ? 'hidden' : ''; ?>>
@@ -1052,15 +1116,15 @@ final class DocsBot_Admin {
 						</div>
 						<div class="docsbot-preview-feedback" data-preview-toggle="use_feedback" <?php echo empty( $settings['use_feedback'] ) ? 'hidden' : ''; ?>><button type="button">👍</button><button type="button">👎</button></div>
 						<div class="docsbot-preview-support" data-preview-toggle="use_escalation" <?php echo empty( $settings['use_escalation'] ) ? 'hidden' : ''; ?>>
-							<div class="docsbot-preview-row is-bot"><span class="docsbot-preview-avatar" <?php echo $bot_icon ? '' : 'hidden'; ?>><svg data-preview-icon-svg viewBox="<?php echo esc_attr( $bot_icon_data['view_box'] ); ?>" aria-hidden="true"><path data-preview-icon-path d="<?php echo esc_attr( $bot_icon_data['path'] ); ?>"/></svg></span><div class="docsbot-preview-message"><?php esc_html_e( 'Can I connect you to the support team?', 'docsbot' ); ?></div></div>
+							<div class="docsbot-preview-row is-bot"><span class="docsbot-preview-avatar" <?php echo $bot_icon ? '' : 'hidden'; ?>><img data-preview-bot-image src="<?php echo esc_url( $bot_icon_url ); ?>" alt="" <?php echo $bot_icon_url ? '' : 'hidden'; ?>><svg data-preview-icon-svg viewBox="<?php echo esc_attr( $bot_icon_data['view_box'] ); ?>" aria-hidden="true" <?php echo $bot_icon_url ? 'hidden' : ''; ?>><path data-preview-icon-path d="<?php echo esc_attr( $bot_icon_data['path'] ); ?>"/></svg></span><div class="docsbot-preview-message"><?php esc_html_e( 'Can I connect you to the support team?', 'docsbot' ); ?></div></div>
 							<button type="button" data-preview="support-label"><?php echo esc_html( $support_label ); ?></button>
 						</div>
 					</div>
-					<div class="docsbot-widget-preview__composer"><div><span data-preview="placeholder"><?php echo esc_html( $placeholder ); ?></span><b><svg viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg></b></div></div>
+					<div class="docsbot-widget-preview__composer"><div><span data-preview="placeholder"><?php echo esc_html( $placeholder ); ?></span><span class="docsbot-preview-composer-actions"><i data-preview-toggle="use_image_upload" <?php echo empty( $settings['use_image_upload'] ) ? 'hidden' : ''; ?>><svg viewBox="0 0 512 512"><path d="M448 80c8.8 0 16 7.2 16 16v319.8l-93.7-93.7c-12.5-12.5-32.8-12.5-45.3 0L224 423.1 147.3 346.4c-12.5-12.5-32.8-12.5-45.3 0L48 400.4V96c0-8.8 7.2-16 16-16h384zM64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg></i><i data-preview-toggle="use_audio_upload" <?php echo empty( $settings['use_audio_upload'] ) ? 'hidden' : ''; ?>><svg viewBox="0 0 384 512"><path d="M192 0c-53 0-96 43-96 96v160c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464h-48c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24h-48v-33.6C301.8 418.7 368 345.1 368 256v-40c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128S64 326.7 64 256v-40z"/></svg></i><b><svg viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg></b></span></div></div>
 					<div class="docsbot-widget-preview__notice" data-preview="footer-message" <?php echo $footer ? '' : 'hidden'; ?>><?php echo esc_html( $footer ); ?></div>
 					<div class="docsbot-widget-preview__footer" <?php echo isset( $bot['branding'] ) && empty( $bot['branding'] ) ? 'hidden' : ''; ?>><?php esc_html_e( 'Powered by DocsBot', 'docsbot' ); ?></div>
 				</div>
-				<div class="docsbot-widget-preview__launcher <?php echo empty( $bot['showButtonLabel'] ) ? '' : 'has-label'; ?>"><span><svg data-preview-launcher-svg viewBox="<?php echo esc_attr( $launcher_icon['view_box'] ); ?>" aria-hidden="true"><path data-preview-launcher-path d="<?php echo esc_attr( $launcher_icon['path'] ); ?>"/></svg></span><b data-preview="button-label" <?php echo empty( $bot['showButtonLabel'] ) ? 'hidden' : ''; ?>><?php echo esc_html( $button_label ); ?></b></div>
+				<div class="docsbot-widget-preview__launcher <?php echo empty( $bot['showButtonLabel'] ) ? '' : 'has-label'; ?>"><span><img data-preview-launcher-image src="<?php echo esc_url( $launcher_url ); ?>" alt="" <?php echo $launcher_url ? '' : 'hidden'; ?>><svg data-preview-launcher-svg viewBox="<?php echo esc_attr( $launcher_icon['view_box'] ); ?>" aria-hidden="true" <?php echo $launcher_url ? 'hidden' : ''; ?>><path data-preview-launcher-path d="<?php echo esc_attr( $launcher_icon['path'] ); ?>"/></svg></span><b data-preview="button-label" <?php echo empty( $bot['showButtonLabel'] ) ? 'hidden' : ''; ?>><?php echo esc_html( $button_label ); ?></b></div>
 				</div>
 			</div>
 		</div>
@@ -1396,6 +1460,62 @@ final class DocsBot_Admin {
 	}
 
 	/**
+	 * Render dashboard-style visual icon choices with a Media Library option.
+	 *
+	 * @param string               $name       Field name.
+	 * @param string               $label      Field label.
+	 * @param array<string,string> $options    Built-in icon options.
+	 * @param mixed                $value      Current built-in value or image URL.
+	 * @param string               $custom_id  Custom URL input ID.
+	 * @return void
+	 */
+	private function icon_choice_field( $name, $label, $options, $value, $custom_id ) {
+		$value = is_string( $value ) ? $value : '';
+		if ( 'icon' === $name && '' === $value ) {
+			$value = 'default';
+		}
+		$is_builtin   = array_key_exists( $value, $options );
+		$choice       = $is_builtin ? $value : 'custom';
+		$custom_value = $is_builtin ? '' : $value;
+		?>
+		<fieldset class="docsbot-field docsbot-icon-field">
+			<legend><?php echo esc_html( $label ); ?></legend>
+			<div class="docsbot-icon-options">
+				<?php foreach ( $options as $option_value => $option_label ) : ?>
+					<?php $icon = $this->preview_icon_data( $option_value ); ?>
+					<label class="docsbot-icon-option">
+						<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $option_value ); ?>" <?php checked( $choice, $option_value ); ?>>
+						<span class="docsbot-icon-option__preview" aria-hidden="true">
+							<?php if ( '' === $option_value ) : ?>
+								<span class="docsbot-icon-none">—</span>
+							<?php else : ?>
+								<svg viewBox="<?php echo esc_attr( $icon['view_box'] ); ?>"><path d="<?php echo esc_attr( $icon['path'] ); ?>"/></svg>
+							<?php endif; ?>
+						</span>
+						<span><?php echo esc_html( $option_label ); ?></span>
+					</label>
+				<?php endforeach; ?>
+				<label class="docsbot-icon-option">
+					<input type="radio" name="<?php echo esc_attr( $name ); ?>" value="custom" <?php checked( $choice, 'custom' ); ?>>
+					<span class="docsbot-icon-option__preview" aria-hidden="true" data-custom-preview-for="<?php echo esc_attr( $custom_id ); ?>">
+						<?php if ( $custom_value ) : ?>
+							<img src="<?php echo esc_url( $custom_value ); ?>" alt="">
+						<?php else : ?>
+							<span class="dashicons dashicons-upload"></span>
+						<?php endif; ?>
+					</span>
+					<span><?php esc_html_e( 'Custom', 'docsbot' ); ?></span>
+				</label>
+			</div>
+			<div class="docsbot-media-field docsbot-custom-icon-field" data-custom-icon-for="<?php echo esc_attr( $name ); ?>" <?php echo 'custom' === $choice ? '' : 'hidden'; ?>>
+				<input type="url" id="<?php echo esc_attr( $custom_id ); ?>" name="<?php echo esc_attr( $name . '_custom' ); ?>" value="<?php echo esc_attr( $custom_value ); ?>" placeholder="https://example.com/icon.png">
+				<button type="button" class="button docsbot-choose-image" data-media-target="<?php echo esc_attr( $custom_id ); ?>" data-media-choice="<?php echo esc_attr( $name ); ?>" data-media-title="<?php echo esc_attr( $label ); ?>" data-media-button="<?php esc_attr_e( 'Use this image', 'docsbot' ); ?>"><?php esc_html_e( 'Choose image', 'docsbot' ); ?></button>
+			</div>
+		</fieldset>
+		<?php
+	}
+
+	/**
 	 * Return a small dashboard-style action icon.
 	 *
 	 * @param string $icon Icon ID.
@@ -1585,24 +1705,6 @@ final class DocsBot_Admin {
 			$path = wp_parse_url( $line, PHP_URL_PATH );
 			if ( is_string( $path ) && false === strpos( $line, '://' ) ) {
 				$out[] = '/' . ltrim( $path, '/' );
-			}
-		}
-		return implode( "\n", array_unique( $out ) );
-	}
-
-	/**
-	 * Sanitize newline-delimited hostnames.
-	 *
-	 * @param mixed $raw Raw input.
-	 * @return string
-	 */
-	private function sanitize_domain_lines( $raw ) {
-		$lines = preg_split( '/\r\n|\r|\n/', (string) $raw );
-		$out   = array();
-		foreach ( is_array( $lines ) ? $lines : array() as $line ) {
-			$host = strtolower( trim( $line ) );
-			if ( $host && 1 === preg_match( '/^(?=.{1,253}$)(?!-)(?:[a-z0-9-]{1,63}\.)*[a-z0-9-]{1,63}$/', $host ) ) {
-				$out[] = $host;
 			}
 		}
 		return implode( "\n", array_unique( $out ) );

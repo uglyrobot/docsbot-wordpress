@@ -61,6 +61,43 @@ final class DocsBot_API {
 	}
 
 	/**
+	 * Add a WordPress hostname to an existing, non-empty domain allowlist.
+	 *
+	 * An empty allowlist deliberately remains empty because DocsBot treats it
+	 * as unrestricted.
+	 *
+	 * @param array<int,mixed> $domains Existing allowed domains.
+	 * @param string           $host    WordPress site hostname.
+	 * @return array<int,string>
+	 */
+	public function with_allowed_domain( $domains, $host ) {
+		if ( empty( $domains ) || ! is_array( $domains ) ) {
+			return array();
+		}
+
+		$clean      = array();
+		$normalized = array();
+		foreach ( $domains as $domain ) {
+			if ( ! is_string( $domain ) ) {
+				continue;
+			}
+			$domain     = trim( $domain );
+			$comparison = strtolower( rtrim( $domain, '.' ) );
+			if ( '' !== $comparison && ! in_array( $comparison, $normalized, true ) ) {
+				$clean[]      = $domain;
+				$normalized[] = $comparison;
+			}
+		}
+
+		$host = strtolower( rtrim( trim( $host ), '.' ) );
+		if ( '' !== $host && ! in_array( $host, $normalized, true ) ) {
+			$clean[] = $host;
+		}
+
+		return $clean;
+	}
+
+	/**
 	 * Fetch a bot.
 	 *
 	 * @param string $team_id Team ID.

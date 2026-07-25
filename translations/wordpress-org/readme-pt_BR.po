@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: DocsBot 1.0.3\n"
+"Project-Id-Version: DocsBot 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
 "POT-Creation-Date: 2026-07-25 18:00-0500\n"
 "PO-Revision-Date: 2026-07-25 18:00-0500\n"
@@ -54,8 +54,14 @@ msgstr "Escolha entre todas as equipes e bots disponíveis para seu usuário do 
 
 #. Description list item
 #: docsbot/readme.txt:22
-msgid "Configure the greeting, labels, support link, branding, color, icons, and placement."
-msgstr "Configure a saudação, os rótulos, o link de suporte, a identidade visual, a cor, os ícones e o posicionamento."
+msgid "Configure the greeting, labels, support link, branding, color, visual icon choices, and placement."
+msgstr "Configure a saudação, os rótulos, o link de suporte, a identidade visual, a cor, as opções visuais de ícones e o posicionamento."
+
+msgid "Host custom launcher icons, bot avatars, and header logos in the WordPress Media Library."
+msgstr "Hospede ícones de abertura, avatares do bot e logotipos do cabeçalho personalizados na biblioteca de mídia do WordPress."
+
+msgid "Enable image uploads, voice input, external-link confirmation, and agent activity."
+msgstr "Ative uploads de imagens, entrada de voz, confirmação de links externos e atividade do agente."
 
 #. Description list item
 #: docsbot/readme.txt:23
@@ -309,6 +315,21 @@ msgstr "Registro de alterações"
 
 #. Changelog version
 #: docsbot/readme.txt:104
+msgid "1.0.4"
+msgstr "1.0.4"
+
+msgid "Added WordPress Media Library selection for custom launcher icons, bot avatars, and header logos."
+msgstr "Adicionada a seleção na biblioteca de mídia do WordPress para ícones de abertura, avatares do bot e logotipos do cabeçalho personalizados."
+
+msgid "Added dashboard-style visual icon choices, grouped expandable actions, image uploads, voice input, and matching preview controls."
+msgstr "Adicionadas opções visuais de ícones no estilo do painel, ações expansíveis agrupadas, uploads de imagens, entrada de voz e controles de pré-visualização correspondentes."
+
+msgid "Moved support settings into Human Support Escalation and content-related options into Content."
+msgstr "As configurações de suporte foram movidas para Encaminhamento ao suporte humano e as opções relacionadas ao conteúdo para Conteúdo."
+
+msgid "Removed editable domain restrictions and now preserves unrestricted bots while transparently adding the WordPress hostname to existing allowlists."
+msgstr "As restrições de domínio editáveis foram removidas; bots sem restrições são preservados e o domínio do WordPress é adicionado de forma transparente às listas existentes."
+
 msgid "1.0.3"
 msgstr "1.0.3"
 

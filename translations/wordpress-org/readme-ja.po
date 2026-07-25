@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: DocsBot WordPress.org Listing 1.0.3\n"
+"Project-Id-Version: DocsBot WordPress.org Listing 1.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
 "PO-Revision-Date: 2026-07-25 18:00-0500\n"
 "Last-Translator: DocsBot\n"
@@ -73,9 +73,19 @@ msgstr "DocsBot ユーザーが利用できるすべてのチームとボット�
 #. names, URLs, paths, Markdown, and code formatting.
 #: docsbot/readme.txt:22
 msgid ""
-"Configure the greeting, labels, support link, branding, color, icons, and "
-"placement."
-msgstr "あいさつ、ラベル、サポートリンク、ブランド表示、色、アイコン、配置を設定できます。"
+"Configure the greeting, labels, support link, branding, color, visual icon "
+"choices, and placement."
+msgstr "あいさつ、ラベル、サポートリンク、ブランド表示、色、視覚的なアイコン選択、配置を設定できます。"
+
+msgid ""
+"Host custom launcher icons, bot avatars, and header logos in the WordPress "
+"Media Library."
+msgstr "カスタムの起動アイコン、ボットアバター、ヘッダーロゴを WordPress メディアライブラリでホストします。"
+
+msgid ""
+"Enable image uploads, voice input, external-link confirmation, and agent "
+"activity."
+msgstr "画像アップロード、音声入力、外部リンクの確認、エージェントアクティビティを有効にします。"
 
 #. translators: WordPress.org readme Description list item. Preserve product
 #. names, URLs, paths, Markdown, and code formatting.
@@ -470,6 +480,29 @@ msgstr "変更履歴"
 
 #. translators: WordPress.org readme Changelog heading.
 #: docsbot/readme.txt:104
+msgid "1.0.4"
+msgstr "1.0.4"
+
+msgid ""
+"Added WordPress Media Library selection for custom launcher icons, bot "
+"avatars, and header logos."
+msgstr "カスタムの起動アイコン、ボットアバター、ヘッダーロゴを WordPress メディアライブラリから選択できるようになりました。"
+
+msgid ""
+"Added dashboard-style visual icon choices, grouped expandable actions, image "
+"uploads, voice input, and matching preview controls."
+msgstr "ダッシュボード形式の視覚的なアイコン選択、グループ化された展開可能なアクション、画像アップロード、音声入力、対応するプレビューコントロールを追加しました。"
+
+msgid ""
+"Moved support settings into Human Support Escalation and content-related "
+"options into Content."
+msgstr "サポート設定を有人サポートへのエスカレーションに、コンテンツ関連のオプションをコンテンツに移動しました。"
+
+msgid ""
+"Removed editable domain restrictions and now preserves unrestricted bots "
+"while transparently adding the WordPress hostname to existing allowlists."
+msgstr "編集可能なドメイン制限を削除しました。制限のないボットはそのまま維持し、既存の許可リストには WordPress のホスト名を透過的に追加します。"
+
 msgid "1.0.3"
 msgstr "1.0.3"
 

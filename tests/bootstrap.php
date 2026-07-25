@@ -4,7 +4,7 @@
  */
 
 define( 'ABSPATH', __DIR__ . '/' );
-define( 'DOCSBOT_VERSION', '1.0.3' );
+define( 'DOCSBOT_VERSION', '1.0.4' );
 
 class WP_Error {
 	private $code;

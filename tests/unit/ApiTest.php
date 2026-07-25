@@ -20,4 +20,23 @@ final class ApiTest extends TestCase {
 		$this->assertArrayNotHasKey( 'signatureKey', $bots[0] );
 		$this->assertStringNotContainsString( 'sentinel-raw-signing-key', serialize( $bots ) );
 	}
+
+	public function test_empty_allowed_domains_remain_unrestricted() {
+		$api = new DocsBot_API();
+
+		$this->assertSame( array(), $api->with_allowed_domain( array(), 'example.com' ) );
+	}
+
+	public function test_site_host_is_added_only_to_an_existing_allowlist() {
+		$api = new DocsBot_API();
+
+		$this->assertSame(
+			array( 'APP.EXAMPLE.COM.', 'www.example.com' ),
+			$api->with_allowed_domain( array( 'APP.EXAMPLE.COM.' ), 'www.example.com' )
+		);
+		$this->assertSame(
+			array( 'www.example.com' ),
+			$api->with_allowed_domain( array( 'www.example.com', 'WWW.EXAMPLE.COM.' ), 'www.example.com' )
+		);
+	}
 }

@@ -180,6 +180,8 @@ final class DocsBot_Widget {
 				'useTidyCal'        => (bool) $settings['use_tidycal'],
 				'useCustomButtons'  => (bool) $settings['use_custom_buttons'],
 				'showAgentActivity' => (bool) $settings['show_agent_activity'],
+				'useImageUpload'    => (bool) $settings['use_image_upload'],
+				'useAudioUpload'    => (bool) $settings['use_audio_upload'],
 				'linkSafetyEnabled' => (bool) $settings['link_safety_enabled'],
 				'headerAlignment'   => (string) $settings['header_alignment'],
 				'horizontalMargin'  => (int) $settings['horizontal_margin'],

@@ -85,6 +85,30 @@
 		} );
 	}
 
+	document.querySelectorAll( '[data-depends-on]' ).forEach( function ( panel ) {
+		var controller = document.querySelector( '[name="' + panel.dataset.dependsOn + '"]' );
+		if ( ! controller ) {
+			return;
+		}
+		var updatePanel = function () {
+			panel.hidden = ! controller.checked;
+		};
+		controller.addEventListener( 'change', updatePanel );
+		updatePanel();
+	} );
+
+	document.querySelectorAll( '[data-custom-icon-for]' ).forEach( function ( panel ) {
+		var choices = document.querySelectorAll( '[name="' + panel.dataset.customIconFor + '"]' );
+		var updatePanel = function () {
+			var selected = document.querySelector( '[name="' + panel.dataset.customIconFor + '"]:checked' );
+			panel.hidden = ! selected || selected.value !== 'custom';
+		};
+		choices.forEach( function ( choice ) {
+			choice.addEventListener( 'change', updatePanel );
+		} );
+		updatePanel();
+	} );
+
 	var colorPicker = document.getElementById( 'docsbot-color-picker' );
 	var colorText = document.getElementById( 'docsbot-color' );
 	if ( colorPicker && colorText ) {
@@ -152,6 +176,8 @@
 			'use_tidycal',
 			'use_custom_buttons',
 			'show_agent_activity',
+			'use_image_upload',
+			'use_audio_upload',
 			'show_copy_button',
 			'link_safety_enabled'
 		].forEach( function ( name ) {
@@ -228,37 +254,69 @@
 			'book': { viewBox: '0 0 448 512', path: 'M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c42.7 0 42.7-64 0-64v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H96zm0 384h256v64H96c-42.7 0-42.7-64 0-64zm32-240c0-8.8 7.2-16 16-16h192c21.3 0 21.3 32 0 32H144c-8.8 0-16-7.2-16-16zm16 48h192c21.3 0 21.3 32 0 32H144c-21.3 0-21.3-32 0-32z' },
 			'info': { viewBox: '0 0 192 512', path: 'M48 80a48 48 0 1 1 96 0a48 48 0 1 1-96 0zM0 224c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v224h32c42.7 0 42.7 64 0 64H32c-42.7 0-42.7-64 0-64h32V256H32c-17.7 0-32-14.3-32-32z' }
 		};
-		var launcherIcon = document.querySelector( '[name="icon"]' );
-		if ( launcherIcon ) {
+		var launcherIcons = document.querySelectorAll( '[name="icon"]' );
+		if ( launcherIcons.length ) {
 			var updateLauncherIcon = function () {
+				var launcherIcon = document.querySelector( '[name="icon"]:checked' ) || launcherIcons[ 0 ];
+				var customField = document.querySelector( '[name="icon_custom"]' );
+				var isCustom = launcherIcon.value === 'custom' && customField && /^https:\/\//i.test( customField.value.trim() );
 				var icon = iconPaths[ launcherIcon.value ] || iconPaths.default;
 				preview.querySelectorAll( '[data-preview-launcher-svg]' ).forEach( function ( svg ) {
+					svg.hidden = isCustom;
 					svg.setAttribute( 'viewBox', icon.viewBox );
 				} );
 				preview.querySelectorAll( '[data-preview-launcher-path]' ).forEach( function ( path ) {
 					path.setAttribute( 'd', icon.path );
 				} );
+				preview.querySelectorAll( '[data-preview-launcher-image]' ).forEach( function ( image ) {
+					image.hidden = ! isCustom;
+					if ( isCustom ) {
+						image.src = customField.value.trim();
+					}
+				} );
 			};
-			launcherIcon.addEventListener( 'change', updateLauncherIcon );
+			launcherIcons.forEach( function ( launcherIcon ) {
+				launcherIcon.addEventListener( 'change', updateLauncherIcon );
+			} );
+			var launcherCustom = document.querySelector( '[name="icon_custom"]' );
+			if ( launcherCustom ) {
+				launcherCustom.addEventListener( 'input', updateLauncherIcon );
+			}
 			updateLauncherIcon();
 		}
 
-		var botIconField = document.querySelector( '[name="bot_icon"]' );
-		if ( botIconField ) {
+		var botIconFields = document.querySelectorAll( '[name="bot_icon"]' );
+		if ( botIconFields.length ) {
 			var updateBotIcon = function () {
+				var botIconField = document.querySelector( '[name="bot_icon"]:checked' ) || botIconFields[ 0 ];
+				var customField = document.querySelector( '[name="bot_icon_custom"]' );
+				var isCustom = botIconField.value === 'custom' && customField && /^https:\/\//i.test( customField.value.trim() );
 				var hasBotIcon = !! botIconField.value;
 				var icon = iconPaths[ botIconField.value ] || iconPaths.default;
 				preview.querySelectorAll( '.docsbot-preview-avatar' ).forEach( function ( avatar ) {
 					avatar.hidden = ! hasBotIcon;
 				} );
 				preview.querySelectorAll( '[data-preview-icon-svg]' ).forEach( function ( svg ) {
+					svg.hidden = isCustom;
 					svg.setAttribute( 'viewBox', icon.viewBox );
 				} );
 				preview.querySelectorAll( '[data-preview-icon-path]' ).forEach( function ( path ) {
 					path.setAttribute( 'd', icon.path );
 				} );
+				preview.querySelectorAll( '[data-preview-bot-image]' ).forEach( function ( image ) {
+					image.hidden = ! isCustom;
+					if ( isCustom ) {
+						image.src = customField.value.trim();
+					}
+				} );
 			};
-			botIconField.addEventListener( 'change', updateBotIcon );
+			botIconFields.forEach( function ( botIconField ) {
+				botIconField.addEventListener( 'change', updateBotIcon );
+			} );
+			var botIconCustom = document.querySelector( '[name="bot_icon_custom"]' );
+			if ( botIconCustom ) {
+				botIconCustom.addEventListener( 'input', updateBotIcon );
+			}
 			updateBotIcon();
 		}
 
@@ -280,23 +338,44 @@
 			updateLogo();
 		}
 
-		var chooseLogo = document.querySelector( '.docsbot-choose-logo' );
-		if ( chooseLogo && logoField && window.wp && window.wp.media ) {
-			chooseLogo.addEventListener( 'click', function () {
+		document.querySelectorAll( '.docsbot-choose-image' ).forEach( function ( chooseImage ) {
+			chooseImage.addEventListener( 'click', function () {
+				if ( ! window.wp || ! window.wp.media ) {
+					return;
+				}
+				var target = document.getElementById( chooseImage.dataset.mediaTarget );
+				if ( ! target ) {
+					return;
+				}
 				var frame = window.wp.media( {
-					title: chooseLogo.dataset.mediaTitle,
-					button: { text: chooseLogo.dataset.mediaButton },
+					title: chooseImage.dataset.mediaTitle,
+					button: { text: chooseImage.dataset.mediaButton },
 					multiple: false,
 					library: { type: 'image' }
 				} );
 				frame.on( 'select', function () {
 					var attachment = frame.state().get( 'selection' ).first().toJSON();
-					logoField.value = attachment.url || '';
-					logoField.dispatchEvent( new Event( 'input', { bubbles: true } ) );
+					target.value = attachment.url || '';
+					if ( chooseImage.dataset.mediaChoice ) {
+						var customChoice = document.querySelector( '[name="' + chooseImage.dataset.mediaChoice + '"][value="custom"]' );
+						if ( customChoice ) {
+							customChoice.checked = true;
+							customChoice.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+						}
+					}
+					var customPreview = document.querySelector( '[data-custom-preview-for="' + target.id + '"]' );
+					if ( customPreview && target.value ) {
+						customPreview.innerHTML = '';
+						var image = document.createElement( 'img' );
+						image.src = target.value;
+						image.alt = '';
+						customPreview.appendChild( image );
+					}
+					target.dispatchEvent( new Event( 'input', { bubbles: true } ) );
 				} );
 				frame.open();
 			} );
-		}
+		} );
 
 		preview.querySelectorAll( '[data-preview-mode]' ).forEach( function ( button ) {
 			button.addEventListener( 'click', function () {

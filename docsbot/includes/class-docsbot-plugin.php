@@ -123,6 +123,8 @@ final class DocsBot_Plugin {
 			'use_tidycal'         => false,
 			'use_custom_buttons'  => false,
 			'show_agent_activity' => true,
+			'use_image_upload'    => false,
+			'use_audio_upload'    => false,
 			'link_safety_enabled' => true,
 			'header_alignment'    => 'center',
 			'horizontal_margin'   => 20,
