@@ -2,7 +2,7 @@
 /**
  * Main plugin bootstrap.
  *
- * @package DocsBot_AI
+ * @package DocsBot
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,19 +12,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Coordinates the plugin components.
  */
-final class DocsBot_AI_Plugin {
+final class DocsBot_Plugin {
 
 	/**
 	 * Plugin singleton.
 	 *
-	 * @var DocsBot_AI_Plugin|null
+	 * @var DocsBot_Plugin|null
 	 */
 	private static $instance = null;
 
 	/**
 	 * Get the singleton.
 	 *
-	 * @return DocsBot_AI_Plugin
+	 * @return DocsBot_Plugin
 	 */
 	public static function instance() {
 		if ( null === self::$instance ) {
@@ -40,8 +40,8 @@ final class DocsBot_AI_Plugin {
 	 * @return void
 	 */
 	public static function activate() {
-		if ( false === get_option( 'docsbot_ai_settings', false ) ) {
-			add_option( 'docsbot_ai_settings', self::defaults(), '', false );
+		if ( false === get_option( 'docsbot_settings', false ) ) {
+			add_option( 'docsbot_settings', self::defaults(), '', false );
 		}
 	}
 
@@ -51,10 +51,10 @@ final class DocsBot_AI_Plugin {
 	 * @return void
 	 */
 	public function run() {
-		$api         = new DocsBot_AI_API();
-		$memberships = new DocsBot_AI_Memberships();
-		$widget      = new DocsBot_AI_Widget( $memberships );
-		$admin       = new DocsBot_AI_Admin( $api, $memberships );
+		$api         = new DocsBot_API();
+		$memberships = new DocsBot_Memberships();
+		$widget      = new DocsBot_Widget( $memberships );
+		$admin       = new DocsBot_Admin( $api, $memberships );
 
 		$widget->register();
 
@@ -110,7 +110,7 @@ final class DocsBot_AI_Plugin {
 	 * @return array<string,mixed>
 	 */
 	public static function settings() {
-		$stored = get_option( 'docsbot_ai_settings', array() );
+		$stored = get_option( 'docsbot_settings', array() );
 
 		return wp_parse_args( is_array( $stored ) ? $stored : array(), self::defaults() );
 	}
@@ -124,6 +124,6 @@ final class DocsBot_AI_Plugin {
 	public static function update_settings( $changes ) {
 		$settings = array_merge( self::settings(), $changes );
 
-		return update_option( 'docsbot_ai_settings', $settings, false );
+		return update_option( 'docsbot_settings', $settings, false );
 	}
 }

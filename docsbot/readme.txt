@@ -4,7 +4,7 @@ Tags: artificial intelligence, chatbot, customer support, documentation, live ch
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 5. Deploy by URL path, user role, membership, metadata, and private signing.
 
 == Changelog ==
+
+= 1.0.2 =
+* Standardized the plugin slug, text domain, PHP symbols, options, hooks, REST namespace, and package files on DocsBot.
 
 = 1.0.1 =
 * Updated product naming to DocsBot.

@@ -1,6 +1,6 @@
 <?php
 
-$root = '/wordpress/wp-content/plugins/docsbot-ai';
+$root = '/wordpress/wp-content/plugins/docsbot';
 $files = new RecursiveIteratorIterator(
 	new RecursiveDirectoryIterator( $root, FilesystemIterator::SKIP_DOTS )
 );

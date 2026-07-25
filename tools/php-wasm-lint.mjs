@@ -15,7 +15,7 @@ const php = new PHP(
 		emscriptenOptions: { processId: 1 },
 	})
 );
-const target = path.resolve(process.argv[2] || 'docsbot-ai');
+const target = path.resolve(process.argv[2] || 'docsbot');
 const files = [];
 
 function visit(directory) {

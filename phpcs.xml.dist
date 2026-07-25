@@ -2,8 +2,8 @@
 <ruleset name="DocsBot">
 	<description>WordPress.org coding and compatibility checks for DocsBot.</description>
 
-	<file>docsbot-ai</file>
-	<exclude-pattern>docsbot-ai/languages/*</exclude-pattern>
+	<file>docsbot</file>
+	<exclude-pattern>docsbot/languages/*</exclude-pattern>
 
 	<arg name="basepath" value="."/>
 	<arg name="colors"/>
@@ -12,11 +12,11 @@
 
 	<rule ref="WordPress"/>
 	<rule ref="PHPCompatibilityWP">
-		<include-pattern>docsbot-ai/</include-pattern>
+		<include-pattern>docsbot/</include-pattern>
 	</rule>
 
 	<config name="testVersion" value="7.4-"/>
 	<config name="minimum_supported_wp_version" value="6.5"/>
-	<config name="text_domain" value="docsbot-ai"/>
-	<config name="prefixes" value="DocsBot_AI,docsbot_ai,DOCSBOT_AI"/>
+	<config name="text_domain" value="docsbot"/>
+	<config name="prefixes" value="DocsBot,docsbot,DOCSBOT"/>
 </ruleset>

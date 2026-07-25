@@ -5,19 +5,19 @@ use PHPUnit\Framework\TestCase;
 final class CryptoTest extends TestCase {
 
 	public function test_secret_round_trip_uses_versioned_authenticated_ciphertext() {
-		$encrypted = DocsBot_AI_Crypto::encrypt( 'secret-value' );
+		$encrypted = DocsBot_Crypto::encrypt( 'secret-value' );
 
 		$this->assertIsString( $encrypted );
 		$this->assertStringStartsWith( 'v1:', $encrypted );
 		$this->assertStringNotContainsString( 'secret-value', $encrypted );
-		$this->assertSame( 'secret-value', DocsBot_AI_Crypto::decrypt( $encrypted ) );
+		$this->assertSame( 'secret-value', DocsBot_Crypto::decrypt( $encrypted ) );
 	}
 
 	public function test_tampered_ciphertext_fails_closed() {
-		$encrypted = DocsBot_AI_Crypto::encrypt( 'secret-value' );
+		$encrypted = DocsBot_Crypto::encrypt( 'secret-value' );
 		$tampered  = substr( $encrypted, 0, -2 ) . 'aa';
 
-		$this->assertSame( '', DocsBot_AI_Crypto::decrypt( $tampered ) );
+		$this->assertSame( '', DocsBot_Crypto::decrypt( $tampered ) );
 	}
 
 	public function test_jwt_has_hs256_header_and_valid_signature() {
@@ -27,7 +27,7 @@ final class CryptoTest extends TestCase {
 			'iat'     => 100,
 			'exp'     => 200,
 		);
-		$jwt     = DocsBot_AI_Crypto::sign_jwt( $payload, 'test-key' );
+		$jwt     = DocsBot_Crypto::sign_jwt( $payload, 'test-key' );
 		$parts   = explode( '.', $jwt );
 
 		$this->assertCount( 3, $parts );

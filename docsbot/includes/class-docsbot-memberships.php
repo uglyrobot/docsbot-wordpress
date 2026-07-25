@@ -2,7 +2,7 @@
 /**
  * Membership visibility adapters.
  *
- * @package DocsBot_AI
+ * @package DocsBot
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Normalizes supported membership plugins into a fail-closed visibility check.
  */
-final class DocsBot_AI_Memberships {
+final class DocsBot_Memberships {
 
 	/**
 	 * Available provider labels.
@@ -21,15 +21,15 @@ final class DocsBot_AI_Memberships {
 	 */
 	public function providers() {
 		return apply_filters(
-			'docsbot_ai_membership_providers',
+			'docsbot_membership_providers',
 			array(
-				'none'        => __( 'No membership restriction', 'docsbot-ai' ),
-				'woocommerce' => __( 'WooCommerce Memberships', 'docsbot-ai' ),
-				'memberpress' => __( 'MemberPress', 'docsbot-ai' ),
-				'pmpro'       => __( 'Paid Memberships Pro', 'docsbot-ai' ),
-				'rcp'         => __( 'Restrict Content Pro', 'docsbot-ai' ),
-				'wpmembers'   => __( 'WP-Members', 'docsbot-ai' ),
-				'ultimate'    => __( 'Ultimate Member roles', 'docsbot-ai' ),
+				'none'        => __( 'No membership restriction', 'docsbot' ),
+				'woocommerce' => __( 'WooCommerce Memberships', 'docsbot' ),
+				'memberpress' => __( 'MemberPress', 'docsbot' ),
+				'pmpro'       => __( 'Paid Memberships Pro', 'docsbot' ),
+				'rcp'         => __( 'Restrict Content Pro', 'docsbot' ),
+				'wpmembers'   => __( 'WP-Members', 'docsbot' ),
+				'ultimate'    => __( 'Ultimate Member roles', 'docsbot' ),
 			)
 		);
 	}

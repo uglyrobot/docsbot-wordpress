@@ -19,7 +19,7 @@
 		},
 		{
 			"step": "activatePlugin",
-			"pluginPath": "docsbot-ai/docsbot-ai.php"
+			"pluginPath": "docsbot/docsbot.php"
 		}
 	]
 }

@@ -2,7 +2,7 @@
 /**
  * Frontend deployment and private-bot signing.
  *
- * @package DocsBot_AI
+ * @package DocsBot
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,19 +12,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Loads the DocsBot widget only when deployment and access rules allow it.
  */
-final class DocsBot_AI_Widget {
+final class DocsBot_Widget {
 
 	/**
 	 * Membership adapter registry.
 	 *
-	 * @var DocsBot_AI_Memberships
+	 * @var DocsBot_Memberships
 	 */
 	private $memberships;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param DocsBot_AI_Memberships $memberships Membership service.
+	 * @param DocsBot_Memberships $memberships Membership service.
 	 */
 	public function __construct( $memberships ) {
 		$this->memberships = $memberships;
@@ -47,7 +47,7 @@ final class DocsBot_AI_Widget {
 	 * @return void
 	 */
 	public function enqueue_bootstrap() {
-		$settings = DocsBot_AI_Plugin::settings();
+		$settings = DocsBot_Plugin::settings();
 		$path     = $this->current_path();
 
 		if (
@@ -60,18 +60,18 @@ final class DocsBot_AI_Widget {
 		}
 
 		wp_enqueue_script(
-			'docsbot-ai-widget',
-			DOCSBOT_AI_URL . 'assets/js/widget.js',
+			'docsbot-widget',
+			DOCSBOT_URL . 'assets/js/widget.js',
 			array(),
-			DOCSBOT_AI_VERSION,
+			DOCSBOT_VERSION,
 			true
 		);
 
 		wp_add_inline_script(
-			'docsbot-ai-widget',
-			'window.docsbotAIWordPress=' . wp_json_encode(
+			'docsbot-widget',
+			'window.docsbotWordPress=' . wp_json_encode(
 				array(
-					'endpoint' => esc_url_raw( rest_url( 'docsbot-ai/v1/widget-config' ) ),
+					'endpoint' => esc_url_raw( rest_url( 'docsbot/v1/widget-config' ) ),
 					'nonce'    => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '',
 					'path'     => $path,
 					'ticket'   => $this->deployment_ticket( $path ),
@@ -88,7 +88,7 @@ final class DocsBot_AI_Widget {
 	 */
 	public function register_rest_route() {
 		register_rest_route(
-			'docsbot-ai/v1',
+			'docsbot/v1',
 			'/widget-config',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -118,7 +118,7 @@ final class DocsBot_AI_Widget {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function rest_widget_config( $request ) {
-		$settings = DocsBot_AI_Plugin::settings();
+		$settings = DocsBot_Plugin::settings();
 		$path     = (string) $request->get_param( 'path' );
 		$ticket   = (string) $request->get_param( 'ticket' );
 
@@ -129,25 +129,25 @@ final class DocsBot_AI_Widget {
 			|| empty( $settings['bot_id'] )
 			|| ! $this->path_is_allowed( $path, $settings )
 		) {
-			return new WP_Error( 'docsbot_not_deployed', __( 'The widget is not deployed on this page.', 'docsbot-ai' ), array( 'status' => 404 ) );
+			return new WP_Error( 'docsbot_not_deployed', __( 'The widget is not deployed on this page.', 'docsbot' ), array( 'status' => 404 ) );
 		}
 
 		$user_id = get_current_user_id();
 
 		if ( ! empty( $settings['logged_in_only'] ) && $user_id <= 0 ) {
-			return new WP_Error( 'docsbot_login_required', __( 'Log in to use this chat.', 'docsbot-ai' ), array( 'status' => 403 ) );
+			return new WP_Error( 'docsbot_login_required', __( 'Log in to use this chat.', 'docsbot' ), array( 'status' => 403 ) );
 		}
 
 		if ( ! empty( $settings['allowed_roles'] ) ) {
 			$user = $user_id > 0 ? get_userdata( $user_id ) : false;
 			if ( ! $user instanceof WP_User || empty( array_intersect( (array) $settings['allowed_roles'], (array) $user->roles ) ) ) {
-				return new WP_Error( 'docsbot_role_required', __( 'This chat is not available for your account.', 'docsbot-ai' ), array( 'status' => 403 ) );
+				return new WP_Error( 'docsbot_role_required', __( 'This chat is not available for your account.', 'docsbot' ), array( 'status' => 403 ) );
 			}
 		}
 
 		$provider = (string) $settings['membership_provider'];
 		if ( ! $this->memberships->user_is_allowed( $provider, (string) $settings['membership_rule'], $user_id ) ) {
-			return new WP_Error( 'docsbot_membership_required', __( 'An eligible membership is required for this chat.', 'docsbot-ai' ), array( 'status' => 403 ) );
+			return new WP_Error( 'docsbot_membership_required', __( 'An eligible membership is required for this chat.', 'docsbot' ), array( 'status' => 403 ) );
 		}
 
 		$identify = $this->build_identify( $user_id, $settings );
@@ -173,17 +173,17 @@ final class DocsBot_AI_Widget {
 			$config['identify'] = $identify;
 		}
 
-		$signature_key = defined( 'DOCSBOT_AI_SIGNATURE_KEY' ) && '' !== trim( (string) DOCSBOT_AI_SIGNATURE_KEY )
-			? trim( (string) DOCSBOT_AI_SIGNATURE_KEY )
-			: DocsBot_AI_Crypto::decrypt( (string) $settings['signature_key'] );
+		$signature_key = defined( 'DOCSBOT_SIGNATURE_KEY' ) && '' !== trim( (string) DOCSBOT_SIGNATURE_KEY )
+			? trim( (string) DOCSBOT_SIGNATURE_KEY )
+			: DocsBot_Crypto::decrypt( (string) $settings['signature_key'] );
 
 		if ( 'private' === $settings['bot_privacy'] && '' === $signature_key ) {
-			return new WP_Error( 'docsbot_signature_required', __( 'Private bot signing is not configured.', 'docsbot-ai' ), array( 'status' => 503 ) );
+			return new WP_Error( 'docsbot_signature_required', __( 'Private bot signing is not configured.', 'docsbot' ), array( 'status' => 503 ) );
 		}
 
 		if ( 'private' === $settings['bot_privacy'] && '' !== $signature_key ) {
 			$now                 = time();
-			$config['signature'] = DocsBot_AI_Crypto::sign_jwt(
+			$config['signature'] = DocsBot_Crypto::sign_jwt(
 				array(
 					'team_id' => (string) $settings['team_id'],
 					'bot_id'  => (string) $settings['bot_id'],
@@ -264,9 +264,9 @@ final class DocsBot_AI_Widget {
 		}
 
 		wp_add_privacy_policy_content(
-			__( 'DocsBot', 'docsbot-ai' ),
+			__( 'DocsBot', 'docsbot' ),
 			wp_kses_post(
-				'<p>' . __( 'This site may use DocsBot to provide an interactive chat. Chat messages and any identity fields enabled by the site administrator may be sent to DocsBot for processing and retained according to the site owner’s DocsBot settings. Do not submit passwords, payment details, or other sensitive information in chat.', 'docsbot-ai' ) . '</p>'
+				'<p>' . __( 'This site may use DocsBot to provide an interactive chat. Chat messages and any identity fields enabled by the site administrator may be sent to DocsBot for processing and retained according to the site owner’s DocsBot settings. Do not submit passwords, payment details, or other sensitive information in chat.', 'docsbot' ) . '</p>'
 			)
 		);
 	}

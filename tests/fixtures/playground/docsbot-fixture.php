@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function docsbot_ai_fixture_bot() {
+function docsbot_fixture_bot() {
 	$default = array(
 		'id'                => 'botDemo98765',
 		'name'              => 'DocsBot Product Guide',
@@ -36,7 +36,7 @@ function docsbot_ai_fixture_bot() {
 		),
 	);
 
-	return wp_parse_args( get_option( 'docsbot_ai_fixture_bot', array() ), $default );
+	return wp_parse_args( get_option( 'docsbot_fixture_bot', array() ), $default );
 }
 
 add_filter(
@@ -48,7 +48,7 @@ add_filter(
 
 		$path   = wp_parse_url( $url, PHP_URL_PATH );
 		$method = strtoupper( $args['method'] ?? 'GET' );
-		$bot    = docsbot_ai_fixture_bot();
+		$bot    = docsbot_fixture_bot();
 		$data   = array();
 		$status = 200;
 
@@ -68,7 +68,7 @@ add_filter(
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765' === $path && 'PUT' === $method ) {
 			$changes = json_decode( $args['body'] ?? '{}', true );
 			$bot     = array_merge( $bot, is_array( $changes ) ? $changes : array() );
-			update_option( 'docsbot_ai_fixture_bot', $bot, false );
+			update_option( 'docsbot_fixture_bot', $bot, false );
 			$data = $bot;
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765' === $path ) {
 			$data = $bot;
@@ -96,19 +96,19 @@ add_action(
 			set_user_setting( 'plugin_check_category_preferences', 'general__plugin_repo__security__performance__accessibility' );
 		}
 
-		if ( ! class_exists( 'DocsBot_AI_Plugin' ) || get_option( 'docsbot_ai_fixture_seeded' ) ) {
+		if ( ! class_exists( 'DocsBot_Plugin' ) || get_option( 'docsbot_fixture_seeded' ) ) {
 			return;
 		}
 
-		DocsBot_AI_Plugin::update_settings(
+		DocsBot_Plugin::update_settings(
 			array(
-				'api_key'             => DocsBot_AI_Crypto::encrypt( 'fixture-api-key' ),
+				'api_key'             => DocsBot_Crypto::encrypt( 'fixture-api-key' ),
 				'team_id'             => 'teamDemo12345',
 				'team_name'           => 'DocsBot Demo Team',
 				'bot_id'              => 'botDemo98765',
 				'bot_name'            => 'DocsBot Product Guide',
 				'bot_privacy'         => 'private',
-				'signature_key'       => DocsBot_AI_Crypto::encrypt( 'fixture-signature-key' ),
+				'signature_key'       => DocsBot_Crypto::encrypt( 'fixture-signature-key' ),
 				'enabled'             => true,
 				'allowed_domains'     => '127.0.0.1',
 				'include_prefixes'    => "/documentation/\n/members/",
@@ -121,14 +121,14 @@ add_action(
 			)
 		);
 
-		update_option( 'docsbot_ai_fixture_seeded', 1, false );
+		update_option( 'docsbot_fixture_seeded', 1, false );
 	}
 );
 
 add_action(
 	'init',
 	function () {
-		if ( get_option( 'docsbot_ai_fixture_pages' ) ) {
+		if ( get_option( 'docsbot_fixture_pages' ) ) {
 			return;
 		}
 
@@ -141,6 +141,6 @@ add_action(
 				'post_type'    => 'page',
 			)
 		);
-		update_option( 'docsbot_ai_fixture_pages', 1, false );
+		update_option( 'docsbot_fixture_pages', 1, false );
 	}
 );

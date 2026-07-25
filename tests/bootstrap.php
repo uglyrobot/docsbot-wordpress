@@ -4,7 +4,7 @@
  */
 
 define( 'ABSPATH', __DIR__ . '/' );
-define( 'DOCSBOT_AI_VERSION', '1.0.1' );
+define( 'DOCSBOT_VERSION', '1.0.2' );
 
 class WP_Error {
 	private $code;
@@ -68,6 +68,6 @@ function wpmem_user_has_access( $products, $user_id ) {
 	return 123 === $user_id && in_array( 'gold', (array) $products, true );
 }
 
-require_once dirname( __DIR__ ) . '/docsbot-ai/includes/class-docsbot-ai-crypto.php';
-require_once dirname( __DIR__ ) . '/docsbot-ai/includes/class-docsbot-ai-memberships.php';
-require_once dirname( __DIR__ ) . '/docsbot-ai/includes/class-docsbot-ai-widget.php';
+require_once dirname( __DIR__ ) . '/docsbot/includes/class-docsbot-crypto.php';
+require_once dirname( __DIR__ ) . '/docsbot/includes/class-docsbot-memberships.php';
+require_once dirname( __DIR__ ) . '/docsbot/includes/class-docsbot-widget.php';

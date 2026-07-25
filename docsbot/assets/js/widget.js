@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	var bootstrap = window.docsbotAIWordPress;
+	var bootstrap = window.docsbotWordPress;
 
 	if ( ! bootstrap || ! bootstrap.endpoint || ! bootstrap.path || ! bootstrap.ticket ) {
 		return;

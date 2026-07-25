@@ -2,7 +2,7 @@
 /**
  * DocsBot Admin API client.
  *
- * @package DocsBot_AI
+ * @package DocsBot
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Narrow server-side client for documented DocsBot endpoints.
  */
-final class DocsBot_AI_API {
+final class DocsBot_API {
 
 	const BASE_URL = 'https://docsbot.ai/api';
 
@@ -36,7 +36,7 @@ final class DocsBot_AI_API {
 	 */
 	public function list_bots( $team_id ) {
 		if ( ! $this->valid_id( $team_id ) ) {
-			return new WP_Error( 'docsbot_invalid_team', __( 'The selected team ID is invalid.', 'docsbot-ai' ) );
+			return new WP_Error( 'docsbot_invalid_team', __( 'The selected team ID is invalid.', 'docsbot' ) );
 		}
 
 		$response = $this->request( 'GET', '/teams/' . rawurlencode( $team_id ) . '/bots' );
@@ -53,7 +53,7 @@ final class DocsBot_AI_API {
 	 */
 	public function get_bot( $team_id, $bot_id ) {
 		if ( ! $this->valid_id( $team_id ) || ! $this->valid_id( $bot_id ) ) {
-			return new WP_Error( 'docsbot_invalid_bot', __( 'The selected bot ID is invalid.', 'docsbot-ai' ) );
+			return new WP_Error( 'docsbot_invalid_bot', __( 'The selected bot ID is invalid.', 'docsbot' ) );
 		}
 
 		return $this->request(
@@ -72,7 +72,7 @@ final class DocsBot_AI_API {
 	 */
 	public function update_bot( $team_id, $bot_id, $fields ) {
 		if ( ! $this->valid_id( $team_id ) || ! $this->valid_id( $bot_id ) ) {
-			return new WP_Error( 'docsbot_invalid_bot', __( 'The selected bot ID is invalid.', 'docsbot-ai' ) );
+			return new WP_Error( 'docsbot_invalid_bot', __( 'The selected bot ID is invalid.', 'docsbot' ) );
 		}
 
 		$allowed = array(
@@ -94,7 +94,7 @@ final class DocsBot_AI_API {
 		$body    = array_intersect_key( $fields, array_flip( $allowed ) );
 
 		if ( empty( $body ) ) {
-			return new WP_Error( 'docsbot_empty_update', __( 'No supported bot settings were provided.', 'docsbot-ai' ) );
+			return new WP_Error( 'docsbot_empty_update', __( 'No supported bot settings were provided.', 'docsbot' ) );
 		}
 
 		return $this->request(
@@ -115,16 +115,16 @@ final class DocsBot_AI_API {
 	 */
 	private function request( $method, $path, $body = null, $api_key = '' ) {
 		if ( '' === $api_key ) {
-			if ( defined( 'DOCSBOT_AI_API_KEY' ) && '' !== trim( (string) DOCSBOT_AI_API_KEY ) ) {
-				$api_key = trim( (string) DOCSBOT_AI_API_KEY );
+			if ( defined( 'DOCSBOT_API_KEY' ) && '' !== trim( (string) DOCSBOT_API_KEY ) ) {
+				$api_key = trim( (string) DOCSBOT_API_KEY );
 			} else {
-				$settings = DocsBot_AI_Plugin::settings();
-				$api_key  = DocsBot_AI_Crypto::decrypt( (string) $settings['api_key'] );
+				$settings = DocsBot_Plugin::settings();
+				$api_key  = DocsBot_Crypto::decrypt( (string) $settings['api_key'] );
 			}
 		}
 
 		if ( '' === $api_key ) {
-			return new WP_Error( 'docsbot_missing_key', __( 'Connect a DocsBot API key first.', 'docsbot-ai' ) );
+			return new WP_Error( 'docsbot_missing_key', __( 'Connect a DocsBot API key first.', 'docsbot' ) );
 		}
 
 		$args = array(
@@ -136,7 +136,7 @@ final class DocsBot_AI_API {
 				'Authorization' => 'Bearer ' . $api_key,
 				'Accept'        => 'application/json',
 				'Content-Type'  => 'application/json',
-				'User-Agent'    => 'DocsBot-WordPress/' . DOCSBOT_AI_VERSION,
+				'User-Agent'    => 'DocsBot-WordPress/' . DOCSBOT_VERSION,
 			),
 		);
 
@@ -144,7 +144,7 @@ final class DocsBot_AI_API {
 			$args['body'] = wp_json_encode( $body );
 		}
 
-		$base_url = apply_filters( 'docsbot_ai_admin_api_base_url', self::BASE_URL );
+		$base_url = apply_filters( 'docsbot_admin_api_base_url', self::BASE_URL );
 		$response = wp_safe_remote_request( untrailingslashit( esc_url_raw( $base_url ) ) . $path, $args );
 
 		if ( is_wp_error( $response ) ) {
@@ -152,7 +152,7 @@ final class DocsBot_AI_API {
 				'docsbot_request_failed',
 				sprintf(
 					/* translators: %s: low-level HTTP error. */
-					__( 'DocsBot could not be reached: %s', 'docsbot-ai' ),
+					__( 'DocsBot could not be reached: %s', 'docsbot' ),
 					$response->get_error_message()
 				)
 			);
@@ -166,7 +166,7 @@ final class DocsBot_AI_API {
 				? sanitize_text_field( $decoded['message'] )
 				: sprintf(
 					/* translators: %d: HTTP status code. */
-					__( 'DocsBot returned HTTP %d.', 'docsbot-ai' ),
+					__( 'DocsBot returned HTTP %d.', 'docsbot' ),
 					$status
 				);
 
@@ -174,7 +174,7 @@ final class DocsBot_AI_API {
 		}
 
 		if ( ! is_array( $decoded ) ) {
-			return new WP_Error( 'docsbot_invalid_response', __( 'DocsBot returned an invalid response.', 'docsbot-ai' ) );
+			return new WP_Error( 'docsbot_invalid_response', __( 'DocsBot returned an invalid response.', 'docsbot' ) );
 		}
 
 		return $decoded;

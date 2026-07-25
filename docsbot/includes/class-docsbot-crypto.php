@@ -2,7 +2,7 @@
 /**
  * Secret storage and JWT signing.
  *
- * @package DocsBot_AI
+ * @package DocsBot
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Encrypts plugin secrets with WordPress installation keys.
  */
-final class DocsBot_AI_Crypto {
+final class DocsBot_Crypto {
 
 	/**
 	 * Encrypt a secret for storage.
@@ -28,7 +28,7 @@ final class DocsBot_AI_Crypto {
 		if ( ! function_exists( 'openssl_encrypt' ) ) {
 			return new WP_Error(
 				'docsbot_crypto_unavailable',
-				__( 'OpenSSL is required to store DocsBot credentials securely.', 'docsbot-ai' )
+				__( 'OpenSSL is required to store DocsBot credentials securely.', 'docsbot' )
 			);
 		}
 
@@ -37,7 +37,7 @@ final class DocsBot_AI_Crypto {
 		} catch ( Exception $exception ) {
 			return new WP_Error(
 				'docsbot_random_unavailable',
-				__( 'Secure random data is unavailable on this server.', 'docsbot-ai' )
+				__( 'Secure random data is unavailable on this server.', 'docsbot' )
 			);
 		}
 
@@ -54,7 +54,7 @@ final class DocsBot_AI_Crypto {
 		if ( false === $ciphertext ) {
 			return new WP_Error(
 				'docsbot_encrypt_failed',
-				__( 'The DocsBot credential could not be encrypted.', 'docsbot-ai' )
+				__( 'The DocsBot credential could not be encrypted.', 'docsbot' )
 			);
 		}
 
@@ -111,7 +111,7 @@ final class DocsBot_AI_Crypto {
 	 * @return string
 	 */
 	private static function key() {
-		return hash( 'sha256', wp_salt( 'auth' ) . '|docsbot-ai', true );
+		return hash( 'sha256', wp_salt( 'auth' ) . '|docsbot', true );
 	}
 
 	/**

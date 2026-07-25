@@ -41,7 +41,7 @@ Private bots also require the signature key from the selected bot’s Widget Emb
 
 ## Security model
 
-The DocsBot user API key and optional signature key are encrypted with AES-256-GCM using installation-specific WordPress salts and stored in a non-autoloaded option. High-security installations can set `DOCSBOT_AI_API_KEY` and `DOCSBOT_AI_SIGNATURE_KEY` in `wp-config.php` instead.
+The DocsBot user API key and optional signature key are encrypted with AES-256-GCM using installation-specific WordPress salts and stored in a non-autoloaded option. High-security installations can set `DOCSBOT_API_KEY` and `DOCSBOT_SIGNATURE_KEY` in `wp-config.php` instead.
 
 The API key never reaches browser JavaScript. For private bots, WordPress checks page, login, role, and membership rules before issuing a token. The browser receives a short-lived JWT—not the signing key—through a no-store REST response.
 
@@ -72,7 +72,7 @@ Run a lightweight WordPress Playground site:
 
 ```bash
 npx @wp-playground/cli@latest start \
-  --path=./docsbot-ai \
+  --path=./docsbot \
   --wp=latest \
   --php=8.3 \
   --port=9400 \
