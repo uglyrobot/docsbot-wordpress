@@ -56,7 +56,7 @@ final class DocsBot_Plugin {
 		$widget      = new DocsBot_Widget( $memberships );
 		$admin       = new DocsBot_Admin( $api, $memberships );
 
-		add_action( 'init', array( $this, 'load_textdomain' ) );
+		add_action( 'init', array( $this, 'load_bundled_textdomain' ) );
 
 		$widget->register();
 
@@ -70,12 +70,23 @@ final class DocsBot_Plugin {
 	 *
 	 * @return void
 	 */
-	public function load_textdomain() {
-		load_plugin_textdomain(
-			'docsbot',
-			false,
-			dirname( plugin_basename( DOCSBOT_FILE ) ) . '/languages'
-		);
+	public function load_bundled_textdomain() {
+		$locale = determine_locale();
+
+		// Give a WordPress.org language pack the first chance to load.
+		get_translations_for_domain( 'docsbot' );
+		if ( is_textdomain_loaded( 'docsbot' ) ) {
+			return;
+		}
+
+		if ( ! preg_match( '/^[A-Za-z0-9_@-]+$/', $locale ) ) {
+			return;
+		}
+
+		$mofile = DOCSBOT_PATH . 'languages/docsbot-' . $locale . '.mo';
+		if ( is_readable( $mofile ) ) {
+			load_textdomain( 'docsbot', $mofile );
+		}
 	}
 
 	/**
