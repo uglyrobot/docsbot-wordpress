@@ -197,8 +197,38 @@ const editorTranslations = {
 	},
 };
 
+const draftTranslations = {
+	"de_DE": {
+		"A bot can have at most 20 custom buttons.": "Ein Bot kann höchstens 20 benutzerdefinierte Schaltflächen haben.", "Cancel": "Abbrechen", "Complete every field for each enabled custom button.": "Füllen Sie jedes Feld für jede aktivierte benutzerdefinierte Schaltfläche aus.", "Connect a DocsBot bot first.": "Verbinden Sie zuerst einen DocsBot-Bot.", "Describe what the custom button should do.": "Beschreiben Sie, was die benutzerdefinierte Schaltfläche tun soll.", "DocsBot returned an incomplete custom button draft.": "DocsBot hat einen unvollständigen Entwurf für eine benutzerdefinierte Schaltfläche zurückgegeben.", "Generate button": "Schaltfläche generieren", "Generating…": "Wird generiert…", "Send visitors to our pricing page when they ask about plans or cost.": "Leiten Sie Besucher zu unserer Preisseite, wenn sie nach Tarifen oder Kosten fragen.", "Unable to generate a custom button draft.": "Der Entwurf für die benutzerdefinierte Schaltfläche konnte nicht erstellt werden.", "What should this button do?": "Was soll diese Schaltfläche tun?", "You do not have permission to manage DocsBot settings.": "Sie sind nicht berechtigt, die DocsBot-Einstellungen zu verwalten.",
+	},
+	"es_ES": {
+		"A bot can have at most 20 custom buttons.": "Un bot puede tener como máximo 20 botones personalizados.", "Cancel": "Cancelar", "Complete every field for each enabled custom button.": "Completa todos los campos de cada botón personalizado activado.", "Connect a DocsBot bot first.": "Conecta primero un bot de DocsBot.", "Describe what the custom button should do.": "Describe qué debe hacer el botón personalizado.", "DocsBot returned an incomplete custom button draft.": "DocsBot devolvió un borrador de botón personalizado incompleto.", "Generate button": "Generar botón", "Generating…": "Generando…", "Send visitors to our pricing page when they ask about plans or cost.": "Envía a los visitantes a nuestra página de precios cuando pregunten por planes o costes.", "Unable to generate a custom button draft.": "No se ha podido generar el borrador del botón personalizado.", "What should this button do?": "¿Qué debe hacer este botón?", "You do not have permission to manage DocsBot settings.": "No tienes permiso para gestionar la configuración de DocsBot.",
+	},
+	"fr_FR": {
+		"A bot can have at most 20 custom buttons.": "Un bot peut avoir au maximum 20 boutons personnalisés.", "Cancel": "Annuler", "Complete every field for each enabled custom button.": "Remplissez tous les champs de chaque bouton personnalisé activé.", "Connect a DocsBot bot first.": "Connectez d’abord un bot DocsBot.", "Describe what the custom button should do.": "Décrivez ce que le bouton personnalisé doit faire.", "DocsBot returned an incomplete custom button draft.": "DocsBot a renvoyé un brouillon de bouton personnalisé incomplet.", "Generate button": "Générer le bouton", "Generating…": "Génération…", "Send visitors to our pricing page when they ask about plans or cost.": "Envoyez les visiteurs vers notre page de tarifs lorsqu’ils posent des questions sur les offres ou les prix.", "Unable to generate a custom button draft.": "Impossible de générer le brouillon du bouton personnalisé.", "What should this button do?": "Que doit faire ce bouton ?", "You do not have permission to manage DocsBot settings.": "Vous n’êtes pas autorisé à gérer les réglages DocsBot.",
+	},
+	"ja": {
+		"A bot can have at most 20 custom buttons.": "1つのボットに設定できるカスタムボタンは最大20個です。", "Cancel": "キャンセル", "Complete every field for each enabled custom button.": "有効な各カスタムボタンのすべての項目を入力してください。", "Connect a DocsBot bot first.": "最初にDocsBotボットを接続してください。", "Describe what the custom button should do.": "カスタムボタンの用途を説明してください。", "DocsBot returned an incomplete custom button draft.": "DocsBotから不完全なカスタムボタンの下書きが返されました。", "Generate button": "ボタンを生成", "Generating…": "生成中…", "Send visitors to our pricing page when they ask about plans or cost.": "プランや料金について質問されたときに料金ページへ案内します。", "Unable to generate a custom button draft.": "カスタムボタンの下書きを生成できませんでした。", "What should this button do?": "このボタンで何をしますか？", "You do not have permission to manage DocsBot settings.": "DocsBot設定を管理する権限がありません。",
+	},
+	"pt_BR": {
+		"A bot can have at most 20 custom buttons.": "Um bot pode ter no máximo 20 botões personalizados.", "Cancel": "Cancelar", "Complete every field for each enabled custom button.": "Preencha todos os campos de cada botão personalizado ativado.", "Connect a DocsBot bot first.": "Conecte primeiro um bot do DocsBot.", "Describe what the custom button should do.": "Descreva o que o botão personalizado deve fazer.", "DocsBot returned an incomplete custom button draft.": "O DocsBot retornou um rascunho incompleto de botão personalizado.", "Generate button": "Gerar botão", "Generating…": "Gerando…", "Send visitors to our pricing page when they ask about plans or cost.": "Envie os visitantes para nossa página de preços quando perguntarem sobre planos ou custos.", "Unable to generate a custom button draft.": "Não foi possível gerar o rascunho do botão personalizado.", "What should this button do?": "O que este botão deve fazer?", "You do not have permission to manage DocsBot settings.": "Você não tem permissão para gerenciar as configurações do DocsBot.",
+	},
+	"zh_CN": {
+		"A bot can have at most 20 custom buttons.": "一个机器人最多可以有 20 个自定义按钮。", "Cancel": "取消", "Complete every field for each enabled custom button.": "请填写每个已启用自定义按钮的所有字段。", "Connect a DocsBot bot first.": "请先连接 DocsBot 机器人。", "Describe what the custom button should do.": "请描述自定义按钮应执行的操作。", "DocsBot returned an incomplete custom button draft.": "DocsBot 返回了不完整的自定义按钮草稿。", "Generate button": "生成按钮", "Generating…": "正在生成…", "Send visitors to our pricing page when they ask about plans or cost.": "当访客询问套餐或费用时，将他们引导至定价页面。", "Unable to generate a custom button draft.": "无法生成自定义按钮草稿。", "What should this button do?": "此按钮应执行什么操作？", "You do not have permission to manage DocsBot settings.": "您无权管理 DocsBot 设置。",
+	},
+};
+
 for (const [locale, messages] of Object.entries(editorTranslations)) {
 	Object.assign(translations[locale], messages);
+}
+for (const [locale, messages] of Object.entries(draftTranslations)) {
+	Object.assign(translations[locale], messages);
+}
+for (const locale of Object.keys(translations)) {
+	const iconLabelsFile = path.join("translations", "icon-labels", `${locale}.json`);
+	if (fs.existsSync(iconLabelsFile)) {
+		Object.assign(translations[locale], JSON.parse(fs.readFileSync(iconLabelsFile, "utf8")));
+	}
 }
 
 function quotePo(value) {

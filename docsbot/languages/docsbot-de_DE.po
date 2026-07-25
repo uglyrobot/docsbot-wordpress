@@ -1220,3 +1220,439 @@ msgstr "Wann auslösen"
 #: docsbot/includes/class-docsbot-admin.php
 msgid "When to use"
 msgstr "Wann verwenden"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Complete every field for each enabled custom button."
+msgstr "Füllen Sie jedes Feld für jede aktivierte benutzerdefinierte Schaltfläche aus."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Connect a DocsBot bot first."
+msgstr "Verbinden Sie zuerst einen DocsBot-Bot."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Describe what the custom button should do."
+msgstr "Beschreiben Sie, was die benutzerdefinierte Schaltfläche tun soll."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot returned an incomplete custom button draft."
+msgstr "DocsBot hat einen unvollständigen Entwurf für eine benutzerdefinierte Schaltfläche zurückgegeben."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Generate button"
+msgstr "Schaltfläche generieren"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Generating…"
+msgstr "Wird generiert…"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Send visitors to our pricing page when they ask about plans or cost."
+msgstr "Leiten Sie Besucher zu unserer Preisseite, wenn sie nach Tarifen oder Kosten fragen."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Unable to generate a custom button draft."
+msgstr "Der Entwurf für die benutzerdefinierte Schaltfläche konnte nicht erstellt werden."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "What should this button do?"
+msgstr "Was soll diese Schaltfläche tun?"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "You do not have permission to manage DocsBot settings."
+msgstr "Sie sind nicht berechtigt, die DocsBot-Einstellungen zu verwalten."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "A bot can have at most 20 custom buttons."
+msgstr "Ein Bot kann höchstens 20 benutzerdefinierte Schaltflächen haben."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Academic Cap"
+msgstr "Doktorhut"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Adjustments Horizontal"
+msgstr "Horizontale Regler"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Archive Box"
+msgstr "Archivbox"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Arrow Trending Up"
+msgstr "Aufwärtstrend"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Arrow Path Rounded Square"
+msgstr "Synchronisieren"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "At Symbol"
+msgstr "At-Zeichen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Banknotes"
+msgstr "Banknoten"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Beaker"
+msgstr "Reagenzglas"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bolt"
+msgstr "Blitz"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bell"
+msgstr "Glocke"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Book Open"
+msgstr "Offenes Buch"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bookmark"
+msgstr "Lesezeichen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Briefcase"
+msgstr "Aktentasche"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Library"
+msgstr "Bibliothek"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Office2"
+msgstr "Bürogebäude"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Storefront"
+msgstr "Geschäft"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bug Ant"
+msgstr "Käfer"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cake"
+msgstr "Kuchen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Calculator"
+msgstr "Taschenrechner"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Camera"
+msgstr "Kamera"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chart Bar"
+msgstr "Balkendiagramm"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chart Pie"
+msgstr "Kreisdiagramm"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chat Bubble Left"
+msgstr "Sprechblase"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Check Circle"
+msgstr "Häkchen im Kreis"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cloud"
+msgstr "Cloud"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Clock"
+msgstr "Uhr"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Code Bracket"
+msgstr "Code-Klammern"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cog"
+msgstr "Zahnrad"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Command Line"
+msgstr "Kommandozeile"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Computer Desktop"
+msgstr "Desktopcomputer"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cpu Chip"
+msgstr "CPU-Chip"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Credit Card"
+msgstr "Kreditkarte"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cube"
+msgstr "Würfel"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Device Phone Mobile"
+msgstr "Smartphone"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Document Text"
+msgstr "Textdokument"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Envelope"
+msgstr "Umschlag"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Exclamation Circle"
+msgstr "Ausrufezeichen im Kreis"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Eye"
+msgstr "Auge"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Face Smile"
+msgstr "Smiley"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Film"
+msgstr "Film"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Finger Print"
+msgstr "Fingerabdruck"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Fire"
+msgstr "Feuer"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Flag"
+msgstr "Flagge"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Folder"
+msgstr "Ordner"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Gift"
+msgstr "Geschenk"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Globe Alt"
+msgstr "Globus"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Globe Asia Australia"
+msgstr "Globus Asien/Australien"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hand Raised"
+msgstr "Erhobene Hand"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hashtag"
+msgstr "Hashtag"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Heart"
+msgstr "Herz"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Home"
+msgstr "Startseite"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Home Modern"
+msgstr "Modernes Haus"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Identification"
+msgstr "Ausweis"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Information Circle"
+msgstr "Information im Kreis"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Language"
+msgstr "Sprache"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Light Bulb"
+msgstr "Glühbirne"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Link"
+msgstr "Link"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "List Bullet"
+msgstr "Aufzählung"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Lock Closed"
+msgstr "Geschlossenes Schloss"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Magnifying Glass"
+msgstr "Lupe"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Map Pin"
+msgstr "Kartenmarkierung"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Megaphone"
+msgstr "Megafon"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Microphone"
+msgstr "Mikrofon"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Moon"
+msgstr "Mond"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Newspaper"
+msgstr "Zeitung"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Paint Brush"
+msgstr "Pinsel"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Paper Airplane"
+msgstr "Papierflieger"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Pencil"
+msgstr "Stift"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Photo"
+msgstr "Foto"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Play"
+msgstr "Wiedergabe"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Presentation Chart Bar"
+msgstr "Präsentationsdiagramm"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Printer"
+msgstr "Drucker"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Puzzle Piece"
+msgstr "Puzzleteil"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Radio"
+msgstr "Radio"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Rectangle Group"
+msgstr "Rechteckgruppe"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Rocket Launch"
+msgstr "Raketenstart"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scale"
+msgstr "Waage"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scissors"
+msgstr "Schere"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Server"
+msgstr "Server"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shield Check"
+msgstr "Schild mit Häkchen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shopping Bag"
+msgstr "Einkaufstasche"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shopping Cart"
+msgstr "Warenkorb"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Signal"
+msgstr "Signal"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Sparkles"
+msgstr "Funkeln"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Speaker Wave"
+msgstr "Lautsprecher"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Star"
+msgstr "Stern"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Sun"
+msgstr "Sonne"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trash"
+msgstr "Papierkorb"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trophy"
+msgstr "Trophäe"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Truck"
+msgstr "Lastwagen"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Tv"
+msgstr "Fernseher"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "User Circle"
+msgstr "Benutzer im Kreis"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "User Group"
+msgstr "Benutzergruppe"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Video Camera"
+msgstr "Videokamera"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wallet"
+msgstr "Geldbörse"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wifi"
+msgstr "WLAN"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wrench"
+msgstr "Schraubenschlüssel"

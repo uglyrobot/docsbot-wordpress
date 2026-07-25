@@ -595,3 +595,6 @@ msgstr "1.0.0"
 #: docsbot/readme.txt:120
 msgid "Initial public release."
 msgstr "最初の公開リリースです。"
+#. External service bullet
+msgid "When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions."
+msgstr "管理者がDocsBotにカスタムアクションボタンの下書きを依頼すると、入力したプロンプトがDocsBotに送信され、編集可能なボタン設定が生成されます。管理者が「アクション」を保存するまで、下書きは保存されません。"

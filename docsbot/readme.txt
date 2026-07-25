@@ -46,6 +46,7 @@ The DocsBot API key remains on the WordPress server. Private-bot signature keys 
 This plugin connects to DocsBot, a third-party service:
 
 * `https://docsbot.ai/api` is called from the WordPress server when an administrator connects an account, lists teams or bots, reads settings, or saves supported bot settings.
+* When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions.
 * `https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the widget is enabled.
 * Visitor chat messages and any administrator-enabled identity fields are processed by DocsBot.
 

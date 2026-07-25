@@ -597,6 +597,10 @@
 	border-top: 1px solid #e2e8f0;
 }
 
+.docsbot-action-editor__body[hidden] {
+	display: none;
+}
+
 .docsbot-action-editor:not(.is-enabled) .docsbot-action-editor__body {
 	background: #fcfcfd;
 }
@@ -622,7 +626,135 @@
 }
 
 .docsbot-remove-custom-button {
-	justify-self: start;
+	justify-self: end;
+	padding: 7px 11px;
+	border: 1px solid #fca5a5;
+	border-radius: 6px;
+	background: #fff;
+	color: #b91c1c;
+	text-decoration: none;
+}
+
+.docsbot-remove-custom-button:hover,
+.docsbot-remove-custom-button:focus {
+	border-color: #f87171;
+	background: #fef2f2;
+	color: #991b1b;
+}
+
+.docsbot-heroicon {
+	width: 22px;
+	height: 22px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.5;
+}
+
+.docsbot-icon-picker {
+	position: relative;
+}
+
+.docsbot-icon-picker__trigger {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 9px;
+	width: 100%;
+	min-height: 40px;
+	padding: 7px 10px;
+	border: 1px solid #cbd5e1;
+	border-radius: 6px;
+	background: #fff;
+	color: #1f2937;
+	text-align: left;
+}
+
+.docsbot-icon-picker__trigger:focus {
+	border-color: #0891b2;
+	box-shadow: 0 0 0 1px #0891b2;
+	outline: 0;
+}
+
+.docsbot-icon-picker__trigger > span:first-child,
+.docsbot-icon-picker__options button > svg {
+	display: grid;
+	place-items: center;
+	color: #475569;
+}
+
+.docsbot-icon-picker__options {
+	position: absolute;
+	z-index: 20;
+	top: calc(100% + 6px);
+	right: 0;
+	left: 0;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 4px;
+	max-height: 280px;
+	padding: 6px;
+	overflow: auto;
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+}
+
+.docsbot-icon-picker__options[hidden] {
+	display: none;
+}
+
+.docsbot-icon-picker__options button {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	padding: 8px;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	background: transparent;
+	color: #334155;
+	text-align: left;
+}
+
+.docsbot-icon-picker__options button:hover,
+.docsbot-icon-picker__options button:focus,
+.docsbot-icon-picker__options button[aria-selected="true"] {
+	border-color: #bae6fd;
+	background: #f0f9ff;
+	color: #0e7490;
+	outline: 0;
+}
+
+.docsbot-icon-picker__options button span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.docsbot-custom-button-prompt {
+	display: grid;
+	gap: 12px;
+	margin-top: 12px;
+	padding: 16px;
+	border: 1px solid #dbe4ea;
+	border-radius: 10px;
+	background: #f8fafc;
+}
+
+.docsbot-custom-button-prompt[hidden] {
+	display: none;
+}
+
+.docsbot-custom-button-prompt .docsbot-field,
+.docsbot-custom-button-prompt .docsbot-action-load-error {
+	margin: 0;
+}
+
+.docsbot-custom-button-prompt__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
 }
 
 .docsbot-action-available__icon {

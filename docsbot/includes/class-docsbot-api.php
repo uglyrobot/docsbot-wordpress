@@ -165,6 +165,33 @@ final class DocsBot_API {
 	}
 
 	/**
+	 * Generate an unsaved custom button draft from a natural-language prompt.
+	 *
+	 * @param string $team_id Team ID.
+	 * @param string $bot_id  Bot ID.
+	 * @param string $input   Button purpose.
+	 * @return array<string,mixed>|WP_Error
+	 */
+	public function draft_custom_button( $team_id, $bot_id, $input ) {
+		if ( ! $this->valid_id( $team_id ) || ! $this->valid_id( $bot_id ) ) {
+			return new WP_Error( 'docsbot_invalid_bot', __( 'The selected bot ID is invalid.', 'docsbot' ) );
+		}
+
+		$input = trim( (string) $input );
+		if ( '' === $input ) {
+			return new WP_Error( 'docsbot_missing_draft_input', __( 'Describe what the custom button should do.', 'docsbot' ) );
+		}
+
+		return $this->request(
+			'POST',
+			'/teams/' . rawurlencode( $team_id ) . '/bots/' . rawurlencode( $bot_id ) . '/custom-button-draft',
+			array( 'input' => $input ),
+			'',
+			true
+		);
+	}
+
+	/**
 	 * Return only healthy MCP servers enabled for widget actions.
 	 *
 	 * @param array<int,mixed> $servers MCP server records.
@@ -212,15 +239,19 @@ final class DocsBot_API {
 	/**
 	 * Build a safe, actionable API error message.
 	 *
-	 * @param int                 $status  HTTP status.
-	 * @param array<string,mixed> $decoded Decoded response.
+	 * @param int                 $status                     HTTP status.
+	 * @param array<string,mixed> $decoded                    Decoded response.
+	 * @param bool                $preserve_forbidden_message Whether to preserve a trusted endpoint's 403 explanation.
 	 * @return string
 	 */
-	public function error_message_for_status( $status, $decoded = array() ) {
+	public function error_message_for_status( $status, $decoded = array(), $preserve_forbidden_message = false ) {
 		if ( 401 === $status ) {
 			return __( 'DocsBot authentication failed. Replace the API key and reconnect.', 'docsbot' );
 		}
 		if ( 403 === $status ) {
+			if ( $preserve_forbidden_message && ! empty( $decoded['message'] ) ) {
+				return sanitize_text_field( $decoded['message'] );
+			}
 			return __( 'This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access.', 'docsbot' );
 		}
 		if ( ! empty( $decoded['message'] ) ) {
@@ -282,13 +313,14 @@ final class DocsBot_API {
 	/**
 	 * Perform an authenticated request.
 	 *
-	 * @param string                   $method  HTTP method.
-	 * @param string                   $path    API path.
-	 * @param array<string,mixed>|null $body    Optional JSON body.
-	 * @param string                   $api_key Optional key override.
+	 * @param string                   $method                     HTTP method.
+	 * @param string                   $path                       API path.
+	 * @param array<string,mixed>|null $body                       Optional JSON body.
+	 * @param string                   $api_key                    Optional key override.
+	 * @param bool                     $preserve_forbidden_message Whether to preserve a trusted endpoint's 403 explanation.
 	 * @return array<string,mixed>|array<int,mixed>|WP_Error
 	 */
-	private function request( $method, $path, $body = null, $api_key = '' ) {
+	private function request( $method, $path, $body = null, $api_key = '', $preserve_forbidden_message = false ) {
 		if ( '' === $api_key ) {
 			if ( defined( 'DOCSBOT_API_KEY' ) && '' !== trim( (string) DOCSBOT_API_KEY ) ) {
 				$api_key = trim( (string) DOCSBOT_API_KEY );
@@ -337,7 +369,7 @@ final class DocsBot_API {
 		$decoded = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( $status < 200 || $status >= 300 ) {
-			$message = $this->error_message_for_status( $status, is_array( $decoded ) ? $decoded : array() );
+			$message = $this->error_message_for_status( $status, is_array( $decoded ) ? $decoded : array(), $preserve_forbidden_message );
 
 			return new WP_Error( 'docsbot_api_error', $message, array( 'status' => $status ) );
 		}

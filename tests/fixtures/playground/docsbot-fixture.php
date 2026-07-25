@@ -54,10 +54,10 @@ function docsbot_fixture_bot() {
 				array(
 					'enabled'      => true,
 					'name'         => 'View pricing',
-					'functionKey'  => 'button_view_pricing',
+					'functionKey'  => 'view_pricing',
 					'instructions' => 'Use when the visitor asks about plans or pricing.',
 					'buttonText'   => 'View pricing',
-					'icon'         => 'ArrowTopRightOnSquareIcon',
+					'icon'         => 'BanknotesIcon',
 					'url'          => 'https://docsbot.ai/pricing',
 				),
 			),
@@ -90,6 +90,16 @@ function docsbot_fixture_bot() {
 	return wp_parse_args( get_option( 'docsbot_fixture_bot', array() ), $default );
 }
 
+add_action(
+	'wp_ajax_docsbot_fixture_state',
+	function () {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array(), 403 );
+		}
+		wp_send_json_success( docsbot_fixture_bot() );
+	}
+);
+
 add_filter(
 	'pre_http_request',
 	function ( $preempt, $args, $url ) {
@@ -114,7 +124,7 @@ add_filter(
 			);
 		}
 
-		if ( 'Bearer viewer-fixture-key' === $auth && 'PUT' === $method ) {
+		if ( 'Bearer viewer-fixture-key' === $auth && in_array( $method, array( 'POST', 'PUT' ), true ) ) {
 			return array(
 				'headers'  => array( 'content-type' => 'application/json' ),
 				'body'     => wp_json_encode( array( 'message' => 'You are not allowed to edit this bot.' ) ),
@@ -153,6 +163,28 @@ add_filter(
 					),
 				),
 			);
+		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765/custom-button-draft' === $path && 'POST' === $method ) {
+			$draft_request = json_decode( $args['body'] ?? '{}', true );
+			if ( empty( $draft_request['input'] ) ) {
+				$status = 400;
+				$data   = array( 'message' => 'Missing input parameter' );
+			} else {
+				$existing_buttons = $bot['tools']['customButtons'] ?? array();
+				$existing_keys    = array_column( $existing_buttons, 'functionKey' );
+				$key              = 'pricing';
+				$suffix           = 2;
+				while ( in_array( $key, $existing_keys, true ) ) {
+					$key = 'pricing_' . $suffix;
+					++$suffix;
+				}
+				$data = array(
+					'functionKey'  => $key,
+					'name'         => 'Pricing',
+					'instructions' => 'Use this when the visitor asks about plans, pricing tiers, billing, or cost.',
+					'buttonText'   => 'View pricing',
+					'icon'         => 'BanknotesIcon',
+				);
+			}
 		} elseif ( preg_match( '#^/api/teams/teamDemo12345/bots/botDemo98765/skills/([A-Za-z0-9_-]+)$#', $path, $matches ) && 'PUT' === $method ) {
 			$skill_changes = json_decode( $args['body'] ?? '{}', true );
 			$disabled      = (array) get_option( 'docsbot_fixture_disabled_skills', array() );
@@ -163,9 +195,21 @@ add_filter(
 			$data = array( 'id' => $matches[1], 'manifest' => $skill_changes['manifest'] ?? array() );
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765' === $path && 'PUT' === $method ) {
 			$changes = json_decode( $args['body'] ?? '{}', true );
-			$bot     = array_merge( $bot, is_array( $changes ) ? $changes : array() );
-			update_option( 'docsbot_fixture_bot', $bot, false );
-			$data = $bot;
+			$custom_buttons = $changes['tools']['customButtons'] ?? array();
+			$force_error    = array_filter(
+				(array) $custom_buttons,
+				static function ( $button ) {
+					return is_array( $button ) && 'https://plan-limit.example/' === ( $button['url'] ?? '' );
+				}
+			);
+			if ( $force_error ) {
+				$status = 403;
+				$data   = array( 'message' => 'Your plan action limit has been reached.' );
+			} else {
+				$bot = array_merge( $bot, is_array( $changes ) ? $changes : array() );
+				update_option( 'docsbot_fixture_bot', $bot, false );
+				$data = $bot;
+			}
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765' === $path ) {
 			$data = $bot;
 		} else {

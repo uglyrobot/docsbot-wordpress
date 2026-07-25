@@ -1113,7 +1113,7 @@ msgstr "图标"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Key"
-msgstr "键"
+msgstr "钥匙"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "MCP server removed from the widget."
@@ -1157,7 +1157,7 @@ msgstr "所选技能 ID 无效。"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Ticket"
-msgstr "工单"
+msgstr "票券"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "URL"
@@ -1170,3 +1170,439 @@ msgstr "触发时机"
 #: docsbot/includes/class-docsbot-admin.php
 msgid "When to use"
 msgstr "使用时机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cancel"
+msgstr "取消"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Complete every field for each enabled custom button."
+msgstr "请填写每个已启用自定义按钮的所有字段。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Connect a DocsBot bot first."
+msgstr "请先连接 DocsBot 机器人。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Describe what the custom button should do."
+msgstr "请描述自定义按钮应执行的操作。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot returned an incomplete custom button draft."
+msgstr "DocsBot 返回了不完整的自定义按钮草稿。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Generate button"
+msgstr "生成按钮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Generating…"
+msgstr "正在生成…"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Send visitors to our pricing page when they ask about plans or cost."
+msgstr "当访客询问套餐或费用时，将他们引导至定价页面。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Unable to generate a custom button draft."
+msgstr "无法生成自定义按钮草稿。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "What should this button do?"
+msgstr "此按钮应执行什么操作？"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "You do not have permission to manage DocsBot settings."
+msgstr "您无权管理 DocsBot 设置。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "A bot can have at most 20 custom buttons."
+msgstr "一个机器人最多可以有 20 个自定义按钮。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Academic Cap"
+msgstr "学士帽"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Adjustments Horizontal"
+msgstr "横向调节"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Archive Box"
+msgstr "归档箱"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Arrow Trending Up"
+msgstr "上升趋势"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Arrow Path Rounded Square"
+msgstr "循环箭头"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "At Symbol"
+msgstr "@ 符号"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Banknotes"
+msgstr "纸币"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Beaker"
+msgstr "烧杯"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bolt"
+msgstr "闪电"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bell"
+msgstr "铃铛"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Book Open"
+msgstr "打开的书"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bookmark"
+msgstr "书签"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Briefcase"
+msgstr "公文包"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Library"
+msgstr "公共建筑"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Office2"
+msgstr "办公楼"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Storefront"
+msgstr "商店"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bug Ant"
+msgstr "虫子"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cake"
+msgstr "蛋糕"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Calculator"
+msgstr "计算器"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Camera"
+msgstr "相机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chart Bar"
+msgstr "柱状图"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chart Pie"
+msgstr "饼图"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chat Bubble Left"
+msgstr "聊天气泡"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Check Circle"
+msgstr "勾选圆圈"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cloud"
+msgstr "云"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Clock"
+msgstr "时钟"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Code Bracket"
+msgstr "代码括号"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cog"
+msgstr "齿轮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Command Line"
+msgstr "命令行"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Computer Desktop"
+msgstr "台式电脑"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cpu Chip"
+msgstr "CPU 芯片"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Credit Card"
+msgstr "信用卡"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cube"
+msgstr "立方体"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Device Phone Mobile"
+msgstr "手机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Document Text"
+msgstr "文本文档"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Envelope"
+msgstr "信封"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Exclamation Circle"
+msgstr "感叹号圆圈"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Eye"
+msgstr "眼睛"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Face Smile"
+msgstr "笑脸"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Film"
+msgstr "影片"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Finger Print"
+msgstr "指纹"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Fire"
+msgstr "火焰"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Flag"
+msgstr "旗帜"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Folder"
+msgstr "文件夹"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Gift"
+msgstr "礼物"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Globe Alt"
+msgstr "地球"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Globe Asia Australia"
+msgstr "亚太地区"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hand Raised"
+msgstr "举手"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hashtag"
+msgstr "井号标签"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Heart"
+msgstr "爱心"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Home"
+msgstr "主页"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Home Modern"
+msgstr "现代住宅"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Identification"
+msgstr "身份证件"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Information Circle"
+msgstr "信息圆圈"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Language"
+msgstr "语言"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Light Bulb"
+msgstr "灯泡"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Link"
+msgstr "链接"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "List Bullet"
+msgstr "项目列表"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Lock Closed"
+msgstr "已锁定"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Magnifying Glass"
+msgstr "放大镜"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Map Pin"
+msgstr "地图标记"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Megaphone"
+msgstr "扩音器"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Microphone"
+msgstr "麦克风"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Moon"
+msgstr "月亮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Newspaper"
+msgstr "报纸"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Paint Brush"
+msgstr "画笔"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Paper Airplane"
+msgstr "纸飞机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Pencil"
+msgstr "铅笔"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Photo"
+msgstr "照片"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Play"
+msgstr "播放"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Presentation Chart Bar"
+msgstr "演示图表"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Printer"
+msgstr "打印机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Puzzle Piece"
+msgstr "拼图"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Radio"
+msgstr "收音机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Rectangle Group"
+msgstr "矩形组合"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Rocket Launch"
+msgstr "火箭发射"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scale"
+msgstr "天平"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scissors"
+msgstr "剪刀"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Server"
+msgstr "服务器"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shield Check"
+msgstr "安全盾牌"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shopping Bag"
+msgstr "购物袋"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shopping Cart"
+msgstr "购物车"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Signal"
+msgstr "信号"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Sparkles"
+msgstr "闪光"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Speaker Wave"
+msgstr "扬声器"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Star"
+msgstr "星星"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Sun"
+msgstr "太阳"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trash"
+msgstr "垃圾桶"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trophy"
+msgstr "奖杯"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Truck"
+msgstr "卡车"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Tv"
+msgstr "电视"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "User Circle"
+msgstr "用户头像"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "User Group"
+msgstr "用户群组"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Video Camera"
+msgstr "摄像机"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wallet"
+msgstr "钱包"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wifi"
+msgstr "Wi-Fi"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wrench"
+msgstr "扳手"

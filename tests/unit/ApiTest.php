@@ -80,6 +80,10 @@ final class ApiTest extends TestCase {
 			'This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access.',
 			$api->error_message_for_status( 403, array( 'message' => 'Forbidden' ) )
 		);
+		$this->assertSame(
+			'Your plan action limit has been reached.',
+			$api->error_message_for_status( 403, array( 'message' => 'Your plan action limit has been reached.' ), true )
+		);
 	}
 
 	public function test_widget_skill_updates_reject_invalid_resource_ids() {
@@ -88,5 +92,13 @@ final class ApiTest extends TestCase {
 
 		$this->assertInstanceOf( WP_Error::class, $result );
 		$this->assertSame( 'docsbot_invalid_skill', $result->get_error_code() );
+	}
+
+	public function test_custom_button_drafts_require_a_prompt() {
+		$api    = new DocsBot_API();
+		$result = $api->draft_custom_button( 'team12345', 'bot12345', '   ' );
+
+		$this->assertInstanceOf( WP_Error::class, $result );
+		$this->assertSame( 'docsbot_missing_draft_input', $result->get_error_code() );
 	}
 }

@@ -621,3 +621,6 @@ msgstr "1.0.0"
 #: docsbot/readme.txt:120
 msgid "Initial public release."
 msgstr "Première version publique."
+#. External service bullet
+msgid "When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions."
+msgstr "Lorsqu’un administrateur demande à DocsBot de préparer un bouton d’action personnalisé, le texte saisi est envoyé à DocsBot afin de générer des réglages de bouton modifiables. Le brouillon n’est enregistré que lorsque l’administrateur enregistre les Actions."

@@ -136,14 +136,33 @@
 	var customButtons = document.querySelector( '[data-custom-buttons]' );
 	var customButtonTemplate = document.getElementById( 'docsbot-custom-button-template' );
 	var addCustomButton = document.querySelector( '[data-add-custom-button]' );
+	var customButtonPrompt = document.querySelector( '[data-custom-button-prompt]' );
 	if ( customButtons ) {
 		var bindCustomButton = function ( editor ) {
 			var remove = editor.querySelector( '.docsbot-remove-custom-button' );
 			var name = editor.querySelector( '[data-custom-button-name]' );
 			var title = editor.querySelector( '[data-custom-button-title]' );
+			var toggle = editor.querySelector( '[name$="[enabled]"]' );
+			var body = editor.querySelector( '.docsbot-action-editor__body' );
+			var picker = editor.querySelector( '[data-icon-picker]' );
+			var updateState = function () {
+				var enabled = Boolean( toggle && toggle.checked );
+				editor.classList.toggle( 'is-enabled', enabled );
+				if ( body ) {
+					body.hidden = ! enabled;
+					body.querySelectorAll( 'input:not([type="hidden"]), textarea' ).forEach( function ( field ) {
+						field.required = enabled && field.name.indexOf( '[icon]' ) === -1;
+					} );
+				}
+			};
 			if ( remove ) {
 				remove.addEventListener( 'click', function () {
+					var wasUnsavedDraft = editor.dataset.unsavedDraft === 'true';
 					editor.remove();
+					if ( wasUnsavedDraft && addCustomButton ) {
+						addCustomButton.disabled = false;
+						addCustomButton.hidden = false;
+					}
 				} );
 			}
 			if ( name && title ) {
@@ -151,24 +170,296 @@
 					title.textContent = name.value.trim() || editor.dataset.newTitle;
 				} );
 			}
-		};
-		customButtons.querySelectorAll( '.docsbot-custom-button-editor' ).forEach( bindCustomButton );
-		if ( addCustomButton && customButtonTemplate ) {
-			addCustomButton.addEventListener( 'click', function () {
-				var nextIndex = parseInt( customButtons.dataset.nextIndex || '0', 10 );
-				customButtons.dataset.nextIndex = String( nextIndex + 1 );
-				var wrapper = document.createElement( 'div' );
-				wrapper.innerHTML = customButtonTemplate.innerHTML.split( '__INDEX__' ).join( String( nextIndex ) );
-				var editor = wrapper.firstElementChild;
-				if ( editor ) {
-					customButtons.appendChild( editor );
-					bindCustomButton( editor );
-					var firstInput = editor.querySelector( 'input[type="text"]' );
-					if ( firstInput ) {
-						firstInput.focus();
+			if ( toggle ) {
+				toggle.addEventListener( 'change', updateState );
+			}
+			if ( picker ) {
+				var select = picker.querySelector( '[data-icon-picker-select]' );
+				var trigger = picker.querySelector( '[data-icon-picker-trigger]' );
+				var options = picker.querySelector( '[data-icon-picker-options]' );
+				var label = picker.querySelector( '[data-icon-picker-label]' );
+				var optionButtons = Array.prototype.slice.call( picker.querySelectorAll( '[data-icon-picker-option]' ) );
+				var setIcon = function ( value ) {
+					var selected = picker.querySelector( '[data-icon-picker-option][data-icon="' + value + '"]' );
+					if ( ! selected || ! select ) {
+						return;
 					}
+					select.value = value;
+					if ( label ) {
+						label.textContent = selected.dataset.label;
+					}
+					editor.querySelectorAll( '[data-icon-picker-preview] use, [data-custom-button-header-icon] use' ).forEach( function ( use ) {
+						var href = use.getAttribute( 'href' ) || '';
+						use.setAttribute( 'href', href.split( '#' )[ 0 ] + '#' + value );
+					} );
+					optionButtons.forEach( function ( option ) {
+						var isSelected = option === selected;
+						option.setAttribute( 'aria-selected', isSelected ? 'true' : 'false' );
+						option.tabIndex = isSelected ? 0 : -1;
+					} );
+				};
+				if ( trigger && options ) {
+					trigger.addEventListener( 'click', function () {
+						var opening = options.hidden;
+						options.hidden = ! opening;
+						trigger.setAttribute( 'aria-expanded', opening ? 'true' : 'false' );
+						if ( opening ) {
+							var selected = options.querySelector( '[aria-selected="true"]' );
+							if ( selected ) {
+								selected.focus();
+							}
+						}
+					} );
+					options.addEventListener( 'click', function ( event ) {
+						var option = event.target.closest( '[data-icon-picker-option]' );
+						if ( ! option ) {
+							return;
+						}
+						setIcon( option.dataset.icon );
+						options.hidden = true;
+						trigger.setAttribute( 'aria-expanded', 'false' );
+						trigger.focus();
+					} );
+					picker.addEventListener( 'keydown', function ( event ) {
+						if ( event.key === 'Escape' && ! options.hidden ) {
+							options.hidden = true;
+							trigger.setAttribute( 'aria-expanded', 'false' );
+							trigger.focus();
+							return;
+						}
+						var activeOption = event.target.closest( '[data-icon-picker-option]' );
+						if ( ! activeOption || options.hidden ) {
+							return;
+						}
+						var currentIndex = optionButtons.indexOf( activeOption );
+						var nextIndex = currentIndex;
+						if ( event.key === 'ArrowDown' || event.key === 'ArrowRight' ) {
+							nextIndex = ( currentIndex + 1 ) % optionButtons.length;
+						} else if ( event.key === 'ArrowUp' || event.key === 'ArrowLeft' ) {
+							nextIndex = ( currentIndex - 1 + optionButtons.length ) % optionButtons.length;
+						} else if ( event.key === 'Home' ) {
+							nextIndex = 0;
+						} else if ( event.key === 'End' ) {
+							nextIndex = optionButtons.length - 1;
+						} else if ( event.key.length === 1 && /\S/.test( event.key ) ) {
+							var query = event.key.toLowerCase();
+							for ( var offset = 1; offset <= optionButtons.length; offset += 1 ) {
+								var candidateIndex = ( currentIndex + offset ) % optionButtons.length;
+								if ( optionButtons[ candidateIndex ].dataset.label.toLowerCase().indexOf( query ) === 0 ) {
+									nextIndex = candidateIndex;
+									break;
+								}
+							}
+						} else {
+							return;
+						}
+						event.preventDefault();
+						if ( optionButtons[ nextIndex ] ) {
+							optionButtons[ nextIndex ].focus();
+						}
+					} );
+				}
+				if ( select ) {
+					setIcon( select.value );
+				}
+			}
+			updateState();
+		};
+		var appendCustomButton = function ( draft ) {
+			var nextIndex = parseInt( customButtons.dataset.nextIndex || '0', 10 );
+			var baseKey = draft.functionKey || '';
+			var functionKey = baseKey;
+			var suffix = 2;
+			var usedKeys = Array.prototype.map.call(
+				customButtons.querySelectorAll( '[name$="[functionKey]"]' ),
+				function ( input ) {
+					return input.value;
+				}
+			);
+			while ( functionKey && usedKeys.indexOf( functionKey ) !== -1 ) {
+				functionKey = baseKey + '_' + suffix;
+				suffix += 1;
+			}
+			customButtons.dataset.nextIndex = String( nextIndex + 1 );
+			var wrapper = document.createElement( 'div' );
+			wrapper.innerHTML = customButtonTemplate.innerHTML.split( '__INDEX__' ).join( String( nextIndex ) );
+			var editor = wrapper.firstElementChild;
+			if ( ! editor ) {
+				return null;
+			}
+			var values = {
+				'name': draft.name || '',
+				'functionKey': functionKey,
+				'instructions': draft.instructions || '',
+				'buttonText': draft.buttonText || '',
+				'icon': draft.icon || 'LinkIcon',
+				'url': draft.url || ''
+			};
+			Object.keys( values ).forEach( function ( field ) {
+				var input = editor.querySelector( '[name$="[' + field + ']"]' );
+				if ( input ) {
+					input.value = values[ field ];
 				}
 			} );
+			var enabled = editor.querySelector( '[name$="[enabled]"]' );
+			if ( enabled ) {
+				enabled.checked = draft.enabled !== false;
+			}
+			customButtons.appendChild( editor );
+			bindCustomButton( editor );
+			var name = editor.querySelector( '[data-custom-button-name]' );
+			if ( name ) {
+				name.dispatchEvent( new Event( 'input', { bubbles: true } ) );
+			}
+			return editor;
+		};
+		customButtons.querySelectorAll( '.docsbot-custom-button-editor' ).forEach( bindCustomButton );
+		if ( addCustomButton && customButtonTemplate && customButtonPrompt ) {
+			var promptInput = customButtonPrompt.querySelector( '[data-custom-button-prompt-input]' );
+			var promptError = customButtonPrompt.querySelector( '[data-custom-button-prompt-error]' );
+			var promptStatus = customButtonPrompt.querySelector( '[data-custom-button-prompt-status]' );
+			var generateButton = customButtonPrompt.querySelector( '[data-generate-custom-button]' );
+			var cancelButton = customButtonPrompt.querySelector( '[data-cancel-custom-button]' );
+			var updateGenerateButton = function () {
+				if ( generateButton && promptInput ) {
+					generateButton.disabled = ! promptInput.value.trim();
+				}
+			};
+			var closePrompt = function ( clearInput, restoreFocus ) {
+				customButtonPrompt.hidden = true;
+				customButtonPrompt.setAttribute( 'aria-busy', 'false' );
+				addCustomButton.hidden = false;
+				addCustomButton.setAttribute( 'aria-expanded', 'false' );
+				if ( promptError ) {
+					promptError.hidden = true;
+				}
+				if ( promptStatus ) {
+					promptStatus.textContent = '';
+				}
+				if ( clearInput && promptInput ) {
+					promptInput.value = '';
+					updateGenerateButton();
+				}
+				if ( restoreFocus ) {
+					addCustomButton.focus();
+				}
+			};
+			addCustomButton.addEventListener( 'click', function () {
+				var maxButtons = parseInt( customButtons.dataset.maxButtons || '20', 10 );
+				if ( customButtons.querySelectorAll( '.docsbot-custom-button-editor' ).length >= maxButtons ) {
+					customButtonPrompt.hidden = false;
+					addCustomButton.hidden = true;
+					addCustomButton.setAttribute( 'aria-expanded', 'true' );
+					if ( promptInput ) {
+						promptInput.disabled = true;
+					}
+					if ( generateButton ) {
+						generateButton.disabled = true;
+					}
+					if ( promptError ) {
+						promptError.textContent = customButtonPrompt.dataset.limitLabel;
+						promptError.hidden = false;
+					}
+					return;
+				}
+				addCustomButton.hidden = true;
+				addCustomButton.setAttribute( 'aria-expanded', 'true' );
+				customButtonPrompt.hidden = false;
+				if ( promptInput ) {
+					promptInput.disabled = false;
+					updateGenerateButton();
+					promptInput.focus();
+				}
+			} );
+			if ( cancelButton ) {
+				cancelButton.addEventListener( 'click', function () {
+					closePrompt( true, true );
+				} );
+			}
+			if ( generateButton && promptInput ) {
+				promptInput.addEventListener( 'input', updateGenerateButton );
+				updateGenerateButton();
+				generateButton.addEventListener( 'click', function () {
+					var maxButtons = parseInt( customButtons.dataset.maxButtons || '20', 10 );
+					if ( customButtons.querySelectorAll( '.docsbot-custom-button-editor' ).length >= maxButtons ) {
+						if ( promptError ) {
+							promptError.textContent = customButtonPrompt.dataset.limitLabel;
+							promptError.hidden = false;
+						}
+						return;
+					}
+					var input = promptInput.value.trim();
+					if ( ! input ) {
+						promptInput.focus();
+						return;
+					}
+					var originalLabel = generateButton.textContent;
+					generateButton.disabled = true;
+					generateButton.textContent = customButtonPrompt.dataset.loadingLabel;
+					customButtonPrompt.setAttribute( 'aria-busy', 'true' );
+					if ( promptStatus ) {
+						promptStatus.textContent = customButtonPrompt.dataset.loadingLabel;
+					}
+					promptInput.disabled = true;
+					if ( cancelButton ) {
+						cancelButton.disabled = true;
+					}
+					if ( promptError ) {
+						promptError.hidden = true;
+					}
+					var body = new window.URLSearchParams();
+					body.set( 'action', 'docsbot_custom_button_draft' );
+					body.set( 'nonce', customButtonPrompt.dataset.nonce );
+					body.set( 'input', input );
+					window.fetch( customButtonPrompt.dataset.ajaxUrl, {
+						method: 'POST',
+						credentials: 'same-origin',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+						body: body.toString()
+					} ).then( function ( response ) {
+						return response.text().then( function ( raw ) {
+							var data;
+							try {
+								data = JSON.parse( raw );
+							} catch ( error ) {
+								throw new Error( customButtonPrompt.dataset.errorLabel );
+							}
+							if ( ! response.ok || ! data.success ) {
+								throw new Error( data.data && data.data.message ? data.data.message : customButtonPrompt.dataset.errorLabel );
+							}
+							return data.data;
+						} );
+					} ).then( function ( draft ) {
+						var editor = appendCustomButton( draft );
+						closePrompt( true, false );
+						if ( editor ) {
+							editor.dataset.unsavedDraft = 'true';
+							addCustomButton.disabled = true;
+							addCustomButton.hidden = true;
+							var url = editor.querySelector( '[name$="[url]"]' );
+							if ( url ) {
+								url.focus();
+							}
+						}
+					} ).catch( function ( error ) {
+						if ( promptError ) {
+							promptError.textContent = error.message;
+							promptError.hidden = false;
+						}
+					} ).finally( function () {
+						customButtonPrompt.setAttribute( 'aria-busy', 'false' );
+						if ( promptStatus ) {
+							promptStatus.textContent = '';
+						}
+						promptInput.disabled = false;
+						if ( cancelButton ) {
+							cancelButton.disabled = false;
+						}
+						generateButton.textContent = originalLabel;
+						updateGenerateButton();
+					} );
+				} );
+			}
 		}
 	}
 

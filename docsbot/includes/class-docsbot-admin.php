@@ -57,6 +57,7 @@ final class DocsBot_Admin {
 		add_action( 'admin_post_docsbot_remote_design', array( $this, 'save_remote_design' ) );
 		add_action( 'admin_post_docsbot_actions', array( $this, 'save_actions' ) );
 		add_action( 'admin_post_docsbot_deploy', array( $this, 'save_deploy' ) );
+		add_action( 'wp_ajax_docsbot_custom_button_draft', array( $this, 'ajax_custom_button_draft' ) );
 	}
 
 	/**
@@ -480,8 +481,23 @@ final class DocsBot_Admin {
 		if ( ! is_array( $bot ) ) {
 			return;
 		}
-		$labels   = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
 		$bot_id   = isset( $bot['id'] ) && is_string( $bot['id'] ) ? $bot['id'] : (string) $settings['bot_id'];
+		$draft    = get_transient( $this->actions_draft_key() );
+		if ( is_array( $draft ) && hash_equals( $bot_id, (string) ( $draft['bot_id'] ?? '' ) ) ) {
+			if ( isset( $draft['tools'] ) && is_array( $draft['tools'] ) ) {
+				$bot['tools'] = $draft['tools'];
+			}
+			if ( isset( $draft['labels'] ) && is_array( $draft['labels'] ) ) {
+				$bot['labels'] = $draft['labels'];
+			}
+			if ( isset( $draft['supportLink'] ) ) {
+				$bot['supportLink'] = (string) $draft['supportLink'];
+			}
+			if ( isset( $draft['settings'] ) && is_array( $draft['settings'] ) ) {
+				$settings = array_merge( $settings, $draft['settings'] );
+			}
+		}
+		$labels   = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
 		$bot_root = 'https://docsbot.ai/app/bots/' . rawurlencode( $bot_id ) . '/configure/';
 		$skills   = $this->cached_skills( $settings['team_id'], $bot_id );
 		$skills   = is_wp_error( $skills ) ? $skills : $this->api->available_widget_skills( $skills );
@@ -525,13 +541,35 @@ final class DocsBot_Admin {
 						<h3 id="docsbot-buttons-title"><?php esc_html_e( 'Custom Buttons', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
 						<p><?php esc_html_e( 'Let your bot show a configured button when its instructions match.', 'docsbot' ); ?></p>
 					</div>
-					<div class="docsbot-action-editors" data-custom-buttons data-next-index="<?php echo esc_attr( (string) count( $buttons ) ); ?>">
+					<div class="docsbot-action-editors" data-custom-buttons data-next-index="<?php echo esc_attr( (string) count( $buttons ) ); ?>" data-max-buttons="20">
 						<?php foreach ( $buttons as $index => $button ) : ?>
 							<?php $this->custom_button_editor( $index, is_array( $button ) ? $button : array() ); ?>
 						<?php endforeach; ?>
 					</div>
 					<template id="docsbot-custom-button-template"><?php $this->custom_button_editor( '__INDEX__', array() ); ?></template>
-					<button type="button" class="docsbot-action-add" data-add-custom-button><span aria-hidden="true">+</span><?php esc_html_e( 'Add custom button', 'docsbot' ); ?></button>
+					<button type="button" class="docsbot-action-add" data-add-custom-button aria-expanded="false" aria-controls="docsbot-custom-button-prompt-panel"><span aria-hidden="true">+</span><?php esc_html_e( 'Add custom button', 'docsbot' ); ?></button>
+					<div
+						id="docsbot-custom-button-prompt-panel"
+						class="docsbot-custom-button-prompt"
+						data-custom-button-prompt
+						data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( 'docsbot_custom_button_draft' ) ); ?>"
+						data-loading-label="<?php esc_attr_e( 'Generating…', 'docsbot' ); ?>"
+						data-error-label="<?php esc_attr_e( 'Unable to generate a custom button draft.', 'docsbot' ); ?>"
+						data-limit-label="<?php esc_attr_e( 'A bot can have at most 20 custom buttons.', 'docsbot' ); ?>"
+						hidden
+					>
+						<div class="docsbot-field">
+							<label for="docsbot-custom-button-prompt"><?php esc_html_e( 'What should this button do?', 'docsbot' ); ?></label>
+							<textarea id="docsbot-custom-button-prompt" rows="4" maxlength="2000" data-custom-button-prompt-input placeholder="<?php esc_attr_e( 'Send visitors to our pricing page when they ask about plans or cost.', 'docsbot' ); ?>"></textarea>
+						</div>
+						<p class="docsbot-action-load-error" data-custom-button-prompt-error role="alert" hidden></p>
+						<span class="screen-reader-text" data-custom-button-prompt-status role="status" aria-live="polite"></span>
+						<div class="docsbot-custom-button-prompt__actions">
+							<button type="button" class="button button-primary" data-generate-custom-button><?php esc_html_e( 'Generate button', 'docsbot' ); ?></button>
+							<button type="button" class="button" data-cancel-custom-button><?php esc_html_e( 'Cancel', 'docsbot' ); ?></button>
+						</div>
+					</div>
 				</section>
 
 				<section class="docsbot-action-category" aria-labelledby="docsbot-skills-title">
@@ -648,37 +686,114 @@ final class DocsBot_Admin {
 		$prefix = 'custom_buttons[' . $index . ']';
 		$id     = 'docsbot-custom-button-' . $index . '-';
 		$name   = is_string( $button['name'] ?? '' ) ? $button['name'] : '';
-		$icons  = array(
-			'ArrowTopRightOnSquareIcon' => __( 'External link', 'docsbot' ),
-			'CalendarDaysIcon'          => __( 'Calendar', 'docsbot' ),
-			'ChatBubbleLeftIcon'        => __( 'Chat', 'docsbot' ),
-			'EnvelopeIcon'              => __( 'Email', 'docsbot' ),
-			'PhoneIcon'                 => __( 'Phone', 'docsbot' ),
-			'ShoppingCartIcon'          => __( 'Cart', 'docsbot' ),
-			'TicketIcon'                => __( 'Ticket', 'docsbot' ),
-		);
+		$icons  = $this->custom_button_icon_options();
+		$icon   = isset( $icons[ $button['icon'] ?? '' ] ) ? $button['icon'] : 'LinkIcon';
 		?>
-		<div class="docsbot-action-editor docsbot-custom-button-editor" data-new-title="<?php esc_attr_e( 'New custom button', 'docsbot' ); ?>">
+		<div class="docsbot-action-editor docsbot-custom-button-editor <?php echo ! empty( $button['enabled'] ) ? 'is-enabled' : ''; ?>" data-new-title="<?php esc_attr_e( 'New custom button', 'docsbot' ); ?>">
 			<div class="docsbot-action-editor__header">
-				<span class="docsbot-action-available__icon" aria-hidden="true"><?php echo $this->action_icon( 'button' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?></span>
+				<span class="docsbot-action-available__icon" aria-hidden="true" data-custom-button-header-icon><?php echo $this->custom_button_icon_svg( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?></span>
 				<span><strong data-custom-button-title><?php echo esc_html( $name ? $name : __( 'New custom button', 'docsbot' ) ); ?></strong><small><?php esc_html_e( 'Custom button', 'docsbot' ); ?></small></span>
 				<span class="docsbot-switch"><input type="checkbox" name="<?php echo esc_attr( $prefix ); ?>[enabled]" value="1" <?php checked( ! empty( $button['enabled'] ) ); ?>><span aria-hidden="true"></span></span>
 			</div>
 			<div class="docsbot-action-editor__body">
 				<div class="docsbot-grid docsbot-grid--2">
 					<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'name' ); ?>"><?php esc_html_e( 'Name', 'docsbot' ); ?></label><input id="<?php echo esc_attr( $id . 'name' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[name]" value="<?php echo esc_attr( $name ); ?>" maxlength="100" data-custom-button-name></div>
-					<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'key' ); ?>"><?php esc_html_e( 'Key', 'docsbot' ); ?></label><div class="docsbot-input-prefix"><span>button_</span><input id="<?php echo esc_attr( $id . 'key' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[functionKey]" value="<?php echo esc_attr( preg_replace( '/^button_/', '', is_string( $button['functionKey'] ?? '' ) ? $button['functionKey'] : '' ) ); ?>" maxlength="64" pattern="[a-z0-9_]+"></div></div>
+					<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'key' ); ?>"><?php esc_html_e( 'Key', 'docsbot' ); ?></label><div class="docsbot-input-prefix"><span>button_</span><input id="<?php echo esc_attr( $id . 'key' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[functionKey]" value="<?php echo esc_attr( preg_replace( '/^button_/', '', is_string( $button['functionKey'] ?? '' ) ? $button['functionKey'] : '' ) ); ?>" maxlength="64" pattern="[a-z0-9]+(?:_[a-z0-9]+)*"></div></div>
 				</div>
 				<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'instructions' ); ?>"><?php esc_html_e( 'When to use', 'docsbot' ); ?></label><textarea id="<?php echo esc_attr( $id . 'instructions' ); ?>" name="<?php echo esc_attr( $prefix ); ?>[instructions]" rows="3" maxlength="2000"><?php echo esc_textarea( is_string( $button['instructions'] ?? '' ) ? $button['instructions'] : '' ); ?></textarea></div>
 				<div class="docsbot-grid docsbot-grid--2">
 					<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'text' ); ?>"><?php esc_html_e( 'Button text', 'docsbot' ); ?></label><input id="<?php echo esc_attr( $id . 'text' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[buttonText]" value="<?php echo esc_attr( is_string( $button['buttonText'] ?? '' ) ? $button['buttonText'] : '' ); ?>" maxlength="100"></div>
-					<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'icon' ); ?>"><?php esc_html_e( 'Icon', 'docsbot' ); ?></label><select id="<?php echo esc_attr( $id . 'icon' ); ?>" name="<?php echo esc_attr( $prefix ); ?>[icon]"><?php foreach ( $icons as $icon => $icon_label ) : ?><option value="<?php echo esc_attr( $icon ); ?>" <?php selected( $button['icon'] ?? 'ArrowTopRightOnSquareIcon', $icon ); ?>><?php echo esc_html( $icon_label ); ?></option><?php endforeach; ?></select></div>
+					<div class="docsbot-field">
+						<label id="<?php echo esc_attr( $id . 'icon-label' ); ?>"><?php esc_html_e( 'Icon', 'docsbot' ); ?></label>
+						<div class="docsbot-icon-picker" data-icon-picker>
+							<button type="button" class="docsbot-icon-picker__trigger" data-icon-picker-trigger aria-haspopup="listbox" aria-expanded="false" aria-labelledby="<?php echo esc_attr( $id . 'icon-label ' . $id . 'icon-value' ); ?>" aria-controls="<?php echo esc_attr( $id . 'icon-options' ); ?>">
+								<span data-icon-picker-preview><?php echo $this->custom_button_icon_svg( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?></span>
+								<span id="<?php echo esc_attr( $id . 'icon-value' ); ?>" data-icon-picker-label><?php echo esc_html( $icons[ $icon ] ); ?></span>
+								<span aria-hidden="true">⌄</span>
+							</button>
+							<div id="<?php echo esc_attr( $id . 'icon-options' ); ?>" class="docsbot-icon-picker__options" data-icon-picker-options role="listbox" aria-labelledby="<?php echo esc_attr( $id . 'icon-label' ); ?>" hidden>
+								<?php foreach ( $icons as $option_icon => $icon_label ) : ?>
+									<button type="button" role="option" data-icon-picker-option data-icon="<?php echo esc_attr( $option_icon ); ?>" data-label="<?php echo esc_attr( $icon_label ); ?>" aria-selected="<?php echo $option_icon === $icon ? 'true' : 'false'; ?>" tabindex="<?php echo $option_icon === $icon ? '0' : '-1'; ?>">
+										<?php echo $this->custom_button_icon_svg( $option_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?>
+										<span><?php echo esc_html( $icon_label ); ?></span>
+									</button>
+								<?php endforeach; ?>
+							</div>
+							<select name="<?php echo esc_attr( $prefix ); ?>[icon]" data-icon-picker-select hidden aria-hidden="true" tabindex="-1"><?php foreach ( $icons as $option_icon => $icon_label ) : ?><option value="<?php echo esc_attr( $option_icon ); ?>" <?php selected( $icon, $option_icon ); ?>><?php echo esc_html( $icon_label ); ?></option><?php endforeach; ?></select>
+						</div>
+					</div>
 				</div>
-				<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'url' ); ?>"><?php esc_html_e( 'URL', 'docsbot' ); ?></label><input id="<?php echo esc_attr( $id . 'url' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[url]" value="<?php echo esc_attr( is_string( $button['url'] ?? '' ) ? $button['url'] : '' ); ?>" maxlength="2048" placeholder="https://example.com/"></div>
+				<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'url' ); ?>"><?php esc_html_e( 'URL', 'docsbot' ); ?></label><input id="<?php echo esc_attr( $id . 'url' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[url]" value="<?php echo esc_attr( is_string( $button['url'] ?? '' ) ? $button['url'] : '' ); ?>" maxlength="2048" pattern="[A-Za-z][A-Za-z0-9+.-]*:.+" placeholder="https://example.com/"></div>
 				<button type="button" class="button-link-delete docsbot-remove-custom-button"><?php esc_html_e( 'Remove button', 'docsbot' ); ?></button>
 			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Return the same Heroicon allowlist accepted by the DocsBot dashboard.
+	 *
+	 * @return array<string,string>
+	 */
+	private function custom_button_icon_options() {
+		static $out = null;
+		if ( is_array( $out ) ) {
+			return $out;
+		}
+
+		$icons = array(
+			'AcademicCapIcon', 'AdjustmentsHorizontalIcon', 'ArchiveBoxIcon', 'ArrowTrendingUpIcon', 'ArrowPathRoundedSquareIcon',
+			'AtSymbolIcon', 'BanknotesIcon', 'BeakerIcon', 'BoltIcon', 'BellIcon', 'BookOpenIcon', 'BookmarkIcon', 'BriefcaseIcon',
+			'BuildingLibraryIcon', 'BuildingOffice2Icon', 'BuildingStorefrontIcon', 'BugAntIcon', 'CakeIcon', 'CalculatorIcon',
+			'CalendarIcon', 'CameraIcon', 'ChartBarIcon', 'ChartPieIcon', 'ChatBubbleLeftIcon', 'CheckCircleIcon', 'CloudIcon',
+			'ClockIcon', 'CodeBracketIcon', 'CogIcon', 'CommandLineIcon', 'ComputerDesktopIcon', 'CpuChipIcon', 'CreditCardIcon',
+			'CubeIcon', 'DevicePhoneMobileIcon', 'DocumentTextIcon', 'EnvelopeIcon', 'ExclamationCircleIcon', 'EyeIcon',
+			'FaceSmileIcon', 'FilmIcon', 'FingerPrintIcon', 'FireIcon', 'FlagIcon', 'FolderIcon', 'GiftIcon', 'GlobeAltIcon',
+			'GlobeAsiaAustraliaIcon', 'HandRaisedIcon', 'HashtagIcon', 'HeartIcon', 'HomeIcon', 'HomeModernIcon',
+			'IdentificationIcon', 'InformationCircleIcon', 'KeyIcon', 'LanguageIcon', 'LightBulbIcon', 'LinkIcon', 'ListBulletIcon',
+			'LockClosedIcon', 'MagnifyingGlassIcon', 'MapPinIcon', 'MegaphoneIcon', 'MicrophoneIcon', 'MoonIcon', 'NewspaperIcon',
+			'PaintBrushIcon', 'PaperAirplaneIcon', 'PencilIcon', 'PhoneIcon', 'PhotoIcon', 'PlayIcon', 'PresentationChartBarIcon',
+			'PrinterIcon', 'PuzzlePieceIcon', 'RadioIcon', 'RectangleGroupIcon', 'RocketLaunchIcon', 'ScaleIcon', 'ScissorsIcon',
+			'ServerIcon', 'ShieldCheckIcon', 'ShoppingBagIcon', 'ShoppingCartIcon', 'SignalIcon', 'SparklesIcon', 'SpeakerWaveIcon',
+			'StarIcon', 'SunIcon', 'TicketIcon', 'TrashIcon', 'TrophyIcon', 'TruckIcon', 'TvIcon', 'UserCircleIcon', 'UserGroupIcon',
+			'VideoCameraIcon', 'WalletIcon', 'WifiIcon', 'WrenchIcon',
+		);
+		$out = array();
+		foreach ( $icons as $icon ) {
+			$label        = preg_replace( '/Icon$/', '', $icon );
+			$label        = preg_replace( '/(?<!^)([A-Z])/', ' $1', $label );
+			// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText -- Fixed allowlisted labels are included in the bundled POT and locale catalogs.
+			$out[ $icon ] = __( trim( (string) $label ), 'docsbot' );
+		}
+		return $out;
+	}
+
+	/**
+	 * Render an allowlisted dashboard Heroicon.
+	 *
+	 * @param string $icon Icon identifier.
+	 * @return string
+	 */
+	private function custom_button_icon_svg( $icon ) {
+		$icons = $this->custom_button_icon_options();
+		$icon  = isset( $icons[ $icon ] ) ? $icon : 'LinkIcon';
+		$href  = DOCSBOT_URL . 'assets/images/heroicons.svg#' . $icon;
+		return '<svg class="docsbot-heroicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="' . esc_url( $href ) . '"></use></svg>';
+	}
+
+	/**
+	 * Normalize a stored custom-button key without its runtime button_ prefix.
+	 *
+	 * @param string $value Raw key.
+	 * @return string
+	 */
+	private function normalize_custom_button_key( $value ) {
+		$key = strtolower( trim( sanitize_text_field( $value ) ) );
+		$key = preg_replace( '/^button_/', '', $key );
+		if ( strlen( $key ) > 64 ) {
+			return '';
+		}
+		return 1 === preg_match( '/^[a-z0-9]+(?:_[a-z0-9]+)*$/', $key ) ? $key : '';
 	}
 
 	/**
@@ -1047,6 +1162,59 @@ final class DocsBot_Admin {
 	}
 
 	/**
+	 * Generate a custom button draft without saving the bot.
+	 *
+	 * @return void
+	 */
+	public function ajax_custom_button_draft() {
+		check_ajax_referer( 'docsbot_custom_button_draft', 'nonce' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to manage DocsBot settings.', 'docsbot' ) ), 403 );
+		}
+
+		$settings = DocsBot_Plugin::settings();
+		if ( empty( $settings['team_id'] ) || empty( $settings['bot_id'] ) ) {
+			wp_send_json_error( array( 'message' => __( 'Connect a DocsBot bot first.', 'docsbot' ) ), 400 );
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- AJAX nonce verified above.
+		$input = isset( $_POST['input'] ) ? sanitize_textarea_field( wp_unslash( $_POST['input'] ) ) : '';
+		$input = function_exists( 'mb_substr' ) ? mb_substr( $input, 0, 2000 ) : substr( $input, 0, 2000 );
+		if ( '' === trim( $input ) ) {
+			wp_send_json_error( array( 'message' => __( 'Describe what the custom button should do.', 'docsbot' ) ), 400 );
+		}
+
+		$result = $this->api->draft_custom_button( $settings['team_id'], $settings['bot_id'], $input );
+		if ( is_wp_error( $result ) ) {
+			$data   = $result->get_error_data();
+			$status = is_array( $data ) && isset( $data['status'] ) ? (int) $data['status'] : 500;
+			wp_send_json_error( array( 'message' => $result->get_error_message() ), $status );
+		}
+
+		$name         = sanitize_text_field( (string) ( $result['name'] ?? '' ) );
+		$key          = $this->normalize_custom_button_key( (string) ( $result['functionKey'] ?? '' ) );
+		$instructions = sanitize_textarea_field( (string) ( $result['instructions'] ?? '' ) );
+		$button_text  = sanitize_text_field( (string) ( $result['buttonText'] ?? '' ) );
+		$icons        = $this->custom_button_icon_options();
+		$icon         = sanitize_text_field( (string) ( $result['icon'] ?? '' ) );
+		if ( '' === $name || '' === $key || '' === $instructions || '' === $button_text ) {
+			wp_send_json_error( array( 'message' => __( 'DocsBot returned an incomplete custom button draft.', 'docsbot' ) ), 502 );
+		}
+
+		wp_send_json_success(
+			array(
+				'enabled'      => true,
+				'name'         => $name,
+				'functionKey'  => $key,
+				'instructions' => $instructions,
+				'buttonText'   => $button_text,
+				'icon'         => isset( $icons[ $icon ] ) ? $icon : 'LinkIcon',
+				'url'          => '',
+			)
+		);
+	}
+
+	/**
 	 * Save local action overrides.
 	 *
 	 * @return void
@@ -1132,54 +1300,96 @@ final class DocsBot_Admin {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Each nested field is sanitized below.
 		$posted_buttons = isset( $_POST['custom_buttons'] ) && is_array( $_POST['custom_buttons'] ) ? wp_unslash( $_POST['custom_buttons'] ) : array();
+		if ( count( $posted_buttons ) > 20 ) {
+			$this->redirect_feedback( 'actions', 'error', __( 'A bot can have at most 20 custom buttons.', 'docsbot' ) );
+		}
 		$buttons        = array();
 		$keys           = array();
-		foreach ( array_slice( $posted_buttons, 0, 20 ) as $button ) {
+		foreach ( $posted_buttons as $button ) {
 			if ( ! is_array( $button ) ) {
 				continue;
 			}
 			$name         = sanitize_text_field( (string) ( $button['name'] ?? '' ) );
-			$key          = preg_replace( '/[^a-z0-9_]/', '', strtolower( (string) ( $button['functionKey'] ?? '' ) ) );
+			$raw_key      = sanitize_text_field( (string) ( $button['functionKey'] ?? '' ) );
+			$key          = $this->normalize_custom_button_key( $raw_key );
 			$instructions = sanitize_textarea_field( (string) ( $button['instructions'] ?? '' ) );
 			$button_text  = sanitize_text_field( (string) ( $button['buttonText'] ?? '' ) );
-			$url          = $this->sanitize_action_url( (string) ( $button['url'] ?? '' ) );
+			$url          = $this->sanitize_action_url( (string) ( $button['url'] ?? '' ), true );
 			$enabled      = '1' === (string) ( $button['enabled'] ?? '' );
 			if ( '' === $name && '' === $key && '' === $instructions && '' === $button_text && '' === $url ) {
 				continue;
 			}
-			if ( '' === $key || isset( $keys[ $key ] ) ) {
+			$reserved = array(
+				'search_documentation', 'human_escalation', 'calendly', 'calcom', 'tidycal', 'search_web', 'web_search',
+				'code_interpreter', 'stripe_recent_invoices_and_subscriptions', 'stripe_billing_portal',
+				'stripe_refund_latest_payment', 'stripe_cancel_subscription',
+			);
+			if (
+				( '' !== $raw_key && '' === $key )
+				|| ( $enabled && '' === $key )
+				|| ( '' !== $key && in_array( $key, $reserved, true ) )
+				|| ( '' !== $key && isset( $keys[ $key ] ) )
+			) {
 				$this->redirect_feedback( 'actions', 'error', __( 'Every custom button needs a unique key.', 'docsbot' ) );
 			}
-			$keys[ $key ] = true;
+			if ( $enabled && ( '' === $name || '' === $instructions || '' === $button_text || '' === $url ) ) {
+				$this->redirect_feedback( 'actions', 'error', __( 'Complete every field for each enabled custom button.', 'docsbot' ) );
+			}
+			if ( '' !== $key ) {
+				$keys[ $key ] = true;
+			}
 			$icon         = sanitize_text_field( (string) ( $button['icon'] ?? '' ) );
-			$icons        = array( 'ArrowTopRightOnSquareIcon', 'CalendarDaysIcon', 'ChatBubbleLeftIcon', 'EnvelopeIcon', 'PhoneIcon', 'ShoppingCartIcon', 'TicketIcon' );
+			$icons        = $this->custom_button_icon_options();
 			$buttons[]    = array(
 				'enabled'      => $enabled,
 				'name'         => substr( $name, 0, 100 ),
-				'functionKey'  => 'button_' . substr( $key, 0, 64 ),
+				'functionKey'  => substr( $key, 0, 64 ),
 				'instructions' => substr( $instructions, 0, 2000 ),
 				'buttonText'   => substr( $button_text, 0, 100 ),
-				'icon'         => in_array( $icon, $icons, true ) ? $icon : 'ArrowTopRightOnSquareIcon',
+				'icon'         => isset( $icons[ $icon ] ) ? $icon : 'LinkIcon',
 				'url'          => $url,
 			);
 		}
 		$tools['customButtons']        = $buttons;
 		$changes['use_custom_buttons'] = (bool) array_filter( wp_list_pluck( $buttons, 'enabled' ) );
 		$labels                         = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
-		$labels['getSupport'] = $this->post_text( 'support_label', 80 );
-		$result               = $this->api->update_bot(
+		$labels['getSupport']           = $this->post_text( 'support_label', 80 );
+		$support_link                   = $this->post_url( 'support_link' );
+		$result                         = $this->api->update_bot(
 			$settings['team_id'],
 			$settings['bot_id'],
 			array(
-				'supportLink' => $this->post_url( 'support_link' ),
+				'supportLink' => $support_link,
 				'labels'      => $labels,
 				'tools'       => $tools,
 			)
 		);
-		if ( ! is_wp_error( $result ) ) {
+		if ( is_wp_error( $result ) ) {
+			set_transient(
+				$this->actions_draft_key(),
+				array(
+					'bot_id'      => $settings['bot_id'],
+					'tools'       => $tools,
+					'labels'      => $labels,
+					'supportLink' => $support_link,
+					'settings'    => $changes,
+				),
+				30 * MINUTE_IN_SECONDS
+			);
+		} else {
+			delete_transient( $this->actions_draft_key() );
 			DocsBot_Plugin::update_settings( $changes );
 		}
 		$this->finish_remote_save( 'actions', $result, __( 'Widget actions saved.', 'docsbot' ) );
+	}
+
+	/**
+	 * Return the current administrator's temporary Actions draft key.
+	 *
+	 * @return string
+	 */
+	private function actions_draft_key() {
+		return 'docsbot_actions_draft_' . get_current_user_id();
 	}
 
 	/**
@@ -1977,12 +2187,14 @@ final class DocsBot_Admin {
 	 * DocsBot custom actions support HTTPS links plus common mail and phone
 	 * actions. Scheduling settings may also contain a provider-relative path.
 	 *
-	 * @param string $value Raw target.
+	 * @param string $value             Raw target.
+	 * @param bool   $allow_app_schemes Whether custom app URL schemes are allowed.
 	 * @return string
 	 */
-	private function sanitize_action_url( $value ) {
+	private function sanitize_action_url( $value, $allow_app_schemes = false ) {
 		$value = trim( sanitize_text_field( $value ) );
 		$value = function_exists( 'mb_substr' ) ? mb_substr( $value, 0, 2048 ) : substr( $value, 0, 2048 );
+		$value = preg_replace( '/[\x00-\x20\x7F]+/', '', $value );
 		if ( '' === $value ) {
 			return '';
 		}
@@ -1991,12 +2203,12 @@ final class DocsBot_Admin {
 		}
 		if ( preg_match( '/^[a-z][a-z0-9+.-]*:/i', $value ) ) {
 			$scheme = strtolower( (string) wp_parse_url( $value, PHP_URL_SCHEME ) );
-			if ( ! in_array( $scheme, array( 'https', 'mailto', 'tel' ), true ) ) {
-				return '';
+			if ( in_array( $scheme, array( 'https', 'mailto', 'tel' ), true ) ) {
+				return esc_url_raw( $value, array( 'https', 'mailto', 'tel' ) );
 			}
-			return esc_url_raw( $value, array( 'https', 'mailto', 'tel' ) );
+			return $allow_app_schemes ? $value : '';
 		}
-		return preg_replace( '/[\x00-\x1F\x7F\s]+/', '', $value );
+		return $allow_app_schemes ? '' : $value;
 	}
 
 	/**

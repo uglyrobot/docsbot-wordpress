@@ -1145,7 +1145,7 @@ msgstr "アイコン"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Key"
-msgstr "キー"
+msgstr "鍵"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "MCP server removed from the widget."
@@ -1202,3 +1202,439 @@ msgstr "実行するタイミング"
 #: docsbot/includes/class-docsbot-admin.php
 msgid "When to use"
 msgstr "使用するタイミング"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Complete every field for each enabled custom button."
+msgstr "有効な各カスタムボタンのすべての項目を入力してください。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Connect a DocsBot bot first."
+msgstr "最初にDocsBotボットを接続してください。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Describe what the custom button should do."
+msgstr "カスタムボタンの用途を説明してください。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "DocsBot returned an incomplete custom button draft."
+msgstr "DocsBotから不完全なカスタムボタンの下書きが返されました。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Generate button"
+msgstr "ボタンを生成"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Generating…"
+msgstr "生成中…"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Send visitors to our pricing page when they ask about plans or cost."
+msgstr "プランや料金について質問されたときに料金ページへ案内します。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Unable to generate a custom button draft."
+msgstr "カスタムボタンの下書きを生成できませんでした。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "What should this button do?"
+msgstr "このボタンで何をしますか？"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "You do not have permission to manage DocsBot settings."
+msgstr "DocsBot設定を管理する権限がありません。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "A bot can have at most 20 custom buttons."
+msgstr "1つのボットに設定できるカスタムボタンは最大20個です。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Academic Cap"
+msgstr "卒業帽"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Adjustments Horizontal"
+msgstr "調整スライダー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Archive Box"
+msgstr "アーカイブボックス"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Arrow Trending Up"
+msgstr "上昇トレンド"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Arrow Path Rounded Square"
+msgstr "循環矢印"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "At Symbol"
+msgstr "アットマーク"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Banknotes"
+msgstr "紙幣"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Beaker"
+msgstr "フラスコ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bolt"
+msgstr "稲妻"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bell"
+msgstr "ベル"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Book Open"
+msgstr "開いた本"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bookmark"
+msgstr "ブックマーク"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Briefcase"
+msgstr "ブリーフケース"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Library"
+msgstr "図書館"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Office2"
+msgstr "オフィスビル"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Building Storefront"
+msgstr "店舗"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Bug Ant"
+msgstr "バグ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cake"
+msgstr "ケーキ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Calculator"
+msgstr "電卓"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Camera"
+msgstr "カメラ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chart Bar"
+msgstr "棒グラフ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chart Pie"
+msgstr "円グラフ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Chat Bubble Left"
+msgstr "チャット"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Check Circle"
+msgstr "チェック"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cloud"
+msgstr "クラウド"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Clock"
+msgstr "時計"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Code Bracket"
+msgstr "コード"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cog"
+msgstr "設定"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Command Line"
+msgstr "コマンドライン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Computer Desktop"
+msgstr "デスクトップPC"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cpu Chip"
+msgstr "CPUチップ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Credit Card"
+msgstr "クレジットカード"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Cube"
+msgstr "キューブ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Device Phone Mobile"
+msgstr "スマートフォン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Document Text"
+msgstr "文書"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Envelope"
+msgstr "封筒"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Exclamation Circle"
+msgstr "警告"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Eye"
+msgstr "目"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Face Smile"
+msgstr "笑顔"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Film"
+msgstr "フィルム"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Finger Print"
+msgstr "指紋"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Fire"
+msgstr "炎"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Flag"
+msgstr "旗"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Folder"
+msgstr "フォルダー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Gift"
+msgstr "ギフト"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Globe Alt"
+msgstr "地球"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Globe Asia Australia"
+msgstr "アジア・オセアニア"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hand Raised"
+msgstr "挙手"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Hashtag"
+msgstr "ハッシュタグ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Heart"
+msgstr "ハート"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Home"
+msgstr "ホーム"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Home Modern"
+msgstr "モダン住宅"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Identification"
+msgstr "IDカード"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Information Circle"
+msgstr "情報"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Language"
+msgstr "言語"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Light Bulb"
+msgstr "電球"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Link"
+msgstr "リンク"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "List Bullet"
+msgstr "箇条書き"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Lock Closed"
+msgstr "ロック"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Magnifying Glass"
+msgstr "検索"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Map Pin"
+msgstr "地図ピン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Megaphone"
+msgstr "メガホン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Microphone"
+msgstr "マイク"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Moon"
+msgstr "月"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Newspaper"
+msgstr "新聞"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Paint Brush"
+msgstr "絵筆"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Paper Airplane"
+msgstr "紙飛行機"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Pencil"
+msgstr "鉛筆"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Photo"
+msgstr "写真"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Play"
+msgstr "再生"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Presentation Chart Bar"
+msgstr "プレゼン資料"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Printer"
+msgstr "プリンター"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Puzzle Piece"
+msgstr "パズル"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Radio"
+msgstr "ラジオ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Rectangle Group"
+msgstr "レイアウト"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Rocket Launch"
+msgstr "ロケット"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scale"
+msgstr "天秤"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scissors"
+msgstr "はさみ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Server"
+msgstr "サーバー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shield Check"
+msgstr "セキュリティ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shopping Bag"
+msgstr "買い物袋"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Shopping Cart"
+msgstr "カート"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Signal"
+msgstr "電波"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Sparkles"
+msgstr "きらめき"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Speaker Wave"
+msgstr "音声"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Star"
+msgstr "星"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Sun"
+msgstr "太陽"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trash"
+msgstr "ゴミ箱"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trophy"
+msgstr "トロフィー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Truck"
+msgstr "トラック"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Tv"
+msgstr "テレビ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "User Circle"
+msgstr "ユーザー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "User Group"
+msgstr "ユーザーグループ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Video Camera"
+msgstr "ビデオカメラ"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wallet"
+msgstr "財布"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wifi"
+msgstr "Wi-Fi"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Wrench"
+msgstr "レンチ"

@@ -582,3 +582,6 @@ msgstr "1.0.0"
 #: docsbot/readme.txt:120
 msgid "Initial public release."
 msgstr "首次公开发布。"
+#. External service bullet
+msgid "When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions."
+msgstr "当管理员要求 DocsBot 起草自定义操作按钮时，输入的提示词会发送给 DocsBot，以生成可编辑的按钮设置。只有管理员保存“操作”后，该草稿才会保存。"

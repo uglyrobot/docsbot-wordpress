@@ -559,3 +559,6 @@ msgstr "1.0.0"
 #. Changelog 1.0.0 list item
 msgid "Initial public release."
 msgstr "Erste öffentliche Veröffentlichung."
+#. External service bullet
+msgid "When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions."
+msgstr "Wenn ein Administrator DocsBot bittet, eine benutzerdefinierte Aktionsschaltfläche zu entwerfen, wird die eingegebene Anweisung an DocsBot gesendet, um bearbeitbare Schaltflächeneinstellungen zu erzeugen. Der Entwurf wird erst gespeichert, wenn der Administrator die Aktionen speichert."
