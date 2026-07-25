@@ -1,895 +1,950 @@
-# DocsBot translation template.
-# Copyright (C) 2026 DocsBot
-# This file is distributed under the same license as the DocsBot package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: DocsBot 1.0.3\n"
 "Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
 "POT-Creation-Date: 2026-07-25 12:50-0500\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: \n"
+"PO-Revision-Date: 2026-07-25 14:00-0500\n"
+"Last-Translator: DocsBot\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: polib\n"
 
 #: docsbot/includes/class-docsbot-admin.php:69
 msgid "DocsBot Settings"
-msgstr ""
+msgstr "Réglages de DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:70
 #: docsbot/includes/class-docsbot-widget.php:285
 msgid "DocsBot"
-msgstr ""
+msgstr "DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:113
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: docsbot/includes/class-docsbot-admin.php:142
 msgid "DocsBot for WordPress"
-msgstr ""
+msgstr "DocsBot pour WordPress"
 
 #: docsbot/includes/class-docsbot-admin.php:147
 msgid "Setup needed"
-msgstr ""
+msgstr "Configuration requise"
 
 #: docsbot/includes/class-docsbot-admin.php:147
 msgid "Bot connected"
-msgstr ""
+msgstr "Bot connecté"
 
 #: docsbot/includes/class-docsbot-admin.php:151
 msgid "DocsBot settings"
-msgstr ""
+msgstr "Réglages de DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:195
 msgid "Current bot"
-msgstr ""
+msgstr "Bot actuel"
 
 #: docsbot/includes/class-docsbot-admin.php:196
 msgid "Not selected"
-msgstr ""
+msgstr "Non sélectionné"
 
 #: docsbot/includes/class-docsbot-admin.php:201
 #: docsbot/includes/class-docsbot-admin.php:977
 msgid "Widget"
-msgstr ""
+msgstr "Widget"
 
 #: docsbot/includes/class-docsbot-admin.php:201
 #: docsbot/includes/class-docsbot-admin.php:483
 msgid "Live"
-msgstr ""
+msgstr "En ligne"
 
 #: docsbot/includes/class-docsbot-admin.php:201
 #: docsbot/includes/class-docsbot-admin.php:483
 msgid "Paused"
-msgstr ""
+msgstr "En pause"
 
 #: docsbot/includes/class-docsbot-admin.php:202
 msgid "Privacy"
-msgstr ""
+msgstr "Confidentialité"
 
 #: docsbot/includes/class-docsbot-admin.php:206
 msgid "Need a hand?"
-msgstr ""
+msgstr "Besoin d’aide ?"
 
 #: docsbot/includes/class-docsbot-admin.php:207
 msgid "Find setup guidance and widget documentation from the DocsBot team."
 msgstr ""
+"Consultez les conseils de configuration et la documentation du widget fournis"
+" par l’équipe DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:209
 msgid "Read widget docs"
-msgstr ""
+msgstr "Lire la documentation du widget"
 
 #: docsbot/includes/class-docsbot-admin.php:210
 #: docsbot/includes/class-docsbot-admin.php:258
 msgid "(opens in a new tab)"
-msgstr ""
+msgstr "(s’ouvre dans un nouvel onglet)"
 
 #: docsbot/includes/class-docsbot-admin.php:232
 msgid "Step 1"
-msgstr ""
+msgstr "Étape 1"
 
 #: docsbot/includes/class-docsbot-admin.php:233
 msgid "Connect your DocsBot account"
-msgstr ""
+msgstr "Connectez votre compte DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:234
 msgid ""
 "Your API key is used only by your WordPress server to load teams, bots, and "
 "settings. It is never sent to site visitors."
 msgstr ""
+"Votre clé API est utilisée uniquement par votre serveur WordPress pour "
+"charger les équipes, les bots et les réglages. Elle n’est jamais envoyée aux "
+"visiteurs du site."
 
 #: docsbot/includes/class-docsbot-admin.php:239
 msgid "Connected securely"
-msgstr ""
+msgstr "Connexion sécurisée"
 
 #: docsbot/includes/class-docsbot-admin.php:240
 msgid "The API key is managed in wp-config.php."
-msgstr ""
+msgstr "La clé API est gérée dans wp-config.php."
 
 #: docsbot/includes/class-docsbot-admin.php:240
 msgid "The encrypted API key is stored by WordPress."
-msgstr ""
+msgstr "La clé API chiffrée est stockée par WordPress."
 
 #: docsbot/includes/class-docsbot-admin.php:250
 msgid "New DocsBot API key"
-msgstr ""
+msgstr "Nouvelle clé API DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:250
 msgid "DocsBot API key"
-msgstr ""
+msgstr "Clé API DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:252
 msgid "Paste your API key"
-msgstr ""
+msgstr "Collez votre clé API"
 
 #: docsbot/includes/class-docsbot-admin.php:253
 msgid "Show"
-msgstr ""
+msgstr "Afficher"
 
 #: docsbot/includes/class-docsbot-admin.php:253
 msgid "Hide"
-msgstr ""
+msgstr "Masquer"
 
 #: docsbot/includes/class-docsbot-admin.php:257
 msgid "Get an API key from DocsBot"
-msgstr ""
+msgstr "Obtenir une clé API auprès de DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:261
 msgid "Save new API key"
-msgstr ""
+msgstr "Enregistrer la nouvelle clé API"
 
 #: docsbot/includes/class-docsbot-admin.php:261
 msgid "Connect account"
-msgstr ""
+msgstr "Connecter le compte"
 
 #: docsbot/includes/class-docsbot-admin.php:264
 msgid "Reconnect with a different key"
-msgstr ""
+msgstr "Se reconnecter avec une autre clé"
 
 #: docsbot/includes/class-docsbot-admin.php:272
 msgid ""
 "Disconnect DocsBot and remove the saved API key, bot selection, and signing "
 "key?"
 msgstr ""
+"Déconnecter DocsBot et supprimer la clé API enregistrée, le bot sélectionné "
+"et la clé de signature ?"
 
 #: docsbot/includes/class-docsbot-admin.php:272
 msgid "Disconnect account"
-msgstr ""
+msgstr "Déconnecter le compte"
 
 #: docsbot/includes/class-docsbot-admin.php:282
 msgid "Step 2"
-msgstr ""
+msgstr "Étape 2"
 
 #: docsbot/includes/class-docsbot-admin.php:283
 msgid "Choose a team and bot"
-msgstr ""
+msgstr "Choisissez une équipe et un bot"
 
 #: docsbot/includes/class-docsbot-admin.php:289
 msgid "Team"
-msgstr ""
+msgstr "Équipe"
 
 #: docsbot/includes/class-docsbot-admin.php:291
 msgid "Select a team"
-msgstr ""
+msgstr "Sélectionner une équipe"
 
 #: docsbot/includes/class-docsbot-admin.php:300
 msgid "Bot"
-msgstr ""
+msgstr "Bot"
 
 #: docsbot/includes/class-docsbot-admin.php:302
 msgid "Select a bot"
-msgstr ""
+msgstr "Sélectionner un bot"
 
 #: docsbot/includes/class-docsbot-admin.php:316
 msgid "Change the team and save to refresh its available bots."
-msgstr ""
+msgstr "Changez d’équipe et enregistrez pour actualiser les bots disponibles."
 
 #: docsbot/includes/class-docsbot-admin.php:317
 msgid "Choose a team first and save to load its bots."
-msgstr ""
+msgstr "Choisissez d’abord une équipe et enregistrez pour charger ses bots."
 
 #: docsbot/includes/class-docsbot-admin.php:320
 msgid "Use selected bot"
-msgstr ""
+msgstr "Utiliser le bot sélectionné"
 
 #: docsbot/includes/class-docsbot-admin.php:324
 msgid "No bots found in this team"
-msgstr ""
+msgstr "Aucun bot trouvé dans cette équipe"
 
 #: docsbot/includes/class-docsbot-admin.php:325
 msgid ""
 "If your DocsBot role and plan allow bot creation, create one in DocsBot and "
 "return here."
 msgstr ""
+"Si votre rôle et votre offre DocsBot autorisent la création de bots, créez-en"
+" un dans DocsBot puis revenez ici."
 
 #: docsbot/includes/class-docsbot-admin.php:327
 msgid "Create a bot in DocsBot"
-msgstr ""
+msgstr "Créer un bot dans DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:350
 #: docsbot/includes/class-docsbot-admin.php:1249
 msgid "Content"
-msgstr ""
+msgstr "Contenu"
 
 #: docsbot/includes/class-docsbot-admin.php:351
 msgid "Shape the conversation"
-msgstr ""
+msgstr "Façonnez la conversation"
 
 #: docsbot/includes/class-docsbot-admin.php:352
 msgid ""
 "These settings are saved to the selected bot in DocsBot and used anywhere "
 "that bot is embedded."
 msgstr ""
+"Ces réglages sont enregistrés dans le bot sélectionné sur DocsBot et utilisés"
+" partout où ce bot est intégré."
 
 #: docsbot/includes/class-docsbot-admin.php:355
 msgid "Bot name"
-msgstr ""
+msgstr "Nom du bot"
 
 #: docsbot/includes/class-docsbot-admin.php:359
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: docsbot/includes/class-docsbot-admin.php:363
 msgid "First message"
-msgstr ""
+msgstr "Premier message"
 
 #: docsbot/includes/class-docsbot-admin.php:364
 msgid "Input placeholder"
-msgstr ""
+msgstr "Texte indicatif du champ de saisie"
 
 #: docsbot/includes/class-docsbot-admin.php:365
 msgid "Floating button label"
-msgstr ""
+msgstr "Libellé du bouton flottant"
 
 #: docsbot/includes/class-docsbot-admin.php:366
 msgid "Support button label"
-msgstr ""
+msgstr "Libellé du bouton d’assistance"
 
 #: docsbot/includes/class-docsbot-admin.php:369
 msgid "Footer message"
-msgstr ""
+msgstr "Message de pied de page"
 
 #: docsbot/includes/class-docsbot-admin.php:371
 msgid ""
 "A good place for privacy or acceptable-use guidance. Basic Markdown is "
 "supported by the widget."
 msgstr ""
+"Un emplacement idéal pour les consignes de confidentialité ou d’utilisation "
+"acceptable. Le widget prend en charge le Markdown de base."
 
 #: docsbot/includes/class-docsbot-admin.php:374
 msgid "Support URL"
-msgstr ""
+msgstr "URL d’assistance"
 
 #: docsbot/includes/class-docsbot-admin.php:378
 msgid "Show floating button text"
-msgstr ""
+msgstr "Afficher le texte du bouton flottant"
 
 #: docsbot/includes/class-docsbot-admin.php:379
 msgid "Let visitors copy answers"
-msgstr ""
+msgstr "Autoriser les visiteurs à copier les réponses"
 
 #: docsbot/includes/class-docsbot-admin.php:380
 msgid "Hide answer sources"
-msgstr ""
+msgstr "Masquer les sources des réponses"
 
 #: docsbot/includes/class-docsbot-admin.php:382
 msgid "Save content"
-msgstr ""
+msgstr "Enregistrer le contenu"
 
 #: docsbot/includes/class-docsbot-admin.php:401
 #: docsbot/includes/class-docsbot-admin.php:1250
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 #: docsbot/includes/class-docsbot-admin.php:402
 msgid "Match your site"
-msgstr ""
+msgstr "Adaptez le widget à votre site"
 
 #: docsbot/includes/class-docsbot-admin.php:403
 msgid ""
 "Use your brand color, placement, and imagery while keeping the widget "
 "accessible."
 msgstr ""
+"Utilisez la couleur, le positionnement et les images de votre marque tout en "
+"préservant l’accessibilité du widget."
 
 #: docsbot/includes/class-docsbot-admin.php:407
 msgid "Accent color"
-msgstr ""
+msgstr "Couleur d’accentuation"
 
 #: docsbot/includes/class-docsbot-admin.php:409
 msgid "Choose accent color"
-msgstr ""
+msgstr "Choisir la couleur d’accentuation"
 
 #: docsbot/includes/class-docsbot-admin.php:413
 msgid "Button icon"
-msgstr ""
+msgstr "Icône du bouton"
 
 #: docsbot/includes/class-docsbot-admin.php:413
 msgid "Comments"
-msgstr ""
+msgstr "Bulles de discussion"
 
 #: docsbot/includes/class-docsbot-admin.php:413
 msgid "Comments (classic)"
-msgstr ""
+msgstr "Bulles de discussion (classiques)"
 
 #: docsbot/includes/class-docsbot-admin.php:413
 #: docsbot/includes/class-docsbot-admin.php:415
 msgid "Robot"
-msgstr ""
+msgstr "Robot"
 
 #: docsbot/includes/class-docsbot-admin.php:413
 #: docsbot/includes/class-docsbot-admin.php:415
 msgid "Life ring"
-msgstr ""
+msgstr "Bouée de sauvetage"
 
 #: docsbot/includes/class-docsbot-admin.php:413
 msgid "Question"
-msgstr ""
+msgstr "Question"
 
 #: docsbot/includes/class-docsbot-admin.php:413
 #: docsbot/includes/class-docsbot-admin.php:415
 msgid "Book"
-msgstr ""
+msgstr "Livre"
 
 #: docsbot/includes/class-docsbot-admin.php:414
 msgid "Button side"
-msgstr ""
+msgstr "Côté du bouton"
 
 #: docsbot/includes/class-docsbot-admin.php:414
 msgid "Right"
-msgstr ""
+msgstr "Droite"
 
 #: docsbot/includes/class-docsbot-admin.php:414
 #: docsbot/includes/class-docsbot-admin.php:416
 msgid "Left"
-msgstr ""
+msgstr "Gauche"
 
 #: docsbot/includes/class-docsbot-admin.php:415
 msgid "Bot avatar"
-msgstr ""
+msgstr "Avatar du bot"
 
 #: docsbot/includes/class-docsbot-admin.php:415
 msgid "None"
-msgstr ""
+msgstr "Aucun"
 
 #: docsbot/includes/class-docsbot-admin.php:415
 msgid "Comment"
-msgstr ""
+msgstr "Commentaire"
 
 #: docsbot/includes/class-docsbot-admin.php:415
 msgid "Info"
-msgstr ""
+msgstr "Informations"
 
 #: docsbot/includes/class-docsbot-admin.php:416
 msgid "Header alignment"
-msgstr ""
+msgstr "Alignement de l’en-tête"
 
 #: docsbot/includes/class-docsbot-admin.php:416
 msgid "Center"
-msgstr ""
+msgstr "Centre"
 
 #: docsbot/includes/class-docsbot-admin.php:419
 msgid "Header logo URL"
-msgstr ""
+msgstr "URL du logo de l’en-tête"
 
 #: docsbot/includes/class-docsbot-admin.php:422
 msgid "Choose widget header logo"
-msgstr ""
+msgstr "Choisir le logo de l’en-tête du widget"
 
 #: docsbot/includes/class-docsbot-admin.php:422
 msgid "Use this image"
-msgstr ""
+msgstr "Utiliser cette image"
 
 #: docsbot/includes/class-docsbot-admin.php:422
 msgid "Choose image"
-msgstr ""
+msgstr "Choisir une image"
 
 #: docsbot/includes/class-docsbot-admin.php:424
 msgid ""
 "Use a public HTTPS image URL. A maximum displayed height of 36px works best."
 msgstr ""
+"Utilisez l’URL HTTPS publique d’une image. Une hauteur maximale affichée de "
+"36 px est recommandée."
 
 #: docsbot/includes/class-docsbot-admin.php:427
 msgid "Show DocsBot branding"
-msgstr ""
+msgstr "Afficher la marque DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:428
 msgid "Confirm external links"
-msgstr ""
+msgstr "Confirmer les liens externes"
 
 #: docsbot/includes/class-docsbot-admin.php:430
 msgid "Save design"
-msgstr ""
+msgstr "Enregistrer le design"
 
 #: docsbot/includes/class-docsbot-admin.php:445
 #: docsbot/includes/class-docsbot-admin.php:1251
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #: docsbot/includes/class-docsbot-admin.php:446
 msgid "Choose what the widget can do"
-msgstr ""
+msgstr "Choisissez ce que le widget peut faire"
 
 #: docsbot/includes/class-docsbot-admin.php:447
 msgid ""
 "These WordPress embed options activate features already enabled and "
 "configured for your bot and plan in DocsBot."
 msgstr ""
+"Ces options d’intégration WordPress activent les fonctionnalités déjà "
+"activées et configurées pour votre bot et votre offre dans DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:450
 msgid "Answer feedback"
-msgstr ""
+msgstr "Évaluation des réponses"
 
 #: docsbot/includes/class-docsbot-admin.php:450
 msgid "Let visitors rate answers as helpful or unhelpful."
-msgstr ""
+msgstr "Autoriser les visiteurs à indiquer si les réponses sont utiles ou non."
 
 #: docsbot/includes/class-docsbot-admin.php:451
 msgid "Human support escalation"
-msgstr ""
+msgstr "Transfert vers l’assistance humaine"
 
 #: docsbot/includes/class-docsbot-admin.php:451
 msgid "Show escalation when it is configured for the selected bot."
-msgstr ""
+msgstr "Afficher le transfert lorsqu’il est configuré pour le bot sélectionné."
 
 #: docsbot/includes/class-docsbot-admin.php:452
 msgid "Web search"
-msgstr ""
+msgstr "Recherche sur le Web"
 
 #: docsbot/includes/class-docsbot-admin.php:452
 msgid "Allow agent-mode web search when your plan and bot support it."
 msgstr ""
+"Autoriser la recherche Web en mode agent lorsque votre offre et votre bot la "
+"prennent en charge."
 
 #: docsbot/includes/class-docsbot-admin.php:453
 msgid "Calendly booking"
-msgstr ""
+msgstr "Réservation Calendly"
 
 #: docsbot/includes/class-docsbot-admin.php:453
 msgid "Allow the configured Calendly scheduling action."
-msgstr ""
+msgstr "Autoriser l’action de planification Calendly configurée."
 
 #: docsbot/includes/class-docsbot-admin.php:454
 msgid "Cal.com booking"
-msgstr ""
+msgstr "Réservation Cal.com"
 
 #: docsbot/includes/class-docsbot-admin.php:454
 msgid "Allow the configured Cal.com scheduling action."
-msgstr ""
+msgstr "Autoriser l’action de planification Cal.com configurée."
 
 #: docsbot/includes/class-docsbot-admin.php:455
 msgid "TidyCal booking"
-msgstr ""
+msgstr "Réservation TidyCal"
 
 #: docsbot/includes/class-docsbot-admin.php:455
 msgid "Allow the configured TidyCal scheduling action."
-msgstr ""
+msgstr "Autoriser l’action de planification TidyCal configurée."
 
 #: docsbot/includes/class-docsbot-admin.php:456
 msgid "Custom action buttons"
-msgstr ""
+msgstr "Boutons d’action personnalisés"
 
 #: docsbot/includes/class-docsbot-admin.php:456
 msgid "Allow custom button tools configured in DocsBot."
-msgstr ""
+msgstr "Autoriser les outils de boutons personnalisés configurés dans DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:457
 msgid "Agent activity"
-msgstr ""
+msgstr "Activité de l’agent"
 
 #: docsbot/includes/class-docsbot-admin.php:457
 msgid "Show concise thinking and tool progress while the agent works."
 msgstr ""
+"Afficher un résumé concis du raisonnement et de la progression des outils "
+"pendant le travail de l’agent."
 
 #: docsbot/includes/class-docsbot-admin.php:459
 msgid "Save actions"
-msgstr ""
+msgstr "Enregistrer les actions"
 
 #: docsbot/includes/class-docsbot-admin.php:479
 #: docsbot/includes/class-docsbot-admin.php:1252
 msgid "Deploy"
-msgstr ""
+msgstr "Déploiement"
 
 #: docsbot/includes/class-docsbot-admin.php:480
 msgid "Put your bot to work"
-msgstr ""
+msgstr "Mettez votre bot au travail"
 
 #: docsbot/includes/class-docsbot-admin.php:486
 msgid "You have unsaved deployment changes. Leave this page anyway?"
 msgstr ""
+"Vous avez des modifications de déploiement non enregistrées. Voulez-vous "
+"vraiment quitter cette page ?"
 
 #: docsbot/includes/class-docsbot-admin.php:490
 msgid "Deployment changes are not saved yet."
-msgstr ""
+msgstr "Les modifications de déploiement ne sont pas encore enregistrées."
 
 #: docsbot/includes/class-docsbot-admin.php:491
 #: docsbot/includes/class-docsbot-admin.php:568
 msgid "Save deployment"
-msgstr ""
+msgstr "Enregistrer le déploiement"
 
 #: docsbot/includes/class-docsbot-admin.php:494
 msgid "Widget availability"
-msgstr ""
+msgstr "Disponibilité du widget"
 
 #: docsbot/includes/class-docsbot-admin.php:495
 msgid "Enable the widget"
-msgstr ""
+msgstr "Activer le widget"
 
 #: docsbot/includes/class-docsbot-admin.php:495
 msgid ""
 "Turn this off to pause the WordPress embed without changing your DocsBot bot."
 msgstr ""
+"Désactivez cette option pour mettre en pause l’intégration WordPress sans "
+"modifier votre bot DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:498
 msgid "Only show on URL prefixes"
-msgstr ""
+msgstr "Afficher uniquement sur les préfixes d’URL"
 
 #: docsbot/includes/class-docsbot-admin.php:500
 msgid ""
-"One path prefix per line. These control placement, not authorization; use "
-"the Audience controls below to protect access."
+"One path prefix per line. These control placement, not authorization; use the"
+" Audience controls below to protect access."
 msgstr ""
+"Un préfixe de chemin par ligne. Ils contrôlent l’emplacement, pas "
+"l’autorisation ; utilisez les options d’audience ci-dessous pour protéger "
+"l’accès."
 
 #: docsbot/includes/class-docsbot-admin.php:503
 msgid "Never show on URL prefixes"
-msgstr ""
+msgstr "Ne jamais afficher sur les préfixes d’URL"
 
 #: docsbot/includes/class-docsbot-admin.php:505
 msgid "Exclusions always win over inclusions."
-msgstr ""
+msgstr "Les exclusions sont toujours prioritaires sur les inclusions."
 
 #: docsbot/includes/class-docsbot-admin.php:509
 msgid "Allowed embed domains"
-msgstr ""
+msgstr "Domaines d’intégration autorisés"
 
 #: docsbot/includes/class-docsbot-admin.php:511
 msgid ""
 "One hostname per line, without a scheme or wildcard. Saved to DocsBot as "
 "defense in depth."
 msgstr ""
+"Un nom d’hôte par ligne, sans protocole ni caractère générique. Enregistré "
+"dans DocsBot comme protection supplémentaire."
 
 #: docsbot/includes/class-docsbot-admin.php:516
 msgid "Audience"
-msgstr ""
+msgstr "Audience"
 
 #: docsbot/includes/class-docsbot-admin.php:517
 msgid "Only show to logged-in WordPress users"
-msgstr ""
+msgstr "Afficher uniquement aux utilisateurs WordPress connectés"
 
 #: docsbot/includes/class-docsbot-admin.php:519
 msgid "Allowed WordPress roles"
-msgstr ""
+msgstr "Rôles WordPress autorisés"
 
 #: docsbot/includes/class-docsbot-admin.php:520
 msgid "Leave every role unchecked to allow all roles."
-msgstr ""
+msgstr "Ne cochez aucun rôle pour autoriser tous les rôles."
 
 #: docsbot/includes/class-docsbot-admin.php:528
 msgid "Membership integration"
-msgstr ""
+msgstr "Intégration d’adhésion"
 
 #: docsbot/includes/class-docsbot-admin.php:530
 msgid "Plan, product, or role IDs"
-msgstr ""
+msgstr "Identifiants d’offre, de produit ou de rôle"
 
 #: docsbot/includes/class-docsbot-admin.php:532
 msgid ""
 "Comma-separated. Leave empty for any active membership; Ultimate Member "
 "requires role slugs."
 msgstr ""
+"Séparés par des virgules. Laissez vide pour toute adhésion active ; Ultimate "
+"Member nécessite des identifiants de rôle."
 
 #: docsbot/includes/class-docsbot-admin.php:536
 msgid ""
 "The selected membership integration is not currently available. The widget "
 "will fail closed until it is active."
 msgstr ""
+"L’intégration d’adhésion sélectionnée n’est actuellement pas disponible. Le "
+"widget refusera l’accès jusqu’à ce qu’elle soit de nouveau active."
 
 #: docsbot/includes/class-docsbot-admin.php:541
 msgid "Conversation identity"
-msgstr ""
+msgstr "Identité de conversation"
 
 #: docsbot/includes/class-docsbot-admin.php:542
 msgid ""
 "Sharing identity makes DocsBot conversations non-anonymous. Each field is "
 "optional and is sent only after the visitor passes your access rules."
 msgstr ""
+"Le partage de l’identité rend les conversations DocsBot non anonymes. Chaque "
+"champ est facultatif et n’est envoyé qu’après validation des règles d’accès "
+"du visiteur."
 
 #: docsbot/includes/class-docsbot-admin.php:544
 msgid "Share display name"
-msgstr ""
+msgstr "Partager le nom d’affichage"
 
 #: docsbot/includes/class-docsbot-admin.php:545
 msgid "Share email address"
-msgstr ""
+msgstr "Partager l’adresse e-mail"
 
 #: docsbot/includes/class-docsbot-admin.php:546
 msgid "Share pseudonymous site user ID"
-msgstr ""
+msgstr "Partager l’identifiant utilisateur pseudonyme du site"
 
 #: docsbot/includes/class-docsbot-admin.php:548
 msgid ""
 "Review the suggested DocsBot text under Settings → Privacy before enabling "
 "identity fields."
 msgstr ""
+"Consultez le texte DocsBot suggéré dans Réglages → Confidentialité avant "
+"d’activer les champs d’identité."
 
 #: docsbot/includes/class-docsbot-admin.php:552
 msgid "Private bot signing"
-msgstr ""
+msgstr "Signature du bot privé"
 
 #: docsbot/includes/class-docsbot-admin.php:555
 msgid "Private signing is ready"
-msgstr ""
+msgstr "La signature privée est prête"
 
 #: docsbot/includes/class-docsbot-admin.php:555
 msgid ""
 "The bot signing key was retrieved securely and encrypted on this WordPress "
 "server. Visitors receive only short-lived signed tokens."
 msgstr ""
+"La clé de signature du bot a été récupérée de manière sécurisée et chiffrée "
+"sur ce serveur WordPress. Les visiteurs ne reçoivent que des jetons signés de"
+" courte durée."
 
 #: docsbot/includes/class-docsbot-admin.php:557
 msgid "Signing key unavailable"
-msgstr ""
+msgstr "Clé de signature indisponible"
 
 #: docsbot/includes/class-docsbot-admin.php:557
 msgid ""
 "Reconnect this bot to retrieve its signing key. DocsBot will keep the widget "
 "paused until private signing is ready."
 msgstr ""
+"Reconnectez ce bot pour récupérer sa clé de signature. DocsBot maintiendra le"
+" widget en pause jusqu’à ce que la signature privée soit prête."
 
 #: docsbot/includes/class-docsbot-admin.php:560
 msgid "Token lifetime (seconds)"
-msgstr ""
+msgstr "Durée de validité du jeton (secondes)"
 
 #: docsbot/includes/class-docsbot-admin.php:564
 msgid "The selected bot is public, so no signature key is needed or retained."
 msgstr ""
+"Le bot sélectionné est public ; aucune clé de signature n’est nécessaire ni "
+"conservée."
 
 #: docsbot/includes/class-docsbot-admin.php:566
 msgid "Open bot embed settings in DocsBot"
-msgstr ""
+msgstr "Ouvrir les réglages d’intégration du bot dans DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:584
 msgid "The connection is managed through wp-config.php."
-msgstr ""
+msgstr "La connexion est gérée par wp-config.php."
 
 #: docsbot/includes/class-docsbot-admin.php:602
 msgid "DocsBot has been disconnected."
-msgstr ""
+msgstr "DocsBot a été déconnecté."
 
 #: docsbot/includes/class-docsbot-admin.php:607
 msgid "Enter an API key to connect DocsBot."
-msgstr ""
+msgstr "Saisissez une clé API pour connecter DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:634
 msgid "DocsBot connected. Now choose a team and bot."
-msgstr ""
+msgstr "DocsBot est connecté. Choisissez maintenant une équipe et un bot."
 
 #: docsbot/includes/class-docsbot-admin.php:656
 msgid "Select a valid DocsBot team."
-msgstr ""
+msgstr "Sélectionnez une équipe DocsBot valide."
 
 #: docsbot/includes/class-docsbot-admin.php:684
 msgid "Team selected. Create a bot in DocsBot to continue."
-msgstr ""
+msgstr "Équipe sélectionnée. Créez un bot dans DocsBot pour continuer."
 
 #: docsbot/includes/class-docsbot-admin.php:684
 msgid "Team selected. Now choose a bot."
-msgstr ""
+msgstr "Équipe sélectionnée. Choisissez maintenant un bot."
 
 #: docsbot/includes/class-docsbot-admin.php:689
 msgid "Select a valid DocsBot bot."
-msgstr ""
+msgstr "Sélectionnez un bot DocsBot valide."
 
 #: docsbot/includes/class-docsbot-admin.php:729
 msgid "Bot connected and settings loaded."
-msgstr ""
+msgstr "Bot connecté et réglages chargés."
 
 #: docsbot/includes/class-docsbot-admin.php:761
 msgid "Content saved to DocsBot."
-msgstr ""
+msgstr "Contenu enregistré dans DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:781
 msgid "Enter a valid six-digit hex color."
-msgstr ""
+msgstr "Saisissez une couleur hexadécimale valide à six chiffres."
 
 #: docsbot/includes/class-docsbot-admin.php:807
 msgid "Design saved to DocsBot."
-msgstr ""
+msgstr "Design enregistré dans DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:824
 msgid "Widget actions saved."
-msgstr ""
+msgstr "Actions du widget enregistrées."
 
 #: docsbot/includes/class-docsbot-admin.php:872
 msgid ""
 "Reconnect the bot so DocsBot can retrieve its signing key before enabling a "
 "private bot."
 msgstr ""
+"Reconnectez le bot afin que DocsBot puisse récupérer sa clé de signature "
+"avant d’activer un bot privé."
 
 #: docsbot/includes/class-docsbot-admin.php:886
 #, php-format
 msgid "Deployment saved, but DocsBot domain restrictions were not updated: %s"
 msgstr ""
+"Déploiement enregistré, mais les restrictions de domaine DocsBot n’ont pas "
+"été mises à jour : %s"
 
 #: docsbot/includes/class-docsbot-admin.php:891
 msgid "Deployment settings saved."
-msgstr ""
+msgstr "Réglages de déploiement enregistrés."
 
 #: docsbot/includes/class-docsbot-admin.php:903
 msgid "You do not have permission to manage DocsBot."
-msgstr ""
+msgstr "Vous n’avez pas l’autorisation de gérer DocsBot."
 
 #: docsbot/includes/class-docsbot-admin.php:942
 msgid "Ask me anything about this site."
-msgstr ""
+msgstr "Posez-moi toutes vos questions sur ce site."
 
 #: docsbot/includes/class-docsbot-admin.php:943
 msgid "Hi! How can I help?"
-msgstr ""
+msgstr "Bonjour ! Comment puis-je vous aider ?"
 
 #: docsbot/includes/class-docsbot-admin.php:944
 msgid "Send a message…"
-msgstr ""
+msgstr "Envoyer un message…"
 
 #: docsbot/includes/class-docsbot-admin.php:945
 msgid "Chat with us"
-msgstr ""
+msgstr "Discutez avec nous"
 
 #: docsbot/includes/class-docsbot-admin.php:946
 msgid "Get support"
-msgstr ""
+msgstr "Obtenir de l’aide"
 
 #: docsbot/includes/class-docsbot-admin.php:975
 msgid "Preview"
-msgstr ""
+msgstr "Aperçu"
 
 #: docsbot/includes/class-docsbot-admin.php:976
 msgid "Preview mode"
-msgstr ""
+msgstr "Mode aperçu"
 
 #: docsbot/includes/class-docsbot-admin.php:978
 msgid "Embed"
-msgstr ""
+msgstr "Intégration"
 
 #: docsbot/includes/class-docsbot-admin.php:981
 msgid "DocsBot widget preview"
-msgstr ""
+msgstr "Aperçu du widget DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:994
 msgid "Why are you so amazing?"
-msgstr ""
+msgstr "Pourquoi êtes-vous si formidable ?"
 
 #: docsbot/includes/class-docsbot-admin.php:998
 msgid "Thanks! What would you like to know about DocsBot?"
-msgstr ""
+msgstr "Merci ! Que souhaitez-vous savoir sur DocsBot ?"
 
 #: docsbot/includes/class-docsbot-admin.php:1000
 msgid "Sources"
-msgstr ""
+msgstr "Sources"
 
 #: docsbot/includes/class-docsbot-admin.php:1001
 msgid "Embeddable Chat Widget — DocsBot"
-msgstr ""
+msgstr "Widget de discussion intégrable — DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:1007
 msgid "Can I connect you to the support team?"
-msgstr ""
+msgstr "Puis-je vous mettre en relation avec l’équipe d’assistance ?"
 
 #: docsbot/includes/class-docsbot-admin.php:1013
 msgid "Powered by DocsBot"
-msgstr ""
+msgstr "Propulsé par DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php:1105
 msgid "Connect a bot first"
-msgstr ""
+msgstr "Connectez d’abord un bot"
 
 #: docsbot/includes/class-docsbot-admin.php:1106
 msgid "Choose a DocsBot team and bot before configuring this section."
 msgstr ""
+"Choisissez une équipe et un bot DocsBot avant de configurer cette section."
 
 #: docsbot/includes/class-docsbot-admin.php:1107
 msgid "Go to connection"
-msgstr ""
+msgstr "Accéder à la connexion"
 
 #: docsbot/includes/class-docsbot-admin.php:1248
 msgid "Connection"
-msgstr ""
+msgstr "Connexion"
 
 #: docsbot/includes/class-docsbot-api.php:39
 msgid "The selected team ID is invalid."
-msgstr ""
+msgstr "L’identifiant d’équipe sélectionné n’est pas valide."
 
 #: docsbot/includes/class-docsbot-api.php:72
 #: docsbot/includes/class-docsbot-api.php:91
 msgid "The selected bot ID is invalid."
-msgstr ""
+msgstr "L’identifiant de bot sélectionné n’est pas valide."
 
 #: docsbot/includes/class-docsbot-api.php:115
 msgid "No supported bot settings were provided."
-msgstr ""
+msgstr "Aucun réglage de bot pris en charge n’a été fourni."
 
 #: docsbot/includes/class-docsbot-api.php:145
 msgid "Connect a DocsBot API key first."
-msgstr ""
+msgstr "Connectez d’abord une clé API DocsBot."
 
 #: docsbot/includes/class-docsbot-api.php:173
 #, php-format
 msgid "DocsBot could not be reached: %s"
-msgstr ""
+msgstr "DocsBot est inaccessible : %s"
 
 #: docsbot/includes/class-docsbot-api.php:187
 #, php-format
 msgid "DocsBot returned HTTP %d."
-msgstr ""
+msgstr "DocsBot a renvoyé le code HTTP %d."
 
 #: docsbot/includes/class-docsbot-api.php:195
 msgid "DocsBot returned an invalid response."
-msgstr ""
+msgstr "DocsBot a renvoyé une réponse non valide."
 
 #: docsbot/includes/class-docsbot-crypto.php:31
 msgid "OpenSSL is required to store DocsBot credentials securely."
 msgstr ""
+"OpenSSL est requis pour stocker les identifiants DocsBot de manière "
+"sécurisée."
 
 #: docsbot/includes/class-docsbot-crypto.php:40
 msgid "Secure random data is unavailable on this server."
 msgstr ""
+"Les données aléatoires sécurisées ne sont pas disponibles sur ce serveur."
 
 #: docsbot/includes/class-docsbot-crypto.php:57
 msgid "The DocsBot credential could not be encrypted."
-msgstr ""
+msgstr "L’identifiant DocsBot n’a pas pu être chiffré."
 
 #: docsbot/includes/class-docsbot-memberships.php:26
 msgid "No membership restriction"
-msgstr ""
+msgstr "Aucune restriction d’adhésion"
 
 #: docsbot/includes/class-docsbot-memberships.php:27
 msgid "WooCommerce Memberships"
-msgstr ""
+msgstr "WooCommerce Memberships"
 
 #: docsbot/includes/class-docsbot-memberships.php:28
 msgid "MemberPress"
-msgstr ""
+msgstr "MemberPress"
 
 #: docsbot/includes/class-docsbot-memberships.php:29
 msgid "Paid Memberships Pro"
-msgstr ""
+msgstr "Paid Memberships Pro"
 
 #: docsbot/includes/class-docsbot-memberships.php:30
 msgid "Restrict Content Pro"
-msgstr ""
+msgstr "Restrict Content Pro"
 
 #: docsbot/includes/class-docsbot-memberships.php:31
 msgid "WP-Members"
-msgstr ""
+msgstr "WP-Members"
 
 #: docsbot/includes/class-docsbot-memberships.php:32
 msgid "Ultimate Member roles"
-msgstr ""
+msgstr "Rôles Ultimate Member"
 
 #: docsbot/includes/class-docsbot-widget.php:128
 msgid "This widget request could not be verified."
-msgstr ""
+msgstr "Cette requête du widget n’a pas pu être vérifiée."
 
 #: docsbot/includes/class-docsbot-widget.php:150
 msgid "The widget is not deployed on this page."
-msgstr ""
+msgstr "Le widget n’est pas déployé sur cette page."
 
 #: docsbot/includes/class-docsbot-widget.php:156
 msgid "Log in to use this chat."
-msgstr ""
+msgstr "Connectez-vous pour utiliser cette discussion."
 
 #: docsbot/includes/class-docsbot-widget.php:162
 msgid "This chat is not available for your account."
-msgstr ""
+msgstr "Cette discussion n’est pas disponible pour votre compte."
 
 #: docsbot/includes/class-docsbot-widget.php:168
 msgid "An eligible membership is required for this chat."
-msgstr ""
+msgstr "Une adhésion éligible est requise pour cette discussion."
 
 #: docsbot/includes/class-docsbot-widget.php:199
 msgid "Private bot signing is not configured."
-msgstr ""
+msgstr "La signature du bot privé n’est pas configurée."
 
 #: docsbot/includes/class-docsbot-widget.php:287
 msgid ""
@@ -899,3 +954,9 @@ msgid ""
 "Do not submit passwords, payment details, or other sensitive information in "
 "chat."
 msgstr ""
+"Ce site peut utiliser DocsBot pour proposer une discussion interactive. Les "
+"messages de discussion et tous les champs d’identité activés par "
+"l’administrateur du site peuvent être envoyés à DocsBot pour traitement et "
+"conservés conformément aux réglages DocsBot du propriétaire du site. "
+"N’envoyez pas de mots de passe, de données de paiement ni d’autres "
+"informations sensibles dans la discussion."

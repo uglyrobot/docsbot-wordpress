@@ -4,7 +4,7 @@ Tags: artificial intelligence, chatbot, customer support, documentation, live ch
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,11 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 5. Deploy by URL path, user role, membership, metadata, and private signing.
 
 == Changelog ==
+
+= 1.0.3 =
+* Added bundled translations for Spanish, German, French, Brazilian Portuguese, Japanese, and Simplified Chinese.
+* Added import-ready WordPress.org listing translation catalogs for the same locales.
+* Added the complete WordPress.org banner and icon asset set.
 
 = 1.0.2 =
 * Added dashboard-matched Content, Design, Actions, Deploy, and live widget preview screens.

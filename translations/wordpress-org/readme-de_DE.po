@@ -1,0 +1,513 @@
+# German translation for the DocsBot WordPress.org plugin listing.
+# Copyright (C) 2026 DocsBot
+# This file is distributed under the same license as the DocsBot package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DocsBot WordPress.org Stable Readme 1.0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
+"POT-Creation-Date: 2026-07-25 14:00-0500\n"
+"PO-Revision-Date: 2026-07-25 14:00-0500\n"
+"Last-Translator: DocsBot\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name
+msgid "DocsBot"
+msgstr "DocsBot"
+
+#. Short Description
+msgid ""
+"Add your DocsBot support agent to WordPress, customize the widget, and "
+"control exactly where and for whom it appears."
+msgstr ""
+"Fügen Sie Ihren DocsBot-Support-Agenten zu WordPress hinzu, passen Sie das "
+"Widget an und bestimmen Sie genau, wo und für wen es angezeigt wird."
+
+#. Description heading
+msgid "Description"
+msgstr "Beschreibung"
+
+#. Description paragraph
+msgid ""
+"DocsBot for WordPress gives site administrators a secure, native way to "
+"connect a DocsBot account and deploy an AI support widget."
+msgstr ""
+"DocsBot für WordPress bietet Website-Administratoren eine sichere, native "
+"Möglichkeit, ein DocsBot-Konto zu verbinden und ein KI-Support-Widget "
+"bereitzustellen."
+
+#. Description paragraph
+msgid ""
+"Connect your DocsBot API key, choose a team and bot you can access, then "
+"configure the most useful widget content, design, and action settings "
+"without leaving WordPress. The Deploy tab controls page paths, logged-in "
+"users, WordPress roles, popular membership systems, optional conversation "
+"identity, and private-bot signing."
+msgstr ""
+"Verbinden Sie Ihren DocsBot-API-Schlüssel, wählen Sie ein Team und einen Bot"
+" aus, auf die Sie zugreifen können, und konfigurieren Sie anschließend die "
+"wichtigsten Einstellungen für Inhalt, Design und Aktionen des Widgets, ohne "
+"WordPress zu verlassen. Im Tab „Bereitstellen“ steuern Sie Seitenpfade, "
+"angemeldete Benutzer, WordPress-Rollen, beliebte Mitgliedschaftssysteme, die"
+" optionale Unterhaltungsidentität und die Signierung privater Bots."
+
+#. Description subheading
+msgid "Built for real WordPress sites"
+msgstr "Für echte WordPress-Websites entwickelt"
+
+#. Description list item
+msgid "Choose from every team and bot available to your DocsBot user."
+msgstr ""
+"Wählen Sie aus allen Teams und Bots, die Ihrem DocsBot-Benutzer zur "
+"Verfügung stehen."
+
+#. Description list item
+msgid ""
+"Configure the greeting, labels, support link, branding, color, icons, and "
+"placement."
+msgstr ""
+"Konfigurieren Sie Begrüßung, Beschriftungen, Support-Link, Branding, Farbe, "
+"Symbole und Platzierung."
+
+#. Description list item
+msgid ""
+"Enable feedback, escalation, web search, booking, and custom button "
+"integrations already configured for your bot."
+msgstr ""
+"Aktivieren Sie bereits für Ihren Bot konfigurierte Funktionen für Feedback, "
+"Support-Weiterleitung, Websuche, Terminbuchung und benutzerdefinierte "
+"Schaltflächen."
+
+#. Description list item
+msgid "Include or exclude literal URL path prefixes."
+msgstr "Schließen Sie wörtliche URL-Pfadpräfixe ein oder aus."
+
+#. Description list item
+msgid ""
+"Restrict chat by login, WordPress role, or a supported membership plugin."
+msgstr ""
+"Beschränken Sie den Chat nach Anmeldung, WordPress-Rolle oder einem "
+"unterstützten Mitgliedschafts-Plugin."
+
+#. Description list item
+msgid ""
+"Share display name, email, and a pseudonymous site user ID through separate "
+"opt-in controls."
+msgstr ""
+"Teilen Sie Anzeigename, E-Mail-Adresse und eine pseudonyme Website-Benutzer-"
+"ID über separate Opt-in-Einstellungen."
+
+#. Description list item
+msgid "Use private DocsBot bots with short-lived server-signed JWTs."
+msgstr ""
+"Verwenden Sie private DocsBot-Bots mit kurzlebigen, serverseitig signierten "
+"JWTs."
+
+#. Description list item
+msgid ""
+"Require server-verified login, role, or membership rules when chat access "
+"must be protected."
+msgstr ""
+"Fordern Sie serverseitig geprüfte Anmelde-, Rollen- oder "
+"Mitgliedschaftsregeln an, wenn der Chat-Zugriff geschützt werden muss."
+
+#. Description list item
+msgid "Keep identity and signatures out of full-page caches."
+msgstr ""
+"Halten Sie Identitätsdaten und Signaturen aus Ganzseiten-Caches heraus."
+
+#. Description list item
+msgid "Avoid dashboard clutter: the plugin shows no sitewide notices or nags."
+msgstr ""
+"Vermeiden Sie ein überladenes Dashboard: Das Plugin zeigt keine "
+"websiteweiten Hinweise oder aufdringlichen Meldungen an."
+
+#. Description subheading
+msgid "Supported membership integrations"
+msgstr "Unterstützte Mitgliedschaftsintegrationen"
+
+#. Description paragraph
+msgid ""
+"The plugin uses public APIs from WooCommerce Memberships, MemberPress, Paid "
+"Memberships Pro, Restrict Content Pro, and WP-Members. Ultimate Member is "
+"supported through approved WordPress roles. The selected integration fails "
+"closed if it becomes unavailable."
+msgstr ""
+"Das Plugin verwendet öffentliche APIs von WooCommerce Memberships, "
+"MemberPress, Paid Memberships Pro, Restrict Content Pro und WP-Members. "
+"Ultimate Member wird über zugelassene WordPress-Rollen unterstützt. Wenn die"
+" ausgewählte Integration nicht verfügbar ist, verweigert sie den Zugriff."
+
+#. Description subheading
+msgid "Privacy and security"
+msgstr "Datenschutz und Sicherheit"
+
+#. Description paragraph
+msgid ""
+"Identity sharing is off by default. If enabled, the selected fields are sent"
+" to DocsBot only after the visitor passes the configured access rules. The "
+"plugin never sends membership, role, password, payment, or subscription "
+"data."
+msgstr ""
+"Die Weitergabe von Identitätsdaten ist standardmäßig deaktiviert. Wenn sie "
+"aktiviert ist, werden die ausgewählten Felder erst an DocsBot gesendet, "
+"nachdem der Besucher die konfigurierten Zugriffsregeln erfüllt hat. Das "
+"Plugin sendet niemals Mitgliedschafts-, Rollen-, Passwort-, Zahlungs- oder "
+"Abonnementdaten."
+
+#. Description paragraph
+msgid ""
+"The DocsBot API key remains on the WordPress server. Private-bot signature "
+"keys are used only to create short-lived tokens. Both credentials are "
+"encrypted before database storage, or may be supplied through `wp-"
+"config.php` constants."
+msgstr ""
+"Der DocsBot-API-Schlüssel verbleibt auf dem WordPress-Server. "
+"Signaturschlüssel privater Bots werden ausschließlich zum Erstellen "
+"kurzlebiger Tokens verwendet. Beide Zugangsdaten werden vor der Speicherung "
+"in der Datenbank verschlüsselt oder können über Konstanten in `wp-"
+"config.php` bereitgestellt werden."
+
+#. Description subheading
+msgid "External service"
+msgstr "Externer Dienst"
+
+#. Description paragraph
+msgid "This plugin connects to DocsBot, a third-party service:"
+msgstr ""
+"Dieses Plugin stellt eine Verbindung zu DocsBot her, einem Dienst eines "
+"Drittanbieters:"
+
+#. Description list item
+msgid ""
+"`https://docsbot.ai/api` is called from the WordPress server when an "
+"administrator connects an account, lists teams or bots, reads settings, or "
+"saves supported bot settings."
+msgstr ""
+"`https://docsbot.ai/api` wird vom WordPress-Server aufgerufen, wenn ein "
+"Administrator ein Konto verbindet, Teams oder Bots auflistet, Einstellungen "
+"liest oder unterstützte Bot-Einstellungen speichert."
+
+#. Description list item
+msgid ""
+"`https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the"
+" widget is enabled."
+msgstr ""
+"`https://widget.docsbot.ai/chat.js` wird für berechtigte Besucher geladen, "
+"wenn das Widget aktiviert ist."
+
+#. Description list item
+msgid ""
+"Visitor chat messages and any administrator-enabled identity fields are "
+"processed by DocsBot."
+msgstr ""
+"Chatnachrichten von Besuchern und alle vom Administrator aktivierten "
+"Identitätsfelder werden von DocsBot verarbeitet."
+
+#. Description paragraph
+msgid ""
+"Use of DocsBot is subject to the [DocsBot Privacy "
+"Policy](https://docsbot.ai/privacy) and [Terms of "
+"Service](https://docsbot.ai/terms). Learn more in the [DocsBot widget "
+"documentation](https://docsbot.ai/documentation/developer/embeddable-chat-"
+"widget)."
+msgstr ""
+"Die Nutzung von DocsBot unterliegt der [DocsBot-"
+"Datenschutzerklärung](https://docsbot.ai/privacy) und den "
+"[Nutzungsbedingungen](https://docsbot.ai/terms). Weitere Informationen "
+"finden Sie in der [DocsBot-Widget-"
+"Dokumentation](https://docsbot.ai/documentation/developer/embeddable-chat-"
+"widget)."
+
+#. Installation heading
+msgid "Installation"
+msgstr "Installation"
+
+#. Installation step 1
+msgid ""
+"Upload the plugin directory to `/wp-content/plugins/` or install the ZIP "
+"from **Plugins > Add New Plugin > Upload Plugin**."
+msgstr ""
+"Laden Sie das Plugin-Verzeichnis nach `/wp-content/plugins/` hoch oder "
+"installieren Sie die ZIP-Datei über **Plugins > Plugin hinzufügen > Plugin "
+"hochladen**."
+
+#. Installation step 2
+msgid "Activate **DocsBot**."
+msgstr "Aktivieren Sie **DocsBot**."
+
+#. Installation step 3
+msgid "Open **Settings > DocsBot > Connection**."
+msgstr "Öffnen Sie **Einstellungen > DocsBot > Verbindung**."
+
+#. Installation step 4
+msgid ""
+"Get your user API key from the [DocsBot API Keys "
+"page](https://docsbot.ai/app/api), paste it into WordPress, and connect."
+msgstr ""
+"Rufen Sie Ihren Benutzer-API-Schlüssel auf der [DocsBot-Seite für API-"
+"Schlüssel](https://docsbot.ai/app/api) ab, fügen Sie ihn in WordPress ein "
+"und stellen Sie die Verbindung her."
+
+#. Installation step 5
+msgid "Choose a team, save, then choose a bot."
+msgstr ""
+"Wählen Sie ein Team aus, speichern Sie und wählen Sie anschließend einen Bot"
+" aus."
+
+#. Installation step 6
+msgid "Configure Content, Design, and Actions."
+msgstr "Konfigurieren Sie Inhalt, Design und Aktionen."
+
+#. Installation step 7
+msgid "Open Deploy, choose your audience and pages, then enable the widget."
+msgstr ""
+"Öffnen Sie „Bereitstellen“, wählen Sie Ihre Zielgruppe und Seiten aus und "
+"aktivieren Sie anschließend das Widget."
+
+#. Installation paragraph
+msgid ""
+"PHP's OpenSSL extension is required to encrypt saved credentials and sign "
+"private-bot tokens."
+msgstr ""
+"Die OpenSSL-Erweiterung von PHP ist erforderlich, um gespeicherte "
+"Zugangsdaten zu verschlüsseln und Tokens privater Bots zu signieren."
+
+#. Installation paragraph
+msgid ""
+"For a private bot, select the bot normally. The plugin retrieves its signing"
+" key in the authorized server-side bot response, encrypts it immediately, "
+"and never renders it in WordPress."
+msgstr ""
+"Wählen Sie einen privaten Bot wie gewohnt aus. Das Plugin ruft dessen "
+"Signaturschlüssel in der autorisierten serverseitigen Bot-Antwort ab, "
+"verschlüsselt ihn sofort und gibt ihn niemals in WordPress aus."
+
+#. Frequently Asked Questions heading
+msgid "Frequently Asked Questions"
+msgstr "Häufig gestellte Fragen"
+
+#. FAQ question
+msgid "Does the plugin expose my DocsBot API key?"
+msgstr "Gibt das Plugin meinen DocsBot-API-Schlüssel preis?"
+
+#. FAQ answer
+msgid ""
+"No. Admin API requests are made by WordPress on the server. The key is "
+"encrypted before database storage and is never included in frontend HTML or "
+"JavaScript."
+msgstr ""
+"Nein. Admin-API-Anfragen werden serverseitig von WordPress ausgeführt. Der "
+"Schlüssel wird vor der Speicherung in der Datenbank verschlüsselt und "
+"niemals in das Frontend-HTML oder JavaScript eingebunden."
+
+#. FAQ question
+msgid "How are private bots supported?"
+msgstr "Wie werden private Bots unterstützt?"
+
+#. FAQ answer
+msgid ""
+"WordPress creates a short-lived HS256 JWT using the bot signature key. "
+"Access rules run first, and the token is returned through a private, no-"
+"store response. The signature key never leaves the server."
+msgstr ""
+"WordPress erstellt mithilfe des Bot-Signaturschlüssels ein kurzlebiges "
+"HS256-JWT. Zuerst werden die Zugriffsregeln geprüft; anschließend wird das "
+"Token über eine private Antwort mit „no-store“ zurückgegeben. Der "
+"Signaturschlüssel verlässt niemals den Server."
+
+#. FAQ question
+msgid "Does the plugin send WordPress user data automatically?"
+msgstr "Sendet das Plugin automatisch WordPress-Benutzerdaten?"
+
+#. FAQ answer
+msgid ""
+"No. Display name, email address, and a pseudonymous site user ID are three "
+"separate settings and all are off by default."
+msgstr ""
+"Nein. Anzeigename, E-Mail-Adresse und eine pseudonyme Website-Benutzer-ID "
+"sind drei separate Einstellungen und standardmäßig alle deaktiviert."
+
+#. FAQ question
+msgid "What happens if my membership plugin is disabled?"
+msgstr "Was geschieht, wenn mein Mitgliedschafts-Plugin deaktiviert ist?"
+
+#. FAQ answer
+msgid ""
+"The restriction fails closed. The widget stays hidden until the selected "
+"integration is available again or the restriction is changed."
+msgstr ""
+"Die Beschränkung verweigert den Zugriff. Das Widget bleibt ausgeblendet, bis"
+" die ausgewählte Integration wieder verfügbar ist oder die Beschränkung "
+"geändert wird."
+
+#. FAQ question
+msgid "Can I show the widget only in my documentation or account area?"
+msgstr ""
+"Kann ich das Widget nur in meiner Dokumentation oder im Kontobereich "
+"anzeigen?"
+
+#. FAQ answer
+msgid ""
+"Yes. Add one literal path prefix per line, such as `/docs/` or `/account/`. "
+"Excluded paths always take precedence."
+msgstr ""
+"Ja. Fügen Sie pro Zeile ein wörtliches Pfadpräfix hinzu, beispielsweise "
+"`/docs/` oder `/account/`. Ausgeschlossene Pfade haben immer Vorrang."
+
+#. FAQ answer
+msgid ""
+"Path rules control where the embed is placed; they are not an authorization "
+"boundary. For protected chat, also enable a logged-in, WordPress role, or "
+"membership restriction under Audience. Those rules are verified by WordPress"
+" before identity or a private-bot token is returned."
+msgstr ""
+"Pfadregeln steuern, wo die Einbettung platziert wird; sie stellen keine "
+"Autorisierungsgrenze dar. Aktivieren Sie für einen geschützten Chat unter "
+"„Zielgruppe“ zusätzlich eine Beschränkung auf angemeldete Benutzer, "
+"WordPress-Rollen oder Mitgliedschaften. WordPress prüft diese Regeln, bevor "
+"Identitätsdaten oder ein Token für einen privaten Bot zurückgegeben werden."
+
+#. FAQ question
+msgid "Why can I see a create-bot link even if I cannot create bots?"
+msgstr ""
+"Warum sehe ich einen Link zum Erstellen eines Bots, obwohl ich keine Bots "
+"erstellen kann?"
+
+#. FAQ answer
+msgid ""
+"DocsBot does not expose a public create-permission flag. When a selected "
+"team has no bots, the plugin links to the DocsBot bot page, where your "
+"current role and plan are enforced."
+msgstr ""
+"DocsBot stellt keine öffentliche Kennzeichnung für die "
+"Erstellungsberechtigung bereit. Wenn ein ausgewähltes Team keine Bots "
+"besitzt, verlinkt das Plugin auf die Bot-Seite von DocsBot, auf der Ihre "
+"aktuelle Rolle und Ihr Tarif berücksichtigt werden."
+
+#. Screenshots heading
+msgid "Screenshots"
+msgstr "Screenshots"
+
+#. Screenshot 1 caption
+msgid "Connect a DocsBot API key and select an accessible team and bot."
+msgstr ""
+"Verbinden Sie einen DocsBot-API-Schlüssel und wählen Sie ein zugängliches "
+"Team und einen Bot aus."
+
+#. Screenshot 2 caption
+msgid "Edit the bot's conversation content and labels."
+msgstr ""
+"Bearbeiten Sie den Unterhaltungsinhalt und die Beschriftungen des Bots."
+
+#. Screenshot 3 caption
+msgid "Match the chat widget to your site design."
+msgstr "Passen Sie das Chat-Widget an das Design Ihrer Website an."
+
+#. Screenshot 4 caption
+msgid ""
+"Enable supported feedback, escalation, search, booking, and custom actions."
+msgstr ""
+"Aktivieren Sie unterstützte Funktionen für Feedback, Weiterleitung, Suche, "
+"Terminbuchung und benutzerdefinierte Aktionen."
+
+#. Screenshot 5 caption
+msgid ""
+"Deploy by URL path, user role, membership, metadata, and private signing."
+msgstr ""
+"Stellen Sie das Widget nach URL-Pfad, Benutzerrolle, Mitgliedschaft, "
+"Metadaten und privater Signierung bereit."
+
+#. Changelog heading
+msgid "Changelog"
+msgstr "Änderungsprotokoll"
+
+#. Changelog version heading
+msgid "1.0.3"
+msgstr "1.0.3"
+
+#. Changelog 1.0.3 list item
+msgid ""
+"Added bundled translations for Spanish, German, French, Brazilian "
+"Portuguese, Japanese, and Simplified Chinese."
+msgstr ""
+"Gebündelte Übersetzungen für Spanisch, Deutsch, Französisch, brasilianisches"
+" Portugiesisch, Japanisch und vereinfachtes Chinesisch hinzugefügt."
+
+#. Changelog 1.0.3 list item
+msgid ""
+"Added import-ready WordPress.org listing translation catalogs for the same "
+"locales."
+msgstr ""
+"Importfertige Übersetzungskataloge für den WordPress.org-Plugin-Eintrag in "
+"denselben Gebietsschemata hinzugefügt."
+
+#. Changelog 1.0.3 list item
+msgid "Added the complete WordPress.org banner and icon asset set."
+msgstr ""
+"Den vollständigen Satz an Banner- und Symbolgrafiken für WordPress.org "
+"hinzugefügt."
+
+#. Changelog version heading
+msgid "1.0.2"
+msgstr "1.0.2"
+
+#. Changelog 1.0.2 list item
+msgid ""
+"Added dashboard-matched Content, Design, Actions, Deploy, and live widget "
+"preview screens."
+msgstr ""
+"An das Dashboard angepasste Ansichten für Inhalt, Design, Aktionen, "
+"Bereitstellung und eine Live-Widget-Vorschau hinzugefügt."
+
+#. Changelog 1.0.2 list item
+msgid ""
+"Added automatic private-bot signing-key retrieval and encrypted server-side "
+"storage."
+msgstr ""
+"Automatischen Abruf des Signaturschlüssels für private Bots und "
+"verschlüsselte serverseitige Speicherung hinzugefügt."
+
+#. Changelog 1.0.2 list item
+msgid ""
+"Added role, membership, page-prefix, and opt-in conversation identity "
+"controls."
+msgstr ""
+"Einstellungen für Rollen, Mitgliedschaften, Seitenpräfixe und die optionale "
+"Unterhaltungsidentität hinzugefügt."
+
+#. Changelog 1.0.2 list item
+msgid ""
+"Added release validation and installable ZIP packaging with GitHub Actions."
+msgstr ""
+"Release-Validierung und die Erstellung installierbarer ZIP-Pakete mit GitHub"
+" Actions hinzugefügt."
+
+#. Changelog 1.0.2 list item
+msgid ""
+"Standardized the plugin slug, text domain, PHP symbols, options, hooks, REST"
+" namespace, and package files on DocsBot."
+msgstr ""
+"Plugin-Slug, Textdomain, PHP-Symbole, Optionen, Hooks, REST-Namensraum und "
+"Paketdateien auf DocsBot vereinheitlicht."
+
+#. Changelog version heading
+msgid "1.0.1"
+msgstr "1.0.1"
+
+#. Changelog 1.0.1 list item
+msgid "Updated product naming to DocsBot."
+msgstr "Produktbezeichnung auf DocsBot aktualisiert."
+
+#. Changelog version heading
+msgid "1.0.0"
+msgstr "1.0.0"
+
+#. Changelog 1.0.0 list item
+msgid "Initial public release."
+msgstr "Erste öffentliche Veröffentlichung."

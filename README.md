@@ -28,6 +28,16 @@ The plugin connects to the DocsBot Admin API from your WordPress server, lets an
 - PHP 7.4 or newer with OpenSSL
 - A DocsBot account and user API key
 
+## Languages
+
+DocsBot includes runtime translations for Spanish, German, French, Brazilian Portuguese, Japanese, and Simplified Chinese. WordPress.org language packs take priority when they are available.
+
+Import-ready catalogs for the WordPress.org listing are maintained in [`translations/wordpress-org`](translations/wordpress-org). They are translation drafts and must be reviewed by native speakers through the WordPress.org translation process before publication.
+
+## WordPress.org assets
+
+The repository includes the complete directory artwork in [`.wordpress-org`](.wordpress-org): standard and Retina banners, PNG and SVG icons, and five screenshots. These files are intentionally kept outside the installable plugin ZIP, as required by the WordPress.org plugin asset layout.
+
 ## Installation
 
 1. Download the release ZIP.

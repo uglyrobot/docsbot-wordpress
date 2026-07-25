@@ -3,7 +3,7 @@
  * Plugin Name:       DocsBot
  * Plugin URI:        https://github.com/uglyrobot/docsbot-wordpress
  * Description:       Connect a DocsBot account, configure your AI chat widget, and control where it appears on your WordPress site.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            DocsBot
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DOCSBOT_VERSION', '1.0.2' );
+define( 'DOCSBOT_VERSION', '1.0.3' );
 define( 'DOCSBOT_FILE', __FILE__ );
 define( 'DOCSBOT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DOCSBOT_URL', plugin_dir_url( __FILE__ ) );

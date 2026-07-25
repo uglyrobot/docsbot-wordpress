@@ -56,11 +56,26 @@ final class DocsBot_Plugin {
 		$widget      = new DocsBot_Widget( $memberships );
 		$admin       = new DocsBot_Admin( $api, $memberships );
 
+		add_action( 'init', array( $this, 'load_textdomain' ) );
+
 		$widget->register();
 
 		if ( is_admin() ) {
 			$admin->register();
 		}
+	}
+
+	/**
+	 * Load bundled translations as a fallback for WordPress.org language packs.
+	 *
+	 * @return void
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain(
+			'docsbot',
+			false,
+			dirname( plugin_basename( DOCSBOT_FILE ) ) . '/languages'
+		);
 	}
 
 	/**

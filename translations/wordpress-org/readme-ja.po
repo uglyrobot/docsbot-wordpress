@@ -1,0 +1,563 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DocsBot WordPress.org Listing 1.0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
+"PO-Revision-Date: 2026-07-25 18:00-0500\n"
+"Last-Translator: DocsBot\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. translators: WordPress.org readme plugin name. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:1
+msgid "DocsBot"
+msgstr "DocsBot"
+
+#. translators: WordPress.org readme Header paragraph. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:11
+msgid ""
+"Add your DocsBot support agent to WordPress, customize the widget, and "
+"control exactly where and for whom it appears."
+msgstr ""
+"DocsBot サポートエージェントを WordPress に追加し、ウィジェットをカスタマイズして、表示場所と対象ユーザーを細かく制御できます。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:13
+msgid "Description"
+msgstr "説明"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:15
+msgid ""
+"DocsBot for WordPress gives site administrators a secure, native way to "
+"connect a DocsBot account and deploy an AI support widget."
+msgstr ""
+"WordPress 用 DocsBot は、サイト管理者が DocsBot アカウントを安全かつ WordPress 標準の操作で接続し、AI "
+"サポートウィジェットをデプロイできるようにします。"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:17
+msgid ""
+"Connect your DocsBot API key, choose a team and bot you can access, then "
+"configure the most useful widget content, design, and action settings "
+"without leaving WordPress. The Deploy tab controls page paths, logged-in "
+"users, WordPress roles, popular membership systems, optional conversation "
+"identity, and private-bot signing."
+msgstr ""
+"DocsBot API キーを接続し、アクセス可能なチームとボットを選択すると、WordPress "
+"を離れずにウィジェットのコンテンツ、デザイン、アクションを設定できます。「デプロイ」タブでは、ページパス、ログインユーザー、WordPress "
+"権限グループ、主要なメンバーシップシステム、任意の会話ユーザー情報、非公開ボットの署名を制御できます。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:19
+msgid "Built for real WordPress sites"
+msgstr "実際の WordPress サイトのための機能"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:21
+msgid "Choose from every team and bot available to your DocsBot user."
+msgstr "DocsBot ユーザーが利用できるすべてのチームとボットから選択できます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:22
+msgid ""
+"Configure the greeting, labels, support link, branding, color, icons, and "
+"placement."
+msgstr "あいさつ、ラベル、サポートリンク、ブランド表示、色、アイコン、配置を設定できます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:23
+msgid ""
+"Enable feedback, escalation, web search, booking, and custom button "
+"integrations already configured for your bot."
+msgstr "ボットで設定済みのフィードバック、エスカレーション、Web 検索、予約、カスタムボタン連携を有効にできます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:24
+msgid "Include or exclude literal URL path prefixes."
+msgstr "指定した URL パスプレフィックスを表示対象に含めたり、除外したりできます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:25
+msgid ""
+"Restrict chat by login, WordPress role, or a supported membership plugin."
+msgstr "ログイン状態、WordPress 権限グループ、対応メンバーシッププラグインでチャットを制限できます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:26
+msgid ""
+"Share display name, email, and a pseudonymous site user ID through separate "
+"opt-in controls."
+msgstr "表示名、メールアドレス、仮名化したサイトユーザー ID を、それぞれ個別のオプトイン設定で共有できます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:27
+msgid "Use private DocsBot bots with short-lived server-signed JWTs."
+msgstr "サーバーで署名した有効期間の短い JWT を使って、非公開 DocsBot ボットを利用できます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:28
+msgid ""
+"Require server-verified login, role, or membership rules when chat access "
+"must be protected."
+msgstr "チャットへのアクセスを保護する場合は、サーバーで検証されるログイン、権限グループ、メンバーシップのルールを必須にできます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:29
+msgid "Keep identity and signatures out of full-page caches."
+msgstr "ユーザー情報と署名はフルページキャッシュに含まれません。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:30
+msgid "Avoid dashboard clutter: the plugin shows no sitewide notices or nags."
+msgstr "ダッシュボードを煩雑にしません。サイト全体への通知や案内は表示されません。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:32
+msgid "Supported membership integrations"
+msgstr "対応するメンバーシップ連携"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:34
+msgid ""
+"The plugin uses public APIs from WooCommerce Memberships, MemberPress, Paid "
+"Memberships Pro, Restrict Content Pro, and WP-Members. Ultimate Member is "
+"supported through approved WordPress roles. The selected integration fails "
+"closed if it becomes unavailable."
+msgstr ""
+"このプラグインは WooCommerce Memberships、MemberPress、Paid Memberships Pro、Restrict "
+"Content Pro、WP-Members の公開 API を使用します。Ultimate Member は許可した WordPress "
+"権限グループを通じて対応します。選択した連携が利用できなくなった場合は、安全側に停止します。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:36
+msgid "Privacy and security"
+msgstr "プライバシーとセキュリティ"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:38
+msgid ""
+"Identity sharing is off by default. If enabled, the selected fields are sent"
+" to DocsBot only after the visitor passes the configured access rules. The "
+"plugin never sends membership, role, password, payment, or subscription "
+"data."
+msgstr ""
+"ユーザー情報の共有は初期状態で無効です。有効にした場合も、訪問者が設定済みのアクセスルールを満たした後に、選択した項目だけが DocsBot "
+"に送信されます。メンバーシップ、権限グループ、パスワード、支払い、サブスクリプションのデータは送信されません。"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:40
+msgid ""
+"The DocsBot API key remains on the WordPress server. Private-bot signature "
+"keys are used only to create short-lived tokens. Both credentials are "
+"encrypted before database storage, or may be supplied through `wp-"
+"config.php` constants."
+msgstr ""
+"DocsBot API キーは WordPress "
+"サーバー内に保持されます。非公開ボットの署名キーは、有効期間の短いトークンの作成だけに使用されます。どちらの認証情報もデータベースへの保存前に暗号化されます。または"
+" `wp-config.php` の定数で指定できます。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:42
+msgid "External service"
+msgstr "外部サービス"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:44
+msgid "This plugin connects to DocsBot, a third-party service:"
+msgstr "このプラグインは、第三者サービスである DocsBot に接続します。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:46
+msgid ""
+"`https://docsbot.ai/api` is called from the WordPress server when an "
+"administrator connects an account, lists teams or bots, reads settings, or "
+"saves supported bot settings."
+msgstr ""
+"管理者がアカウントを接続したとき、チームやボットの一覧を取得したとき、設定を読み込んだとき、または対応するボット設定を保存したときに、WordPress"
+" サーバーから `https://docsbot.ai/api` が呼び出されます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:47
+msgid ""
+"`https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the"
+" widget is enabled."
+msgstr "ウィジェットが有効な場合、対象の訪問者に対して `https://widget.docsbot.ai/chat.js` が読み込まれます。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:48
+msgid ""
+"Visitor chat messages and any administrator-enabled identity fields are "
+"processed by DocsBot."
+msgstr "訪問者のチャットメッセージと、管理者が有効にしたユーザー情報は DocsBot で処理されます。"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:50
+msgid ""
+"Use of DocsBot is subject to the [DocsBot Privacy "
+"Policy](https://docsbot.ai/privacy) and [Terms of "
+"Service](https://docsbot.ai/terms). Learn more in the [DocsBot widget "
+"documentation](https://docsbot.ai/documentation/developer/embeddable-chat-"
+"widget)."
+msgstr ""
+"DocsBot の利用には [DocsBot プライバシーポリシー](https://docsbot.ai/privacy) と "
+"[利用規約](https://docsbot.ai/terms) が適用されます。詳しくは [DocsBot "
+"ウィジェットのドキュメント](https://docsbot.ai/documentation/developer/embeddable-chat-"
+"widget) をご覧ください。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:52
+msgid "Installation"
+msgstr "インストール"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:54
+msgid ""
+"Upload the plugin directory to `/wp-content/plugins/` or install the ZIP "
+"from **Plugins > Add New Plugin > Upload Plugin**."
+msgstr ""
+"プラグインのディレクトリを `/wp-content/plugins/` にアップロードするか、**プラグイン > 新規プラグインを追加 > "
+"プラグインのアップロード**から ZIP をインストールします。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:55
+msgid "Activate **DocsBot**."
+msgstr "**DocsBot** を有効化します。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:56
+msgid "Open **Settings > DocsBot > Connection**."
+msgstr "**設定 > DocsBot > 接続**を開きます。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:57
+msgid ""
+"Get your user API key from the [DocsBot API Keys "
+"page](https://docsbot.ai/app/api), paste it into WordPress, and connect."
+msgstr ""
+"[DocsBot API キーページ](https://docsbot.ai/app/api)でユーザー API キーを取得し、WordPress "
+"に貼り付けて接続します。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:58
+msgid "Choose a team, save, then choose a bot."
+msgstr "チームを選択して保存し、次にボットを選択します。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:59
+msgid "Configure Content, Design, and Actions."
+msgstr "「コンテンツ」「デザイン」「アクション」を設定します。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:60
+msgid "Open Deploy, choose your audience and pages, then enable the widget."
+msgstr "「デプロイ」を開き、対象ユーザーとページを選択して、ウィジェットを有効にします。"
+
+#. translators: WordPress.org readme Installation paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:62
+msgid ""
+"PHP's OpenSSL extension is required to encrypt saved credentials and sign "
+"private-bot tokens."
+msgstr "保存する認証情報の暗号化と非公開ボット用トークンの署名には、PHP の OpenSSL 拡張機能が必要です。"
+
+#. translators: WordPress.org readme Installation paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:64
+msgid ""
+"For a private bot, select the bot normally. The plugin retrieves its signing"
+" key in the authorized server-side bot response, encrypts it immediately, "
+"and never renders it in WordPress."
+msgstr ""
+"非公開ボットも通常どおり選択してください。プラグインは認可済みのサーバー側ボット応答から署名キーを取得し、直ちに暗号化します。WordPress "
+"の画面には一切出力しません。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:66
+msgid "Frequently Asked Questions"
+msgstr "よくある質問"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:68
+msgid "Does the plugin expose my DocsBot API key?"
+msgstr "プラグインから DocsBot API キーが漏れることはありますか？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:70
+msgid ""
+"No. Admin API requests are made by WordPress on the server. The key is "
+"encrypted before database storage and is never included in frontend HTML or "
+"JavaScript."
+msgstr ""
+"いいえ。管理 API リクエストは WordPress サーバーから送信されます。キーはデータベースへの保存前に暗号化され、フロントエンドの HTML "
+"や JavaScript には含まれません。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:72
+msgid "How are private bots supported?"
+msgstr "非公開ボットにはどのように対応していますか？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:74
+msgid ""
+"WordPress creates a short-lived HS256 JWT using the bot signature key. "
+"Access rules run first, and the token is returned through a private, no-"
+"store response. The signature key never leaves the server."
+msgstr ""
+"WordPress がボット署名キーを使って、有効期間の短い HS256 JWT を作成します。先にアクセスルールを検証し、トークンは "
+"private、no-store の応答で返されます。署名キーがサーバー外に出ることはありません。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:76
+msgid "Does the plugin send WordPress user data automatically?"
+msgstr "プラグインは WordPress ユーザーデータを自動送信しますか？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:78
+msgid ""
+"No. Display name, email address, and a pseudonymous site user ID are three "
+"separate settings and all are off by default."
+msgstr "いいえ。表示名、メールアドレス、仮名化したサイトユーザー ID は個別の 3 つの設定で、いずれも初期状態では無効です。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:80
+msgid "What happens if my membership plugin is disabled?"
+msgstr "メンバーシッププラグインが無効になるとどうなりますか？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:82
+msgid ""
+"The restriction fails closed. The widget stays hidden until the selected "
+"integration is available again or the restriction is changed."
+msgstr "制限は安全側に停止します。選択した連携が再び利用可能になるか、制限を変更するまでウィジェットは非表示のままです。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:84
+msgid "Can I show the widget only in my documentation or account area?"
+msgstr "ドキュメントやアカウント領域だけにウィジェットを表示できますか？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:86
+msgid ""
+"Yes. Add one literal path prefix per line, such as `/docs/` or `/account/`. "
+"Excluded paths always take precedence."
+msgstr ""
+"はい。`/docs/` や `/account/` のように、1 行に 1 つのパスプレフィックスを追加してください。除外パスは常に優先されます。"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:88
+msgid ""
+"Path rules control where the embed is placed; they are not an authorization "
+"boundary. For protected chat, also enable a logged-in, WordPress role, or "
+"membership restriction under Audience. Those rules are verified by WordPress"
+" before identity or a private-bot token is returned."
+msgstr ""
+"パスルールは埋め込みの表示場所を制御するもので、認可の境界ではありません。チャットを保護するには、「対象ユーザー」でログイン、WordPress "
+"権限グループ、またはメンバーシップ制限も有効にしてください。WordPress "
+"はユーザー情報や非公開ボット用トークンを返す前に、これらのルールを検証します。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:90
+msgid "Why can I see a create-bot link even if I cannot create bots?"
+msgstr "ボットを作成できないのに、ボット作成リンクが表示されるのはなぜですか？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:92
+msgid ""
+"DocsBot does not expose a public create-permission flag. When a selected "
+"team has no bots, the plugin links to the DocsBot bot page, where your "
+"current role and plan are enforced."
+msgstr ""
+"DocsBot は公開の作成権限フラグを提供していません。選択したチームにボットがない場合、プラグインは DocsBot "
+"のボットページにリンクします。そのページで現在のロールとプランが適用されます。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:94
+msgid "Screenshots"
+msgstr "スクリーンショット"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:96
+msgid "Connect a DocsBot API key and select an accessible team and bot."
+msgstr "DocsBot API キーを接続し、アクセス可能なチームとボットを選択します。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:97
+msgid "Edit the bot's conversation content and labels."
+msgstr "ボットの会話コンテンツとラベルを編集します。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:98
+msgid "Match the chat widget to your site design."
+msgstr "チャットウィジェットをサイトのデザインに合わせます。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:99
+msgid ""
+"Enable supported feedback, escalation, search, booking, and custom actions."
+msgstr "対応するフィードバック、エスカレーション、検索、予約、カスタムアクションを有効にします。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:100
+msgid ""
+"Deploy by URL path, user role, membership, metadata, and private signing."
+msgstr "URL パス、ユーザー権限グループ、メンバーシップ、メタデータ、非公開用の署名を指定してデプロイします。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:102
+msgid "Changelog"
+msgstr "変更履歴"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:104
+msgid "1.0.3"
+msgstr "1.0.3"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:105
+msgid ""
+"Added bundled translations for Spanish, German, French, Brazilian "
+"Portuguese, Japanese, and Simplified Chinese."
+msgstr "スペイン語、ドイツ語、フランス語、ブラジルポルトガル語、日本語、簡体字中国語の翻訳を同梱しました。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:106
+msgid ""
+"Added import-ready WordPress.org listing translation catalogs for the same "
+"locales."
+msgstr "同じロケール向けに、WordPress.org の掲載情報へインポートできる翻訳カタログを追加しました。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:107
+msgid "Added the complete WordPress.org banner and icon asset set."
+msgstr "WordPress.org 用のバナーとアイコンの完全なアセットセットを追加しました。"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:109
+msgid "1.0.2"
+msgstr "1.0.2"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:110
+msgid ""
+"Added dashboard-matched Content, Design, Actions, Deploy, and live widget "
+"preview screens."
+msgstr "ダッシュボードに合わせた「コンテンツ」「デザイン」「アクション」「デプロイ」と、ライブウィジェットプレビュー画面を追加しました。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:111
+msgid ""
+"Added automatic private-bot signing-key retrieval and encrypted server-side "
+"storage."
+msgstr "非公開ボットの署名キーの自動取得と、サーバー側での暗号化保存を追加しました。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:112
+msgid ""
+"Added role, membership, page-prefix, and opt-in conversation identity "
+"controls."
+msgstr "権限グループ、メンバーシップ、ページプレフィックス、オプトイン式の会話ユーザー情報の制御を追加しました。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:113
+msgid ""
+"Added release validation and installable ZIP packaging with GitHub Actions."
+msgstr "GitHub Actions によるリリース検証と、インストール可能な ZIP パッケージ作成を追加しました。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:114
+msgid ""
+"Standardized the plugin slug, text domain, PHP symbols, options, hooks, REST"
+" namespace, and package files on DocsBot."
+msgstr ""
+"プラグインスラッグ、テキストドメイン、PHP シンボル、オプション、フック、REST 名前空間、パッケージファイルを DocsBot に統一しました。"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:116
+msgid "1.0.1"
+msgstr "1.0.1"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:117
+msgid "Updated product naming to DocsBot."
+msgstr "製品名を DocsBot に更新しました。"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:119
+msgid "1.0.0"
+msgstr "1.0.0"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:120
+msgid "Initial public release."
+msgstr "最初の公開リリースです。"

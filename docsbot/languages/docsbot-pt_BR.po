@@ -1,0 +1,639 @@
+# Portuguese (Brazil) translations for DocsBot.
+# Copyright (C) 2026 DocsBot
+# This file is distributed under the same license as the DocsBot package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DocsBot 1.0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
+"POT-Creation-Date: 2026-07-25 12:50-0500\n"
+"PO-Revision-Date: 2026-07-25 18:00-0500\n"
+"Last-Translator: DocsBot\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Codex\n"
+
+msgid "DocsBot Settings"
+msgstr "Configurações do DocsBot"
+
+msgid "DocsBot"
+msgstr "DocsBot"
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "DocsBot for WordPress"
+msgstr "DocsBot para WordPress"
+
+msgid "Setup needed"
+msgstr "Configuração necessária"
+
+msgid "Bot connected"
+msgstr "Bot conectado"
+
+msgid "DocsBot settings"
+msgstr "Configurações do DocsBot"
+
+msgid "Current bot"
+msgstr "Bot atual"
+
+msgid "Not selected"
+msgstr "Não selecionado"
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Live"
+msgstr "Ativo"
+
+msgid "Paused"
+msgstr "Pausado"
+
+msgid "Privacy"
+msgstr "Privacidade"
+
+msgid "Need a hand?"
+msgstr "Precisa de ajuda?"
+
+msgid "Find setup guidance and widget documentation from the DocsBot team."
+msgstr "Encontre orientações de configuração e a documentação do widget fornecidas pela equipe do DocsBot."
+
+msgid "Read widget docs"
+msgstr "Ler a documentação do widget"
+
+msgid "(opens in a new tab)"
+msgstr "(abre em uma nova aba)"
+
+msgid "Step 1"
+msgstr "Etapa 1"
+
+msgid "Connect your DocsBot account"
+msgstr "Conecte sua conta do DocsBot"
+
+msgid "Your API key is used only by your WordPress server to load teams, bots, and settings. It is never sent to site visitors."
+msgstr "Sua chave de API é usada somente pelo servidor do WordPress para carregar equipes, bots e configurações. Ela nunca é enviada aos visitantes do site."
+
+msgid "Connected securely"
+msgstr "Conectado com segurança"
+
+msgid "The API key is managed in wp-config.php."
+msgstr "A chave de API é gerenciada no wp-config.php."
+
+msgid "The encrypted API key is stored by WordPress."
+msgstr "A chave de API criptografada é armazenada pelo WordPress."
+
+msgid "New DocsBot API key"
+msgstr "Nova chave de API do DocsBot"
+
+msgid "DocsBot API key"
+msgstr "Chave de API do DocsBot"
+
+msgid "Paste your API key"
+msgstr "Cole sua chave de API"
+
+msgid "Show"
+msgstr "Mostrar"
+
+msgid "Hide"
+msgstr "Ocultar"
+
+msgid "Get an API key from DocsBot"
+msgstr "Obter uma chave de API no DocsBot"
+
+msgid "Save new API key"
+msgstr "Salvar nova chave de API"
+
+msgid "Connect account"
+msgstr "Conectar conta"
+
+msgid "Reconnect with a different key"
+msgstr "Reconectar com outra chave"
+
+msgid "Disconnect DocsBot and remove the saved API key, bot selection, and signing key?"
+msgstr "Desconectar o DocsBot e remover a chave de API salva, a seleção do bot e a chave de assinatura?"
+
+msgid "Disconnect account"
+msgstr "Desconectar conta"
+
+msgid "Step 2"
+msgstr "Etapa 2"
+
+msgid "Choose a team and bot"
+msgstr "Escolha uma equipe e um bot"
+
+msgid "Team"
+msgstr "Equipe"
+
+msgid "Select a team"
+msgstr "Selecione uma equipe"
+
+msgid "Bot"
+msgstr "Bot"
+
+msgid "Select a bot"
+msgstr "Selecione um bot"
+
+msgid "Change the team and save to refresh its available bots."
+msgstr "Altere a equipe e salve para atualizar os bots disponíveis."
+
+msgid "Choose a team first and save to load its bots."
+msgstr "Primeiro escolha uma equipe e salve para carregar os bots dela."
+
+msgid "Use selected bot"
+msgstr "Usar o bot selecionado"
+
+msgid "No bots found in this team"
+msgstr "Nenhum bot encontrado nesta equipe"
+
+msgid "If your DocsBot role and plan allow bot creation, create one in DocsBot and return here."
+msgstr "Se sua função e seu plano no DocsBot permitirem a criação de bots, crie um no DocsBot e volte aqui."
+
+msgid "Create a bot in DocsBot"
+msgstr "Criar um bot no DocsBot"
+
+msgid "Content"
+msgstr "Conteúdo"
+
+msgid "Shape the conversation"
+msgstr "Defina a conversa"
+
+msgid "These settings are saved to the selected bot in DocsBot and used anywhere that bot is embedded."
+msgstr "Estas configurações são salvas no bot selecionado no DocsBot e usadas em todos os lugares onde ele estiver incorporado."
+
+msgid "Bot name"
+msgstr "Nome do bot"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "First message"
+msgstr "Primeira mensagem"
+
+msgid "Input placeholder"
+msgstr "Texto de exemplo do campo"
+
+msgid "Floating button label"
+msgstr "Rótulo do botão flutuante"
+
+msgid "Support button label"
+msgstr "Rótulo do botão de suporte"
+
+msgid "Footer message"
+msgstr "Mensagem do rodapé"
+
+msgid "A good place for privacy or acceptable-use guidance. Basic Markdown is supported by the widget."
+msgstr "Um bom lugar para orientações de privacidade ou uso aceitável. O widget é compatível com Markdown básico."
+
+msgid "Support URL"
+msgstr "URL de suporte"
+
+msgid "Show floating button text"
+msgstr "Mostrar texto no botão flutuante"
+
+msgid "Let visitors copy answers"
+msgstr "Permitir que visitantes copiem respostas"
+
+msgid "Hide answer sources"
+msgstr "Ocultar fontes das respostas"
+
+msgid "Save content"
+msgstr "Salvar conteúdo"
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Match your site"
+msgstr "Combine com seu site"
+
+msgid "Use your brand color, placement, and imagery while keeping the widget accessible."
+msgstr "Use a cor, o posicionamento e as imagens da sua marca sem comprometer a acessibilidade do widget."
+
+msgid "Accent color"
+msgstr "Cor de destaque"
+
+msgid "Choose accent color"
+msgstr "Escolher cor de destaque"
+
+msgid "Button icon"
+msgstr "Ícone do botão"
+
+msgid "Comments"
+msgstr "Comentários"
+
+msgid "Comments (classic)"
+msgstr "Comentários (clássico)"
+
+msgid "Robot"
+msgstr "Robô"
+
+msgid "Life ring"
+msgstr "Boia salva-vidas"
+
+msgid "Question"
+msgstr "Pergunta"
+
+msgid "Book"
+msgstr "Livro"
+
+msgid "Button side"
+msgstr "Lado do botão"
+
+msgid "Right"
+msgstr "Direita"
+
+msgid "Left"
+msgstr "Esquerda"
+
+msgid "Bot avatar"
+msgstr "Avatar do bot"
+
+msgid "None"
+msgstr "Nenhum"
+
+msgid "Comment"
+msgstr "Comentário"
+
+msgid "Info"
+msgstr "Informações"
+
+msgid "Header alignment"
+msgstr "Alinhamento do cabeçalho"
+
+msgid "Center"
+msgstr "Centro"
+
+msgid "Header logo URL"
+msgstr "URL do logotipo do cabeçalho"
+
+msgid "Choose widget header logo"
+msgstr "Escolha o logotipo do cabeçalho do widget"
+
+msgid "Use this image"
+msgstr "Usar esta imagem"
+
+msgid "Choose image"
+msgstr "Escolher imagem"
+
+msgid "Use a public HTTPS image URL. A maximum displayed height of 36px works best."
+msgstr "Use o URL HTTPS de uma imagem pública. Uma altura máxima de exibição de 36px oferece o melhor resultado."
+
+msgid "Show DocsBot branding"
+msgstr "Mostrar a marca do DocsBot"
+
+msgid "Confirm external links"
+msgstr "Confirmar links externos"
+
+msgid "Save design"
+msgstr "Salvar design"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Choose what the widget can do"
+msgstr "Escolha o que o widget pode fazer"
+
+msgid "These WordPress embed options activate features already enabled and configured for your bot and plan in DocsBot."
+msgstr "Estas opções de incorporação do WordPress ativam recursos já habilitados e configurados para seu bot e plano no DocsBot."
+
+msgid "Answer feedback"
+msgstr "Avaliação das respostas"
+
+msgid "Let visitors rate answers as helpful or unhelpful."
+msgstr "Permita que visitantes avaliem as respostas como úteis ou não úteis."
+
+msgid "Human support escalation"
+msgstr "Encaminhamento para atendimento humano"
+
+msgid "Show escalation when it is configured for the selected bot."
+msgstr "Mostrar o encaminhamento quando ele estiver configurado para o bot selecionado."
+
+msgid "Web search"
+msgstr "Pesquisa na web"
+
+msgid "Allow agent-mode web search when your plan and bot support it."
+msgstr "Permitir pesquisa na web no modo agente quando seu plano e seu bot forem compatíveis."
+
+msgid "Calendly booking"
+msgstr "Agendamento pelo Calendly"
+
+msgid "Allow the configured Calendly scheduling action."
+msgstr "Permitir a ação de agendamento configurada no Calendly."
+
+msgid "Cal.com booking"
+msgstr "Agendamento pelo Cal.com"
+
+msgid "Allow the configured Cal.com scheduling action."
+msgstr "Permitir a ação de agendamento configurada no Cal.com."
+
+msgid "TidyCal booking"
+msgstr "Agendamento pelo TidyCal"
+
+msgid "Allow the configured TidyCal scheduling action."
+msgstr "Permitir a ação de agendamento configurada no TidyCal."
+
+msgid "Custom action buttons"
+msgstr "Botões de ação personalizados"
+
+msgid "Allow custom button tools configured in DocsBot."
+msgstr "Permitir ferramentas de botões personalizados configuradas no DocsBot."
+
+msgid "Agent activity"
+msgstr "Atividade do agente"
+
+msgid "Show concise thinking and tool progress while the agent works."
+msgstr "Mostrar um resumo do raciocínio e do progresso das ferramentas enquanto o agente trabalha."
+
+msgid "Save actions"
+msgstr "Salvar ações"
+
+msgid "Deploy"
+msgstr "Implantar"
+
+msgid "Put your bot to work"
+msgstr "Coloque seu bot para trabalhar"
+
+msgid "You have unsaved deployment changes. Leave this page anyway?"
+msgstr "Há alterações de implantação não salvas. Deseja sair desta página mesmo assim?"
+
+msgid "Deployment changes are not saved yet."
+msgstr "As alterações de implantação ainda não foram salvas."
+
+msgid "Save deployment"
+msgstr "Salvar implantação"
+
+msgid "Widget availability"
+msgstr "Disponibilidade do widget"
+
+msgid "Enable the widget"
+msgstr "Ativar o widget"
+
+msgid "Turn this off to pause the WordPress embed without changing your DocsBot bot."
+msgstr "Desative esta opção para pausar a incorporação no WordPress sem alterar seu bot no DocsBot."
+
+msgid "Only show on URL prefixes"
+msgstr "Mostrar somente em prefixos de URL"
+
+msgid "One path prefix per line. These control placement, not authorization; use the Audience controls below to protect access."
+msgstr "Insira um prefixo de caminho por linha. Eles controlam o posicionamento, não a autorização; use os controles de Público abaixo para proteger o acesso."
+
+msgid "Never show on URL prefixes"
+msgstr "Nunca mostrar em prefixos de URL"
+
+msgid "Exclusions always win over inclusions."
+msgstr "As exclusões sempre prevalecem sobre as inclusões."
+
+msgid "Allowed embed domains"
+msgstr "Domínios permitidos para incorporação"
+
+msgid "One hostname per line, without a scheme or wildcard. Saved to DocsBot as defense in depth."
+msgstr "Insira um nome de host por linha, sem esquema ou caractere curinga. A lista é salva no DocsBot como defesa em profundidade."
+
+msgid "Audience"
+msgstr "Público"
+
+msgid "Only show to logged-in WordPress users"
+msgstr "Mostrar somente para usuários conectados ao WordPress"
+
+msgid "Allowed WordPress roles"
+msgstr "Funções permitidas do WordPress"
+
+msgid "Leave every role unchecked to allow all roles."
+msgstr "Deixe todas as funções desmarcadas para permitir todas elas."
+
+msgid "Membership integration"
+msgstr "Integração de associação"
+
+msgid "Plan, product, or role IDs"
+msgstr "IDs de planos, produtos ou funções"
+
+msgid "Comma-separated. Leave empty for any active membership; Ultimate Member requires role slugs."
+msgstr "Separe por vírgulas. Deixe em branco para qualquer associação ativa; o Ultimate Member exige slugs de funções."
+
+msgid "The selected membership integration is not currently available. The widget will fail closed until it is active."
+msgstr "A integração de associação selecionada não está disponível no momento. O widget permanecerá bloqueado até que ela esteja ativa."
+
+msgid "Conversation identity"
+msgstr "Identidade da conversa"
+
+msgid "Sharing identity makes DocsBot conversations non-anonymous. Each field is optional and is sent only after the visitor passes your access rules."
+msgstr "O compartilhamento de identidade torna as conversas do DocsBot não anônimas. Cada campo é opcional e só é enviado depois que o visitante passa pelas suas regras de acesso."
+
+msgid "Share display name"
+msgstr "Compartilhar nome de exibição"
+
+msgid "Share email address"
+msgstr "Compartilhar endereço de e-mail"
+
+msgid "Share pseudonymous site user ID"
+msgstr "Compartilhar ID pseudônimo do usuário no site"
+
+msgid "Review the suggested DocsBot text under Settings → Privacy before enabling identity fields."
+msgstr "Revise o texto sugerido do DocsBot em Configurações → Privacidade antes de ativar os campos de identidade."
+
+msgid "Private bot signing"
+msgstr "Assinatura de bot privado"
+
+msgid "Private signing is ready"
+msgstr "A assinatura privada está pronta"
+
+msgid "The bot signing key was retrieved securely and encrypted on this WordPress server. Visitors receive only short-lived signed tokens."
+msgstr "A chave de assinatura do bot foi obtida com segurança e criptografada neste servidor WordPress. Os visitantes recebem apenas tokens assinados de curta duração."
+
+msgid "Signing key unavailable"
+msgstr "Chave de assinatura indisponível"
+
+msgid "Reconnect this bot to retrieve its signing key. DocsBot will keep the widget paused until private signing is ready."
+msgstr "Reconecte este bot para obter sua chave de assinatura. O DocsBot manterá o widget pausado até que a assinatura privada esteja pronta."
+
+msgid "Token lifetime (seconds)"
+msgstr "Validade do token (segundos)"
+
+msgid "The selected bot is public, so no signature key is needed or retained."
+msgstr "O bot selecionado é público, portanto nenhuma chave de assinatura é necessária ou armazenada."
+
+msgid "Open bot embed settings in DocsBot"
+msgstr "Abrir as configurações de incorporação do bot no DocsBot"
+
+msgid "The connection is managed through wp-config.php."
+msgstr "A conexão é gerenciada pelo wp-config.php."
+
+msgid "DocsBot has been disconnected."
+msgstr "O DocsBot foi desconectado."
+
+msgid "Enter an API key to connect DocsBot."
+msgstr "Insira uma chave de API para conectar o DocsBot."
+
+msgid "DocsBot connected. Now choose a team and bot."
+msgstr "DocsBot conectado. Agora escolha uma equipe e um bot."
+
+msgid "Select a valid DocsBot team."
+msgstr "Selecione uma equipe válida do DocsBot."
+
+msgid "Team selected. Create a bot in DocsBot to continue."
+msgstr "Equipe selecionada. Crie um bot no DocsBot para continuar."
+
+msgid "Team selected. Now choose a bot."
+msgstr "Equipe selecionada. Agora escolha um bot."
+
+msgid "Select a valid DocsBot bot."
+msgstr "Selecione um bot válido do DocsBot."
+
+msgid "Bot connected and settings loaded."
+msgstr "Bot conectado e configurações carregadas."
+
+msgid "Content saved to DocsBot."
+msgstr "Conteúdo salvo no DocsBot."
+
+msgid "Enter a valid six-digit hex color."
+msgstr "Insira uma cor hexadecimal válida de seis dígitos."
+
+msgid "Design saved to DocsBot."
+msgstr "Design salvo no DocsBot."
+
+msgid "Widget actions saved."
+msgstr "Ações do widget salvas."
+
+msgid "Reconnect the bot so DocsBot can retrieve its signing key before enabling a private bot."
+msgstr "Reconecte o bot para que o DocsBot possa obter a chave de assinatura antes de ativar um bot privado."
+
+msgid "Deployment saved, but DocsBot domain restrictions were not updated: %s"
+msgstr "A implantação foi salva, mas as restrições de domínio do DocsBot não foram atualizadas: %s"
+
+msgid "Deployment settings saved."
+msgstr "Configurações de implantação salvas."
+
+msgid "You do not have permission to manage DocsBot."
+msgstr "Você não tem permissão para gerenciar o DocsBot."
+
+msgid "Ask me anything about this site."
+msgstr "Pergunte qualquer coisa sobre este site."
+
+msgid "Hi! How can I help?"
+msgstr "Olá! Como posso ajudar?"
+
+msgid "Send a message…"
+msgstr "Envie uma mensagem…"
+
+msgid "Chat with us"
+msgstr "Fale conosco"
+
+msgid "Get support"
+msgstr "Obter suporte"
+
+msgid "Preview"
+msgstr "Pré-visualização"
+
+msgid "Preview mode"
+msgstr "Modo de pré-visualização"
+
+msgid "Embed"
+msgstr "Incorporação"
+
+msgid "DocsBot widget preview"
+msgstr "Pré-visualização do widget do DocsBot"
+
+msgid "Why are you so amazing?"
+msgstr "Por que você é tão incrível?"
+
+msgid "Thanks! What would you like to know about DocsBot?"
+msgstr "Obrigado! O que você gostaria de saber sobre o DocsBot?"
+
+msgid "Sources"
+msgstr "Fontes"
+
+msgid "Embeddable Chat Widget — DocsBot"
+msgstr "Widget de chat incorporável — DocsBot"
+
+msgid "Can I connect you to the support team?"
+msgstr "Posso encaminhar você para a equipe de suporte?"
+
+msgid "Powered by DocsBot"
+msgstr "Desenvolvido com DocsBot"
+
+msgid "Connect a bot first"
+msgstr "Primeiro conecte um bot"
+
+msgid "Choose a DocsBot team and bot before configuring this section."
+msgstr "Escolha uma equipe e um bot do DocsBot antes de configurar esta seção."
+
+msgid "Go to connection"
+msgstr "Ir para conexão"
+
+msgid "Connection"
+msgstr "Conexão"
+
+msgid "The selected team ID is invalid."
+msgstr "O ID da equipe selecionada é inválido."
+
+msgid "The selected bot ID is invalid."
+msgstr "O ID do bot selecionado é inválido."
+
+msgid "No supported bot settings were provided."
+msgstr "Nenhuma configuração de bot compatível foi fornecida."
+
+msgid "Connect a DocsBot API key first."
+msgstr "Primeiro conecte uma chave de API do DocsBot."
+
+msgid "DocsBot could not be reached: %s"
+msgstr "Não foi possível acessar o DocsBot: %s"
+
+msgid "DocsBot returned HTTP %d."
+msgstr "O DocsBot retornou HTTP %d."
+
+msgid "DocsBot returned an invalid response."
+msgstr "O DocsBot retornou uma resposta inválida."
+
+msgid "OpenSSL is required to store DocsBot credentials securely."
+msgstr "O OpenSSL é necessário para armazenar as credenciais do DocsBot com segurança."
+
+msgid "Secure random data is unavailable on this server."
+msgstr "Dados aleatórios seguros não estão disponíveis neste servidor."
+
+msgid "The DocsBot credential could not be encrypted."
+msgstr "Não foi possível criptografar a credencial do DocsBot."
+
+msgid "No membership restriction"
+msgstr "Sem restrição de associação"
+
+msgid "WooCommerce Memberships"
+msgstr "WooCommerce Memberships"
+
+msgid "MemberPress"
+msgstr "MemberPress"
+
+msgid "Paid Memberships Pro"
+msgstr "Paid Memberships Pro"
+
+msgid "Restrict Content Pro"
+msgstr "Restrict Content Pro"
+
+msgid "WP-Members"
+msgstr "WP-Members"
+
+msgid "Ultimate Member roles"
+msgstr "Funções do Ultimate Member"
+
+msgid "This widget request could not be verified."
+msgstr "Não foi possível verificar esta solicitação do widget."
+
+msgid "The widget is not deployed on this page."
+msgstr "O widget não está implantado nesta página."
+
+msgid "Log in to use this chat."
+msgstr "Faça login para usar este chat."
+
+msgid "This chat is not available for your account."
+msgstr "Este chat não está disponível para sua conta."
+
+msgid "An eligible membership is required for this chat."
+msgstr "Uma associação qualificada é necessária para este chat."
+
+msgid "Private bot signing is not configured."
+msgstr "A assinatura de bot privado não está configurada."
+
+msgid "This site may use DocsBot to provide an interactive chat. Chat messages and any identity fields enabled by the site administrator may be sent to DocsBot for processing and retained according to the site owner’s DocsBot settings. Do not submit passwords, payment details, or other sensitive information in chat."
+msgstr "Este site pode usar o DocsBot para oferecer um chat interativo. As mensagens do chat e quaisquer campos de identidade ativados pelo administrador do site podem ser enviados ao DocsBot para processamento e armazenados conforme as configurações do DocsBot definidas pelo proprietário do site. Não envie senhas, dados de pagamento ou outras informações confidenciais no chat."

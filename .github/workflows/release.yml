@@ -71,6 +71,27 @@ jobs:
           node --check docsbot/assets/js/admin.js
           node --check docsbot/assets/js/widget.js
 
+      - name: Validate bundled translations
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes gettext
+
+          test "$(find docsbot/languages -maxdepth 1 -name 'docsbot-*.po' | wc -l)" -eq 6
+          test "$(find translations/wordpress-org -maxdepth 1 -name 'readme-*.po' | wc -l)" -eq 6
+
+          for catalog in docsbot/languages/docsbot-*.po; do
+            msgfmt --check --check-format --output-file=/dev/null "${catalog}"
+            test -s "${catalog%.po}.mo"
+            compiled="$(mktemp)"
+            msgfmt --output-file="${compiled}" "${catalog}"
+            cmp "${compiled}" "${catalog%.po}.mo"
+            rm "${compiled}"
+          done
+
+          for catalog in translations/wordpress-org/readme-*.po; do
+            msgfmt --check --check-format --output-file=/dev/null "${catalog}"
+          done
+
       - name: Run official WordPress Plugin Check
         uses: wordpress/plugin-check-action@18573eb38f13543484a1f095672dae3849a4fbb0 # v1.1.6
         with:
@@ -102,6 +123,7 @@ jobs:
               docsbot/docsbot.php
           )"
           test -n "${version}"
+          grep -q "define( 'DOCSBOT_VERSION', '${version}' );" docsbot/docsbot.php
 
           stable_tag="$(
             sed -nE 's/^Stable tag:[[:space:]]*([0-9.]+).*/\1/p' \

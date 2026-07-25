@@ -1,0 +1,550 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DocsBot WordPress.org Listing 1.0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
+"PO-Revision-Date: 2026-07-25 14:00-0500\n"
+"Last-Translator: DocsBot\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. translators: WordPress.org readme plugin name. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:1
+msgid "DocsBot"
+msgstr "DocsBot"
+
+#. translators: WordPress.org readme Header paragraph. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:11
+msgid ""
+"Add your DocsBot support agent to WordPress, customize the widget, and "
+"control exactly where and for whom it appears."
+msgstr "将您的 DocsBot 支持代理添加到 WordPress，自定义小组件，并精确控制其显示位置和适用对象。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:13
+msgid "Description"
+msgstr "描述"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:15
+msgid ""
+"DocsBot for WordPress gives site administrators a secure, native way to "
+"connect a DocsBot account and deploy an AI support widget."
+msgstr "DocsBot for WordPress 为网站管理员提供安全、原生的方式，用于连接 DocsBot 账户并部署 AI 支持小组件。"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:17
+msgid ""
+"Connect your DocsBot API key, choose a team and bot you can access, then "
+"configure the most useful widget content, design, and action settings "
+"without leaving WordPress. The Deploy tab controls page paths, logged-in "
+"users, WordPress roles, popular membership systems, optional conversation "
+"identity, and private-bot signing."
+msgstr ""
+"连接您的 DocsBot API 密钥，选择您有权访问的团队和机器人，然后无需离开 WordPress "
+"即可配置最实用的小组件内容、设计和操作设置。“部署”选项卡可控制页面路径、已登录用户、WordPress "
+"角色、常用会员系统、可选的对话身份以及私有机器人签名。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:19
+msgid "Built for real WordPress sites"
+msgstr "专为真实 WordPress 网站打造"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:21
+msgid "Choose from every team and bot available to your DocsBot user."
+msgstr "从您的 DocsBot 用户可访问的所有团队和机器人中进行选择。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:22
+msgid ""
+"Configure the greeting, labels, support link, branding, color, icons, and "
+"placement."
+msgstr "配置问候语、标签、支持链接、品牌标识、颜色、图标和显示位置。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:23
+msgid ""
+"Enable feedback, escalation, web search, booking, and custom button "
+"integrations already configured for your bot."
+msgstr "启用已为机器人配置的反馈、转接、网页搜索、预约和自定义按钮集成。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:24
+msgid "Include or exclude literal URL path prefixes."
+msgstr "包含或排除指定的 URL 路径前缀。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:25
+msgid ""
+"Restrict chat by login, WordPress role, or a supported membership plugin."
+msgstr "按登录状态、WordPress 角色或受支持的会员插件限制聊天。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:26
+msgid ""
+"Share display name, email, and a pseudonymous site user ID through separate "
+"opt-in controls."
+msgstr "通过单独的选择加入控件共享显示名称、电子邮箱和假名化的网站用户 ID。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:27
+msgid "Use private DocsBot bots with short-lived server-signed JWTs."
+msgstr "通过服务器签发的短期 JWT 使用私有 DocsBot 机器人。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:28
+msgid ""
+"Require server-verified login, role, or membership rules when chat access "
+"must be protected."
+msgstr "需要保护聊天访问权限时，要求通过服务器验证登录、角色或会员规则。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:29
+msgid "Keep identity and signatures out of full-page caches."
+msgstr "避免将身份和签名写入整页缓存。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:30
+msgid "Avoid dashboard clutter: the plugin shows no sitewide notices or nags."
+msgstr "保持仪表盘整洁：插件不会显示全站通知或干扰提示。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:32
+msgid "Supported membership integrations"
+msgstr "支持的会员集成"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:34
+msgid ""
+"The plugin uses public APIs from WooCommerce Memberships, MemberPress, Paid "
+"Memberships Pro, Restrict Content Pro, and WP-Members. Ultimate Member is "
+"supported through approved WordPress roles. The selected integration fails "
+"closed if it becomes unavailable."
+msgstr ""
+"插件使用 WooCommerce Memberships、MemberPress、Paid Memberships Pro、Restrict "
+"Content Pro 和 WP-Members 的公开 API。Ultimate Member 通过获准的 WordPress "
+"角色提供支持。如果所选集成变得不可用，系统将以拒绝访问方式安全关闭。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:36
+msgid "Privacy and security"
+msgstr "隐私与安全"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:38
+msgid ""
+"Identity sharing is off by default. If enabled, the selected fields are sent"
+" to DocsBot only after the visitor passes the configured access rules. The "
+"plugin never sends membership, role, password, payment, or subscription "
+"data."
+msgstr "身份共享默认关闭。启用后，只有访客通过配置的访问规则，所选字段才会发送至 DocsBot。插件绝不会发送会员、角色、密码、付款或订阅数据。"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:40
+msgid ""
+"The DocsBot API key remains on the WordPress server. Private-bot signature "
+"keys are used only to create short-lived tokens. Both credentials are "
+"encrypted before database storage, or may be supplied through `wp-"
+"config.php` constants."
+msgstr ""
+"DocsBot API 密钥保留在 WordPress 服务器上。私有机器人签名密钥仅用于创建短期令牌。两种凭据在存入数据库前都会加密，也可通过 "
+"`wp-config.php` 常量提供。"
+
+#. translators: WordPress.org readme Description heading. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:42
+msgid "External service"
+msgstr "外部服务"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:44
+msgid "This plugin connects to DocsBot, a third-party service:"
+msgstr "此插件会连接到第三方服务 DocsBot："
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:46
+msgid ""
+"`https://docsbot.ai/api` is called from the WordPress server when an "
+"administrator connects an account, lists teams or bots, reads settings, or "
+"saves supported bot settings."
+msgstr ""
+"管理员连接账户、列出团队或机器人、读取设置或保存受支持的机器人设置时，WordPress 服务器会调用 "
+"`https://docsbot.ai/api`。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:47
+msgid ""
+"`https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the"
+" widget is enabled."
+msgstr "启用小组件后，会为符合条件的访客加载 `https://widget.docsbot.ai/chat.js`。"
+
+#. translators: WordPress.org readme Description list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:48
+msgid ""
+"Visitor chat messages and any administrator-enabled identity fields are "
+"processed by DocsBot."
+msgstr "访客聊天消息以及管理员启用的任何身份字段均由 DocsBot 处理。"
+
+#. translators: WordPress.org readme Description paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:50
+msgid ""
+"Use of DocsBot is subject to the [DocsBot Privacy "
+"Policy](https://docsbot.ai/privacy) and [Terms of "
+"Service](https://docsbot.ai/terms). Learn more in the [DocsBot widget "
+"documentation](https://docsbot.ai/documentation/developer/embeddable-chat-"
+"widget)."
+msgstr ""
+"使用 DocsBot 须遵守 [DocsBot "
+"隐私政策](https://docsbot.ai/privacy)和[服务条款](https://docsbot.ai/terms)。请参阅 "
+"[DocsBot 小组件文档](https://docsbot.ai/documentation/developer/embeddable-chat-"
+"widget)了解详情。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:52
+msgid "Installation"
+msgstr "安装"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:54
+msgid ""
+"Upload the plugin directory to `/wp-content/plugins/` or install the ZIP "
+"from **Plugins > Add New Plugin > Upload Plugin**."
+msgstr "将插件目录上传到 `/wp-content/plugins/`，或通过**插件 > 安装插件 > 上传插件**安装 ZIP。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:55
+msgid "Activate **DocsBot**."
+msgstr "启用 **DocsBot**。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:56
+msgid "Open **Settings > DocsBot > Connection**."
+msgstr "打开**设置 > DocsBot > 连接**。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:57
+msgid ""
+"Get your user API key from the [DocsBot API Keys "
+"page](https://docsbot.ai/app/api), paste it into WordPress, and connect."
+msgstr ""
+"从 [DocsBot API 密钥页面](https://docsbot.ai/app/api)获取您的用户 API 密钥，将其粘贴到 "
+"WordPress 并连接。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:58
+msgid "Choose a team, save, then choose a bot."
+msgstr "选择团队并保存，然后选择机器人。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:59
+msgid "Configure Content, Design, and Actions."
+msgstr "配置“内容”“设计”和“操作”。"
+
+#. translators: WordPress.org readme Installation numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:60
+msgid "Open Deploy, choose your audience and pages, then enable the widget."
+msgstr "打开“部署”，选择受众和页面，然后启用小组件。"
+
+#. translators: WordPress.org readme Installation paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:62
+msgid ""
+"PHP's OpenSSL extension is required to encrypt saved credentials and sign "
+"private-bot tokens."
+msgstr "加密已保存的凭据和签发私有机器人令牌需要 PHP 的 OpenSSL 扩展。"
+
+#. translators: WordPress.org readme Installation paragraph. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:64
+msgid ""
+"For a private bot, select the bot normally. The plugin retrieves its signing"
+" key in the authorized server-side bot response, encrypts it immediately, "
+"and never renders it in WordPress."
+msgstr ""
+"对于私有机器人，请照常选择机器人。插件会从经过授权的服务器端机器人响应中获取其签名密钥，立即加密，并且绝不会在 WordPress 中呈现。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:66
+msgid "Frequently Asked Questions"
+msgstr "常见问题"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:68
+msgid "Does the plugin expose my DocsBot API key?"
+msgstr "插件会泄露我的 DocsBot API 密钥吗？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:70
+msgid ""
+"No. Admin API requests are made by WordPress on the server. The key is "
+"encrypted before database storage and is never included in frontend HTML or "
+"JavaScript."
+msgstr ""
+"不会。管理员 API 请求由服务器上的 WordPress 发出。密钥在存入数据库前会加密，并且绝不会包含在前端 HTML 或 JavaScript "
+"中。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:72
+msgid "How are private bots supported?"
+msgstr "如何支持私有机器人？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:74
+msgid ""
+"WordPress creates a short-lived HS256 JWT using the bot signature key. "
+"Access rules run first, and the token is returned through a private, no-"
+"store response. The signature key never leaves the server."
+msgstr ""
+"WordPress 使用机器人签名密钥创建短期 HS256 "
+"JWT。系统会先执行访问规则，然后通过私有且禁止存储的响应返回令牌。签名密钥绝不会离开服务器。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:76
+msgid "Does the plugin send WordPress user data automatically?"
+msgstr "插件会自动发送 WordPress 用户数据吗？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:78
+msgid ""
+"No. Display name, email address, and a pseudonymous site user ID are three "
+"separate settings and all are off by default."
+msgstr "不会。显示名称、电子邮箱地址和假名化的网站用户 ID 是三个独立设置，默认均为关闭状态。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:80
+msgid "What happens if my membership plugin is disabled?"
+msgstr "如果我的会员插件被禁用，会发生什么？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:82
+msgid ""
+"The restriction fails closed. The widget stays hidden until the selected "
+"integration is available again or the restriction is changed."
+msgstr "限制将以拒绝访问方式安全关闭。所选集成重新可用或限制被更改之前，小组件会保持隐藏。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:84
+msgid "Can I show the widget only in my documentation or account area?"
+msgstr "我可以只在文档或账户区域显示小组件吗？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:86
+msgid ""
+"Yes. Add one literal path prefix per line, such as `/docs/` or `/account/`. "
+"Excluded paths always take precedence."
+msgstr "可以。每行添加一个指定的路径前缀，例如 `/docs/` 或 `/account/`。排除路径始终优先。"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:88
+msgid ""
+"Path rules control where the embed is placed; they are not an authorization "
+"boundary. For protected chat, also enable a logged-in, WordPress role, or "
+"membership restriction under Audience. Those rules are verified by WordPress"
+" before identity or a private-bot token is returned."
+msgstr ""
+"路径规则控制嵌入位置，但不是授权边界。若要保护聊天，还应在“受众”下启用登录、WordPress 角色或会员限制。WordPress "
+"会在返回身份信息或私有机器人令牌前验证这些规则。"
+
+#. translators: WordPress.org readme Frequently Asked Questions heading.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:90
+msgid "Why can I see a create-bot link even if I cannot create bots?"
+msgstr "即使我无法创建机器人，为什么仍会看到创建机器人链接？"
+
+#. translators: WordPress.org readme Frequently Asked Questions paragraph.
+#. Preserve product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:92
+msgid ""
+"DocsBot does not expose a public create-permission flag. When a selected "
+"team has no bots, the plugin links to the DocsBot bot page, where your "
+"current role and plan are enforced."
+msgstr ""
+"DocsBot 不提供公开的创建权限标志。当所选团队没有机器人时，插件会链接到 DocsBot 机器人页面，并在该页面执行您当前角色和套餐的权限规则。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:94
+msgid "Screenshots"
+msgstr "截图"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:96
+msgid "Connect a DocsBot API key and select an accessible team and bot."
+msgstr "连接 DocsBot API 密钥，并选择可访问的团队和机器人。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:97
+msgid "Edit the bot's conversation content and labels."
+msgstr "编辑机器人的对话内容和标签。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:98
+msgid "Match the chat widget to your site design."
+msgstr "使聊天小组件匹配您的网站设计。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:99
+msgid ""
+"Enable supported feedback, escalation, search, booking, and custom actions."
+msgstr "启用受支持的反馈、转接、搜索、预约和自定义操作。"
+
+#. translators: WordPress.org readme Screenshots numbered item. Preserve
+#. product names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:100
+msgid ""
+"Deploy by URL path, user role, membership, metadata, and private signing."
+msgstr "按 URL 路径、用户角色、会员资格、元数据和私有签名进行部署。"
+
+#. translators: WordPress.org readme section heading. Preserve product names,
+#. URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:102
+msgid "Changelog"
+msgstr "更新日志"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:104
+msgid "1.0.3"
+msgstr "1.0.3"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:105
+msgid ""
+"Added bundled translations for Spanish, German, French, Brazilian "
+"Portuguese, Japanese, and Simplified Chinese."
+msgstr "新增西班牙语、德语、法语、巴西葡萄牙语、日语和简体中文的捆绑翻译。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:106
+msgid ""
+"Added import-ready WordPress.org listing translation catalogs for the same "
+"locales."
+msgstr "新增上述语言可直接导入 WordPress.org 的产品目录翻译文件。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:107
+msgid "Added the complete WordPress.org banner and icon asset set."
+msgstr "新增完整的 WordPress.org 横幅和图标资源集。"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:109
+msgid "1.0.2"
+msgstr "1.0.2"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:110
+msgid ""
+"Added dashboard-matched Content, Design, Actions, Deploy, and live widget "
+"preview screens."
+msgstr "新增与仪表盘匹配的“内容”“设计”“操作”“部署”和实时小组件预览页面。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:111
+msgid ""
+"Added automatic private-bot signing-key retrieval and encrypted server-side "
+"storage."
+msgstr "新增私有机器人签名密钥的自动获取和服务器端加密存储。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:112
+msgid ""
+"Added role, membership, page-prefix, and opt-in conversation identity "
+"controls."
+msgstr "新增角色、会员、页面前缀和选择加入式对话身份控件。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:113
+msgid ""
+"Added release validation and installable ZIP packaging with GitHub Actions."
+msgstr "新增使用 GitHub Actions 进行发布验证和可安装 ZIP 打包。"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:114
+msgid ""
+"Standardized the plugin slug, text domain, PHP symbols, options, hooks, REST"
+" namespace, and package files on DocsBot."
+msgstr "统一使用 DocsBot 规范化插件别名、文本域、PHP 符号、选项、钩子、REST 命名空间和软件包文件。"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:116
+msgid "1.0.1"
+msgstr "1.0.1"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:117
+msgid "Updated product naming to DocsBot."
+msgstr "将产品命名更新为 DocsBot。"
+
+#. translators: WordPress.org readme Changelog heading.
+#: docsbot/readme.txt:119
+msgid "1.0.0"
+msgstr "1.0.0"
+
+#. translators: WordPress.org readme Changelog list item. Preserve product
+#. names, URLs, paths, Markdown, and code formatting.
+#: docsbot/readme.txt:120
+msgid "Initial public release."
+msgstr "首次公开发布。"

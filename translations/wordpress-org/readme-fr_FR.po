@@ -1,0 +1,574 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DocsBot 1.0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
+"PO-Revision-Date: 2026-07-25 14:00-0500\n"
+"Last-Translator: DocsBot\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: polib\n"
+
+#. Plugin name.
+#: docsbot/readme.txt:1
+msgid "DocsBot"
+msgstr "DocsBot"
+
+#. Short description.
+#: docsbot/readme.txt:11
+msgid ""
+"Add your DocsBot support agent to WordPress, customize the widget, and "
+"control exactly where and for whom it appears."
+msgstr ""
+"Ajoutez votre agent d’assistance DocsBot à WordPress, personnalisez le widget"
+" et contrôlez précisément où et pour qui il apparaît."
+
+#. Section heading.
+#: docsbot/readme.txt:13
+msgid "Description"
+msgstr "Description"
+
+#. Description paragraph.
+#: docsbot/readme.txt:15
+msgid ""
+"DocsBot for WordPress gives site administrators a secure, native way to "
+"connect a DocsBot account and deploy an AI support widget."
+msgstr ""
+"DocsBot pour WordPress offre aux administrateurs de site une méthode "
+"sécurisée et native pour connecter un compte DocsBot et déployer un widget "
+"d’assistance par IA."
+
+#. Description paragraph.
+#: docsbot/readme.txt:17
+msgid ""
+"Connect your DocsBot API key, choose a team and bot you can access, then "
+"configure the most useful widget content, design, and action settings without"
+" leaving WordPress. The Deploy tab controls page paths, logged-in users, "
+"WordPress roles, popular membership systems, optional conversation identity, "
+"and private-bot signing."
+msgstr ""
+"Connectez votre clé API DocsBot, choisissez une équipe et un bot auxquels "
+"vous avez accès, puis configurez les principaux réglages de contenu, de "
+"design et d’actions du widget sans quitter WordPress. L’onglet Déploiement "
+"contrôle les chemins de page, les utilisateurs connectés, les rôles "
+"WordPress, les systèmes d’adhésion populaires, l’identité facultative des "
+"conversations et la signature des bots privés."
+
+#. Description subsection heading.
+#: docsbot/readme.txt:19
+msgid "Built for real WordPress sites"
+msgstr "Conçu pour de vrais sites WordPress"
+
+#. Description list item.
+#: docsbot/readme.txt:21
+msgid "Choose from every team and bot available to your DocsBot user."
+msgstr ""
+"Choisissez parmi toutes les équipes et tous les bots disponibles pour votre "
+"utilisateur DocsBot."
+
+#. Description list item.
+#: docsbot/readme.txt:22
+msgid ""
+"Configure the greeting, labels, support link, branding, color, icons, and "
+"placement."
+msgstr ""
+"Configurez le message d’accueil, les libellés, le lien d’assistance, la "
+"marque, la couleur, les icônes et le positionnement."
+
+#. Description list item.
+#: docsbot/readme.txt:23
+msgid ""
+"Enable feedback, escalation, web search, booking, and custom button "
+"integrations already configured for your bot."
+msgstr ""
+"Activez les évaluations, le transfert, la recherche Web, la réservation et "
+"les boutons personnalisés déjà configurés pour votre bot."
+
+#. Description list item.
+#: docsbot/readme.txt:24
+msgid "Include or exclude literal URL path prefixes."
+msgstr "Incluez ou excluez des préfixes littéraux de chemins d’URL."
+
+#. Description list item.
+#: docsbot/readme.txt:25
+msgid ""
+"Restrict chat by login, WordPress role, or a supported membership plugin."
+msgstr ""
+"Limitez la discussion selon la connexion, le rôle WordPress ou une extension "
+"d’adhésion prise en charge."
+
+#. Description list item.
+#: docsbot/readme.txt:26
+msgid ""
+"Share display name, email, and a pseudonymous site user ID through separate "
+"opt-in controls."
+msgstr ""
+"Partagez le nom d’affichage, l’adresse e-mail et un identifiant utilisateur "
+"pseudonyme du site à l’aide d’options d’activation distinctes."
+
+#. Description list item.
+#: docsbot/readme.txt:27
+msgid "Use private DocsBot bots with short-lived server-signed JWTs."
+msgstr ""
+"Utilisez des bots DocsBot privés avec des JWT de courte durée signés par le "
+"serveur."
+
+#. Description list item.
+#: docsbot/readme.txt:28
+msgid ""
+"Require server-verified login, role, or membership rules when chat access "
+"must be protected."
+msgstr ""
+"Exigez des règles de connexion, de rôle ou d’adhésion vérifiées par le "
+"serveur lorsque l’accès à la discussion doit être protégé."
+
+#. Description list item.
+#: docsbot/readme.txt:29
+msgid "Keep identity and signatures out of full-page caches."
+msgstr ""
+"Conservez l’identité et les signatures hors des caches de page complète."
+
+#. Description list item.
+#: docsbot/readme.txt:30
+msgid "Avoid dashboard clutter: the plugin shows no sitewide notices or nags."
+msgstr ""
+"Évitez d’encombrer le tableau de bord : l’extension n’affiche aucun avis "
+"général ni message insistant."
+
+#. Description subsection heading.
+#: docsbot/readme.txt:32
+msgid "Supported membership integrations"
+msgstr "Intégrations d’adhésion prises en charge"
+
+#. Description paragraph.
+#: docsbot/readme.txt:34
+msgid ""
+"The plugin uses public APIs from WooCommerce Memberships, MemberPress, Paid "
+"Memberships Pro, Restrict Content Pro, and WP-Members. Ultimate Member is "
+"supported through approved WordPress roles. The selected integration fails "
+"closed if it becomes unavailable."
+msgstr ""
+"L’extension utilise les API publiques de WooCommerce Memberships, "
+"MemberPress, Paid Memberships Pro, Restrict Content Pro et WP-Members. "
+"Ultimate Member est pris en charge par l’intermédiaire de rôles WordPress "
+"autorisés. L’intégration sélectionnée refuse l’accès si elle devient "
+"indisponible."
+
+#. Description subsection heading.
+#: docsbot/readme.txt:36
+msgid "Privacy and security"
+msgstr "Confidentialité et sécurité"
+
+#. Description paragraph.
+#: docsbot/readme.txt:38
+msgid ""
+"Identity sharing is off by default. If enabled, the selected fields are sent "
+"to DocsBot only after the visitor passes the configured access rules. The "
+"plugin never sends membership, role, password, payment, or subscription data."
+msgstr ""
+"Le partage de l’identité est désactivé par défaut. S’il est activé, les "
+"champs sélectionnés ne sont envoyés à DocsBot qu’après validation des règles "
+"d’accès configurées. L’extension n’envoie jamais de données d’adhésion, de "
+"rôle, de mot de passe, de paiement ou d’abonnement."
+
+#. Description paragraph.
+#: docsbot/readme.txt:40
+msgid ""
+"The DocsBot API key remains on the WordPress server. Private-bot signature "
+"keys are used only to create short-lived tokens. Both credentials are "
+"encrypted before database storage, or may be supplied through `wp-config.php`"
+" constants."
+msgstr ""
+"La clé API DocsBot reste sur le serveur WordPress. Les clés de signature des "
+"bots privés servent uniquement à créer des jetons de courte durée. Les deux "
+"identifiants sont chiffrés avant leur stockage dans la base de données ou "
+"peuvent être fournis au moyen de constantes dans `wp-config.php`."
+
+#. Description subsection heading.
+#: docsbot/readme.txt:42
+msgid "External service"
+msgstr "Service externe"
+
+#. Description paragraph.
+#: docsbot/readme.txt:44
+msgid "This plugin connects to DocsBot, a third-party service:"
+msgstr "Cette extension se connecte à DocsBot, un service tiers :"
+
+#. Description list item.
+#: docsbot/readme.txt:46
+msgid ""
+"`https://docsbot.ai/api` is called from the WordPress server when an "
+"administrator connects an account, lists teams or bots, reads settings, or "
+"saves supported bot settings."
+msgstr ""
+"`https://docsbot.ai/api` est appelé depuis le serveur WordPress lorsqu’un "
+"administrateur connecte un compte, répertorie les équipes ou les bots, lit "
+"les réglages ou enregistre les réglages de bot pris en charge."
+
+#. Description list item.
+#: docsbot/readme.txt:47
+msgid ""
+"`https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the "
+"widget is enabled."
+msgstr ""
+"`https://widget.docsbot.ai/chat.js` est chargé pour les visiteurs éligibles "
+"lorsque le widget est activé."
+
+#. Description list item.
+#: docsbot/readme.txt:48
+msgid ""
+"Visitor chat messages and any administrator-enabled identity fields are "
+"processed by DocsBot."
+msgstr ""
+"Les messages de discussion des visiteurs et les champs d’identité activés par"
+" l’administrateur sont traités par DocsBot."
+
+#. Description paragraph.
+#: docsbot/readme.txt:50
+msgid ""
+"Use of DocsBot is subject to the [DocsBot Privacy "
+"Policy](https://docsbot.ai/privacy) and [Terms of "
+"Service](https://docsbot.ai/terms). Learn more in the [DocsBot widget "
+"documentation](https://docsbot.ai/documentation/developer/embeddable-chat-"
+"widget)."
+msgstr ""
+"L’utilisation de DocsBot est soumise à la [Politique de confidentialité de "
+"DocsBot](https://docsbot.ai/privacy) et aux [Conditions "
+"d’utilisation](https://docsbot.ai/terms). Pour en savoir plus, consultez la "
+"[documentation du widget "
+"DocsBot](https://docsbot.ai/documentation/developer/embeddable-chat-widget)."
+
+#. Section heading.
+#: docsbot/readme.txt:52
+msgid "Installation"
+msgstr "Installation"
+
+#. Installation step.
+#: docsbot/readme.txt:54
+msgid ""
+"Upload the plugin directory to `/wp-content/plugins/` or install the ZIP from"
+" **Plugins > Add New Plugin > Upload Plugin**."
+msgstr ""
+"Téléversez le répertoire de l’extension dans `/wp-content/plugins/` ou "
+"installez le fichier ZIP depuis **Extensions > Ajouter une extension > "
+"Téléverser une extension**."
+
+#. Installation step.
+#: docsbot/readme.txt:55
+msgid "Activate **DocsBot**."
+msgstr "Activez **DocsBot**."
+
+#. Installation step.
+#: docsbot/readme.txt:56
+msgid "Open **Settings > DocsBot > Connection**."
+msgstr "Ouvrez **Réglages > DocsBot > Connexion**."
+
+#. Installation step.
+#: docsbot/readme.txt:57
+msgid ""
+"Get your user API key from the [DocsBot API Keys "
+"page](https://docsbot.ai/app/api), paste it into WordPress, and connect."
+msgstr ""
+"Obtenez votre clé API utilisateur sur la [page des clés API "
+"DocsBot](https://docsbot.ai/app/api), collez-la dans WordPress, puis "
+"connectez-vous."
+
+#. Installation step.
+#: docsbot/readme.txt:58
+msgid "Choose a team, save, then choose a bot."
+msgstr "Choisissez une équipe, enregistrez, puis choisissez un bot."
+
+#. Installation step.
+#: docsbot/readme.txt:59
+msgid "Configure Content, Design, and Actions."
+msgstr "Configurez les onglets Contenu, Design et Actions."
+
+#. Installation step.
+#: docsbot/readme.txt:60
+msgid "Open Deploy, choose your audience and pages, then enable the widget."
+msgstr ""
+"Ouvrez Déploiement, choisissez votre audience et vos pages, puis activez le "
+"widget."
+
+#. Installation note.
+#: docsbot/readme.txt:62
+msgid ""
+"PHP's OpenSSL extension is required to encrypt saved credentials and sign "
+"private-bot tokens."
+msgstr ""
+"L’extension OpenSSL de PHP est requise pour chiffrer les identifiants "
+"enregistrés et signer les jetons des bots privés."
+
+#. Installation note.
+#: docsbot/readme.txt:64
+msgid ""
+"For a private bot, select the bot normally. The plugin retrieves its signing "
+"key in the authorized server-side bot response, encrypts it immediately, and "
+"never renders it in WordPress."
+msgstr ""
+"Pour un bot privé, sélectionnez le bot normalement. L’extension récupère sa "
+"clé de signature dans la réponse autorisée reçue côté serveur, la chiffre "
+"immédiatement et ne l’affiche jamais dans WordPress."
+
+#. Section heading.
+#: docsbot/readme.txt:66
+msgid "Frequently Asked Questions"
+msgstr "Questions fréquentes"
+
+#. FAQ question.
+#: docsbot/readme.txt:68
+msgid "Does the plugin expose my DocsBot API key?"
+msgstr "L’extension expose-t-elle ma clé API DocsBot ?"
+
+#. FAQ answer.
+#: docsbot/readme.txt:70
+msgid ""
+"No. Admin API requests are made by WordPress on the server. The key is "
+"encrypted before database storage and is never included in frontend HTML or "
+"JavaScript."
+msgstr ""
+"Non. Les requêtes vers l’API d’administration sont effectuées par WordPress "
+"sur le serveur. La clé est chiffrée avant son stockage dans la base de "
+"données et n’est jamais incluse dans le code HTML ou JavaScript public."
+
+#. FAQ question.
+#: docsbot/readme.txt:72
+msgid "How are private bots supported?"
+msgstr "Comment les bots privés sont-ils pris en charge ?"
+
+#. FAQ answer.
+#: docsbot/readme.txt:74
+msgid ""
+"WordPress creates a short-lived HS256 JWT using the bot signature key. Access"
+" rules run first, and the token is returned through a private, no-store "
+"response. The signature key never leaves the server."
+msgstr ""
+"WordPress crée un JWT HS256 de courte durée à l’aide de la clé de signature "
+"du bot. Les règles d’accès sont vérifiées en premier, puis le jeton est "
+"renvoyé dans une réponse privée non mise en cache. La clé de signature ne "
+"quitte jamais le serveur."
+
+#. FAQ question.
+#: docsbot/readme.txt:76
+msgid "Does the plugin send WordPress user data automatically?"
+msgstr ""
+"L’extension envoie-t-elle automatiquement les données des utilisateurs "
+"WordPress ?"
+
+#. FAQ answer.
+#: docsbot/readme.txt:78
+msgid ""
+"No. Display name, email address, and a pseudonymous site user ID are three "
+"separate settings and all are off by default."
+msgstr ""
+"Non. Le nom d’affichage, l’adresse e-mail et l’identifiant utilisateur "
+"pseudonyme du site sont trois réglages distincts, tous désactivés par défaut."
+
+#. FAQ question.
+#: docsbot/readme.txt:80
+msgid "What happens if my membership plugin is disabled?"
+msgstr "Que se passe-t-il si mon extension d’adhésion est désactivée ?"
+
+#. FAQ answer.
+#: docsbot/readme.txt:82
+msgid ""
+"The restriction fails closed. The widget stays hidden until the selected "
+"integration is available again or the restriction is changed."
+msgstr ""
+"La restriction refuse alors l’accès. Le widget reste masqué jusqu’à ce que "
+"l’intégration sélectionnée soit de nouveau disponible ou que la restriction "
+"soit modifiée."
+
+#. FAQ question.
+#: docsbot/readme.txt:84
+msgid "Can I show the widget only in my documentation or account area?"
+msgstr ""
+"Puis-je afficher le widget uniquement dans ma documentation ou mon espace de "
+"compte ?"
+
+#. FAQ answer.
+#: docsbot/readme.txt:86
+msgid ""
+"Yes. Add one literal path prefix per line, such as `/docs/` or `/account/`. "
+"Excluded paths always take precedence."
+msgstr ""
+"Oui. Ajoutez un préfixe de chemin littéral par ligne, par exemple `/docs/` ou"
+" `/account/`. Les chemins exclus sont toujours prioritaires."
+
+#. FAQ answer.
+#: docsbot/readme.txt:88
+msgid ""
+"Path rules control where the embed is placed; they are not an authorization "
+"boundary. For protected chat, also enable a logged-in, WordPress role, or "
+"membership restriction under Audience. Those rules are verified by WordPress "
+"before identity or a private-bot token is returned."
+msgstr ""
+"Les règles de chemin déterminent où l’intégration est placée ; elles ne "
+"constituent pas une barrière d’autorisation. Pour protéger la discussion, "
+"activez également dans Audience une restriction de connexion, de rôle "
+"WordPress ou d’adhésion. WordPress vérifie ces règles avant de renvoyer "
+"l’identité ou un jeton de bot privé."
+
+#. FAQ question.
+#: docsbot/readme.txt:90
+msgid "Why can I see a create-bot link even if I cannot create bots?"
+msgstr ""
+"Pourquoi le lien de création d’un bot apparaît-il même si je ne peux pas "
+"créer de bots ?"
+
+#. FAQ answer.
+#: docsbot/readme.txt:92
+msgid ""
+"DocsBot does not expose a public create-permission flag. When a selected team"
+" has no bots, the plugin links to the DocsBot bot page, where your current "
+"role and plan are enforced."
+msgstr ""
+"DocsBot n’expose aucun indicateur public d’autorisation de création. Lorsque "
+"l’équipe sélectionnée ne possède aucun bot, l’extension affiche un lien vers "
+"la page des bots DocsBot, où votre rôle et votre offre actuels sont "
+"appliqués."
+
+#. Section heading.
+#: docsbot/readme.txt:94
+msgid "Screenshots"
+msgstr "Captures d’écran"
+
+#. Screenshot caption.
+#: docsbot/readme.txt:96
+msgid "Connect a DocsBot API key and select an accessible team and bot."
+msgstr ""
+"Connectez une clé API DocsBot et sélectionnez une équipe et un bot "
+"accessibles."
+
+#. Screenshot caption.
+#: docsbot/readme.txt:97
+msgid "Edit the bot's conversation content and labels."
+msgstr "Modifiez le contenu et les libellés de conversation du bot."
+
+#. Screenshot caption.
+#: docsbot/readme.txt:98
+msgid "Match the chat widget to your site design."
+msgstr "Adaptez le widget de discussion au design de votre site."
+
+#. Screenshot caption.
+#: docsbot/readme.txt:99
+msgid ""
+"Enable supported feedback, escalation, search, booking, and custom actions."
+msgstr ""
+"Activez les évaluations, le transfert, la recherche, la réservation et les "
+"actions personnalisées prises en charge."
+
+#. Screenshot caption.
+#: docsbot/readme.txt:100
+msgid ""
+"Deploy by URL path, user role, membership, metadata, and private signing."
+msgstr ""
+"Déployez selon le chemin d’URL, le rôle utilisateur, l’adhésion, les "
+"métadonnées et la signature privée."
+
+#. Section heading.
+#: docsbot/readme.txt:102
+msgid "Changelog"
+msgstr "Journal des modifications"
+
+#. Changelog version heading.
+#: docsbot/readme.txt:104
+msgid "1.0.3"
+msgstr "1.0.3"
+
+#. Changelog item.
+#: docsbot/readme.txt:105
+msgid ""
+"Added bundled translations for Spanish, German, French, Brazilian Portuguese,"
+" Japanese, and Simplified Chinese."
+msgstr ""
+"Ajout de traductions intégrées en espagnol, allemand, français, portugais du "
+"Brésil, japonais et chinois simplifié."
+
+#. Changelog item.
+#: docsbot/readme.txt:106
+msgid ""
+"Added import-ready WordPress.org listing translation catalogs for the same "
+"locales."
+msgstr ""
+"Ajout de catalogues de traduction de la fiche WordPress.org prêts à être "
+"importés pour les mêmes langues."
+
+#. Changelog item.
+#: docsbot/readme.txt:107
+msgid "Added the complete WordPress.org banner and icon asset set."
+msgstr "Ajout de l’ensemble complet des bannières et icônes WordPress.org."
+
+#. Changelog version heading.
+#: docsbot/readme.txt:109
+msgid "1.0.2"
+msgstr "1.0.2"
+
+#. Changelog item.
+#: docsbot/readme.txt:110
+msgid ""
+"Added dashboard-matched Content, Design, Actions, Deploy, and live widget "
+"preview screens."
+msgstr ""
+"Ajout des écrans Contenu, Design, Actions et Déploiement assortis au tableau "
+"de bord, ainsi que de l’aperçu en direct du widget."
+
+#. Changelog item.
+#: docsbot/readme.txt:111
+msgid ""
+"Added automatic private-bot signing-key retrieval and encrypted server-side "
+"storage."
+msgstr ""
+"Ajout de la récupération automatique de la clé de signature des bots privés "
+"et de son stockage chiffré côté serveur."
+
+#. Changelog item.
+#: docsbot/readme.txt:112
+msgid ""
+"Added role, membership, page-prefix, and opt-in conversation identity "
+"controls."
+msgstr ""
+"Ajout de contrôles pour les rôles, les adhésions, les préfixes de page et le "
+"partage facultatif de l’identité des conversations."
+
+#. Changelog item.
+#: docsbot/readme.txt:113
+msgid ""
+"Added release validation and installable ZIP packaging with GitHub Actions."
+msgstr ""
+"Ajout de la validation des versions et de la création d’un fichier ZIP "
+"installable avec GitHub Actions."
+
+#. Changelog item.
+#: docsbot/readme.txt:114
+msgid ""
+"Standardized the plugin slug, text domain, PHP symbols, options, hooks, REST "
+"namespace, and package files on DocsBot."
+msgstr ""
+"Uniformisation autour de DocsBot de l’identifiant de l’extension, du domaine "
+"de traduction, des symboles PHP, des options, des crochets, de l’espace de "
+"noms REST et des fichiers du paquet."
+
+#. Changelog version heading.
+#: docsbot/readme.txt:116
+msgid "1.0.1"
+msgstr "1.0.1"
+
+#. Changelog item.
+#: docsbot/readme.txt:117
+msgid "Updated product naming to DocsBot."
+msgstr "Mise à jour du nom du produit en DocsBot."
+
+#. Changelog version heading.
+#: docsbot/readme.txt:119
+msgid "1.0.0"
+msgstr "1.0.0"
+
+#. Changelog item.
+#: docsbot/readme.txt:120
+msgid "Initial public release."
+msgstr "Première version publique."
