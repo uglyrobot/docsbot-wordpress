@@ -441,7 +441,7 @@ final class DocsBot_Admin {
 					'question'  => __( 'Question', 'docsbot' ),
 					'book'      => __( 'Book', 'docsbot' ),
 				);
-				$avatar_icons = array(
+				$avatar_icons   = array(
 					''          => __( 'None', 'docsbot' ),
 					'comment'   => __( 'Comment', 'docsbot' ),
 					'robot'     => __( 'Robot', 'docsbot' ),
@@ -869,13 +869,13 @@ final class DocsBot_Admin {
 			$settings['team_id'],
 			$settings['bot_id'],
 			array(
-				'color'             => $color,
-				'icon'              => $icon,
-				'alignment'         => $alignment,
-				'botIcon'           => '' === $bot_icon ? false : $bot_icon,
-				'logo'              => '' === $logo ? false : $logo,
-				'headerAlignment'   => $header_alignment,
-				'branding'          => $this->posted_bool( 'branding' ),
+				'color'           => $color,
+				'icon'            => $icon,
+				'alignment'       => $alignment,
+				'botIcon'         => '' === $bot_icon ? false : $bot_icon,
+				'logo'            => '' === $logo ? false : $logo,
+				'headerAlignment' => $header_alignment,
+				'branding'        => $this->posted_bool( 'branding' ),
 			)
 		);
 
@@ -907,9 +907,9 @@ final class DocsBot_Admin {
 		if ( is_wp_error( $bot ) ) {
 			$this->redirect_feedback( 'actions', 'error', $bot->get_error_message() );
 		}
-		$labels = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$labels               = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
 		$labels['getSupport'] = $this->post_text( 'support_label', 80 );
-		$result = $this->api->update_bot(
+		$result               = $this->api->update_bot(
 			$settings['team_id'],
 			$settings['bot_id'],
 			array(
@@ -1046,35 +1046,35 @@ final class DocsBot_Admin {
 		if ( ! is_array( $bot ) ) {
 			return;
 		}
-		$labels        = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
-		$name          = $bot['name'] ?? $settings['bot_name'];
-		$description   = $bot['description'] ?? __( 'Ask me anything about this site.', 'docsbot' );
-		$first_message = $labels['firstMessage'] ?? __( 'Hi! How can I help?', 'docsbot' );
-		$placeholder   = $labels['inputPlaceholder'] ?? __( 'Send a message…', 'docsbot' );
-		$button_label  = $labels['floatingButton'] ?? __( 'Chat with us', 'docsbot' );
-		$support_label = $labels['getSupport'] ?? __( 'Get support', 'docsbot' );
-		$footer        = $labels['footerMessage'] ?? '';
-		$logo          = is_string( $bot['logo'] ?? '' ) ? esc_url( $bot['logo'], array( 'https' ) ) : '';
-		$color         = sanitize_hex_color( $bot['color'] ?? '#0891b8' );
-		$color         = $color ? $color : '#0891b8';
-		$red           = hexdec( substr( $color, 1, 2 ) );
-		$green         = hexdec( substr( $color, 3, 2 ) );
-		$blue          = hexdec( substr( $color, 5, 2 ) );
-		$foreground    = ( ( $red * 299 + $green * 587 + $blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
-		$avatar_red    = (int) round( $red + ( 255 - $red ) * 0.6 );
-		$avatar_green  = (int) round( $green + ( 255 - $green ) * 0.6 );
-		$avatar_blue   = (int) round( $blue + ( 255 - $blue ) * 0.6 );
-		$avatar_color  = sprintf( 'rgb(%d, %d, %d)', $avatar_red, $avatar_green, $avatar_blue );
-		$avatar_text   = ( ( $avatar_red * 299 + $avatar_green * 587 + $avatar_blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
-		$alignment     = 'left' === ( $bot['alignment'] ?? 'right' ) ? ' is-left' : '';
-		$header_align  = 'left' === ( $bot['headerAlignment'] ?? 'center' ) ? ' has-left-header' : '';
+		$labels         = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$name           = $bot['name'] ?? $settings['bot_name'];
+		$description    = $bot['description'] ?? __( 'Ask me anything about this site.', 'docsbot' );
+		$first_message  = $labels['firstMessage'] ?? __( 'Hi! How can I help?', 'docsbot' );
+		$placeholder    = $labels['inputPlaceholder'] ?? __( 'Send a message…', 'docsbot' );
+		$button_label   = $labels['floatingButton'] ?? __( 'Chat with us', 'docsbot' );
+		$support_label  = $labels['getSupport'] ?? __( 'Get support', 'docsbot' );
+		$footer         = $labels['footerMessage'] ?? '';
+		$logo           = is_string( $bot['logo'] ?? '' ) ? esc_url( $bot['logo'], array( 'https' ) ) : '';
+		$color          = sanitize_hex_color( $bot['color'] ?? '#0891b8' );
+		$color          = $color ? $color : '#0891b8';
+		$red            = hexdec( substr( $color, 1, 2 ) );
+		$green          = hexdec( substr( $color, 3, 2 ) );
+		$blue           = hexdec( substr( $color, 5, 2 ) );
+		$foreground     = ( ( $red * 299 + $green * 587 + $blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
+		$avatar_red     = (int) round( $red + ( 255 - $red ) * 0.6 );
+		$avatar_green   = (int) round( $green + ( 255 - $green ) * 0.6 );
+		$avatar_blue    = (int) round( $blue + ( 255 - $blue ) * 0.6 );
+		$avatar_color   = sprintf( 'rgb(%d, %d, %d)', $avatar_red, $avatar_green, $avatar_blue );
+		$avatar_text    = ( ( $avatar_red * 299 + $avatar_green * 587 + $avatar_blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
+		$alignment      = 'left' === ( $bot['alignment'] ?? 'right' ) ? ' is-left' : '';
+		$header_align   = 'left' === ( $bot['headerAlignment'] ?? 'center' ) ? ' has-left-header' : '';
 		$launcher_value = is_string( $bot['icon'] ?? '' ) ? $bot['icon'] : 'default';
-		$launcher_icon = $this->preview_icon_data( $launcher_value );
-		$launcher_url  = 0 === strpos( $launcher_value, 'https://' ) ? esc_url( $launcher_value, array( 'https' ) ) : '';
-		$bot_icon      = is_string( $bot['botIcon'] ?? '' ) ? $bot['botIcon'] : '';
-		$bot_icon_data = $this->preview_icon_data( $bot_icon );
-		$bot_icon_url  = 0 === strpos( $bot_icon, 'https://' ) ? esc_url( $bot_icon, array( 'https' ) ) : '';
-		$preview_style = sprintf(
+		$launcher_icon  = $this->preview_icon_data( $launcher_value );
+		$launcher_url   = 0 === strpos( $launcher_value, 'https://' ) ? esc_url( $launcher_value, array( 'https' ) ) : '';
+		$bot_icon       = is_string( $bot['botIcon'] ?? '' ) ? $bot['botIcon'] : '';
+		$bot_icon_data  = $this->preview_icon_data( $bot_icon );
+		$bot_icon_url   = 0 === strpos( $bot_icon, 'https://' ) ? esc_url( $bot_icon, array( 'https' ) ) : '';
+		$preview_style  = sprintf(
 			'--docsbot-preview-color: %1$s; --docsbot-preview-foreground: %2$s; --docsbot-preview-avatar-bg: %3$s; --docsbot-preview-avatar-foreground: %4$s',
 			$color,
 			$foreground,
