@@ -1,0 +1,15 @@
+/.git
+/.github
+/.gitattributes
+/.gitignore
+/.distignore
+/composer.json
+/composer.lock
+/phpcs.xml.dist
+/phpunit.xml.dist
+/README.md
+/tests
+/tools
+/output
+/vendor
+/node_modules

@@ -1,0 +1,583 @@
+:root {
+	--docsbot-navy: #0f172a;
+	--docsbot-slate: #475569;
+	--docsbot-border: #dbe4ea;
+	--docsbot-surface: #ffffff;
+	--docsbot-cyan: #0891b8;
+	--docsbot-cyan-dark: #0e7490;
+	--docsbot-cyan-soft: #ecfeff;
+	--docsbot-success: #047857;
+	--docsbot-danger: #b91c1c;
+	--docsbot-warning: #a16207;
+}
+
+.docsbot-admin {
+	max-width: 1240px;
+	margin: 22px 24px 48px 4px;
+	color: var(--docsbot-navy);
+}
+
+.docsbot-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	padding: 20px 24px;
+	background: linear-gradient(120deg, #0f172a 0%, #142c43 65%, #0e7490 130%);
+	border-radius: 14px 14px 0 0;
+	color: #fff;
+}
+
+.docsbot-brand {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
+.docsbot-brand__mark {
+	display: grid;
+	place-items: center;
+	width: 48px;
+	height: 48px;
+	flex: 0 0 48px;
+	border-radius: 13px;
+	background: #fff;
+	box-shadow: 0 8px 20px rgba(6, 182, 212, 0.24);
+}
+
+.docsbot-brand__mark img {
+	width: 39px;
+	height: 39px;
+}
+
+.docsbot-brand h1 {
+	margin: 0 0 3px;
+	color: #fff;
+	font-size: 22px;
+	line-height: 1.25;
+}
+
+.docsbot-brand p {
+	margin: 0;
+	color: #cbd5e1;
+	font-size: 13px;
+}
+
+.docsbot-connection-pill,
+.docsbot-status-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 11px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.08);
+	font-size: 12px;
+	font-weight: 650;
+	white-space: nowrap;
+}
+
+.docsbot-connection-pill span {
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: #34d399;
+	box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.12);
+}
+
+.docsbot-connection-pill.is-idle span {
+	background: #fbbf24;
+	box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.12);
+}
+
+.docsbot-tabs {
+	display: flex;
+	gap: 2px;
+	overflow-x: auto;
+	padding: 0 16px;
+	background: #fff;
+	border: 1px solid var(--docsbot-border);
+	border-top: 0;
+	border-radius: 0 0 14px 14px;
+}
+
+.docsbot-tabs a {
+	position: relative;
+	padding: 15px 16px 14px;
+	color: #475569;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.docsbot-tabs a:hover,
+.docsbot-tabs a:focus-visible {
+	color: var(--docsbot-cyan-dark);
+}
+
+.docsbot-tabs a:focus-visible {
+	outline: 2px solid var(--docsbot-cyan);
+	outline-offset: -3px;
+	border-radius: 5px;
+}
+
+.docsbot-tabs a.is-active {
+	color: var(--docsbot-navy);
+}
+
+.docsbot-tabs a.is-active::after {
+	position: absolute;
+	right: 15px;
+	bottom: 0;
+	left: 15px;
+	height: 3px;
+	border-radius: 4px 4px 0 0;
+	background: var(--docsbot-cyan);
+	content: "";
+}
+
+.docsbot-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 280px;
+	gap: 22px;
+	align-items: start;
+	margin-top: 22px;
+}
+
+.docsbot-main {
+	display: grid;
+	gap: 18px;
+}
+
+.docsbot-sidebar {
+	display: grid;
+	gap: 16px;
+	position: sticky;
+	top: 46px;
+}
+
+.docsbot-card {
+	box-sizing: border-box;
+	padding: 24px;
+	background: var(--docsbot-surface);
+	border: 1px solid var(--docsbot-border);
+	border-radius: 12px;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.docsbot-card--hero {
+	padding: 28px;
+	background:
+		radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.11), transparent 35%),
+		#fff;
+}
+
+.docsbot-card h2 {
+	margin: 0 0 8px;
+	color: var(--docsbot-navy);
+	font-size: 20px;
+	line-height: 1.35;
+}
+
+.docsbot-card > p,
+.docsbot-card > div > p {
+	color: var(--docsbot-slate);
+}
+
+.docsbot-eyebrow {
+	margin: 0 0 6px !important;
+	color: var(--docsbot-cyan-dark) !important;
+	font-size: 11px;
+	font-weight: 750;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+}
+
+.docsbot-field {
+	margin: 20px 0;
+}
+
+.docsbot-field label,
+.docsbot-fieldset legend {
+	display: block;
+	margin-bottom: 7px;
+	color: #1e293b;
+	font-weight: 650;
+}
+
+.docsbot-field input[type="text"],
+.docsbot-field input[type="password"],
+.docsbot-field input[type="url"],
+.docsbot-field input[type="number"],
+.docsbot-field textarea,
+.docsbot-field select {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: none;
+	min-height: 42px;
+	padding: 7px 10px;
+	border-color: #b8c5cf;
+	border-radius: 7px;
+}
+
+.docsbot-field textarea {
+	resize: vertical;
+}
+
+.docsbot-field input:focus,
+.docsbot-field textarea:focus,
+.docsbot-field select:focus {
+	border-color: var(--docsbot-cyan);
+	box-shadow: 0 0 0 1px var(--docsbot-cyan);
+}
+
+.docsbot-field--short {
+	max-width: 220px;
+}
+
+.docsbot-grid {
+	display: grid;
+	gap: 0 18px;
+}
+
+.docsbot-grid--2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.docsbot-grid--3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.docsbot-secret {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.docsbot-secret input {
+	flex: 1;
+}
+
+.docsbot-check-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 10px 18px;
+	margin: 18px 0 22px;
+}
+
+.docsbot-check {
+	display: inline-flex;
+	gap: 8px;
+	align-items: flex-start;
+	color: #334155;
+}
+
+.docsbot-check input {
+	margin-top: 1px;
+}
+
+.docsbot-fieldset {
+	margin: 22px 0;
+	padding: 18px;
+	border: 1px solid var(--docsbot-border);
+	border-radius: 9px;
+}
+
+.docsbot-fieldset .docsbot-check-grid {
+	margin-bottom: 0;
+}
+
+.docsbot-color {
+	display: flex;
+	gap: 8px;
+}
+
+.docsbot-color input[type="color"] {
+	width: 48px;
+	height: 42px;
+	flex: 0 0 48px;
+	padding: 3px;
+	border: 1px solid #b8c5cf;
+	border-radius: 7px;
+	background: #fff;
+}
+
+.docsbot-option-list {
+	margin: 22px 0;
+	border-top: 1px solid var(--docsbot-border);
+}
+
+.docsbot-option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	padding: 17px 2px;
+	border-bottom: 1px solid var(--docsbot-border);
+}
+
+.docsbot-option__copy {
+	display: grid;
+	gap: 4px;
+}
+
+.docsbot-option__copy strong {
+	color: #1e293b;
+	font-size: 14px;
+}
+
+.docsbot-option__copy > span {
+	color: var(--docsbot-slate);
+}
+
+.docsbot-switch {
+	position: relative;
+	display: inline-flex;
+	flex: 0 0 42px;
+	width: 42px;
+	height: 24px;
+}
+
+.docsbot-switch input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+
+.docsbot-switch > span {
+	box-sizing: border-box;
+	width: 42px;
+	height: 24px;
+	border: 1px solid #94a3b8;
+	border-radius: 999px;
+	background: #cbd5e1;
+	transition: 0.15s ease;
+}
+
+.docsbot-switch > span::after {
+	display: block;
+	width: 18px;
+	height: 18px;
+	margin: 2px;
+	border-radius: 999px;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.28);
+	content: "";
+	transition: 0.15s ease;
+}
+
+.docsbot-switch input:checked + span {
+	border-color: var(--docsbot-cyan-dark);
+	background: var(--docsbot-cyan);
+}
+
+.docsbot-switch input:checked + span::after {
+	transform: translateX(18px);
+}
+
+.docsbot-switch input:focus-visible + span {
+	outline: 2px solid var(--docsbot-cyan-dark);
+	outline-offset: 2px;
+}
+
+.docsbot-inline-message {
+	margin: 18px 0 0;
+	padding: 11px 14px;
+	border: 1px solid #a7f3d0;
+	border-left: 4px solid var(--docsbot-success);
+	border-radius: 8px;
+	background: #ecfdf5;
+	color: #065f46;
+}
+
+.docsbot-inline-message p {
+	margin: 0;
+}
+
+.docsbot-inline-message--error {
+	border-color: #fecaca;
+	border-left-color: var(--docsbot-danger);
+	background: #fef2f2;
+	color: #991b1b;
+}
+
+.docsbot-inline-message--warning {
+	border-color: #fde68a;
+	border-left-color: var(--docsbot-warning);
+	background: #fffbeb;
+	color: #854d0e;
+}
+
+.docsbot-empty {
+	margin-top: 22px;
+	padding: 22px;
+	border: 1px dashed #9fb0bd;
+	border-radius: 9px;
+	background: #f8fafc;
+	text-align: center;
+}
+
+.docsbot-empty--large {
+	padding: 64px 28px;
+}
+
+.docsbot-empty--large .dashicons {
+	width: 46px;
+	height: 46px;
+	color: var(--docsbot-cyan);
+	font-size: 46px;
+}
+
+.docsbot-summary h2 {
+	font-size: 17px;
+}
+
+.docsbot-summary dl {
+	margin: 18px 0 0;
+}
+
+.docsbot-summary dl div {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 9px 0;
+	border-top: 1px solid var(--docsbot-border);
+}
+
+.docsbot-summary dt {
+	color: var(--docsbot-slate);
+}
+
+.docsbot-summary dd {
+	margin: 0;
+	color: #1e293b;
+	font-weight: 650;
+}
+
+.docsbot-help {
+	background: var(--docsbot-cyan-soft);
+	border-color: #bae6fd;
+}
+
+.docsbot-help h2 {
+	font-size: 16px;
+}
+
+.docsbot-deploy-hero {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px;
+}
+
+.docsbot-deploy-form {
+	display: grid;
+	gap: 18px;
+}
+
+.docsbot-deploy-form > .submit,
+.docsbot-deploy-form > .docsbot-save-large {
+	justify-self: start;
+	margin: 0;
+}
+
+.docsbot-sticky-save {
+	position: sticky;
+	z-index: 20;
+	top: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 10px 14px;
+	border: 1px solid #bae6fd;
+	border-radius: 9px;
+	background: #ecfeff;
+	box-shadow: 0 5px 20px rgba(15, 23, 42, 0.12);
+	color: #164e63;
+	font-weight: 600;
+}
+
+.docsbot-sticky-save[hidden] {
+	display: none;
+}
+
+.docsbot-status-badge {
+	border-color: #cbd5e1;
+	background: #f1f5f9;
+	color: #475569;
+}
+
+.docsbot-status-badge.is-live {
+	border-color: #a7f3d0;
+	background: #ecfdf5;
+	color: #047857;
+}
+
+.docsbot-save-large {
+	min-height: 40px !important;
+	padding: 3px 20px !important;
+}
+
+.docsbot-admin .button-primary {
+	border-color: var(--docsbot-cyan-dark);
+	background: var(--docsbot-cyan-dark);
+}
+
+.docsbot-admin .button-primary:hover,
+.docsbot-admin .button-primary:focus {
+	border-color: #155e75;
+	background: #155e75;
+}
+
+@media (max-width: 1050px) {
+	.docsbot-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.docsbot-sidebar {
+		position: static;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 782px) {
+	.docsbot-admin {
+		margin-right: 12px;
+	}
+
+	.docsbot-header {
+		align-items: flex-start;
+	}
+
+	.docsbot-connection-pill {
+		display: none;
+	}
+
+	.docsbot-tabs {
+		padding: 0 6px;
+	}
+
+	.docsbot-tabs a {
+		padding-right: 11px;
+		padding-left: 11px;
+	}
+
+	.docsbot-grid--2,
+	.docsbot-grid--3,
+	.docsbot-check-grid,
+	.docsbot-sidebar {
+		grid-template-columns: 1fr;
+	}
+
+	.docsbot-option {
+		align-items: flex-start;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.docsbot-switch > span,
+	.docsbot-switch > span::after {
+		transition: none;
+	}
+}

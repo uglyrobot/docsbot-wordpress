@@ -1,0 +1,87 @@
+# DocsBot AI for WordPress
+
+Bring your DocsBot AI support agent into WordPress with a polished, native settings experience.
+
+The plugin connects to the DocsBot Admin API from your WordPress server, lets an administrator select an accessible team and bot, edits the bot’s core widget content and design, and controls exactly where the widget appears.
+
+## Highlights
+
+- Server-side team and bot discovery
+- Native Content, Design, Actions, and Deploy settings
+- Literal URL-prefix inclusion and exclusion rules
+- Logged-in user and WordPress role restrictions
+- Membership-aware access for WooCommerce Memberships, MemberPress, Paid Memberships Pro, Restrict Content Pro, WP-Members, and Ultimate Member roles
+- Separate opt-ins for display name, email, and a site-scoped pseudonymous user ID
+- Private bot support with short-lived HS256 JWTs
+- Cache-safe runtime configuration: identity and signatures are never placed in cached page HTML
+- No dashboard nags or sitewide notices
+
+## Admin experience
+
+![Connect an accessible DocsBot team and bot from WordPress](.wordpress-org/screenshot-1.png)
+
+![Control page placement, audience rules, identity, and private signing](.wordpress-org/screenshot-5.png)
+
+## Requirements
+
+- WordPress 6.5 or newer
+- PHP 7.4 or newer with OpenSSL
+- A DocsBot account and user API key
+
+## Installation
+
+1. Download the release ZIP.
+2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**.
+3. Activate **DocsBot AI**.
+4. Open **DocsBot AI → Connection**.
+5. Create or copy your key from the [DocsBot API Keys page](https://docsbot.ai/app/api), then choose a team and bot.
+6. Configure the widget and enable it from the Deploy tab.
+
+Private bots also require the signature key from the selected bot’s Widget Embed page.
+
+## Security model
+
+The DocsBot user API key and optional signature key are encrypted with AES-256-GCM using installation-specific WordPress salts and stored in a non-autoloaded option. High-security installations can set `DOCSBOT_AI_API_KEY` and `DOCSBOT_AI_SIGNATURE_KEY` in `wp-config.php` instead.
+
+The API key never reaches browser JavaScript. For private bots, WordPress checks page, login, role, and membership rules before issuing a token. The browser receives a short-lived JWT—not the signing key—through a no-store REST response.
+
+URL path rules are placement controls, not an authorization boundary. Sites that need protected chat must also enable a server-verified login, WordPress role, or membership restriction.
+
+Identity sharing is disabled by default. The plugin never sends membership, role, payment, password, or subscription data to DocsBot.
+
+## External services
+
+This plugin connects to DocsBot AI, a third-party SaaS:
+
+- `https://docsbot.ai/api` is called from the WordPress server when an administrator connects an account, lists teams or bots, reads a bot, or saves supported bot settings.
+- `https://widget.docsbot.ai/chat.js` is loaded for eligible site visitors when the widget is enabled.
+- The DocsBot chat service processes visitor messages and any identity fields explicitly enabled by the administrator.
+
+Review the [DocsBot Privacy Policy](https://docsbot.ai/privacy), [Terms of Service](https://docsbot.ai/terms), and [widget documentation](https://docsbot.ai/documentation/developer/embeddable-chat-widget).
+
+## Development
+
+Install checks:
+
+```bash
+composer install
+composer check
+```
+
+Run a lightweight WordPress Playground site:
+
+```bash
+npx @wp-playground/cli@latest start \
+  --path=./docsbot-ai \
+  --wp=latest \
+  --php=8.3 \
+  --port=9400 \
+  --skip-browser \
+  --reset
+```
+
+The production plugin has no Composer or Node runtime dependencies.
+
+## License
+
+GPL-2.0-or-later.
