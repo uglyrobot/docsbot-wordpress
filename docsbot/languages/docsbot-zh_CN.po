@@ -966,3 +966,75 @@ msgstr ""
 #~ "defense in depth."
 #~ msgstr ""
 #~ "每行一个主机名，不含协议或通配符。设置会保存到 DocsBot，作为纵深防御措施。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server"
+msgstr "添加 MCP 服务器"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill"
+msgstr "添加技能"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Allow the bot to detect when a user needs to speak to a human."
+msgstr "允许机器人检测用户何时需要与人工客服交谈。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Label"
+msgstr "按钮标签"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Link"
+msgstr "按钮链接"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect Feedback"
+msgstr "收集反馈"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect ratings (CSAT) from users after they interact with the bot."
+msgstr "在用户与机器人互动后收集评分（CSAT）。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Connect your bot to external tools and data from your services."
+msgstr "将机器人连接到外部工具和服务数据。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom Buttons"
+msgstr "自定义按钮"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Enable bot skills to give your bot special abilities."
+msgstr "启用机器人技能，为机器人提供特殊能力。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Human Support Escalation"
+msgstr "转接人工支持"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Let your bot show a configured button when its instructions match."
+msgstr "当符合指令时，让机器人显示已配置的按钮。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP Servers"
+msgstr "MCP 服务器"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New!"
+msgstr "新功能！"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scheduling Tools"
+msgstr "预约工具"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skills"
+msgstr "技能"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trigger an embedded booking widget for Calendly, Cal.com, or TidyCal."
+msgstr "打开 Calendly、Cal.com 或 TidyCal 的嵌入式预约组件。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Web Search"
+msgstr "网页搜索"

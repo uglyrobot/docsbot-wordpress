@@ -446,48 +446,6 @@
 	line-height: 1.45;
 }
 
-.docsbot-action-group {
-	margin-top: 14px;
-	border: 1px solid #dbe4ea;
-	border-radius: 11px;
-	background: #fff;
-}
-
-.docsbot-action-group summary {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 16px 18px;
-	color: #1e293b;
-	font-size: 14px;
-	font-weight: 700;
-	cursor: pointer;
-	list-style: none;
-}
-
-.docsbot-action-group summary::-webkit-details-marker {
-	display: none;
-}
-
-.docsbot-action-group summary::after {
-	width: 8px;
-	height: 8px;
-	border-right: 2px solid #64748b;
-	border-bottom: 2px solid #64748b;
-	content: "";
-	transform: rotate(45deg);
-	transition: transform 0.15s ease;
-}
-
-.docsbot-action-group[open] summary::after {
-	transform: rotate(225deg);
-}
-
-.docsbot-action-group .docsbot-option-list {
-	margin: 0;
-	padding: 0 14px 14px;
-}
-
 .docsbot-action-nested {
 	margin: -2px 16px 14px 70px;
 	padding: 1px 16px 2px;
@@ -497,6 +455,106 @@
 
 .docsbot-action-nested[hidden] {
 	display: none;
+}
+
+.docsbot-action-list--built-in {
+	margin: 18px 0 0;
+}
+
+.docsbot-action-category {
+	margin-top: 24px;
+	padding-top: 24px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.docsbot-action-category__heading {
+	margin-bottom: 16px;
+}
+
+.docsbot-action-category__heading h3 {
+	margin: 0;
+	color: #1f2937;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+.docsbot-action-category__heading p {
+	margin: 2px 0 0;
+	color: #64748b;
+	font-size: 12px;
+	line-height: 1.45;
+}
+
+.docsbot-new-badge {
+	position: relative;
+	top: -1px;
+	display: inline-flex;
+	align-items: center;
+	margin-left: 8px;
+	padding: 2px 10px;
+	border-radius: 999px;
+	background: #0891b8;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.4;
+	vertical-align: middle;
+}
+
+.docsbot-action-list--category {
+	gap: 12px;
+	margin: 0;
+}
+
+.docsbot-action-list--category .docsbot-option {
+	padding: 12px 16px;
+	border: 0;
+	border-radius: 8px;
+	background: #f1f5f9;
+	box-shadow: none;
+}
+
+.docsbot-action-add {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	width: 100%;
+	min-height: 48px;
+	box-sizing: border-box;
+	border: 1px dashed #94a3b8;
+	border-radius: 8px;
+	background: #fff;
+	color: #475569;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.docsbot-action-add:hover,
+.docsbot-action-add:focus {
+	border-color: var(--docsbot-cyan);
+	background: #ecfeff;
+	color: #0e7490;
+}
+
+.docsbot-action-add:focus-visible {
+	outline: 2px solid var(--docsbot-cyan);
+	outline-offset: 2px;
+}
+
+.docsbot-action-add span {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1;
+}
+
+.docsbot-action-footer {
+	margin-top: 24px;
+	padding-top: 24px;
+	border-top: 1px solid #e2e8f0;
 }
 
 .docsbot-connected-account {

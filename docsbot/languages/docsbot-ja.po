@@ -998,3 +998,75 @@ msgstr ""
 #~ msgstr ""
 #~ "1 行に 1 つのホスト名を、スキームやワイルドカードなしで入力します。多層防"
 #~ "御のため DocsBot に保存されます。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server"
+msgstr "MCPサーバーを追加"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill"
+msgstr "スキルを追加"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Allow the bot to detect when a user needs to speak to a human."
+msgstr "ユーザーが担当者との会話を必要としていることをボットが検出できるようにします。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Label"
+msgstr "ボタンのラベル"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Link"
+msgstr "ボタンのリンク"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect Feedback"
+msgstr "フィードバックを収集"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect ratings (CSAT) from users after they interact with the bot."
+msgstr "ボットとの対話後にユーザーから評価（CSAT）を収集します。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Connect your bot to external tools and data from your services."
+msgstr "ボットを外部ツールやサービスのデータに接続します。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom Buttons"
+msgstr "カスタムボタン"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Enable bot skills to give your bot special abilities."
+msgstr "ボットスキルを有効にして、特別な機能を追加します。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Human Support Escalation"
+msgstr "有人サポートへのエスカレーション"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Let your bot show a configured button when its instructions match."
+msgstr "指示に一致したときに、設定済みのボタンをボットに表示させます。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP Servers"
+msgstr "MCPサーバー"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New!"
+msgstr "新機能"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scheduling Tools"
+msgstr "予約ツール"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skills"
+msgstr "スキル"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trigger an embedded booking widget for Calendly, Cal.com, or TidyCal."
+msgstr "Calendly、Cal.com、TidyCalの埋め込み予約ウィジェットを開きます。"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Web Search"
+msgstr "ウェブ検索"

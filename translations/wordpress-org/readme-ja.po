@@ -489,9 +489,10 @@ msgid ""
 msgstr "カスタムの起動アイコン、ボットアバター、ヘッダーロゴを WordPress メディアライブラリから選択できるようになりました。"
 
 msgid ""
-"Added dashboard-style visual icon choices, grouped expandable actions, image "
-"uploads, voice input, and matching preview controls."
-msgstr "ダッシュボード形式の視覚的なアイコン選択、グループ化された展開可能なアクション、画像アップロード、音声入力、対応するプレビューコントロールを追加しました。"
+"Added expanded dashboard action categories for Scheduling Tools, Custom "
+"Buttons, Skills, and MCP Servers, plus image uploads, voice input, and "
+"matching preview controls."
+msgstr "予約ツール、カスタムボタン、スキル、MCPサーバー向けの展開されたダッシュボード形式のアクションカテゴリに加え、画像アップロード、音声入力、対応するプレビューコントロールを追加しました。"
 
 msgid ""
 "Moved support settings into Human Support Escalation and content-related "

@@ -477,9 +477,10 @@ msgid ""
 msgstr "新增从 WordPress 媒体库选择自定义启动图标、机器人头像和页眉徽标。"
 
 msgid ""
-"Added dashboard-style visual icon choices, grouped expandable actions, image "
-"uploads, voice input, and matching preview controls."
-msgstr "新增仪表盘风格的可视化图标选项、分组可展开操作、图片上传、语音输入和相应的预览控件。"
+"Added expanded dashboard action categories for Scheduling Tools, Custom "
+"Buttons, Skills, and MCP Servers, plus image uploads, voice input, and "
+"matching preview controls."
+msgstr "新增仪表盘风格的展开操作类别，包括预约工具、自定义按钮、技能和 MCP 服务器，以及图片上传、语音输入和相应的预览控件。"
 
 msgid ""
 "Moved support settings into Human Support Escalation and content-related "

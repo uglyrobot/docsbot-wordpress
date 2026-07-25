@@ -321,8 +321,8 @@ msgstr "1.0.4"
 msgid "Added WordPress Media Library selection for custom launcher icons, bot avatars, and header logos."
 msgstr "Adicionada a seleção na biblioteca de mídia do WordPress para ícones de abertura, avatares do bot e logotipos do cabeçalho personalizados."
 
-msgid "Added dashboard-style visual icon choices, grouped expandable actions, image uploads, voice input, and matching preview controls."
-msgstr "Adicionadas opções visuais de ícones no estilo do painel, ações expansíveis agrupadas, uploads de imagens, entrada de voz e controles de pré-visualização correspondentes."
+msgid "Added expanded dashboard action categories for Scheduling Tools, Custom Buttons, Skills, and MCP Servers, plus image uploads, voice input, and matching preview controls."
+msgstr "Adicionadas categorias de ações expandidas no estilo do painel para ferramentas de agendamento, botões personalizados, habilidades e servidores MCP, além de uploads de imagens, entrada de voz e controles de pré-visualização correspondentes."
 
 msgid "Moved support settings into Human Support Escalation and content-related options into Content."
 msgstr "As configurações de suporte foram movidas para Encaminhamento ao suporte humano e as opções relacionadas ao conteúdo para Conteúdo."

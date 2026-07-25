@@ -929,3 +929,75 @@ msgid ""
 "Do not submit passwords, payment details, or other sensitive information in "
 "chat."
 msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Allow the bot to detect when a user needs to speak to a human."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Label"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Link"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect Feedback"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect ratings (CSAT) from users after they interact with the bot."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Connect your bot to external tools and data from your services."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom Buttons"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Enable bot skills to give your bot special abilities."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Human Support Escalation"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Let your bot show a configured button when its instructions match."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP Servers"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New!"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scheduling Tools"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skills"
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trigger an embedded booking widget for Calendly, Cal.com, or TidyCal."
+msgstr ""
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Web Search"
+msgstr ""

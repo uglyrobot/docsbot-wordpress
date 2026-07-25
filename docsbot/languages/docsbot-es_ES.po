@@ -1007,3 +1007,75 @@ msgstr ""
 #~ msgstr ""
 #~ "Introduce un nombre de host por línea, sin esquema ni comodín. Se guarda "
 #~ "en DocsBot como defensa en profundidad."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add MCP server"
+msgstr "Añadir servidor MCP"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Add skill"
+msgstr "Añadir habilidad"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Allow the bot to detect when a user needs to speak to a human."
+msgstr "Permite que el bot detecte cuándo un usuario necesita hablar con una persona."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Label"
+msgstr "Etiqueta del botón"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Button Link"
+msgstr "Enlace del botón"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect Feedback"
+msgstr "Recopilar comentarios"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Collect ratings (CSAT) from users after they interact with the bot."
+msgstr "Recopila valoraciones (CSAT) de los usuarios después de interactuar con el bot."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Connect your bot to external tools and data from your services."
+msgstr "Conecta tu bot a herramientas externas y datos de tus servicios."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Custom Buttons"
+msgstr "Botones personalizados"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Enable bot skills to give your bot special abilities."
+msgstr "Activa habilidades para dar a tu bot capacidades especiales."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Human Support Escalation"
+msgstr "Escalado a soporte humano"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Let your bot show a configured button when its instructions match."
+msgstr "Permite que tu bot muestre un botón configurado cuando se cumplan sus instrucciones."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "MCP Servers"
+msgstr "Servidores MCP"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "New!"
+msgstr "¡Nuevo!"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Scheduling Tools"
+msgstr "Herramientas de programación"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Skills"
+msgstr "Habilidades"
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Trigger an embedded booking widget for Calendly, Cal.com, or TidyCal."
+msgstr "Abre un widget de reservas integrado para Calendly, Cal.com o TidyCal."
+
+#: docsbot/includes/class-docsbot-admin.php
+msgid "Web Search"
+msgstr "Búsqueda web"

@@ -480,44 +480,74 @@ final class DocsBot_Admin {
 		if ( ! is_array( $bot ) ) {
 			return;
 		}
-		$labels = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$labels   = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$bot_id   = isset( $bot['id'] ) && is_string( $bot['id'] ) ? $bot['id'] : (string) $settings['bot_id'];
+		$bot_root = 'https://docsbot.ai/app/bots/' . rawurlencode( $bot_id ) . '/configure/';
 		?>
 		<div class="docsbot-card">
 			<p class="docsbot-eyebrow"><?php esc_html_e( 'Actions', 'docsbot' ); ?></p>
 			<h2><?php esc_html_e( 'Choose what the widget can do', 'docsbot' ); ?></h2>
 			<p><?php esc_html_e( 'These WordPress embed options activate features already enabled and configured for your bot and plan in DocsBot.', 'docsbot' ); ?></p>
 			<?php $this->form_open( 'docsbot_actions' ); ?>
-				<details class="docsbot-action-group" open>
-					<summary><span><?php esc_html_e( 'Built-in actions', 'docsbot' ); ?></span></summary>
-					<div class="docsbot-option-list docsbot-action-list">
-						<?php $this->option_toggle( 'use_feedback', __( 'Answer feedback', 'docsbot' ), __( 'Let visitors rate answers as helpful or unhelpful.', 'docsbot' ), $settings['use_feedback'], 'feedback' ); ?>
-						<div>
-							<?php $this->option_toggle( 'use_escalation', __( 'Human support escalation', 'docsbot' ), __( 'Show a direct path to your support team.', 'docsbot' ), $settings['use_escalation'], 'support' ); ?>
-							<div class="docsbot-action-nested" data-depends-on="use_escalation">
-								<?php $this->text_field( 'support_label', __( 'Support button label', 'docsbot' ), $labels['getSupport'] ?? '', 80 ); ?>
-								<div class="docsbot-field">
-									<label for="docsbot-support-link"><?php esc_html_e( 'Contact or support URL', 'docsbot' ); ?></label>
-									<input type="url" id="docsbot-support-link" name="support_link" value="<?php echo esc_attr( is_array( $bot ) ? ( $bot['supportLink'] ?? '' ) : '' ); ?>" placeholder="https://example.com/support">
-								</div>
+				<div class="docsbot-option-list docsbot-action-list docsbot-action-list--built-in">
+					<?php $this->option_toggle( 'use_feedback', __( 'Collect Feedback', 'docsbot' ), __( 'Collect ratings (CSAT) from users after they interact with the bot.', 'docsbot' ), $settings['use_feedback'], 'feedback' ); ?>
+					<div>
+						<?php $this->option_toggle( 'use_escalation', __( 'Human Support Escalation', 'docsbot' ), __( 'Allow the bot to detect when a user needs to speak to a human.', 'docsbot' ), $settings['use_escalation'], 'support' ); ?>
+						<div class="docsbot-action-nested" data-depends-on="use_escalation">
+							<?php $this->text_field( 'support_label', __( 'Button Label', 'docsbot' ), $labels['getSupport'] ?? '', 80 ); ?>
+							<div class="docsbot-field">
+								<label for="docsbot-support-link"><?php esc_html_e( 'Button Link', 'docsbot' ); ?></label>
+								<input type="url" id="docsbot-support-link" name="support_link" value="<?php echo esc_attr( is_array( $bot ) ? ( $bot['supportLink'] ?? '' ) : '' ); ?>" placeholder="https://example.com/support/">
 							</div>
 						</div>
 					</div>
-				</details>
-				<details class="docsbot-action-group">
-					<summary><span><?php esc_html_e( 'Scheduling', 'docsbot' ); ?></span></summary>
-					<div class="docsbot-option-list docsbot-action-list">
+				</div>
+
+				<section class="docsbot-action-category" aria-labelledby="docsbot-scheduling-title">
+					<div class="docsbot-action-category__heading">
+						<h3 id="docsbot-scheduling-title"><?php esc_html_e( 'Scheduling Tools', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
+						<p><?php esc_html_e( 'Trigger an embedded booking widget for Calendly, Cal.com, or TidyCal.', 'docsbot' ); ?></p>
+					</div>
+					<div class="docsbot-option-list docsbot-action-list docsbot-action-list--category">
 						<?php $this->option_toggle( 'use_calendly', __( 'Calendly booking', 'docsbot' ), __( 'Allow the configured Calendly scheduling action.', 'docsbot' ), $settings['use_calendly'], 'calendar' ); ?>
 						<?php $this->option_toggle( 'use_calcom', __( 'Cal.com booking', 'docsbot' ), __( 'Allow the configured Cal.com scheduling action.', 'docsbot' ), $settings['use_calcom'], 'calendar' ); ?>
 						<?php $this->option_toggle( 'use_tidycal', __( 'TidyCal booking', 'docsbot' ), __( 'Allow the configured TidyCal scheduling action.', 'docsbot' ), $settings['use_tidycal'], 'calendar' ); ?>
 					</div>
-				</details>
-				<details class="docsbot-action-group">
-					<summary><span><?php esc_html_e( 'Agent tools', 'docsbot' ); ?></span></summary>
-					<div class="docsbot-option-list docsbot-action-list">
-						<?php $this->option_toggle( 'use_web_search', __( 'Web search', 'docsbot' ), __( 'Allow agent-mode web search when your plan and bot support it.', 'docsbot' ), $settings['use_web_search'], 'globe' ); ?>
+				</section>
+
+				<section class="docsbot-action-category" aria-labelledby="docsbot-buttons-title">
+					<div class="docsbot-action-category__heading">
+						<h3 id="docsbot-buttons-title"><?php esc_html_e( 'Custom Buttons', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
+						<p><?php esc_html_e( 'Let your bot show a configured button when its instructions match.', 'docsbot' ); ?></p>
+					</div>
+					<div class="docsbot-option-list docsbot-action-list docsbot-action-list--category">
 						<?php $this->option_toggle( 'use_custom_buttons', __( 'Custom action buttons', 'docsbot' ), __( 'Allow custom button tools configured in DocsBot.', 'docsbot' ), $settings['use_custom_buttons'], 'button' ); ?>
 					</div>
-				</details>
+				</section>
+
+				<section class="docsbot-action-category" aria-labelledby="docsbot-skills-title">
+					<div class="docsbot-action-category__heading">
+						<h3 id="docsbot-skills-title"><?php esc_html_e( 'Skills', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
+						<p><?php esc_html_e( 'Enable bot skills to give your bot special abilities.', 'docsbot' ); ?></p>
+					</div>
+					<a class="docsbot-action-add" href="<?php echo esc_url( $bot_root . 'skills' ); ?>" target="_blank" rel="noopener noreferrer">
+						<span aria-hidden="true">+</span><?php esc_html_e( 'Add skill', 'docsbot' ); ?>
+					</a>
+				</section>
+
+				<section class="docsbot-action-category" aria-labelledby="docsbot-mcp-title">
+					<div class="docsbot-action-category__heading">
+						<h3 id="docsbot-mcp-title"><?php esc_html_e( 'MCP Servers', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
+						<p><?php esc_html_e( 'Connect your bot to external tools and data from your services.', 'docsbot' ); ?></p>
+					</div>
+					<a class="docsbot-action-add" href="<?php echo esc_url( $bot_root . 'mcp-connections' ); ?>" target="_blank" rel="noopener noreferrer">
+						<span aria-hidden="true">+</span><?php esc_html_e( 'Add MCP server', 'docsbot' ); ?>
+					</a>
+				</section>
+
+				<div class="docsbot-action-footer">
+					<?php $this->option_toggle( 'use_web_search', __( 'Web Search', 'docsbot' ), __( 'Allow agent-mode web search when your plan and bot support it.', 'docsbot' ), $settings['use_web_search'], 'globe' ); ?>
+				</div>
 				<?php submit_button( __( 'Save actions', 'docsbot' ), 'primary', 'submit', false ); ?>
 			</form>
 		</div>

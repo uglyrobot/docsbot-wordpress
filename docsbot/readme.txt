@@ -105,7 +105,7 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 
 = 1.0.4 =
 * Added WordPress Media Library selection for custom launcher icons, bot avatars, and header logos.
-* Added dashboard-style visual icon choices, grouped expandable actions, image uploads, voice input, and matching preview controls.
+* Added expanded dashboard action categories for Scheduling Tools, Custom Buttons, Skills, and MCP Servers, plus image uploads, voice input, and matching preview controls.
 * Moved support settings into Human Support Escalation and content-related options into Content.
 * Removed editable domain restrictions and now preserves unrestricted bots while transparently adding the WordPress hostname to existing allowlists.
 
