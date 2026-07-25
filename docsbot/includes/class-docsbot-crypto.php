@@ -97,7 +97,14 @@ final class DocsBot_Crypto {
 	 * @return string
 	 */
 	public static function sign_jwt( $payload, $secret ) {
-		$header   = self::base64url( wp_json_encode( array( 'alg' => 'HS256', 'typ' => 'JWT' ) ) );
+		$header   = self::base64url(
+			wp_json_encode(
+				array(
+					'alg' => 'HS256',
+					'typ' => 'JWT',
+				)
+			)
+		);
 		$body     = self::base64url( wp_json_encode( $payload ) );
 		$unsigned = $header . '.' . $body;
 		$hash     = hash_hmac( 'sha256', $unsigned, $secret, true );

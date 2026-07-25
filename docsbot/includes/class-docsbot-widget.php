@@ -95,7 +95,7 @@ final class DocsBot_Widget {
 				'callback'            => array( $this, 'rest_widget_config' ),
 				'permission_callback' => array( $this, 'rest_widget_permission' ),
 				'args'                => array(
-					'path' => array(
+					'path'   => array(
 						'type'              => 'string',
 						'required'          => true,
 						'sanitize_callback' => array( $this, 'sanitize_path' ),
@@ -172,18 +172,18 @@ final class DocsBot_Widget {
 		$config   = array(
 			'id'      => $settings['team_id'] . '/' . $settings['bot_id'],
 			'options' => array(
-				'useFeedback'        => (bool) $settings['use_feedback'],
-				'useEscalation'      => (bool) $settings['use_escalation'],
-				'useWebSearch'       => (bool) $settings['use_web_search'],
-				'useCalendly'        => (bool) $settings['use_calendly'],
-				'useCalCom'          => (bool) $settings['use_calcom'],
-				'useTidyCal'         => (bool) $settings['use_tidycal'],
-				'useCustomButtons'   => (bool) $settings['use_custom_buttons'],
-				'showAgentActivity'  => (bool) $settings['show_agent_activity'],
-				'linkSafetyEnabled'  => (bool) $settings['link_safety_enabled'],
-				'headerAlignment'    => (string) $settings['header_alignment'],
-				'horizontalMargin'   => (int) $settings['horizontal_margin'],
-				'verticalMargin'     => (int) $settings['vertical_margin'],
+				'useFeedback'       => (bool) $settings['use_feedback'],
+				'useEscalation'     => (bool) $settings['use_escalation'],
+				'useWebSearch'      => (bool) $settings['use_web_search'],
+				'useCalendly'       => (bool) $settings['use_calendly'],
+				'useCalCom'         => (bool) $settings['use_calcom'],
+				'useTidyCal'        => (bool) $settings['use_tidycal'],
+				'useCustomButtons'  => (bool) $settings['use_custom_buttons'],
+				'showAgentActivity' => (bool) $settings['show_agent_activity'],
+				'linkSafetyEnabled' => (bool) $settings['link_safety_enabled'],
+				'headerAlignment'   => (string) $settings['header_alignment'],
+				'horizontalMargin'  => (int) $settings['horizontal_margin'],
+				'verticalMargin'    => (int) $settings['vertical_margin'],
 			),
 		);
 
@@ -203,10 +203,10 @@ final class DocsBot_Widget {
 			$now                 = time();
 			$config['signature'] = DocsBot_Crypto::sign_jwt(
 				array(
-					'team_id' => (string) $settings['team_id'],
-					'bot_id'  => (string) $settings['bot_id'],
-					'iat'     => $now,
-					'exp'     => $now + min( 3600, max( 300, (int) $settings['jwt_ttl'] ) ),
+					'team_id'  => (string) $settings['team_id'],
+					'bot_id'   => (string) $settings['bot_id'],
+					'iat'      => $now,
+					'exp'      => $now + min( 3600, max( 300, (int) $settings['jwt_ttl'] ) ),
 					'metadata' => empty( $identify ) ? new stdClass() : $identify,
 				),
 				$signature_key
