@@ -1,18 +1,18 @@
-=== DocsBot AI ===
+=== DocsBot ===
 Contributors: uglyrobot
 Tags: artificial intelligence, chatbot, customer support, documentation, live chat
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Add your DocsBot AI support agent to WordPress, customize the widget, and control exactly where and for whom it appears.
+Add your DocsBot support agent to WordPress, customize the widget, and control exactly where and for whom it appears.
 
 == Description ==
 
-DocsBot AI for WordPress gives site administrators a secure, native way to connect a DocsBot account and deploy an AI support widget.
+DocsBot for WordPress gives site administrators a secure, native way to connect a DocsBot account and deploy an AI support widget.
 
 Connect your DocsBot API key, choose a team and bot you can access, then configure the most useful widget content, design, and action settings without leaving WordPress. The Deploy tab controls page paths, logged-in users, WordPress roles, popular membership systems, optional conversation identity, and private-bot signing.
 
@@ -41,7 +41,7 @@ The DocsBot API key remains on the WordPress server. Private-bot signature keys 
 
 = External service =
 
-This plugin connects to DocsBot AI, a third-party service:
+This plugin connects to DocsBot, a third-party service:
 
 * `https://docsbot.ai/api` is called from the WordPress server when an administrator connects an account, lists teams or bots, reads settings, or saves supported bot settings.
 * `https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the widget is enabled.
@@ -52,8 +52,8 @@ Use of DocsBot is subject to the [DocsBot Privacy Policy](https://docsbot.ai/pri
 == Installation ==
 
 1. Upload the plugin directory to `/wp-content/plugins/` or install the ZIP from **Plugins > Add New Plugin > Upload Plugin**.
-2. Activate **DocsBot AI**.
-3. Open **DocsBot AI > Connection**.
+2. Activate **DocsBot**.
+3. Open **DocsBot > Connection**.
 4. Get your user API key from the [DocsBot API Keys page](https://docsbot.ai/app/api), paste it into WordPress, and connect.
 5. Choose a team, save, then choose a bot.
 6. Configure Content, Design, and Actions.
@@ -98,6 +98,9 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 5. Deploy by URL path, user role, membership, metadata, and private signing.
 
 == Changelog ==
+
+= 1.0.1 =
+* Updated product naming to DocsBot.
 
 = 1.0.0 =
 * Initial public release.

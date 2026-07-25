@@ -66,8 +66,8 @@ final class DocsBot_AI_Admin {
 	 */
 	public function admin_menu() {
 		add_menu_page(
-			__( 'DocsBot AI', 'docsbot-ai' ),
-			__( 'DocsBot AI', 'docsbot-ai' ),
+			__( 'DocsBot', 'docsbot-ai' ),
+			__( 'DocsBot', 'docsbot-ai' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),
@@ -140,7 +140,7 @@ final class DocsBot_AI_Admin {
 						<img src="<?php echo esc_url( DOCSBOT_AI_URL . 'assets/images/docsbot-icon.svg' ); ?>" alt="">
 					</span>
 					<div>
-						<h1><?php esc_html_e( 'DocsBot AI for WordPress', 'docsbot-ai' ); ?></h1>
+						<h1><?php esc_html_e( 'DocsBot for WordPress', 'docsbot-ai' ); ?></h1>
 						<p><?php esc_html_e( 'Configure your AI support experience without leaving WordPress.', 'docsbot-ai' ); ?></p>
 					</div>
 				</div>
@@ -880,7 +880,7 @@ final class DocsBot_AI_Admin {
 	private function guard( $action ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die(
-				esc_html__( 'You do not have permission to manage DocsBot AI.', 'docsbot-ai' ),
+				esc_html__( 'You do not have permission to manage DocsBot.', 'docsbot-ai' ),
 				'',
 				array( 'response' => 403 )
 			);

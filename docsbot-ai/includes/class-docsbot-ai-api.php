@@ -136,7 +136,7 @@ final class DocsBot_AI_API {
 				'Authorization' => 'Bearer ' . $api_key,
 				'Accept'        => 'application/json',
 				'Content-Type'  => 'application/json',
-				'User-Agent'    => 'DocsBot-AI-WordPress/' . DOCSBOT_AI_VERSION,
+				'User-Agent'    => 'DocsBot-WordPress/' . DOCSBOT_AI_VERSION,
 			),
 		);
 

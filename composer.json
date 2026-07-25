@@ -1,6 +1,6 @@
 {
-  "name": "docsbot-ai/docsbot-ai-wordpress",
-  "description": "Official DocsBot AI chat widget integration for WordPress.",
+  "name": "docsbot/docsbot-wordpress",
+  "description": "Official DocsBot chat widget integration for WordPress.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "require": {

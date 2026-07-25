@@ -1,6 +1,6 @@
-# DocsBot AI for WordPress
+# DocsBot for WordPress
 
-Bring your DocsBot AI support agent into WordPress with a polished, native settings experience.
+Bring your DocsBot support agent into WordPress with a polished, native settings experience.
 
 The plugin connects to the DocsBot Admin API from your WordPress server, lets an administrator select an accessible team and bot, edits the bot’s core widget content and design, and controls exactly where the widget appears.
 
@@ -32,8 +32,8 @@ The plugin connects to the DocsBot Admin API from your WordPress server, lets an
 
 1. Download the release ZIP.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**.
-3. Activate **DocsBot AI**.
-4. Open **DocsBot AI → Connection**.
+3. Activate **DocsBot**.
+4. Open **DocsBot → Connection**.
 5. Create or copy your key from the [DocsBot API Keys page](https://docsbot.ai/app/api), then choose a team and bot.
 6. Configure the widget and enable it from the Deploy tab.
 
@@ -51,7 +51,7 @@ Identity sharing is disabled by default. The plugin never sends membership, role
 
 ## External services
 
-This plugin connects to DocsBot AI, a third-party SaaS:
+This plugin connects to DocsBot, a third-party SaaS:
 
 - `https://docsbot.ai/api` is called from the WordPress server when an administrator connects an account, lists teams or bots, reads a bot, or saves supported bot settings.
 - `https://widget.docsbot.ai/chat.js` is loaded for eligible site visitors when the widget is enabled.

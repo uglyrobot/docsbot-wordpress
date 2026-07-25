@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="DocsBot AI">
-	<description>WordPress.org coding and compatibility checks for DocsBot AI.</description>
+<ruleset name="DocsBot">
+	<description>WordPress.org coding and compatibility checks for DocsBot.</description>
 
 	<file>docsbot-ai</file>
 	<exclude-pattern>docsbot-ai/languages/*</exclude-pattern>

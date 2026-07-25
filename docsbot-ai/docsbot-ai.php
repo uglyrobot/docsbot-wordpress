@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name:       DocsBot AI
+ * Plugin Name:       DocsBot
  * Plugin URI:        https://docsbot.ai/
  * Description:       Connect a DocsBot account, configure your AI chat widget, and control where it appears on your WordPress site.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Author:            DocsBot AI
+ * Author:            DocsBot
  * Author URI:        https://docsbot.ai/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DOCSBOT_AI_VERSION', '1.0.0' );
+define( 'DOCSBOT_AI_VERSION', '1.0.1' );
 define( 'DOCSBOT_AI_FILE', __FILE__ );
 define( 'DOCSBOT_AI_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DOCSBOT_AI_URL', plugin_dir_url( __FILE__ ) );

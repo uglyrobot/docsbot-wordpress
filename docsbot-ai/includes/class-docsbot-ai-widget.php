@@ -264,9 +264,9 @@ final class DocsBot_AI_Widget {
 		}
 
 		wp_add_privacy_policy_content(
-			__( 'DocsBot AI', 'docsbot-ai' ),
+			__( 'DocsBot', 'docsbot-ai' ),
 			wp_kses_post(
-				'<p>' . __( 'This site may use DocsBot AI to provide an interactive chat. Chat messages and any identity fields enabled by the site administrator may be sent to DocsBot AI for processing and retained according to the site owner’s DocsBot settings. Do not submit passwords, payment details, or other sensitive information in chat.', 'docsbot-ai' ) . '</p>'
+				'<p>' . __( 'This site may use DocsBot to provide an interactive chat. Chat messages and any identity fields enabled by the site administrator may be sent to DocsBot for processing and retained according to the site owner’s DocsBot settings. Do not submit passwords, payment details, or other sensitive information in chat.', 'docsbot-ai' ) . '</p>'
 			)
 		);
 	}
