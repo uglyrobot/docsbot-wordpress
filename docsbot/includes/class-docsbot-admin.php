@@ -491,8 +491,8 @@ final class DocsBot_Admin {
 		if ( ! is_array( $bot ) ) {
 			return;
 		}
-		$bot_id   = isset( $bot['id'] ) && is_string( $bot['id'] ) ? $bot['id'] : (string) $settings['bot_id'];
-		$draft    = get_transient( $this->actions_draft_key() );
+		$bot_id = isset( $bot['id'] ) && is_string( $bot['id'] ) ? $bot['id'] : (string) $settings['bot_id'];
+		$draft  = get_transient( $this->actions_draft_key() );
 		if ( is_array( $draft ) && hash_equals( $bot_id, (string) ( $draft['bot_id'] ?? '' ) ) ) {
 			if ( isset( $draft['tools'] ) && is_array( $draft['tools'] ) ) {
 				$bot['tools'] = $draft['tools'];
@@ -729,7 +729,11 @@ final class DocsBot_Admin {
 									</button>
 								<?php endforeach; ?>
 							</div>
-							<select name="<?php echo esc_attr( $prefix ); ?>[icon]" data-icon-picker-select hidden aria-hidden="true" tabindex="-1"><?php foreach ( $icons as $option_icon => $icon_label ) : ?><option value="<?php echo esc_attr( $option_icon ); ?>" <?php selected( $icon, $option_icon ); ?>><?php echo esc_html( $icon_label ); ?></option><?php endforeach; ?></select>
+							<select name="<?php echo esc_attr( $prefix ); ?>[icon]" data-icon-picker-select hidden aria-hidden="true" tabindex="-1">
+							<?php
+							foreach ( $icons as $option_icon => $icon_label ) :
+								?>
+								<option value="<?php echo esc_attr( $option_icon ); ?>" <?php selected( $icon, $option_icon ); ?>><?php echo esc_html( $icon_label ); ?></option><?php endforeach; ?></select>
 						</div>
 					</div>
 				</div>
@@ -752,26 +756,112 @@ final class DocsBot_Admin {
 		}
 
 		$icons = array(
-			'AcademicCapIcon', 'AdjustmentsHorizontalIcon', 'ArchiveBoxIcon', 'ArrowTrendingUpIcon', 'ArrowPathRoundedSquareIcon',
-			'AtSymbolIcon', 'BanknotesIcon', 'BeakerIcon', 'BoltIcon', 'BellIcon', 'BookOpenIcon', 'BookmarkIcon', 'BriefcaseIcon',
-			'BuildingLibraryIcon', 'BuildingOffice2Icon', 'BuildingStorefrontIcon', 'BugAntIcon', 'CakeIcon', 'CalculatorIcon',
-			'CalendarIcon', 'CameraIcon', 'ChartBarIcon', 'ChartPieIcon', 'ChatBubbleLeftIcon', 'CheckCircleIcon', 'CloudIcon',
-			'ClockIcon', 'CodeBracketIcon', 'CogIcon', 'CommandLineIcon', 'ComputerDesktopIcon', 'CpuChipIcon', 'CreditCardIcon',
-			'CubeIcon', 'DevicePhoneMobileIcon', 'DocumentTextIcon', 'EnvelopeIcon', 'ExclamationCircleIcon', 'EyeIcon',
-			'FaceSmileIcon', 'FilmIcon', 'FingerPrintIcon', 'FireIcon', 'FlagIcon', 'FolderIcon', 'GiftIcon', 'GlobeAltIcon',
-			'GlobeAsiaAustraliaIcon', 'HandRaisedIcon', 'HashtagIcon', 'HeartIcon', 'HomeIcon', 'HomeModernIcon',
-			'IdentificationIcon', 'InformationCircleIcon', 'KeyIcon', 'LanguageIcon', 'LightBulbIcon', 'LinkIcon', 'ListBulletIcon',
-			'LockClosedIcon', 'MagnifyingGlassIcon', 'MapPinIcon', 'MegaphoneIcon', 'MicrophoneIcon', 'MoonIcon', 'NewspaperIcon',
-			'PaintBrushIcon', 'PaperAirplaneIcon', 'PencilIcon', 'PhoneIcon', 'PhotoIcon', 'PlayIcon', 'PresentationChartBarIcon',
-			'PrinterIcon', 'PuzzlePieceIcon', 'RadioIcon', 'RectangleGroupIcon', 'RocketLaunchIcon', 'ScaleIcon', 'ScissorsIcon',
-			'ServerIcon', 'ShieldCheckIcon', 'ShoppingBagIcon', 'ShoppingCartIcon', 'SignalIcon', 'SparklesIcon', 'SpeakerWaveIcon',
-			'StarIcon', 'SunIcon', 'TicketIcon', 'TrashIcon', 'TrophyIcon', 'TruckIcon', 'TvIcon', 'UserCircleIcon', 'UserGroupIcon',
-			'VideoCameraIcon', 'WalletIcon', 'WifiIcon', 'WrenchIcon',
+			'AcademicCapIcon',
+			'AdjustmentsHorizontalIcon',
+			'ArchiveBoxIcon',
+			'ArrowTrendingUpIcon',
+			'ArrowPathRoundedSquareIcon',
+			'AtSymbolIcon',
+			'BanknotesIcon',
+			'BeakerIcon',
+			'BoltIcon',
+			'BellIcon',
+			'BookOpenIcon',
+			'BookmarkIcon',
+			'BriefcaseIcon',
+			'BuildingLibraryIcon',
+			'BuildingOffice2Icon',
+			'BuildingStorefrontIcon',
+			'BugAntIcon',
+			'CakeIcon',
+			'CalculatorIcon',
+			'CalendarIcon',
+			'CameraIcon',
+			'ChartBarIcon',
+			'ChartPieIcon',
+			'ChatBubbleLeftIcon',
+			'CheckCircleIcon',
+			'CloudIcon',
+			'ClockIcon',
+			'CodeBracketIcon',
+			'CogIcon',
+			'CommandLineIcon',
+			'ComputerDesktopIcon',
+			'CpuChipIcon',
+			'CreditCardIcon',
+			'CubeIcon',
+			'DevicePhoneMobileIcon',
+			'DocumentTextIcon',
+			'EnvelopeIcon',
+			'ExclamationCircleIcon',
+			'EyeIcon',
+			'FaceSmileIcon',
+			'FilmIcon',
+			'FingerPrintIcon',
+			'FireIcon',
+			'FlagIcon',
+			'FolderIcon',
+			'GiftIcon',
+			'GlobeAltIcon',
+			'GlobeAsiaAustraliaIcon',
+			'HandRaisedIcon',
+			'HashtagIcon',
+			'HeartIcon',
+			'HomeIcon',
+			'HomeModernIcon',
+			'IdentificationIcon',
+			'InformationCircleIcon',
+			'KeyIcon',
+			'LanguageIcon',
+			'LightBulbIcon',
+			'LinkIcon',
+			'ListBulletIcon',
+			'LockClosedIcon',
+			'MagnifyingGlassIcon',
+			'MapPinIcon',
+			'MegaphoneIcon',
+			'MicrophoneIcon',
+			'MoonIcon',
+			'NewspaperIcon',
+			'PaintBrushIcon',
+			'PaperAirplaneIcon',
+			'PencilIcon',
+			'PhoneIcon',
+			'PhotoIcon',
+			'PlayIcon',
+			'PresentationChartBarIcon',
+			'PrinterIcon',
+			'PuzzlePieceIcon',
+			'RadioIcon',
+			'RectangleGroupIcon',
+			'RocketLaunchIcon',
+			'ScaleIcon',
+			'ScissorsIcon',
+			'ServerIcon',
+			'ShieldCheckIcon',
+			'ShoppingBagIcon',
+			'ShoppingCartIcon',
+			'SignalIcon',
+			'SparklesIcon',
+			'SpeakerWaveIcon',
+			'StarIcon',
+			'SunIcon',
+			'TicketIcon',
+			'TrashIcon',
+			'TrophyIcon',
+			'TruckIcon',
+			'TvIcon',
+			'UserCircleIcon',
+			'UserGroupIcon',
+			'VideoCameraIcon',
+			'WalletIcon',
+			'WifiIcon',
+			'WrenchIcon',
 		);
-		$out = array();
+		$out   = array();
 		foreach ( $icons as $icon ) {
-			$label        = preg_replace( '/Icon$/', '', $icon );
-			$label        = preg_replace( '/(?<!^)([A-Z])/', ' $1', $label );
+			$label = preg_replace( '/Icon$/', '', $icon );
+			$label = preg_replace( '/(?<!^)([A-Z])/', ' $1', $label );
 			// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText -- Fixed allowlisted labels are included in the bundled POT and locale catalogs.
 			$out[ $icon ] = __( trim( (string) $label ), 'docsbot' );
 		}
@@ -1301,9 +1391,9 @@ final class DocsBot_Admin {
 			if ( $is_on ) {
 				$active = $provider;
 			}
-			$instructions = sanitize_textarea_field( (string) ( $posted['instructions'] ?? '' ) );
-			$instructions = function_exists( 'mb_substr' ) ? mb_substr( $instructions, 0, 2000 ) : substr( $instructions, 0, 2000 );
-			$url          = $this->sanitize_action_url( (string) ( $posted['url'] ?? '' ) );
+			$instructions       = sanitize_textarea_field( (string) ( $posted['instructions'] ?? '' ) );
+			$instructions       = function_exists( 'mb_substr' ) ? mb_substr( $instructions, 0, 2000 ) : substr( $instructions, 0, 2000 );
+			$url                = $this->sanitize_action_url( (string) ( $posted['url'] ?? '' ) );
 			$tools[ $provider ] = array(
 				'enabled'          => $is_on,
 				'instructions'     => $instructions,
@@ -1321,8 +1411,8 @@ final class DocsBot_Admin {
 		if ( count( $posted_buttons ) > 20 ) {
 			$this->redirect_feedback( 'actions', 'error', __( 'A bot can have at most 20 custom buttons.', 'docsbot' ) );
 		}
-		$buttons        = array();
-		$keys           = array();
+		$buttons = array();
+		$keys    = array();
 		foreach ( $posted_buttons as $button ) {
 			if ( ! is_array( $button ) ) {
 				continue;
@@ -1338,9 +1428,18 @@ final class DocsBot_Admin {
 				continue;
 			}
 			$reserved = array(
-				'search_documentation', 'human_escalation', 'calendly', 'calcom', 'tidycal', 'search_web', 'web_search',
-				'code_interpreter', 'stripe_recent_invoices_and_subscriptions', 'stripe_billing_portal',
-				'stripe_refund_latest_payment', 'stripe_cancel_subscription',
+				'search_documentation',
+				'human_escalation',
+				'calendly',
+				'calcom',
+				'tidycal',
+				'search_web',
+				'web_search',
+				'code_interpreter',
+				'stripe_recent_invoices_and_subscriptions',
+				'stripe_billing_portal',
+				'stripe_refund_latest_payment',
+				'stripe_cancel_subscription',
 			);
 			if (
 				( '' !== $raw_key && '' === $key )
@@ -1356,9 +1455,9 @@ final class DocsBot_Admin {
 			if ( '' !== $key ) {
 				$keys[ $key ] = true;
 			}
-			$icon         = sanitize_text_field( (string) ( $button['icon'] ?? '' ) );
-			$icons        = $this->custom_button_icon_options();
-			$buttons[]    = array(
+			$icon      = sanitize_text_field( (string) ( $button['icon'] ?? '' ) );
+			$icons     = $this->custom_button_icon_options();
+			$buttons[] = array(
 				'enabled'      => $enabled,
 				'name'         => substr( $name, 0, 100 ),
 				'functionKey'  => substr( $key, 0, 64 ),
@@ -1370,10 +1469,10 @@ final class DocsBot_Admin {
 		}
 		$tools['customButtons']        = $buttons;
 		$changes['use_custom_buttons'] = (bool) array_filter( wp_list_pluck( $buttons, 'enabled' ) );
-		$labels                         = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
-		$labels['getSupport']           = $this->post_text( 'support_label', 80 );
-		$support_link                   = $this->post_url( 'support_link' );
-		$result                         = $this->api->update_bot(
+		$labels                        = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$labels['getSupport']          = $this->post_text( 'support_label', 80 );
+		$support_link                  = $this->post_url( 'support_link' );
+		$result                        = $this->api->update_bot(
 			$settings['team_id'],
 			$settings['bot_id'],
 			array(
