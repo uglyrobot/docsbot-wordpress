@@ -66,7 +66,7 @@ final class DocsBot_Crypto {
 			return '';
 		}
 
-		$decoded = base64_decode( substr( $encoded, 3 ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+		$decoded        = base64_decode( substr( $encoded, 3 ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 		$minimum_length = SODIUM_CRYPTO_SECRETBOX_NONCEBYTES + SODIUM_CRYPTO_SECRETBOX_MACBYTES;
 		if ( false === $decoded || strlen( $decoded ) < $minimum_length ) {
 			return '';
