@@ -1,6 +1,6 @@
 === DocsBot ===
 Contributors: uglyrobot
-Tags: artificial intelligence, chatbot, customer support, documentation, live chat
+Tags: artificial intelligence, chatbot, customer support, documentation, knowledge base
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -8,63 +8,69 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Add your DocsBot support agent to WordPress, customize the widget, and control exactly where and for whom it appears.
+Give WordPress visitors instant answers with DocsBot. Match your brand and control exactly where and for whom the widget appears.
 
 == Description ==
 
-DocsBot for WordPress gives site administrators a secure, native way to connect a DocsBot account and deploy an AI support widget.
+Put the DocsBot support agent trained on your content where visitors need it. No embed code to paste. No theme file to edit.
 
-Connect your DocsBot API key, choose a team and bot you can access, then configure the most useful widget content, design, and action settings without leaving WordPress. The Deploy tab controls page paths, logged-in users, WordPress roles, popular membership systems, optional conversation identity, and private-bot signing.
+Connect your account, choose a bot, and manage the widget experience from **Settings > DocsBot**. Update the welcome message, match your site's design, turn on actions, preview changes live, and decide which pages and visitors get chat.
 
-= Built for real WordPress sites =
+This plugin requires a DocsBot account and API key. Already using DocsBot? Connect in a few steps. New to DocsBot? [Create your free account](https://docsbot.ai/register?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=description_signup).
 
-* Choose from every team and bot available to your DocsBot user.
-* Configure the greeting, labels, support link, branding, color, visual icon choices, and placement.
-* Host custom launcher icons, bot avatars, and header logos in the WordPress Media Library.
-* Enable image uploads, voice input, external-link confirmation, and agent activity.
-* Enable feedback, escalation, web search, booking, and custom button integrations already configured for your bot.
-* Include or exclude literal URL path prefixes.
-* Restrict chat by login, WordPress role, or a supported membership plugin.
-* Share display name, email, and a pseudonymous site user ID through separate opt-in controls.
-* Use private DocsBot bots with short-lived server-signed JWTs.
-* Require server-verified login, role, or membership rules when chat access must be protected.
-* Keep identity and signatures out of full-page caches.
-* Avoid dashboard clutter: the plugin shows no sitewide notices or nags.
+= Put useful answers where visitors need them =
+
+* Answer common questions with the DocsBot agent trained on your content.
+* Match the launcher, chat window, colors, greeting, labels, logo, and avatar to your site.
+* Let visitors upload images or ask questions by voice when you enable those options.
+* Add feedback, human handoff, web search, booking, custom buttons, and advanced integrations through DocsBot Skills and MCP servers.
+* Preview the real widget as you work, then enable it when it looks right.
+
+= Show the right widget to the right audience =
+
+* Include or exclude page paths, from an entire documentation section to a single account area.
+* Show chat only to logged-in visitors, selected WordPress roles, or eligible members.
+* Support private DocsBot bots without exposing signing credentials in the browser.
+* Choose whether to share a visitor's display name, email, or pseudonymous site user ID with the conversation.
 
 = Supported membership integrations =
 
-The plugin uses public APIs from WooCommerce Memberships, MemberPress, Paid Memberships Pro, Restrict Content Pro, and WP-Members. Ultimate Member is supported through approved WordPress roles. The selected integration fails closed if it becomes unavailable.
+Use WooCommerce Memberships, MemberPress, Paid Memberships Pro, Restrict Content Pro, WP-Members, or approved Ultimate Member roles to control who sees the widget. If the selected membership integration becomes unavailable, the widget stays hidden.
+
+= Made for WordPress =
+
+Choose custom launcher icons, bot avatars, and header logos from the WordPress Media Library. The plugin keeps every control under **Settings > DocsBot** and adds no sitewide notices or nags.
 
 = Privacy and security =
 
-Identity sharing is off by default. If enabled, the selected fields are sent to DocsBot only after the visitor passes the configured access rules. The plugin never sends membership, role, password, payment, or subscription data.
+Public conversation identity is off by default. If you enable it, the plugin sends the visitor's display name, email address, and/or pseudonymous site user ID only after the visitor passes your access rules. It never sends membership, role, password, payment, or subscription data.
 
-For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
+Private bots have one exception: a signed request for a logged-in visitor automatically includes the numeric WordPress user ID as private `priv_user_id` metadata. Guest requests do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
 
-The DocsBot API key remains on the WordPress server. Private-bot signature keys are used only to create short-lived tokens. Both credentials are encrypted before database storage, or may be supplied through `wp-config.php` constants.
+WordPress keeps the DocsBot API key on the server and uses private-bot signature keys only to create short-lived tokens. The plugin encrypts both credentials before database storage. Site owners may instead supply them through `wp-config.php` constants.
 
 = External service =
 
 This plugin connects to DocsBot, a third-party service:
 
-* `https://docsbot.ai/api` is called from the WordPress server when an administrator connects an account, reads the authenticated user's current team, lists teams or bots, reads settings, or saves supported bot settings.
-* When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions.
-* `https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the widget is enabled.
-* Visitor chat messages and any administrator-enabled identity fields are processed by DocsBot.
+* WordPress calls `https://docsbot.ai/api` when an administrator connects an account, reads the authenticated user's current team, lists teams or bots, reads settings, or saves supported bot settings.
+* DocsBot receives the entered prompt when an administrator requests a custom action button draft. The plugin saves that draft only when the administrator saves Actions.
+* Eligible visitors' browsers load `https://widget.docsbot.ai/chat.js` after an administrator enables the widget.
+* DocsBot processes visitor chat messages and any identity fields the administrator chooses to share.
 
-Use of DocsBot is subject to the [DocsBot Privacy Policy](https://docsbot.ai/privacy) and [Terms of Service](https://docsbot.ai/terms). Learn more in the [DocsBot widget documentation](https://docsbot.ai/documentation/developer/embeddable-chat-widget).
+The [DocsBot Privacy Policy](https://docsbot.ai/privacy?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=privacy) and [Terms of Service](https://docsbot.ai/terms?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=terms) govern use of the service. Learn more in the [DocsBot widget documentation](https://docsbot.ai/documentation/developer/embeddable-chat-widget?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=widget_docs).
 
 == Installation ==
 
 1. Upload the plugin directory to `/wp-content/plugins/` or install the ZIP from **Plugins > Add New Plugin > Upload Plugin**.
 2. Activate **DocsBot**.
 3. Open **Settings > DocsBot > Connection**.
-4. Get your user API key from the [DocsBot API Keys page](https://docsbot.ai/app/api), paste it into WordPress, and connect. DocsBot selects your current accessible team when available.
+4. Get your user API key from the [DocsBot API Keys page](https://docsbot.ai/app/api?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=installation_api_key), paste it into WordPress, and connect. DocsBot selects your current accessible team when available.
 5. Choose a team, save, then choose a bot.
 6. Configure Content, Design, and Actions.
 7. Open Deploy, choose your audience and pages, then enable the widget.
 
-PHP's OpenSSL extension is required to encrypt saved credentials and sign private-bot tokens.
+The plugin requires PHP's OpenSSL extension to encrypt saved credentials and sign private-bot tokens.
 
 For a private bot, select the bot normally. The plugin retrieves its signing key in the authorized server-side bot response, encrypts it immediately, and never renders it in WordPress.
 
@@ -72,29 +78,33 @@ For a private bot, select the bot normally. The plugin retrieves its signing key
 
 = Does the plugin expose my DocsBot API key? =
 
-No. Admin API requests are made by WordPress on the server. The key is encrypted before database storage and is never included in frontend HTML or JavaScript.
+No. WordPress makes admin API requests on the server. The plugin encrypts the key before database storage and never includes it in frontend HTML or JavaScript.
 
-= How are private bots supported? =
+= How does the plugin support private bots? =
 
-WordPress creates a short-lived HS256 JWT using the bot signature key. Access rules run first, and the token is returned through a private, no-store response. The signature key never leaves the server.
+WordPress checks your access rules before creating a short-lived, server-signed access token. The signing key stays on your server, and the token response is private and never cached.
 
 = Does the plugin send WordPress user data automatically? =
 
-No. Display name, email address, and a pseudonymous site user ID are three separate settings and all are off by default.
+Public identity sharing is off by default. You choose whether to share a visitor's display name, email address, or pseudonymous site user ID. For private bots, signed requests automatically include the logged-in visitor's numeric WordPress user ID as private metadata. Guest requests include no user ID.
 
 = What happens if my membership plugin is disabled? =
 
-The restriction fails closed. The widget stays hidden until the selected integration is available again or the restriction is changed.
+The widget stays hidden until the selected membership integration is available again or you change the restriction.
 
 = Can I show the widget only in my documentation or account area? =
 
 Yes. Add one literal path prefix per line, such as `/docs/` or `/account/`. Excluded paths always take precedence.
 
-Path rules control where the embed is placed; they are not an authorization boundary. For protected chat, also enable a logged-in, WordPress role, or membership restriction under Audience. Those rules are verified by WordPress before identity or a private-bot token is returned.
+Page-path rules decide where the widget appears; they do not protect access by themselves. To protect chat, also require a login, WordPress role, or membership under Audience. WordPress checks those rules before sharing identity data or issuing a private-bot token.
 
 = Why can I see a create-bot link even if I cannot create bots? =
 
-DocsBot does not expose a public create-permission flag. When a selected team has no bots, the plugin links to the DocsBot bot page, where your current role and plan are enforced.
+DocsBot does not expose a public create-permission flag. When a selected team has no bots, the plugin links to the DocsBot bot page. DocsBot then applies your current role and plan.
+
+== Support ==
+
+Need help connecting a bot or configuring the widget? Start with the [DocsBot widget documentation](https://docsbot.ai/documentation/developer/embeddable-chat-widget?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=support_docs) or open a topic in the WordPress.org support forum.
 
 == Screenshots ==
 

@@ -90,6 +90,10 @@ jobs:
 
           for catalog in translations/wordpress-org/readme-*.po; do
             msgfmt --check --check-format --output-file=/dev/null "${catalog}"
+            msgattrib --untranslated --no-obsolete "${catalog}" |
+              awk '/^msgid / { count++ } END { exit count > 1 }'
+            msgattrib --only-fuzzy --no-obsolete "${catalog}" |
+              awk '/^msgid / { count++ } END { exit count > 1 }'
           done
 
       - name: Run official WordPress Plugin Check
