@@ -259,19 +259,19 @@ final class DocsBot_Admin {
 								<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'docsbot' ); ?></span>
 							</a>
 						</p>
-						<?php submit_button( $has_key ? __( 'Save new API key', 'docsbot' ) : __( 'Connect account', 'docsbot' ), 'primary', 'submit', false ); ?>
+						<?php $this->save_action( $has_key ? __( 'Save new API key', 'docsbot' ) : __( 'Connect account', 'docsbot' ) ); ?>
 					</div>
-					<?php if ( $has_key ) : ?>
-						<button type="button" class="button docsbot-reconnect" aria-expanded="false" aria-controls="docsbot-reconnect-panel"><?php esc_html_e( 'Reconnect with a different key', 'docsbot' ); ?></button>
-					<?php endif; ?>
 				</form>
 				<?php if ( $has_key ) : ?>
-					<form class="docsbot-disconnect-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-						<input type="hidden" name="action" value="docsbot_connect">
-						<input type="hidden" name="connection_intent" value="disconnect">
-						<?php wp_nonce_field( 'docsbot_connect' ); ?>
-						<button type="submit" class="button button-link-delete" data-confirm="<?php esc_attr_e( 'Disconnect DocsBot and remove the saved API key, bot selection, and signing key?', 'docsbot' ); ?>"><?php esc_html_e( 'Disconnect account', 'docsbot' ); ?></button>
-					</form>
+					<div class="docsbot-connection-actions">
+						<button type="button" class="button docsbot-reconnect" aria-expanded="false" aria-controls="docsbot-reconnect-panel"><?php esc_html_e( 'Reconnect with a different key', 'docsbot' ); ?></button>
+						<form class="docsbot-disconnect-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+							<input type="hidden" name="action" value="docsbot_connect">
+							<input type="hidden" name="connection_intent" value="disconnect">
+							<?php wp_nonce_field( 'docsbot_connect' ); ?>
+							<button type="submit" class="docsbot-disconnect" data-confirm="<?php esc_attr_e( 'Disconnect DocsBot and remove the saved API key, bot selection, and signing key?', 'docsbot' ); ?>"><?php esc_html_e( 'Disconnect account', 'docsbot' ); ?></button>
+						</form>
+					</div>
 				<?php endif; ?>
 			<?php endif; ?>
 		</div>
@@ -318,7 +318,7 @@ final class DocsBot_Admin {
 							: esc_html__( 'Choose a team first and save to load its bots.', 'docsbot' );
 						?>
 					</p>
-					<?php submit_button( __( 'Use selected bot', 'docsbot' ), 'primary', 'submit', false ); ?>
+					<?php $this->save_action( __( 'Use selected bot', 'docsbot' ) ); ?>
 				</form>
 				<?php if ( $settings['team_id'] && is_array( $bots ) && empty( $bots ) ) : ?>
 					<div class="docsbot-empty">
@@ -379,7 +379,7 @@ final class DocsBot_Admin {
 					<?php $this->checkbox( 'use_image_upload', __( 'Image uploads', 'docsbot' ), ! empty( $settings['use_image_upload'] ) ); ?>
 					<?php $this->checkbox( 'use_audio_upload', __( 'Voice input', 'docsbot' ), ! empty( $settings['use_audio_upload'] ) ); ?>
 				</div>
-				<?php submit_button( __( 'Save content', 'docsbot' ), 'primary', 'submit', false ); ?>
+				<?php $this->save_action( __( 'Save content', 'docsbot' ) ); ?>
 			</form>
 		</div>
 		<?php
@@ -464,7 +464,7 @@ final class DocsBot_Admin {
 				<div class="docsbot-toggle-grid">
 					<?php $this->checkbox( 'branding', __( 'Show DocsBot branding', 'docsbot' ), ! isset( $bot['branding'] ) || ! empty( $bot['branding'] ) ); ?>
 				</div>
-				<?php submit_button( __( 'Save design', 'docsbot' ), 'primary', 'submit', false ); ?>
+				<?php $this->save_action( __( 'Save design', 'docsbot' ) ); ?>
 			</form>
 		</div>
 		<?php
@@ -518,7 +518,7 @@ final class DocsBot_Admin {
 							<?php $this->text_field( 'support_label', __( 'Button Label', 'docsbot' ), $labels['getSupport'] ?? '', 80 ); ?>
 							<div class="docsbot-field">
 								<label for="docsbot-support-link"><?php esc_html_e( 'Button Link', 'docsbot' ); ?></label>
-								<input type="url" id="docsbot-support-link" name="support_link" value="<?php echo esc_attr( is_array( $bot ) ? ( $bot['supportLink'] ?? '' ) : '' ); ?>" placeholder="https://example.com/support/">
+								<input type="url" id="docsbot-support-link" name="support_link" value="<?php echo esc_attr( is_string( $bot['supportLink'] ?? '' ) ? $bot['supportLink'] : '' ); ?>" placeholder="https://example.com/support/">
 							</div>
 						</div>
 					</div>
@@ -629,7 +629,7 @@ final class DocsBot_Admin {
 				<div class="docsbot-action-footer">
 					<?php $this->option_toggle( 'use_web_search', __( 'Web Search', 'docsbot' ), __( 'Allow agent-mode web search when your plan and bot support it.', 'docsbot' ), $settings['use_web_search'], 'globe' ); ?>
 				</div>
-				<?php submit_button( __( 'Save actions', 'docsbot' ), 'primary', 'submit', false ); ?>
+				<?php $this->save_action( __( 'Save actions', 'docsbot' ) ); ?>
 			</form>
 		</div>
 		<?php
@@ -894,7 +894,7 @@ final class DocsBot_Admin {
 				<?php endif; ?>
 				<a href="https://docsbot.ai/app/bots" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open bot embed settings in DocsBot', 'docsbot' ); ?></a>
 			</div>
-			<?php submit_button( __( 'Save deployment', 'docsbot' ), 'primary docsbot-save-large', 'submit', false ); ?>
+			<?php $this->save_action( __( 'Save deployment', 'docsbot' ), 'docsbot-save-large' ); ?>
 		</form>
 		<?php
 	}
@@ -1907,6 +1907,22 @@ final class DocsBot_Admin {
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<input type="hidden" name="action" value="<?php echo esc_attr( $action ); ?>">
 			<?php wp_nonce_field( $action ); ?>
+		<?php
+	}
+
+	/**
+	 * Render a consistently aligned primary form action.
+	 *
+	 * @param string $label         Button label.
+	 * @param string $extra_classes Optional additional button classes.
+	 * @return void
+	 */
+	private function save_action( $label, $extra_classes = '' ) {
+		$classes = trim( 'primary ' . sanitize_html_class( $extra_classes ) );
+		?>
+		<div class="docsbot-form-actions">
+			<?php submit_button( $label, $classes, 'submit', false ); ?>
+		</div>
 		<?php
 	}
 

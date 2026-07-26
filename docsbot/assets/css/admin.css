@@ -863,9 +863,81 @@
 	display: none;
 }
 
+.docsbot-connection-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-top: 18px;
+	padding-top: 16px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.docsbot-reconnect.button {
+	min-height: 32px;
+	padding: 0 12px;
+	border-color: #a5f3fc;
+	background: #ecfeff;
+	color: #0e7490;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 30px;
+	white-space: nowrap;
+}
+
+.docsbot-reconnect.button:hover,
+.docsbot-reconnect.button:focus {
+	border-color: var(--docsbot-cyan);
+	background: #cffafe;
+	color: #155e75;
+}
+
 .docsbot-disconnect-form {
-	display: inline-block;
-	margin: 0 0 0 10px;
+	display: inline-flex;
+	margin: 0;
+}
+
+.docsbot-disconnect {
+	min-height: 32px;
+	padding: 0 4px;
+	border: 0;
+	background: transparent;
+	color: #b91c1c;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 32px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.docsbot-disconnect:hover,
+.docsbot-disconnect:focus {
+	color: #7f1d1d;
+	text-decoration: underline;
+}
+
+.docsbot-disconnect:focus-visible {
+	border-radius: 4px;
+	outline: 2px solid #ef4444;
+	outline-offset: 2px;
+}
+
+.docsbot-form-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	clear: both;
+	width: 100%;
+	margin-top: 24px;
+	padding-top: 18px;
+	border-top: 1px solid #e2e8f0;
+	box-sizing: border-box;
+}
+
+.docsbot-form-actions .button {
+	margin: 0;
+	white-space: nowrap;
 }
 
 .docsbot-signing-status {
@@ -1651,16 +1723,11 @@
 	gap: 18px;
 }
 
-.docsbot-deploy-form > .submit,
-.docsbot-deploy-form > .docsbot-save-large {
-	justify-self: start;
-	margin: 0;
+.docsbot-deploy-form > .docsbot-form-actions {
+	justify-self: stretch;
 }
 
 .docsbot-sticky-save {
-	position: sticky;
-	z-index: 20;
-	top: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -1669,7 +1736,6 @@
 	border: 1px solid #bae6fd;
 	border-radius: 9px;
 	background: #ecfeff;
-	box-shadow: 0 5px 20px rgba(15, 23, 42, 0.12);
 	color: #164e63;
 	font-weight: 600;
 }
@@ -1756,6 +1822,16 @@
 
 	.docsbot-action-nested {
 		margin-left: 16px;
+	}
+
+	.docsbot-connection-actions {
+		align-items: flex-end;
+		flex-direction: column;
+	}
+
+	.docsbot-sticky-save {
+		align-items: flex-end;
+		flex-direction: column;
 	}
 }
 
