@@ -31,6 +31,16 @@ final class DocsBot_Admin {
 	private $memberships;
 
 	/**
+	 * API responses reused only for the current PHP request.
+	 *
+	 * This avoids duplicate API calls while rendering a page without allowing
+	 * a persistent WordPress cache to hide changes made in the DocsBot dashboard.
+	 *
+	 * @var array<string,mixed>
+	 */
+	private $request_cache = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param DocsBot_API         $api         API client.
@@ -959,7 +969,6 @@ final class DocsBot_Admin {
 			)
 		);
 		$this->clear_cache( $previous_settings['team_id'], $previous_settings['bot_id'] );
-		set_transient( 'docsbot_teams', $teams, 5 * MINUTE_IN_SECONDS );
 		$this->redirect_feedback( 'connection', 'success', __( 'DocsBot connected. Now choose a team and bot.', 'docsbot' ) );
 	}
 
@@ -1009,7 +1018,6 @@ final class DocsBot_Admin {
 				)
 			);
 			$this->clear_cache( $previous_settings['team_id'], $previous_settings['bot_id'] );
-			set_transient( 'docsbot_bots_' . md5( $team_id ), $bots, 5 * MINUTE_IN_SECONDS );
 			$this->redirect_feedback( 'connection', 'success', empty( $bots ) ? __( 'Team selected. Create a bot in DocsBot to continue.', 'docsbot' ) : __( 'Team selected. Now choose a bot.', 'docsbot' ) );
 		}
 
@@ -1056,7 +1064,6 @@ final class DocsBot_Admin {
 		unset( $bot['signatureKey'] );
 		DocsBot_Plugin::update_settings( $changes );
 		$this->clear_cache( $previous_settings['team_id'], $previous_settings['bot_id'] );
-		set_transient( 'docsbot_bot_' . md5( $team_id . '|' . $bot_id ), $bot, 5 * MINUTE_IN_SECONDS );
 		$this->redirect_feedback( 'connection', 'success', __( 'Bot connected and settings loaded.', 'docsbot' ) );
 	}
 
@@ -1715,39 +1722,28 @@ final class DocsBot_Admin {
 	}
 
 	/**
-	 * Cached teams.
+	 * Return teams, reusing the result only within this PHP request.
 	 *
 	 * @return array<int,array<string,mixed>>|WP_Error
 	 */
 	private function cached_teams() {
-		$cached = get_transient( 'docsbot_teams' );
-		if ( false !== $cached ) {
-			return $cached;
+		if ( array_key_exists( 'teams', $this->request_cache ) ) {
+			return $this->request_cache['teams'];
 		}
-		$teams = $this->api->list_teams();
-		if ( ! is_wp_error( $teams ) ) {
-			set_transient( 'docsbot_teams', $teams, 5 * MINUTE_IN_SECONDS );
-		}
-		return $teams;
+		$this->request_cache['teams'] = $this->api->list_teams();
+		return $this->request_cache['teams'];
 	}
 
 	/**
-	 * Cached bots.
+	 * Return bots, reusing the result only within this PHP request.
 	 *
 	 * @param string $team_id Team ID.
 	 * @return array<int,array<string,mixed>>|WP_Error
 	 */
 	private function cached_bots( $team_id ) {
-		$key    = 'docsbot_bots_' . md5( $team_id );
-		$cached = get_transient( $key );
-		if ( false !== $cached ) {
-			foreach ( $cached as &$cached_bot ) {
-				if ( is_array( $cached_bot ) ) {
-					unset( $cached_bot['signatureKey'] );
-				}
-			}
-			unset( $cached_bot );
-			return $cached;
+		$key = 'bots:' . $team_id;
+		if ( array_key_exists( $key, $this->request_cache ) ) {
+			return $this->request_cache[ $key ];
 		}
 		$bots = $this->api->list_bots( $team_id );
 		if ( ! is_wp_error( $bots ) ) {
@@ -1757,26 +1753,22 @@ final class DocsBot_Admin {
 				}
 			}
 			unset( $bot );
-			set_transient( $key, $bots, 5 * MINUTE_IN_SECONDS );
 		}
-		return $bots;
+		$this->request_cache[ $key ] = $bots;
+		return $this->request_cache[ $key ];
 	}
 
 	/**
-	 * Cached current bot.
+	 * Return the current bot, reusing it only within this PHP request.
 	 *
 	 * @param string $team_id Team ID.
 	 * @param string $bot_id  Bot ID.
 	 * @return array<string,mixed>|WP_Error
 	 */
 	private function cached_bot( $team_id, $bot_id ) {
-		$key    = 'docsbot_bot_' . md5( $team_id . '|' . $bot_id );
-		$cached = get_transient( $key );
-		if ( false !== $cached ) {
-			if ( is_array( $cached ) ) {
-				unset( $cached['signatureKey'] );
-			}
-			return $cached;
+		$key = 'bot:' . $team_id . '|' . $bot_id;
+		if ( array_key_exists( $key, $this->request_cache ) ) {
+			return $this->request_cache[ $key ];
 		}
 		$bot = $this->api->get_bot( $team_id, $bot_id );
 		if ( ! is_wp_error( $bot ) ) {
@@ -1787,30 +1779,26 @@ final class DocsBot_Admin {
 				}
 			}
 			unset( $bot['signatureKey'] );
-			set_transient( $key, $bot, 5 * MINUTE_IN_SECONDS );
 		}
-		return $bot;
+		$this->request_cache[ $key ] = $bot;
+		return $this->request_cache[ $key ];
 	}
 
 	/**
-	 * Cached widget skill summaries.
+	 * Return widget skill summaries, reusing them only within this PHP request.
 	 *
 	 * @param string $team_id Team ID.
 	 * @param string $bot_id  Bot ID.
 	 * @return array<int,array<string,mixed>>|WP_Error
 	 */
 	private function cached_skills( $team_id, $bot_id ) {
-		$key    = 'docsbot_skills_' . md5( $team_id . '|' . $bot_id );
-		$cached = get_transient( $key );
-		if ( false !== $cached ) {
-			return $cached;
+		$key = 'skills:' . $team_id . '|' . $bot_id;
+		if ( array_key_exists( $key, $this->request_cache ) ) {
+			return $this->request_cache[ $key ];
 		}
 
-		$skills = $this->api->list_skills( $team_id, $bot_id );
-		if ( ! is_wp_error( $skills ) ) {
-			set_transient( $key, $skills, 5 * MINUTE_IN_SECONDS );
-		}
-		return $skills;
+		$this->request_cache[ $key ] = $this->api->list_skills( $team_id, $bot_id );
+		return $this->request_cache[ $key ];
 	}
 
 	/**
@@ -1823,7 +1811,7 @@ final class DocsBot_Admin {
 	 */
 	private function cache_bot( $team_id, $bot_id, $bot ) {
 		unset( $bot['signatureKey'] );
-		set_transient( 'docsbot_bot_' . md5( $team_id . '|' . $bot_id ), $bot, 5 * MINUTE_IN_SECONDS );
+		$this->request_cache[ 'bot:' . $team_id . '|' . $bot_id ] = $bot;
 	}
 
 	/**
@@ -1834,6 +1822,9 @@ final class DocsBot_Admin {
 	 * @return void
 	 */
 	private function clear_cache( $team_id = '', $bot_id = '' ) {
+		$this->request_cache = array();
+
+		// Remove persistent API caches created by plugin versions before 1.0.
 		delete_transient( 'docsbot_teams' );
 		if ( '' === $team_id || '' === $bot_id ) {
 			$settings = DocsBot_Plugin::settings();
