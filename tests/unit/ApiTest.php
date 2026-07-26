@@ -40,6 +40,41 @@ final class ApiTest extends TestCase {
 		);
 	}
 
+	public function test_current_team_id_prefers_the_user_field() {
+		$api = new DocsBot_API();
+
+		$this->assertSame(
+			'teamFromUser123',
+			$api->extract_current_team_id(
+				array(
+					'user'        => array( 'currentTeam' => 'teamFromUser123' ),
+					'currentTeam' => array( 'id' => 'teamFromObject456' ),
+				)
+			)
+		);
+	}
+
+	public function test_current_team_id_falls_back_to_the_team_object() {
+		$api = new DocsBot_API();
+
+		$this->assertSame(
+			'teamFromObject456',
+			$api->extract_current_team_id(
+				array(
+					'user'        => array(),
+					'currentTeam' => array( 'id' => 'teamFromObject456' ),
+				)
+			)
+		);
+	}
+
+	public function test_current_team_id_rejects_malformed_values() {
+		$api = new DocsBot_API();
+
+		$this->assertSame( '', $api->extract_current_team_id( array( 'user' => array( 'currentTeam' => '../team' ) ) ) );
+		$this->assertSame( '', $api->extract_current_team_id( array( 'currentTeam' => null ) ) );
+	}
+
 	public function test_only_healthy_enabled_mcp_servers_are_available() {
 		$api = new DocsBot_API();
 

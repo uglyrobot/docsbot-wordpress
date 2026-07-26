@@ -45,7 +45,7 @@ The DocsBot API key remains on the WordPress server. Private-bot signature keys 
 
 This plugin connects to DocsBot, a third-party service:
 
-* `https://docsbot.ai/api` is called from the WordPress server when an administrator connects an account, lists teams or bots, reads settings, or saves supported bot settings.
+* `https://docsbot.ai/api` is called from the WordPress server when an administrator connects an account, reads the authenticated user's current team, lists teams or bots, reads settings, or saves supported bot settings.
 * When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions.
 * `https://widget.docsbot.ai/chat.js` is loaded for eligible visitors when the widget is enabled.
 * Visitor chat messages and any administrator-enabled identity fields are processed by DocsBot.
@@ -57,7 +57,7 @@ Use of DocsBot is subject to the [DocsBot Privacy Policy](https://docsbot.ai/pri
 1. Upload the plugin directory to `/wp-content/plugins/` or install the ZIP from **Plugins > Add New Plugin > Upload Plugin**.
 2. Activate **DocsBot**.
 3. Open **Settings > DocsBot > Connection**.
-4. Get your user API key from the [DocsBot API Keys page](https://docsbot.ai/app/api), paste it into WordPress, and connect.
+4. Get your user API key from the [DocsBot API Keys page](https://docsbot.ai/app/api), paste it into WordPress, and connect. DocsBot selects your current accessible team when available.
 5. Choose a team, save, then choose a bot.
 6. Configure Content, Design, and Actions.
 7. Open Deploy, choose your audience and pages, then enable the widget.

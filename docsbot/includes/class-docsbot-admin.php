@@ -951,6 +951,17 @@ final class DocsBot_Admin {
 			$this->redirect_feedback( 'connection', 'error', $teams->get_error_message() );
 		}
 
+		$team_id         = '';
+		$team_name       = '';
+		$current_team_id = $this->api->get_current_team_id( $api_key );
+		if ( ! is_wp_error( $current_team_id ) && '' !== $current_team_id ) {
+			$current_team = $this->find_by_id( $teams, $current_team_id );
+			if ( $current_team ) {
+				$team_id   = $current_team_id;
+				$team_name = sanitize_text_field( (string) ( $current_team['name'] ?? '' ) );
+			}
+		}
+
 		$encrypted = DocsBot_Crypto::encrypt( $api_key );
 		if ( is_wp_error( $encrypted ) ) {
 			$this->redirect_feedback( 'connection', 'error', $encrypted->get_error_message() );
@@ -959,8 +970,8 @@ final class DocsBot_Admin {
 		DocsBot_Plugin::update_settings(
 			array(
 				'api_key'       => $encrypted,
-				'team_id'       => '',
-				'team_name'     => '',
+				'team_id'       => $team_id,
+				'team_name'     => $team_name,
 				'bot_id'        => '',
 				'bot_name'      => '',
 				'bot_privacy'   => 'public',

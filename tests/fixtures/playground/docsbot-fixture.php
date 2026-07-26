@@ -145,6 +145,17 @@ add_filter(
 					'plan'     => array( 'name' => 'Business', 'bots' => 10 ),
 				),
 			);
+		} elseif ( '/api/users/me' === $path ) {
+			$data = array(
+				'user'        => array(
+					'id'          => 'fixture-user',
+					'currentTeam' => 'teamDemo12345',
+				),
+				'currentTeam' => array(
+					'id'   => 'teamDemo12345',
+					'name' => 'DocsBot Demo Team',
+				),
+			);
 		} elseif ( '/api/teams/teamDemo12345/bots' === $path ) {
 			$data = array( $bot );
 		} elseif ( '/api/teams/teamDemo12345/bots/botDemo98765/skills' === $path ) {

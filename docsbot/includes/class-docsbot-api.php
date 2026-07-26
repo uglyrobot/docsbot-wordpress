@@ -29,6 +29,43 @@ final class DocsBot_API {
 	}
 
 	/**
+	 * Get the current team ID for the authenticated user.
+	 *
+	 * Only the team ID is returned so the user response is never retained or
+	 * exposed to callers.
+	 *
+	 * @param string $api_key Optional key override.
+	 * @return string|WP_Error
+	 */
+	public function get_current_team_id( $api_key = '' ) {
+		$response = $this->request( 'GET', '/users/me', null, $api_key );
+
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
+
+		return $this->extract_current_team_id( $response );
+	}
+
+	/**
+	 * Extract a valid team ID from a user response.
+	 *
+	 * @param array<string,mixed> $response User response.
+	 * @return string
+	 */
+	public function extract_current_team_id( $response ) {
+		$team_id = '';
+
+		if ( isset( $response['user']['currentTeam'] ) && is_string( $response['user']['currentTeam'] ) ) {
+			$team_id = $response['user']['currentTeam'];
+		} elseif ( isset( $response['currentTeam']['id'] ) && is_string( $response['currentTeam']['id'] ) ) {
+			$team_id = $response['currentTeam']['id'];
+		}
+
+		return $this->valid_id( $team_id ) ? $team_id : '';
+	}
+
+	/**
 	 * List bots in a team.
 	 *
 	 * @param string $team_id Team ID.
