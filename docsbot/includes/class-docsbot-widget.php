@@ -209,7 +209,7 @@ final class DocsBot_Widget {
 					'bot_id'   => (string) $settings['bot_id'],
 					'iat'      => $now,
 					'exp'      => $now + min( 3600, max( 300, (int) $settings['jwt_ttl'] ) ),
-					'metadata' => empty( $identify ) ? new stdClass() : $identify,
+					'metadata' => $this->build_private_metadata( $user_id, $identify ),
 				),
 				$signature_key
 			);
@@ -286,7 +286,8 @@ final class DocsBot_Widget {
 		wp_add_privacy_policy_content(
 			__( 'DocsBot', 'docsbot' ),
 			wp_kses_post(
-				'<p>' . __( 'This site may use DocsBot to provide an interactive chat. Chat messages and any identity fields enabled by the site administrator may be sent to DocsBot for processing and retained according to the site owner’s DocsBot settings. Do not submit passwords, payment details, or other sensitive information in chat.', 'docsbot' ) . '</p>'
+				'<p>' . __( 'This site may use DocsBot to provide an interactive chat. Chat messages and any identity fields enabled by the site administrator may be sent to DocsBot for processing and retained according to the site owner’s DocsBot settings. Do not submit passwords, payment details, or other sensitive information in chat.', 'docsbot' ) . '</p>' .
+				'<p>' . __( 'For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.', 'docsbot' ) . '</p>'
 			)
 		);
 	}
@@ -320,6 +321,24 @@ final class DocsBot_Widget {
 		}
 
 		return $identify;
+	}
+
+	/**
+	 * Build trusted metadata for a private-bot JWT.
+	 *
+	 * The WordPress user ID is present only for authenticated users.
+	 *
+	 * @param int                  $user_id  WordPress user ID.
+	 * @param array<string,string> $identify Opt-in public identity fields.
+	 * @return array<string,string>|stdClass
+	 */
+	public function build_private_metadata( $user_id, $identify = array() ) {
+		$metadata = is_array( $identify ) ? $identify : array();
+		if ( $user_id > 0 ) {
+			$metadata['priv_user_id'] = (string) (int) $user_id;
+		}
+
+		return empty( $metadata ) ? new stdClass() : $metadata;
 	}
 
 	/**

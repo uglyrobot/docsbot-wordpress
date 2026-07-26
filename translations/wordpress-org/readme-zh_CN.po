@@ -585,3 +585,7 @@ msgstr "首次公开发布。"
 #. External service bullet
 msgid "When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions."
 msgstr "当管理员要求 DocsBot 起草自定义操作按钮时，输入的提示词会发送给 DocsBot，以生成可编辑的按钮设置。只有管理员保存“操作”后，该草稿才会保存。"
+
+#. Privacy and security paragraph
+msgid "For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations."
+msgstr "对于私有机器人，已登录访客的签名 JWT 会将当前 WordPress 用户 ID 作为可信的 `priv_user_id` 元数据包含在内。访客 JWT 不包含用户 ID。DocsBot 不会将 `priv_*` 元数据写入聊天记录或发送到 AI 模型上下文，但会将其提供给已授权的集成。"

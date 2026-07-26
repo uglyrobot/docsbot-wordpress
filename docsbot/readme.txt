@@ -39,6 +39,8 @@ The plugin uses public APIs from WooCommerce Memberships, MemberPress, Paid Memb
 
 Identity sharing is off by default. If enabled, the selected fields are sent to DocsBot only after the visitor passes the configured access rules. The plugin never sends membership, role, password, payment, or subscription data.
 
+For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
+
 The DocsBot API key remains on the WordPress server. Private-bot signature keys are used only to create short-lived tokens. Both credentials are encrypted before database storage, or may be supplied through `wp-config.php` constants.
 
 = External service =

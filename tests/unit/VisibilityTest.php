@@ -48,6 +48,25 @@ final class VisibilityTest extends TestCase {
 		$this->assertFalse( $this->widget->validate_path( '/' . str_repeat( 'x', 2049 ) ) );
 	}
 
+	public function test_private_metadata_contains_only_logged_in_wordpress_user_ids() {
+		$this->assertSame(
+			array(
+				'name'         => 'Ada',
+				'priv_user_id' => '42',
+			),
+			$this->widget->build_private_metadata(
+				42,
+				array(
+					'name'         => 'Ada',
+					'priv_user_id' => 'untrusted',
+				)
+			)
+		);
+		$guest = $this->widget->build_private_metadata( 0 );
+		$this->assertInstanceOf( stdClass::class, $guest );
+		$this->assertSame( array(), get_object_vars( $guest ) );
+	}
+
 	public function test_no_membership_provider_allows_without_vendor_calls() {
 		$memberships = new DocsBot_Memberships();
 		$this->assertTrue( $memberships->user_is_allowed( 'none', '', 0 ) );

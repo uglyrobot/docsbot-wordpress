@@ -562,3 +562,7 @@ msgstr "Erste öffentliche Veröffentlichung."
 #. External service bullet
 msgid "When an administrator asks DocsBot to draft a custom action button, the entered prompt is sent to DocsBot to generate editable button settings. The draft is not saved until the administrator saves Actions."
 msgstr "Wenn ein Administrator DocsBot bittet, eine benutzerdefinierte Aktionsschaltfläche zu entwerfen, wird die eingegebene Anweisung an DocsBot gesendet, um bearbeitbare Schaltflächeneinstellungen zu erzeugen. Der Entwurf wird erst gespeichert, wenn der Administrator die Aktionen speichert."
+
+#. Privacy and security paragraph
+msgid "For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations."
+msgstr "Bei privaten Bots enthalten signierte JWTs für angemeldete Besucher die aktuelle WordPress-Benutzer-ID als vertrauenswürdige `priv_user_id`-Metadaten. Gast-JWTs enthalten keine Benutzer-ID. DocsBot hält `priv_*`-Metadaten aus dem Chatverlauf und dem Kontext des KI-Modells heraus, stellt sie aber autorisierten Integrationen zur Verfügung."

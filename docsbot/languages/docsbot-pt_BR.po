@@ -1647,3 +1647,7 @@ msgstr "Wi-Fi"
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Wrench"
 msgstr "Chave inglesa"
+
+#: docsbot/includes/class-docsbot-widget.php
+msgid "For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations."
+msgstr "Para bots privados, os JWTs assinados de visitantes conectados incluem o ID do usuário atual do WordPress como metadado confiável `priv_user_id`. Os JWTs de visitantes não incluem um ID de usuário. O DocsBot mantém os metadados `priv_*` fora do histórico do chat e do contexto do modelo de IA, mas os disponibiliza para integrações autorizadas."

@@ -59,6 +59,8 @@ URL path rules are placement controls, not an authorization boundary. Sites that
 
 Identity sharing is disabled by default. The plugin never sends membership, role, payment, password, or subscription data to DocsBot.
 
+For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
+
 ## External services
 
 This plugin connects to DocsBot, a third-party SaaS:
