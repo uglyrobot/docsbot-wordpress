@@ -906,17 +906,11 @@ msgstr "DocsBot devolvió el estado HTTP %d."
 msgid "DocsBot returned an invalid response."
 msgstr "DocsBot devolvió una respuesta no válida."
 
-#: docsbot/includes/class-docsbot-crypto.php:31
-msgid "OpenSSL is required to store DocsBot credentials securely."
-msgstr ""
-"Se necesita OpenSSL para almacenar de forma segura las credenciales de "
-"DocsBot."
+#: docsbot/includes/class-docsbot-crypto.php:35
+msgid "WordPress cryptography is unavailable on this server."
+msgstr "La criptografía de WordPress no está disponible en este servidor."
 
-#: docsbot/includes/class-docsbot-crypto.php:40
-msgid "Secure random data is unavailable on this server."
-msgstr "No hay datos aleatorios seguros disponibles en este servidor."
-
-#: docsbot/includes/class-docsbot-crypto.php:57
+#: docsbot/includes/class-docsbot-crypto.php:45
 msgid "The DocsBot credential could not be encrypted."
 msgstr "No se ha podido cifrar la credencial de DocsBot."
 
@@ -986,28 +980,6 @@ msgstr ""
 "con los ajustes de DocsBot del propietario del sitio. No envíes contraseñas, "
 "datos de pago ni otra información sensible por el chat."
 
-#~ msgid "Comments (classic)"
-#~ msgstr "Comentarios (clásico)"
-
-#~ msgid "Show escalation when it is configured for the selected bot."
-#~ msgstr ""
-#~ "Muestra la derivación cuando esté configurada para el bot seleccionado."
-
-#~ msgid "Show concise thinking and tool progress while the agent works."
-#~ msgstr ""
-#~ "Muestra un resumen del razonamiento y del progreso de las herramientas "
-#~ "mientras trabaja el agente."
-
-#~ msgid "Allowed embed domains"
-#~ msgstr "Dominios de inserción permitidos"
-
-#~ msgid ""
-#~ "One hostname per line, without a scheme or wildcard. Saved to DocsBot as "
-#~ "defense in depth."
-#~ msgstr ""
-#~ "Introduce un nombre de host por línea, sin esquema ni comodín. Se guarda "
-#~ "en DocsBot como defensa en profundidad."
-
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add MCP server"
 msgstr "Añadir servidor MCP"
@@ -1018,7 +990,8 @@ msgstr "Añadir habilidad"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Allow the bot to detect when a user needs to speak to a human."
-msgstr "Permite que el bot detecte cuándo un usuario necesita hablar con una persona."
+msgstr ""
+"Permite que el bot detecte cuándo un usuario necesita hablar con una persona."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Button Label"
@@ -1034,7 +1007,9 @@ msgstr "Recopilar comentarios"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Collect ratings (CSAT) from users after they interact with the bot."
-msgstr "Recopila valoraciones (CSAT) de los usuarios después de interactuar con el bot."
+msgstr ""
+"Recopila valoraciones (CSAT) de los usuarios después de interactuar con el "
+"bot."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Connect your bot to external tools and data from your services."
@@ -1054,7 +1029,9 @@ msgstr "Escalado a soporte humano"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Let your bot show a configured button when its instructions match."
-msgstr "Permite que tu bot muestre un botón configurado cuando se cumplan sus instrucciones."
+msgstr ""
+"Permite que tu bot muestre un botón configurado cuando se cumplan sus "
+"instrucciones."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "MCP Servers"
@@ -1090,11 +1067,17 @@ msgstr "Añadir habilidad en DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "DocsBot authentication failed. Replace the API key and reconnect."
-msgstr "La autenticación de DocsBot ha fallado. Sustituye la clave de API y vuelve a conectar."
+msgstr ""
+"La autenticación de DocsBot ha fallado. Sustituye la clave de API y vuelve a "
+"conectar."
 
 #: docsbot/includes/class-docsbot-admin.php
-msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
-msgstr "Esta clave de API no tiene permiso para esa operación de DocsBot. Solicita al propietario o administrador del equipo el acceso necesario al bot."
+msgid ""
+"This API key does not have permission for that DocsBot operation. Ask a team "
+"owner or admin for the required bot access."
+msgstr ""
+"Esta clave de API no tiene permiso para esa operación de DocsBot. Solicita "
+"al propietario o administrador del equipo el acceso necesario al bot."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add custom button"
@@ -1242,7 +1225,9 @@ msgstr "Generando…"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Send visitors to our pricing page when they ask about plans or cost."
-msgstr "Envía a los visitantes a nuestra página de precios cuando pregunten por planes o costes."
+msgstr ""
+"Envía a los visitantes a nuestra página de precios cuando pregunten por "
+"planes o costes."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Unable to generate a custom button draft."
@@ -1649,5 +1634,15 @@ msgid "Wrench"
 msgstr "Llave inglesa"
 
 #: docsbot/includes/class-docsbot-widget.php
-msgid "For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations."
-msgstr "Para los bots privados, los JWT firmados de visitantes conectados incluyen el ID de usuario actual de WordPress como metadatos de confianza `priv_user_id`. Los JWT de invitados no incluyen ningún ID de usuario. DocsBot mantiene los metadatos `priv_*` fuera del historial del chat y del contexto del modelo de IA, pero los pone a disposición de las integraciones autorizadas."
+msgid ""
+"For private bots, signed JWTs for logged-in visitors include the current "
+"WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not "
+"include a user ID. DocsBot keeps `priv_*` metadata out of chat history and "
+"AI model context while making it available to authorized integrations."
+msgstr ""
+"Para los bots privados, los JWT firmados de visitantes conectados incluyen "
+"el ID de usuario actual de WordPress como metadatos de confianza "
+"`priv_user_id`. Los JWT de invitados no incluyen ningún ID de usuario. "
+"DocsBot mantiene los metadatos `priv_*` fuera del historial del chat y del "
+"contexto del modelo de IA, pero los pone a disposición de las integraciones "
+"autorizadas."

@@ -901,15 +901,11 @@ msgstr "DocsBot から HTTP %d が返されました。"
 msgid "DocsBot returned an invalid response."
 msgstr "DocsBot から無効な応答が返されました。"
 
-#: docsbot/includes/class-docsbot-crypto.php:31
-msgid "OpenSSL is required to store DocsBot credentials securely."
-msgstr "DocsBot の認証情報を安全に保存するには OpenSSL が必要です。"
+#: docsbot/includes/class-docsbot-crypto.php:35
+msgid "WordPress cryptography is unavailable on this server."
+msgstr "このサーバーでは WordPress の暗号化機能を利用できません。"
 
-#: docsbot/includes/class-docsbot-crypto.php:40
-msgid "Secure random data is unavailable on this server."
-msgstr "このサーバーでは安全な乱数を利用できません。"
-
-#: docsbot/includes/class-docsbot-crypto.php:57
+#: docsbot/includes/class-docsbot-crypto.php:45
 msgid "The DocsBot credential could not be encrypted."
 msgstr "DocsBot の認証情報を暗号化できませんでした。"
 
@@ -979,26 +975,6 @@ msgstr ""
 "す。チャットにはパスワード、支払い情報、その他の機密情報を入力しないでくださ"
 "い。"
 
-#~ msgid "Comments (classic)"
-#~ msgstr "コメント（クラシック）"
-
-#~ msgid "Show escalation when it is configured for the selected bot."
-#~ msgstr "選択したボットで設定されている場合にエスカレーションを表示します。"
-
-#~ msgid "Show concise thinking and tool progress while the agent works."
-#~ msgstr ""
-#~ "エージェントの動作中に、簡潔な思考過程とツールの進行状況を表示します。"
-
-#~ msgid "Allowed embed domains"
-#~ msgstr "埋め込みを許可するドメイン"
-
-#~ msgid ""
-#~ "One hostname per line, without a scheme or wildcard. Saved to DocsBot as "
-#~ "defense in depth."
-#~ msgstr ""
-#~ "1 行に 1 つのホスト名を、スキームやワイルドカードなしで入力します。多層防"
-#~ "御のため DocsBot に保存されます。"
-
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add MCP server"
 msgstr "MCPサーバーを追加"
@@ -1009,7 +985,9 @@ msgstr "スキルを追加"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Allow the bot to detect when a user needs to speak to a human."
-msgstr "ユーザーが担当者との会話を必要としていることをボットが検出できるようにします。"
+msgstr ""
+"ユーザーが担当者との会話を必要としていることをボットが検出できるようにしま"
+"す。"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Button Label"
@@ -1084,8 +1062,12 @@ msgid "DocsBot authentication failed. Replace the API key and reconnect."
 msgstr "DocsBotの認証に失敗しました。APIキーを交換して再接続してください。"
 
 #: docsbot/includes/class-docsbot-admin.php
-msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
-msgstr "このAPIキーには、そのDocsBot操作を行う権限がありません。必要なボットアクセス権をチームの所有者または管理者に依頼してください。"
+msgid ""
+"This API key does not have permission for that DocsBot operation. Ask a team "
+"owner or admin for the required bot access."
+msgstr ""
+"このAPIキーには、そのDocsBot操作を行う権限がありません。必要なボットアクセス"
+"権をチームの所有者または管理者に依頼してください。"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add custom button"
@@ -1640,5 +1622,13 @@ msgid "Wrench"
 msgstr "レンチ"
 
 #: docsbot/includes/class-docsbot-widget.php
-msgid "For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations."
-msgstr "プライベートボットでは、ログイン済み訪問者の署名済みJWTに現在のWordPressユーザーIDが信頼できる`priv_user_id`メタデータとして含まれます。ゲストのJWTにはユーザーIDを含めません。DocsBotは`priv_*`メタデータをチャット履歴やAIモデルのコンテキストには含めず、承認された連携でのみ利用できるようにします。"
+msgid ""
+"For private bots, signed JWTs for logged-in visitors include the current "
+"WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not "
+"include a user ID. DocsBot keeps `priv_*` metadata out of chat history and "
+"AI model context while making it available to authorized integrations."
+msgstr ""
+"プライベートボットでは、ログイン済み訪問者の署名済みJWTに現在のWordPressユー"
+"ザーIDが信頼できる`priv_user_id`メタデータとして含まれます。ゲストのJWTには"
+"ユーザーIDを含めません。DocsBotは`priv_*`メタデータをチャット履歴やAIモデルの"
+"コンテキストには含めず、承認された連携でのみ利用できるようにします。"

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Encrypts plugin secrets with WordPress installation keys.
+ * Encrypts plugin secrets with WordPress-bundled authenticated cryptography.
  */
 final class DocsBot_Crypto {
 
@@ -25,40 +25,28 @@ final class DocsBot_Crypto {
 			return '';
 		}
 
-		if ( ! function_exists( 'openssl_encrypt' ) ) {
+		if (
+			! function_exists( 'sodium_crypto_secretbox' ) ||
+			! defined( 'SODIUM_CRYPTO_SECRETBOX_NONCEBYTES' ) ||
+			! defined( 'SODIUM_CRYPTO_SECRETBOX_MACBYTES' )
+		) {
 			return new WP_Error(
 				'docsbot_crypto_unavailable',
-				__( 'OpenSSL is required to store DocsBot credentials securely.', 'docsbot' )
+				__( 'WordPress cryptography is unavailable on this server.', 'docsbot' )
 			);
 		}
 
 		try {
-			$iv = random_bytes( 12 );
-		} catch ( Exception $exception ) {
-			return new WP_Error(
-				'docsbot_random_unavailable',
-				__( 'Secure random data is unavailable on this server.', 'docsbot' )
-			);
-		}
-
-		$tag        = '';
-		$ciphertext = openssl_encrypt(
-			$plaintext,
-			'aes-256-gcm',
-			self::key(),
-			OPENSSL_RAW_DATA,
-			$iv,
-			$tag
-		);
-
-		if ( false === $ciphertext ) {
+			$nonce      = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
+			$ciphertext = sodium_crypto_secretbox( $plaintext, $nonce, self::key() );
+		} catch ( Throwable $exception ) {
 			return new WP_Error(
 				'docsbot_encrypt_failed',
 				__( 'The DocsBot credential could not be encrypted.', 'docsbot' )
 			);
 		}
 
-		return 'v1:' . base64_encode( $iv . $tag . $ciphertext ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+		return 'v1:' . base64_encode( $nonce . $ciphertext ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 	}
 
 	/**
@@ -68,23 +56,31 @@ final class DocsBot_Crypto {
 	 * @return string
 	 */
 	public static function decrypt( $encoded ) {
-		if ( '' === $encoded || 0 !== strpos( $encoded, 'v1:' ) || ! function_exists( 'openssl_decrypt' ) ) {
+		if (
+			'' === $encoded ||
+			0 !== strpos( $encoded, 'v1:' ) ||
+			! function_exists( 'sodium_crypto_secretbox_open' ) ||
+			! defined( 'SODIUM_CRYPTO_SECRETBOX_NONCEBYTES' ) ||
+			! defined( 'SODIUM_CRYPTO_SECRETBOX_MACBYTES' )
+		) {
 			return '';
 		}
 
 		$decoded = base64_decode( substr( $encoded, 3 ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
-		if ( false === $decoded || strlen( $decoded ) < 29 ) {
+		$minimum_length = SODIUM_CRYPTO_SECRETBOX_NONCEBYTES + SODIUM_CRYPTO_SECRETBOX_MACBYTES;
+		if ( false === $decoded || strlen( $decoded ) < $minimum_length ) {
 			return '';
 		}
 
-		$plaintext = openssl_decrypt(
-			substr( $decoded, 28 ),
-			'aes-256-gcm',
-			self::key(),
-			OPENSSL_RAW_DATA,
-			substr( $decoded, 0, 12 ),
-			substr( $decoded, 12, 16 )
-		);
+		try {
+			$plaintext = sodium_crypto_secretbox_open(
+				substr( $decoded, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ),
+				substr( $decoded, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ),
+				self::key()
+			);
+		} catch ( Throwable $exception ) {
+			return '';
+		}
 
 		return false === $plaintext ? '' : $plaintext;
 	}

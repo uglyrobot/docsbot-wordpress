@@ -857,15 +857,11 @@ msgstr ""
 msgid "DocsBot returned an invalid response."
 msgstr ""
 
-#: docsbot/includes/class-docsbot-crypto.php:31
-msgid "OpenSSL is required to store DocsBot credentials securely."
+#: docsbot/includes/class-docsbot-crypto.php:35
+msgid "WordPress cryptography is unavailable on this server."
 msgstr ""
 
-#: docsbot/includes/class-docsbot-crypto.php:40
-msgid "Secure random data is unavailable on this server."
-msgstr ""
-
-#: docsbot/includes/class-docsbot-crypto.php:57
+#: docsbot/includes/class-docsbot-crypto.php:45
 msgid "The DocsBot credential could not be encrypted."
 msgstr ""
 

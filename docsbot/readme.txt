@@ -70,7 +70,7 @@ The [DocsBot Privacy Policy](https://docsbot.ai/privacy?utm_source=wordpress.org
 6. Configure Content, Design, and Actions.
 7. Open Deploy, choose your audience and pages, then enable the widget.
 
-The plugin requires PHP's OpenSSL extension to encrypt saved credentials and sign private-bot tokens.
+WordPress supplies the cryptography used to encrypt saved credentials, so no optional PHP encryption extension is required.
 
 For a private bot, select the bot normally. The plugin retrieves its signing key in the authorized server-side bot response, encrypts it immediately, and never renders it in WordPress.
 

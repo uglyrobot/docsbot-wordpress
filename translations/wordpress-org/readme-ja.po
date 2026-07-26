@@ -327,11 +327,11 @@ msgstr ""
 
 #: docsbot/readme.txt:73
 msgid ""
-"The plugin requires PHP's OpenSSL extension to encrypt saved credentials and "
-"sign private-bot tokens."
+"WordPress supplies the cryptography used to encrypt saved credentials, so no "
+"optional PHP encryption extension is required."
 msgstr ""
-"保存する認証情報の暗号化と非公開ボット用トークンの署名には、PHP の OpenSSL 拡"
-"張機能が必要です。"
+"保存した認証情報の暗号化には WordPress が提供する暗号化機能を使用するため、"
+"PHP のオプション暗号化拡張機能は必要ありません。"
 
 #: docsbot/readme.txt:75
 msgid ""

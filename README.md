@@ -25,7 +25,7 @@ The plugin connects to the DocsBot Admin API from your WordPress server, lets an
 ## Requirements
 
 - WordPress 6.5 or newer
-- PHP 7.4 or newer with OpenSSL
+- PHP 7.4 or newer
 - A DocsBot account and user API key
 
 ## Languages
@@ -51,7 +51,7 @@ For private bots, the plugin retrieves the signing key with the authorized bot r
 
 ## Security model
 
-The DocsBot user API key and private-bot signing key are encrypted with AES-256-GCM using installation-specific WordPress salts and stored in a non-autoloaded option. High-security installations can set `DOCSBOT_API_KEY` and `DOCSBOT_SIGNATURE_KEY` in `wp-config.php` instead.
+The DocsBot user API key and private-bot signing key are encrypted with WordPress's bundled Sodium compatibility layer using authenticated `secretbox` encryption, installation-specific WordPress salts, and a fresh random nonce. Credentials are stored in a non-autoloaded option. High-security installations can set `DOCSBOT_API_KEY` and `DOCSBOT_SIGNATURE_KEY` in `wp-config.php` instead.
 
 The API key never reaches browser JavaScript. For private bots, WordPress checks page, login, role, and membership rules before issuing a token. The browser receives a short-lived JWT—not the signing key—through a no-store REST response.
 

@@ -295,10 +295,11 @@ msgstr "打开“部署”，选择受众和页面，然后启用小组件。"
 
 #: docsbot/readme.txt:73
 msgid ""
-"The plugin requires PHP's OpenSSL extension to encrypt saved credentials and "
-"sign private-bot tokens."
+"WordPress supplies the cryptography used to encrypt saved credentials, so no "
+"optional PHP encryption extension is required."
 msgstr ""
-"插件需要 PHP 的 OpenSSL 扩展来加密已保存的凭据，并为私有机器人令牌签名。"
+"WordPress 提供用于加密已保存凭据的加密功能，因此不需要任何可选的 PHP 加密扩"
+"展。"
 
 #: docsbot/readme.txt:75
 msgid ""

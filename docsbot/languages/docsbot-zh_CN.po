@@ -873,15 +873,11 @@ msgstr "DocsBot 返回了 HTTP %d。"
 msgid "DocsBot returned an invalid response."
 msgstr "DocsBot 返回了无效响应。"
 
-#: docsbot/includes/class-docsbot-crypto.php:31
-msgid "OpenSSL is required to store DocsBot credentials securely."
-msgstr "需要 OpenSSL 才能安全存储 DocsBot 凭据。"
+#: docsbot/includes/class-docsbot-crypto.php:35
+msgid "WordPress cryptography is unavailable on this server."
+msgstr "此服务器无法使用 WordPress 加密功能。"
 
-#: docsbot/includes/class-docsbot-crypto.php:40
-msgid "Secure random data is unavailable on this server."
-msgstr "此服务器无法生成安全的随机数据。"
-
-#: docsbot/includes/class-docsbot-crypto.php:57
+#: docsbot/includes/class-docsbot-crypto.php:45
 msgid "The DocsBot credential could not be encrypted."
 msgstr "无法加密 DocsBot 凭据。"
 
@@ -948,24 +944,6 @@ msgstr ""
 "此网站可能使用 DocsBot 提供互动聊天。聊天消息以及网站管理员启用的任何身份字段"
 "可能会发送至 DocsBot 进行处理，并根据网站所有者的 DocsBot 设置予以保留。请勿"
 "在聊天中提交密码、付款信息或其他敏感信息。"
-
-#~ msgid "Comments (classic)"
-#~ msgstr "对话（经典）"
-
-#~ msgid "Show escalation when it is configured for the selected bot."
-#~ msgstr "当所选机器人已配置转接时显示该功能。"
-
-#~ msgid "Show concise thinking and tool progress while the agent works."
-#~ msgstr "在代理工作时显示简洁的思考和工具进度。"
-
-#~ msgid "Allowed embed domains"
-#~ msgstr "允许嵌入的域名"
-
-#~ msgid ""
-#~ "One hostname per line, without a scheme or wildcard. Saved to DocsBot as "
-#~ "defense in depth."
-#~ msgstr ""
-#~ "每行一个主机名，不含协议或通配符。设置会保存到 DocsBot，作为纵深防御措施。"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add MCP server"
@@ -1052,8 +1030,12 @@ msgid "DocsBot authentication failed. Replace the API key and reconnect."
 msgstr "DocsBot 身份验证失败。请更换 API 密钥并重新连接。"
 
 #: docsbot/includes/class-docsbot-admin.php
-msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
-msgstr "此 API 密钥无权执行该 DocsBot 操作。请向团队所有者或管理员申请所需的机器人访问权限。"
+msgid ""
+"This API key does not have permission for that DocsBot operation. Ask a team "
+"owner or admin for the required bot access."
+msgstr ""
+"此 API 密钥无权执行该 DocsBot 操作。请向团队所有者或管理员申请所需的机器人访"
+"问权限。"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add custom button"
@@ -1608,5 +1590,13 @@ msgid "Wrench"
 msgstr "扳手"
 
 #: docsbot/includes/class-docsbot-widget.php
-msgid "For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations."
-msgstr "对于私有机器人，已登录访客的签名 JWT 会将当前 WordPress 用户 ID 作为可信的 `priv_user_id` 元数据包含在内。访客 JWT 不包含用户 ID。DocsBot 不会将 `priv_*` 元数据写入聊天记录或发送到 AI 模型上下文，但会将其提供给已授权的集成。"
+msgid ""
+"For private bots, signed JWTs for logged-in visitors include the current "
+"WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not "
+"include a user ID. DocsBot keeps `priv_*` metadata out of chat history and "
+"AI model context while making it available to authorized integrations."
+msgstr ""
+"对于私有机器人，已登录访客的签名 JWT 会将当前 WordPress 用户 ID 作为可信的 "
+"`priv_user_id` 元数据包含在内。访客 JWT 不包含用户 ID。DocsBot 不会将 "
+"`priv_*` 元数据写入聊天记录或发送到 AI 模型上下文，但会将其提供给已授权的集"
+"成。"

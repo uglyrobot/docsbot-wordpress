@@ -905,18 +905,11 @@ msgstr "DocsBot a renvoyé le code HTTP %d."
 msgid "DocsBot returned an invalid response."
 msgstr "DocsBot a renvoyé une réponse non valide."
 
-#: docsbot/includes/class-docsbot-crypto.php:31
-msgid "OpenSSL is required to store DocsBot credentials securely."
-msgstr ""
-"OpenSSL est requis pour stocker les identifiants DocsBot de manière "
-"sécurisée."
+#: docsbot/includes/class-docsbot-crypto.php:35
+msgid "WordPress cryptography is unavailable on this server."
+msgstr "La cryptographie de WordPress n’est pas disponible sur ce serveur."
 
-#: docsbot/includes/class-docsbot-crypto.php:40
-msgid "Secure random data is unavailable on this server."
-msgstr ""
-"Les données aléatoires sécurisées ne sont pas disponibles sur ce serveur."
-
-#: docsbot/includes/class-docsbot-crypto.php:57
+#: docsbot/includes/class-docsbot-crypto.php:45
 msgid "The DocsBot credential could not be encrypted."
 msgstr "L’identifiant DocsBot n’a pas pu être chiffré."
 
@@ -987,28 +980,6 @@ msgstr ""
 "N’envoyez pas de mots de passe, de données de paiement ni d’autres "
 "informations sensibles dans la discussion."
 
-#~ msgid "Comments (classic)"
-#~ msgstr "Bulles de discussion (classiques)"
-
-#~ msgid "Show escalation when it is configured for the selected bot."
-#~ msgstr ""
-#~ "Afficher le transfert lorsqu’il est configuré pour le bot sélectionné."
-
-#~ msgid "Show concise thinking and tool progress while the agent works."
-#~ msgstr ""
-#~ "Afficher un résumé concis du raisonnement et de la progression des outils "
-#~ "pendant le travail de l’agent."
-
-#~ msgid "Allowed embed domains"
-#~ msgstr "Domaines d’intégration autorisés"
-
-#~ msgid ""
-#~ "One hostname per line, without a scheme or wildcard. Saved to DocsBot as "
-#~ "defense in depth."
-#~ msgstr ""
-#~ "Un nom d’hôte par ligne, sans protocole ni caractère générique. "
-#~ "Enregistré dans DocsBot comme protection supplémentaire."
-
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add MCP server"
 msgstr "Ajouter un serveur MCP"
@@ -1019,7 +990,9 @@ msgstr "Ajouter une compétence"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Allow the bot to detect when a user needs to speak to a human."
-msgstr "Permet au bot de détecter lorsqu’un utilisateur souhaite parler à une personne."
+msgstr ""
+"Permet au bot de détecter lorsqu’un utilisateur souhaite parler à une "
+"personne."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Button Label"
@@ -1035,11 +1008,14 @@ msgstr "Recueillir des avis"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Collect ratings (CSAT) from users after they interact with the bot."
-msgstr "Recueille les évaluations (CSAT) des utilisateurs après leur interaction avec le bot."
+msgstr ""
+"Recueille les évaluations (CSAT) des utilisateurs après leur interaction "
+"avec le bot."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Connect your bot to external tools and data from your services."
-msgstr "Connectez votre bot aux outils externes et aux données de vos services."
+msgstr ""
+"Connectez votre bot aux outils externes et aux données de vos services."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Custom Buttons"
@@ -1047,7 +1023,8 @@ msgstr "Boutons personnalisés"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Enable bot skills to give your bot special abilities."
-msgstr "Activez les compétences du bot pour lui donner des capacités particulières."
+msgstr ""
+"Activez les compétences du bot pour lui donner des capacités particulières."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Human Support Escalation"
@@ -1055,7 +1032,9 @@ msgstr "Transfert vers l’assistance humaine"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Let your bot show a configured button when its instructions match."
-msgstr "Permet à votre bot d’afficher un bouton configuré lorsque ses instructions correspondent."
+msgstr ""
+"Permet à votre bot d’afficher un bouton configuré lorsque ses instructions "
+"correspondent."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "MCP Servers"
@@ -1075,7 +1054,8 @@ msgstr "Compétences"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Trigger an embedded booking widget for Calendly, Cal.com, or TidyCal."
-msgstr "Ouvre un widget de réservation intégré pour Calendly, Cal.com ou TidyCal."
+msgstr ""
+"Ouvre un widget de réservation intégré pour Calendly, Cal.com ou TidyCal."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Web Search"
@@ -1091,11 +1071,18 @@ msgstr "Ajouter une compétence dans DocsBot"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "DocsBot authentication failed. Replace the API key and reconnect."
-msgstr "L’authentification DocsBot a échoué. Remplacez la clé API et reconnectez-vous."
+msgstr ""
+"L’authentification DocsBot a échoué. Remplacez la clé API et reconnectez-"
+"vous."
 
 #: docsbot/includes/class-docsbot-admin.php
-msgid "This API key does not have permission for that DocsBot operation. Ask a team owner or admin for the required bot access."
-msgstr "Cette clé API n’est pas autorisée à effectuer cette opération DocsBot. Demandez au propriétaire ou à l’administrateur de l’équipe l’accès requis au bot."
+msgid ""
+"This API key does not have permission for that DocsBot operation. Ask a team "
+"owner or admin for the required bot access."
+msgstr ""
+"Cette clé API n’est pas autorisée à effectuer cette opération DocsBot. "
+"Demandez au propriétaire ou à l’administrateur de l’équipe l’accès requis au "
+"bot."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Add custom button"
@@ -1243,7 +1230,9 @@ msgstr "Génération…"
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Send visitors to our pricing page when they ask about plans or cost."
-msgstr "Envoyez les visiteurs vers notre page de tarifs lorsqu’ils posent des questions sur les offres ou les prix."
+msgstr ""
+"Envoyez les visiteurs vers notre page de tarifs lorsqu’ils posent des "
+"questions sur les offres ou les prix."
 
 #: docsbot/includes/class-docsbot-admin.php
 msgid "Unable to generate a custom button draft."
@@ -1650,5 +1639,15 @@ msgid "Wrench"
 msgstr "Clé plate"
 
 #: docsbot/includes/class-docsbot-widget.php
-msgid "For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations."
-msgstr "Pour les bots privés, les JWT signés des visiteurs connectés incluent l’identifiant de l’utilisateur WordPress actuel en tant que métadonnée fiable `priv_user_id`. Les JWT des visiteurs non connectés n’incluent aucun identifiant utilisateur. DocsBot exclut les métadonnées `priv_*` de l’historique des conversations et du contexte du modèle d’IA, tout en les mettant à la disposition des intégrations autorisées."
+msgid ""
+"For private bots, signed JWTs for logged-in visitors include the current "
+"WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not "
+"include a user ID. DocsBot keeps `priv_*` metadata out of chat history and "
+"AI model context while making it available to authorized integrations."
+msgstr ""
+"Pour les bots privés, les JWT signés des visiteurs connectés incluent "
+"l’identifiant de l’utilisateur WordPress actuel en tant que métadonnée "
+"fiable `priv_user_id`. Les JWT des visiteurs non connectés n’incluent aucun "
+"identifiant utilisateur. DocsBot exclut les métadonnées `priv_*` de "
+"l’historique des conversations et du contexte du modèle d’IA, tout en les "
+"mettant à la disposition des intégrations autorisées."
