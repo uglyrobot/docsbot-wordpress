@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: DocsBot 1.0.4\n"
+"Project-Id-Version: DocsBot 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/uglyrobot/docsbot-wordpress/issues\n"
 "POT-Creation-Date: 2026-07-25 15:11-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"

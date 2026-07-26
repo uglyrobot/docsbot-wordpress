@@ -4,7 +4,7 @@ Tags: artificial intelligence, chatbot, customer support, documentation, live ch
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.4
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,26 +104,18 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 
 == Changelog ==
 
-= 1.0.4 =
+= 1.0.0 =
 * Added WordPress Media Library selection for custom launcher icons, bot avatars, and header logos.
 * Added expanded dashboard action categories for Scheduling Tools, Custom Buttons, Skills, and MCP Servers, plus image uploads, voice input, and matching preview controls.
 * Moved support settings into Human Support Escalation and content-related options into Content.
 * Removed editable domain restrictions and now preserves unrestricted bots while transparently adding the WordPress hostname to existing allowlists.
-
-= 1.0.3 =
 * Added bundled translations for Spanish, German, French, Brazilian Portuguese, Japanese, and Simplified Chinese.
 * Added import-ready WordPress.org listing translation catalogs for the same locales.
 * Added the complete WordPress.org banner and icon asset set.
-
-= 1.0.2 =
 * Added dashboard-matched Content, Design, Actions, Deploy, and live widget preview screens.
 * Added automatic private-bot signing-key retrieval and encrypted server-side storage.
 * Added role, membership, page-prefix, and opt-in conversation identity controls.
 * Added release validation and installable ZIP packaging with GitHub Actions.
 * Standardized the plugin slug, text domain, PHP symbols, options, hooks, REST namespace, and package files on DocsBot.
-
-= 1.0.1 =
 * Updated product naming to DocsBot.
-
-= 1.0.0 =
 * Initial public release.
