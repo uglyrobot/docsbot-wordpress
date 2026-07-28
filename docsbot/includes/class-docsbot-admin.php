@@ -1723,7 +1723,7 @@ final class DocsBot_Admin {
 										$field['options'][] = $entry;
 									}
 									if ( empty( $field['options'] ) ) {
-						$this->redirect_feedback( 'actions', 'error', __( 'Every select lead form field needs at least one option.', 'docsbot' ) ); }
+										$this->redirect_feedback( 'actions', 'error', __( 'Every select lead form field needs at least one option.', 'docsbot' ) ); }
 								}
 								$fields[] = $field;
 		}
