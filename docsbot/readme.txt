@@ -31,7 +31,7 @@ This plugin requires a DocsBot account and API key. Already using DocsBot? Conne
 * Include or exclude page paths, from an entire documentation section to a single account area.
 * Show chat only to logged-in visitors, selected WordPress roles, or eligible members.
 * Support private DocsBot bots without exposing signing credentials in the browser.
-* Choose whether to share a visitor's display name, email, or pseudonymous site user ID with the conversation.
+* Choose whether to share a visitor's display name, email, or raw WordPress user ID with the conversation.
 
 = Supported membership integrations =
 
@@ -43,7 +43,7 @@ Choose custom launcher icons, bot avatars, and header logos from the WordPress M
 
 = Privacy and security =
 
-Public conversation identity is off by default. If you enable it, the plugin sends the visitor's display name, email address, and/or pseudonymous site user ID only after the visitor passes your access rules. It never sends membership, role, password, payment, or subscription data.
+Public conversation identity is enabled by default for new plugin setups. You can independently turn off sending a visitor's display name, email address, or raw WordPress user ID. It never sends membership, role, password, payment, or subscription data.
 
 Private bots have one exception: a signed request for a logged-in visitor automatically includes the numeric WordPress user ID as private `priv_user_id` metadata. Guest requests do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
 
@@ -86,7 +86,7 @@ WordPress checks your access rules before creating a short-lived, server-signed 
 
 = Does the plugin send WordPress user data automatically? =
 
-Public identity sharing is off by default. You choose whether to share a visitor's display name, email address, or pseudonymous site user ID. For private bots, signed requests automatically include the logged-in visitor's numeric WordPress user ID as private metadata. Guest requests include no user ID.
+Public identity sharing is enabled by default for new plugin setups. You can independently turn off sharing a visitor's display name, email address, or raw WordPress user ID. For private bots, signed requests automatically include the logged-in visitor's numeric WordPress user ID as private metadata. Guest requests include no user ID.
 
 = What happens if my membership plugin is disabled? =
 

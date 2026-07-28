@@ -297,7 +297,7 @@ final class DocsBot_Widget {
 	 *
 	 * @param int                 $user_id  User ID.
 	 * @param array<string,mixed> $settings Plugin settings.
-	 * @return array<string,string>
+	 * @return array<string,string|int>
 	 */
 	private function build_identify( $user_id, $settings ) {
 		if ( $user_id <= 0 ) {
@@ -317,7 +317,7 @@ final class DocsBot_Widget {
 			$identify['email'] = (string) $user->user_email;
 		}
 		if ( ! empty( $settings['share_user_id'] ) ) {
-			$identify['uid'] = 'wp_' . hash_hmac( 'sha256', (string) $user_id, wp_salt( 'nonce' ) );
+			$identify['uid'] = (int) $user_id;
 		}
 
 		return $identify;

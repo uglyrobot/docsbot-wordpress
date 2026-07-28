@@ -503,17 +503,20 @@ final class DocsBot_Admin {
 			if ( isset( $draft['supportLink'] ) ) {
 				$bot['supportLink'] = (string) $draft['supportLink'];
 			}
+			if ( array_key_exists( 'leadCollect', $draft ) ) {
+				$bot['leadCollect'] = $draft['leadCollect'];
+			}
 			if ( isset( $draft['settings'] ) && is_array( $draft['settings'] ) ) {
 				$settings = array_merge( $settings, $draft['settings'] );
 			}
 		}
-		$labels   = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
 		$bot_root = 'https://docsbot.ai/app/bots/' . rawurlencode( $bot_id ) . '/configure/';
 		$skills   = $this->cached_skills( $settings['team_id'], $bot_id );
 		$skills   = is_wp_error( $skills ) ? $skills : $this->api->available_widget_skills( $skills );
 		$servers  = $this->api->available_mcp_servers( $bot['mcpServers'] ?? array() );
 		$tools    = isset( $bot['tools'] ) && is_array( $bot['tools'] ) ? $bot['tools'] : array();
 		$buttons  = isset( $tools['customButtons'] ) && is_array( $tools['customButtons'] ) ? array_values( $tools['customButtons'] ) : array();
+		$labels   = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
 		?>
 		<div class="docsbot-card">
 			<p class="docsbot-eyebrow"><?php esc_html_e( 'Actions', 'docsbot' ); ?></p>
@@ -525,7 +528,6 @@ final class DocsBot_Admin {
 					<div>
 						<?php $this->option_toggle( 'use_escalation', __( 'Human Support Escalation', 'docsbot' ), __( 'Allow the bot to detect when a user needs to speak to a human.', 'docsbot' ), $settings['use_escalation'], 'support' ); ?>
 						<div class="docsbot-action-nested" data-depends-on="use_escalation">
-							<?php $this->text_field( 'support_label', __( 'Button Label', 'docsbot' ), $labels['getSupport'] ?? '', 80 ); ?>
 							<div class="docsbot-field">
 								<label for="docsbot-support-link"><?php esc_html_e( 'Button Link', 'docsbot' ); ?></label>
 								<input type="url" id="docsbot-support-link" name="support_link" value="<?php echo esc_attr( is_string( $bot['supportLink'] ?? '' ) ? $bot['supportLink'] : '' ); ?>" placeholder="https://example.com/support/">
@@ -533,6 +535,8 @@ final class DocsBot_Admin {
 						</div>
 					</div>
 				</div>
+
+				<?php $this->lead_collection_editor( $bot['leadCollect'] ?? false, $labels['leadCollectMessage'] ?? '' ); ?>
 
 				<section class="docsbot-action-category" aria-labelledby="docsbot-scheduling-title">
 					<div class="docsbot-action-category__heading">
@@ -646,6 +650,81 @@ final class DocsBot_Admin {
 	}
 
 	/**
+	 * Render the dashboard-compatible lead collection action.
+	 *
+	 * @param mixed  $lead_collect Current lead collection configuration.
+	 * @param string $message      Prompt message label.
+	 * @return void
+	 */
+	private function lead_collection_editor( $lead_collect, $message ) {
+		$enabled = is_array( $lead_collect ) && ! empty( $lead_collect['fields'] );
+		$config  = $enabled ? $lead_collect : $this->default_lead_collect();
+		$fields  = isset( $config['fields'] ) && is_array( $config['fields'] ) ? array_values( $config['fields'] ) : $this->default_lead_collect()['fields'];
+		$mode    = isset( $config['mode'] ) && 'before_escalation' === $config['mode'] ? 'before_escalation' : 'before_response';
+		?>
+		<section class="docsbot-action-category" aria-labelledby="docsbot-lead-collection-title">
+			<div class="docsbot-action-category__heading">
+				<h3 id="docsbot-lead-collection-title"><?php esc_html_e( 'Lead Collection', 'docsbot' ); ?><span class="docsbot-new-badge"><?php esc_html_e( 'New!', 'docsbot' ); ?></span></h3>
+				<p><?php esc_html_e( 'Collect lead data from users in the widget with a customizable form.', 'docsbot' ); ?></p>
+			</div>
+			<div class="docsbot-action-editor docsbot-lead-collection <?php echo $enabled ? 'is-enabled' : ''; ?>" data-lead-collection>
+				<div class="docsbot-action-editor__header">
+					<span class="docsbot-action-available__icon" aria-hidden="true"><?php echo $this->action_icon( 'lead' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static SVG. ?></span>
+					<span><strong><?php esc_html_e( 'Lead Collection', 'docsbot' ); ?></strong><small><?php esc_html_e( 'Built-in form builder', 'docsbot' ); ?></small></span>
+					<label class="docsbot-switch"><input type="checkbox" name="lead_collect[enabled]" value="1" data-lead-collection-toggle aria-label="<?php esc_attr_e( 'Enable lead collection', 'docsbot' ); ?>" <?php checked( $enabled ); ?>><span aria-hidden="true"></span></label>
+				</div>
+				<div class="docsbot-action-editor__body" data-lead-collection-body>
+					<div class="docsbot-grid docsbot-grid--2">
+						<div class="docsbot-field"><label for="docsbot-lead-mode"><?php esc_html_e( 'Trigger Mode', 'docsbot' ); ?></label><select id="docsbot-lead-mode" name="lead_collect[mode]"><option value="before_response" <?php selected( $mode, 'before_response' ); ?>><?php esc_html_e( 'Before Response', 'docsbot' ); ?></option><option value="before_escalation" <?php selected( $mode, 'before_escalation' ); ?>><?php esc_html_e( 'Before Escalation', 'docsbot' ); ?></option></select><p class="description"><?php esc_html_e( 'Request fields before the first response or before escalation.', 'docsbot' ); ?></p></div>
+						<div class="docsbot-field"><label for="docsbot-lead-message"><?php esc_html_e( 'Prompt Message', 'docsbot' ); ?></label><input id="docsbot-lead-message" type="text" name="lead_collect[message]" maxlength="500" value="<?php echo esc_attr( is_string( $message ) ? $message : '' ); ?>" placeholder="<?php esc_attr_e( 'Before we continue, could you share a few details?', 'docsbot' ); ?>"><p class="description"><?php esc_html_e( 'Shown before the lead collection form.', 'docsbot' ); ?></p></div>
+					</div>
+					<details class="docsbot-lead-fields" open>
+						<summary><?php esc_html_e( 'Form Fields', 'docsbot' ); ?></summary>
+						<div class="docsbot-lead-fields__intro"><span><?php esc_html_e( 'Name and email are recommended minimum. Keep your form short to reduce user friction.', 'docsbot' ); ?></span><span><?php esc_html_e( 'Drag fields by the handle to reorder them.', 'docsbot' ); ?></span></div>
+						<div class="docsbot-lead-fields__list" data-lead-fields>
+							<?php foreach ( $fields as $index => $field ) : ?>
+								<?php $this->lead_field_editor( $index, is_array( $field ) ? $field : array() ); ?>
+							<?php endforeach; ?>
+						</div>
+						<template id="docsbot-lead-field-template"><?php $this->lead_field_editor( '__INDEX__', array() ); ?></template>
+						<label class="screen-reader-text" for="docsbot-lead-add-field"><?php esc_html_e( 'Field type', 'docsbot' ); ?></label>
+						<div class="docsbot-lead-add"><select id="docsbot-lead-add-field" data-lead-add-type><option value=""><?php esc_html_e( 'Add new field', 'docsbot' ); ?></option><?php foreach ( $this->lead_field_types() as $type => $label ) : ?><option value="<?php echo esc_attr( $type ); ?>"><?php echo esc_html( $label ); ?></option><?php endforeach; ?></select><button type="button" class="button" data-lead-add-field><?php esc_html_e( 'Add field', 'docsbot' ); ?></button></div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<?php
+	}
+
+	/** Render one lead form field editor. */
+	private function lead_field_editor( $index, $field ) {
+		$types = $this->lead_field_types();
+		$type  = isset( $types[ $field['type'] ?? '' ] ) ? $field['type'] : 'text';
+		$key   = is_string( $field['key'] ?? '' ) ? $field['key'] : '';
+		$label = is_string( $field['label'] ?? '' ) ? $field['label'] : '';
+		$options = isset( $field['options'] ) && is_array( $field['options'] ) ? array_values( $field['options'] ) : array();
+		if ( 'select' === $type && empty( $options ) ) { $options = array( array( 'value' => 'option-1', 'label' => 'Option 1' ) ); }
+		$prefix = 'lead_collect[fields][' . $index . ']';
+		?>
+		<div class="docsbot-lead-field" data-lead-field draggable="true">
+			<div class="docsbot-lead-field__heading"><strong data-lead-field-title><?php echo esc_html( $label ? $label : ( $key ? $key : __( 'Untitled field', 'docsbot' ) ) ); ?></strong><span><button type="button" class="button-link" data-lead-drag aria-label="<?php esc_attr_e( 'Drag to reorder field', 'docsbot' ); ?>">☰</button><button type="button" class="button-link-delete" data-lead-remove><?php esc_html_e( 'Remove', 'docsbot' ); ?></button></span></div>
+			<div class="docsbot-grid docsbot-grid--3"><div class="docsbot-field"><label><?php esc_html_e( 'Key', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[key]" value="<?php echo esc_attr( $key ); ?>" maxlength="80" data-lead-key></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Label', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[label]" value="<?php echo esc_attr( $label ); ?>" maxlength="200" data-lead-label></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Type', 'docsbot' ); ?><select name="<?php echo esc_attr( $prefix ); ?>[type]" data-lead-type><?php foreach ( $types as $value => $type_label ) : ?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $type, $value ); ?>><?php echo esc_html( $type_label ); ?></option><?php endforeach; ?></select></label></div></div>
+			<div class="docsbot-grid docsbot-grid--3"><div class="docsbot-field"><label><?php esc_html_e( 'Placeholder', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[placeholder]" value="<?php echo esc_attr( is_string( $field['placeholder'] ?? '' ) ? $field['placeholder'] : '' ); ?>" maxlength="200"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Help Text', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[help]" value="<?php echo esc_attr( is_string( $field['help'] ?? '' ) ? $field['help'] : '' ); ?>" maxlength="500"></label></div><label class="docsbot-checkbox docsbot-lead-required"><input type="checkbox" name="<?php echo esc_attr( $prefix ); ?>[required]" value="1" <?php checked( ! empty( $field['required'] ) ); ?>><span><?php esc_html_e( 'Required', 'docsbot' ); ?></span></label></div>
+			<details class="docsbot-lead-validation"><summary><?php esc_html_e( 'Validation', 'docsbot' ); ?></summary><div class="docsbot-grid docsbot-grid--3"><div class="docsbot-field"><label><?php esc_html_e( 'Pattern', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[pattern]" value="<?php echo esc_attr( is_string( $field['pattern'] ?? '' ) ? $field['pattern'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Min', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[min]" value="<?php echo esc_attr( isset( $field['min'] ) ? (string) $field['min'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Max', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[max]" value="<?php echo esc_attr( isset( $field['max'] ) ? (string) $field['max'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Step', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[step]" value="<?php echo esc_attr( isset( $field['step'] ) ? (string) $field['step'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Minimum length', 'docsbot' ); ?><input type="number" min="0" name="<?php echo esc_attr( $prefix ); ?>[minLength]" value="<?php echo esc_attr( isset( $field['minLength'] ) ? (string) $field['minLength'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Maximum length', 'docsbot' ); ?><input type="number" min="1" name="<?php echo esc_attr( $prefix ); ?>[maxLength]" value="<?php echo esc_attr( isset( $field['maxLength'] ) ? (string) $field['maxLength'] : '' ); ?>"></label></div></div></details>
+			<div class="docsbot-lead-options" data-lead-options <?php echo 'select' === $type ? '' : 'hidden'; ?>><strong><?php esc_html_e( 'Options', 'docsbot' ); ?></strong><div data-lead-option-list><?php foreach ( $options as $option_index => $option ) : ?><div class="docsbot-lead-option"><input type="text" name="<?php echo esc_attr( $prefix ); ?>[options][<?php echo esc_attr( $option_index ); ?>][value]" value="<?php echo esc_attr( is_array( $option ) ? (string) ( $option['value'] ?? '' ) : (string) $option ); ?>" placeholder="<?php esc_attr_e( 'Value', 'docsbot' ); ?>"><input type="text" name="<?php echo esc_attr( $prefix ); ?>[options][<?php echo esc_attr( $option_index ); ?>][label]" value="<?php echo esc_attr( is_array( $option ) ? (string) ( $option['label'] ?? '' ) : '' ); ?>" placeholder="<?php esc_attr_e( 'Label', 'docsbot' ); ?>"><button type="button" class="button-link-delete" data-lead-remove-option><?php esc_html_e( 'Remove', 'docsbot' ); ?></button></div><?php endforeach; ?></div><button type="button" class="button-link" data-lead-add-option><?php esc_html_e( 'Add option', 'docsbot' ); ?></button></div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * @return array<string,string>
+	 */
+	private function lead_field_types() { return array( 'text' => __( 'Text', 'docsbot' ), 'email' => __( 'Email', 'docsbot' ), 'tel' => __( 'Phone', 'docsbot' ), 'url' => __( 'URL', 'docsbot' ), 'number' => __( 'Number', 'docsbot' ), 'textarea' => __( 'Textarea', 'docsbot' ), 'select' => __( 'Select', 'docsbot' ), 'date' => __( 'Date', 'docsbot' ), 'datetime-local' => __( 'Date & Time', 'docsbot' ), 'month' => __( 'Month', 'docsbot' ), 'time' => __( 'Time', 'docsbot' ), 'week' => __( 'Week', 'docsbot' ), 'color' => __( 'Color', 'docsbot' ) ); }
+
+	/** @return array<string,mixed> */
+	private function default_lead_collect() { return array( 'mode' => 'before_response', 'fields' => array( array( 'key' => 'name', 'label' => 'Name', 'type' => 'text', 'required' => true, 'autocomplete' => 'name' ), array( 'key' => 'email', 'label' => 'Email', 'type' => 'email', 'required' => true, 'autocomplete' => 'email' ) ) ); }
+
+	/**
 	 * Render a complete scheduling provider editor.
 	 *
 	 * @param string              $provider Provider key.
@@ -663,7 +742,7 @@ final class DocsBot_Admin {
 			<div class="docsbot-action-editor__header">
 				<img src="<?php echo esc_url( $logo ); ?>" alt="" width="36" height="36">
 				<span><strong><?php echo esc_html( $label ); ?></strong><small><?php esc_html_e( 'Booking action', 'docsbot' ); ?></small></span>
-				<span class="docsbot-switch"><input type="checkbox" name="booking[<?php echo esc_attr( $provider ); ?>][enabled]" value="1" data-booking-toggle <?php checked( $enabled ); ?>><span aria-hidden="true"></span></span>
+				<label class="docsbot-switch"><input type="checkbox" name="booking[<?php echo esc_attr( $provider ); ?>][enabled]" value="1" data-booking-toggle aria-label="<?php echo esc_attr( sprintf( __( 'Enable %s booking action', 'docsbot' ), $label ) ); ?>" <?php checked( $enabled ); ?>><span aria-hidden="true"></span></label>
 			</div>
 			<div class="docsbot-action-editor__body">
 				<div class="docsbot-field">
@@ -703,7 +782,7 @@ final class DocsBot_Admin {
 			<div class="docsbot-action-editor__header">
 				<span class="docsbot-action-available__icon" aria-hidden="true" data-custom-button-header-icon><?php echo $this->custom_button_icon_svg( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?></span>
 				<span><strong data-custom-button-title><?php echo esc_html( $name ? $name : __( 'New custom button', 'docsbot' ) ); ?></strong><small><?php esc_html_e( 'Custom button', 'docsbot' ); ?></small></span>
-				<span class="docsbot-switch"><input type="checkbox" name="<?php echo esc_attr( $prefix ); ?>[enabled]" value="1" <?php checked( ! empty( $button['enabled'] ) ); ?>><span aria-hidden="true"></span></span>
+				<label class="docsbot-switch"><input type="checkbox" name="<?php echo esc_attr( $prefix ); ?>[enabled]" value="1" aria-label="<?php esc_attr_e( 'Enable custom button', 'docsbot' ); ?>" <?php checked( ! empty( $button['enabled'] ) ); ?>><span aria-hidden="true"></span></label>
 			</div>
 			<div class="docsbot-action-editor__body">
 				<div class="docsbot-grid docsbot-grid--2">
@@ -711,32 +790,8 @@ final class DocsBot_Admin {
 					<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'key' ); ?>"><?php esc_html_e( 'Key', 'docsbot' ); ?></label><div class="docsbot-input-prefix"><span>button_</span><input id="<?php echo esc_attr( $id . 'key' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[functionKey]" value="<?php echo esc_attr( preg_replace( '/^button_/', '', is_string( $button['functionKey'] ?? '' ) ? $button['functionKey'] : '' ) ); ?>" maxlength="64" pattern="[a-z0-9]+(?:_[a-z0-9]+)*"></div></div>
 				</div>
 				<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'instructions' ); ?>"><?php esc_html_e( 'When to use', 'docsbot' ); ?></label><textarea id="<?php echo esc_attr( $id . 'instructions' ); ?>" name="<?php echo esc_attr( $prefix ); ?>[instructions]" rows="3" maxlength="2000"><?php echo esc_textarea( is_string( $button['instructions'] ?? '' ) ? $button['instructions'] : '' ); ?></textarea></div>
-				<div class="docsbot-grid docsbot-grid--2">
-					<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'text' ); ?>"><?php esc_html_e( 'Button text', 'docsbot' ); ?></label><input id="<?php echo esc_attr( $id . 'text' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[buttonText]" value="<?php echo esc_attr( is_string( $button['buttonText'] ?? '' ) ? $button['buttonText'] : '' ); ?>" maxlength="100"></div>
-					<div class="docsbot-field">
-						<label id="<?php echo esc_attr( $id . 'icon-label' ); ?>"><?php esc_html_e( 'Icon', 'docsbot' ); ?></label>
-						<div class="docsbot-icon-picker" data-icon-picker>
-							<button type="button" class="docsbot-icon-picker__trigger" data-icon-picker-trigger aria-haspopup="listbox" aria-expanded="false" aria-labelledby="<?php echo esc_attr( $id . 'icon-label ' . $id . 'icon-value' ); ?>" aria-controls="<?php echo esc_attr( $id . 'icon-options' ); ?>">
-								<span data-icon-picker-preview><?php echo $this->custom_button_icon_svg( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?></span>
-								<span id="<?php echo esc_attr( $id . 'icon-value' ); ?>" data-icon-picker-label><?php echo esc_html( $icons[ $icon ] ); ?></span>
-								<span aria-hidden="true">⌄</span>
-							</button>
-							<div id="<?php echo esc_attr( $id . 'icon-options' ); ?>" class="docsbot-icon-picker__options" data-icon-picker-options role="listbox" aria-labelledby="<?php echo esc_attr( $id . 'icon-label' ); ?>" hidden>
-								<?php foreach ( $icons as $option_icon => $icon_label ) : ?>
-									<button type="button" role="option" data-icon-picker-option data-icon="<?php echo esc_attr( $option_icon ); ?>" data-label="<?php echo esc_attr( $icon_label ); ?>" aria-selected="<?php echo $option_icon === $icon ? 'true' : 'false'; ?>" tabindex="<?php echo $option_icon === $icon ? '0' : '-1'; ?>">
-										<?php echo $this->custom_button_icon_svg( $option_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static allowlisted SVG. ?>
-										<span><?php echo esc_html( $icon_label ); ?></span>
-									</button>
-								<?php endforeach; ?>
-							</div>
-							<select name="<?php echo esc_attr( $prefix ); ?>[icon]" data-icon-picker-select hidden aria-hidden="true" tabindex="-1">
-							<?php
-							foreach ( $icons as $option_icon => $icon_label ) :
-								?>
-								<option value="<?php echo esc_attr( $option_icon ); ?>" <?php selected( $icon, $option_icon ); ?>><?php echo esc_html( $icon_label ); ?></option><?php endforeach; ?></select>
-						</div>
-					</div>
-				</div>
+				<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'text' ); ?>"><?php esc_html_e( 'Button text', 'docsbot' ); ?></label><input id="<?php echo esc_attr( $id . 'text' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[buttonText]" value="<?php echo esc_attr( is_string( $button['buttonText'] ?? '' ) ? $button['buttonText'] : '' ); ?>" maxlength="100"></div>
+				<input type="hidden" name="<?php echo esc_attr( $prefix ); ?>[icon]" value="<?php echo esc_attr( $icon ); ?>" data-custom-button-icon>
 				<div class="docsbot-field"><label for="<?php echo esc_attr( $id . 'url' ); ?>"><?php esc_html_e( 'URL', 'docsbot' ); ?></label><input id="<?php echo esc_attr( $id . 'url' ); ?>" type="text" name="<?php echo esc_attr( $prefix ); ?>[url]" value="<?php echo esc_attr( is_string( $button['url'] ?? '' ) ? $button['url'] : '' ); ?>" maxlength="2048" pattern="[A-Za-z][A-Za-z0-9+.-]*:.+" placeholder="https://example.com/"></div>
 				<button type="button" class="button-link-delete docsbot-remove-custom-button"><?php esc_html_e( 'Remove button', 'docsbot' ); ?></button>
 			</div>
@@ -972,7 +1027,7 @@ final class DocsBot_Admin {
 				<div class="docsbot-toggle-grid">
 					<?php $this->checkbox( 'share_name', __( 'Share display name', 'docsbot' ), $settings['share_name'] ); ?>
 					<?php $this->checkbox( 'share_email', __( 'Share email address', 'docsbot' ), $settings['share_email'] ); ?>
-					<?php $this->checkbox( 'share_user_id', __( 'Share pseudonymous site user ID', 'docsbot' ), $settings['share_user_id'] ); ?>
+					<?php $this->checkbox( 'share_user_id', __( 'Share WordPress user ID', 'docsbot' ), $settings['share_user_id'] ); ?>
 				</div>
 				<p class="description"><?php esc_html_e( 'Review the suggested DocsBot text under Settings → Privacy before enabling identity fields.', 'docsbot' ); ?></p>
 			</div>
@@ -1469,16 +1524,25 @@ final class DocsBot_Admin {
 		}
 		$tools['customButtons']        = $buttons;
 		$changes['use_custom_buttons'] = (bool) array_filter( wp_list_pluck( $buttons, 'enabled' ) );
-		$labels                        = is_array( $bot ) && isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
-		$labels['getSupport']          = $this->post_text( 'support_label', 80 );
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Each lead field is allowlisted and sanitized below.
+		$posted_lead_collect = isset( $_POST['lead_collect'] ) && is_array( $_POST['lead_collect'] ) ? wp_unslash( $_POST['lead_collect'] ) : array();
+		$lead_collect        = $this->sanitize_lead_collect( $posted_lead_collect );
+		$labels              = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$lead_message        = sanitize_text_field( (string) ( $posted_lead_collect['message'] ?? '' ) );
+		if ( '' === $lead_message ) {
+			unset( $labels['leadCollectMessage'] );
+		} else {
+			$labels['leadCollectMessage'] = substr( $lead_message, 0, 500 );
+		}
 		$support_link                  = $this->post_url( 'support_link' );
 		$result                        = $this->api->update_bot(
 			$settings['team_id'],
 			$settings['bot_id'],
 			array(
 				'supportLink' => $support_link,
-				'labels'      => $labels,
 				'tools'       => $tools,
+				'leadCollect' => $lead_collect,
+				'labels'      => $labels,
 			)
 		);
 		if ( is_wp_error( $result ) ) {
@@ -1487,8 +1551,9 @@ final class DocsBot_Admin {
 				array(
 					'bot_id'      => $settings['bot_id'],
 					'tools'       => $tools,
-					'labels'      => $labels,
 					'supportLink' => $support_link,
+					'leadCollect' => $lead_collect,
+					'labels'      => $labels,
 					'settings'    => $changes,
 				),
 				30 * MINUTE_IN_SECONDS
@@ -1507,6 +1572,80 @@ final class DocsBot_Admin {
 	 */
 	private function actions_draft_key() {
 		return 'docsbot_actions_draft_' . get_current_user_id();
+	}
+
+	/**
+	 * Sanitize the documented lead collection contract before sending it to DocsBot.
+	 *
+	 * @param array<string,mixed> $posted Posted lead collection fields.
+	 * @return array<string,mixed>|false
+	 */
+	private function sanitize_lead_collect( $posted ) {
+		if ( '1' !== (string) ( $posted['enabled'] ?? '' ) ) {
+			return false;
+		}
+		$mode = 'before_escalation' === ( $posted['mode'] ?? '' ) ? 'before_escalation' : 'before_response';
+		$raw_fields = isset( $posted['fields'] ) && is_array( $posted['fields'] ) ? array_slice( $posted['fields'], 0, 50 ) : array();
+		$types = $this->lead_field_types();
+		$fields = array();
+		$keys = array();
+		foreach ( $raw_fields as $raw_field ) {
+			if ( ! is_array( $raw_field ) ) { continue; }
+			$key = preg_replace( '/[^A-Za-z0-9_.:\[\]-]+/', '', (string) ( $raw_field['key'] ?? '' ) );
+			$key = is_string( $key ) ? trim( $key ) : '';
+			if ( '' === $key || isset( $keys[ $key ] ) ) {
+				$this->redirect_feedback( 'actions', 'error', __( 'Every lead form field needs a unique key.', 'docsbot' ) );
+			}
+			$keys[ $key ] = true;
+			$type = isset( $types[ $raw_field['type'] ?? '' ] ) ? $raw_field['type'] : 'text';
+			$field = array(
+				'key'      => substr( $key, 0, 80 ),
+				'type'     => $type,
+				'required' => '1' === (string) ( $raw_field['required'] ?? '' ),
+			);
+			$normalized_key = strtolower( $field['key'] );
+			if ( 'email' === $type ) { $field['autocomplete'] = 'email'; $field['inputMode'] = 'email'; }
+			elseif ( 'tel' === $type ) { $field['autocomplete'] = 'tel'; $field['inputMode'] = 'tel'; }
+			elseif ( 'url' === $type ) { $field['autocomplete'] = 'url'; $field['inputMode'] = 'url'; }
+			elseif ( 'number' === $type ) { $field['inputMode'] = 'numeric'; }
+			elseif ( in_array( $normalized_key, array( 'name', 'fullname', 'full-name' ), true ) ) { $field['autocomplete'] = 'name'; }
+			elseif ( in_array( $normalized_key, array( 'firstname', 'first-name', 'givenname', 'given-name' ), true ) ) { $field['autocomplete'] = 'given-name'; }
+			elseif ( in_array( $normalized_key, array( 'lastname', 'last-name', 'surname', 'familyname', 'family-name' ), true ) ) { $field['autocomplete'] = 'family-name'; }
+			elseif ( in_array( $normalized_key, array( 'company', 'organization', 'org', 'employer' ), true ) ) { $field['autocomplete'] = 'organization'; }
+			foreach ( array( 'label' => 200, 'placeholder' => 200, 'help' => 500, 'pattern' => 500 ) as $name => $limit ) {
+				$value = isset( $raw_field[ $name ] ) ? sanitize_text_field( (string) $raw_field[ $name ] ) : '';
+				if ( '' !== $value ) { $field[ $name ] = substr( $value, 0, $limit ); }
+			}
+			if ( in_array( $type, array( 'number', 'date', 'time', 'datetime-local', 'month', 'week' ), true ) ) {
+				foreach ( array( 'min', 'max', 'step' ) as $name ) {
+					$value = isset( $raw_field[ $name ] ) ? sanitize_text_field( (string) $raw_field[ $name ] ) : '';
+					if ( '' !== $value ) { $field[ $name ] = substr( $value, 0, 100 ); }
+				}
+			}
+			if ( in_array( $type, array( 'text', 'email', 'tel', 'url', 'textarea' ), true ) ) {
+				foreach ( array( 'minLength', 'maxLength' ) as $name ) {
+					if ( isset( $raw_field[ $name ] ) && '' !== (string) $raw_field[ $name ] ) { $field[ $name ] = min( 100000, max( 'minLength' === $name ? 0 : 1, absint( $raw_field[ $name ] ) ) ); }
+				}
+			}
+			if ( ! in_array( $type, array( 'text', 'email', 'tel', 'url' ), true ) ) { unset( $field['pattern'] ); }
+			if ( ! in_array( $type, array( 'text', 'email', 'tel', 'url', 'textarea', 'select' ), true ) ) { unset( $field['placeholder'] ); }
+			if ( 'select' === $type ) {
+				$options = isset( $raw_field['options'] ) && is_array( $raw_field['options'] ) ? array_slice( $raw_field['options'], 0, 100 ) : array();
+				$field['options'] = array();
+				foreach ( $options as $option ) {
+					$value = is_array( $option ) ? preg_replace( '/[^A-Za-z0-9_.:\[\]-]+/', '', (string) ( $option['value'] ?? '' ) ) : '';
+					if ( ! is_string( $value ) || '' === trim( $value ) ) { continue; }
+					$entry = array( 'value' => substr( trim( $value ), 0, 100 ) );
+					$label = is_array( $option ) ? sanitize_text_field( (string) ( $option['label'] ?? '' ) ) : '';
+					if ( '' !== $label ) { $entry['label'] = substr( $label, 0, 200 ); }
+					$field['options'][] = $entry;
+				}
+				if ( empty( $field['options'] ) ) { $this->redirect_feedback( 'actions', 'error', __( 'Every select lead form field needs at least one option.', 'docsbot' ) ); }
+			}
+			$fields[] = $field;
+		}
+		if ( empty( $fields ) ) { $this->redirect_feedback( 'actions', 'error', __( 'Add at least one lead form field before enabling lead collection.', 'docsbot' ) ); }
+		return array( 'mode' => $mode, 'fields' => $fields );
 	}
 
 	/**
@@ -1638,6 +1777,10 @@ final class DocsBot_Admin {
 		$first_message  = $labels['firstMessage'] ?? __( 'Hi! How can I help?', 'docsbot' );
 		$placeholder    = $labels['inputPlaceholder'] ?? __( 'Send a message…', 'docsbot' );
 		$button_label   = $labels['floatingButton'] ?? __( 'Chat with us', 'docsbot' );
+		$feedback_yes   = $labels['feedbackYes'] ?? '👍';
+		$feedback_no    = $labels['feedbackNo'] ?? '👎';
+		$helpful_label  = $labels['helpful'] ?? __( 'Rate as helpful', 'docsbot' );
+		$unhelpful_label = $labels['unhelpful'] ?? __( 'Rate as unhelpful', 'docsbot' );
 		$support_label  = $labels['getSupport'] ?? __( 'Get support', 'docsbot' );
 		$footer         = $labels['footerMessage'] ?? '';
 		$logo           = is_string( $bot['logo'] ?? '' ) ? esc_url( $bot['logo'], array( 'https' ) ) : '';
@@ -1700,7 +1843,7 @@ final class DocsBot_Admin {
 								</div>
 							</div>
 						</div>
-						<div class="docsbot-preview-feedback" data-preview-toggle="use_feedback" <?php echo empty( $settings['use_feedback'] ) ? 'hidden' : ''; ?>><button type="button">👍</button><button type="button">👎</button></div>
+						<div class="docsbot-preview-feedback" data-preview-toggle="use_feedback" <?php echo empty( $settings['use_feedback'] ) ? 'hidden' : ''; ?>><button type="button" aria-label="<?php echo esc_attr( $helpful_label ); ?>"><?php echo esc_html( $feedback_yes ); ?></button><button type="button" aria-label="<?php echo esc_attr( $unhelpful_label ); ?>"><?php echo esc_html( $feedback_no ); ?></button></div>
 						<div class="docsbot-preview-support" data-preview-toggle="use_escalation" <?php echo empty( $settings['use_escalation'] ) ? 'hidden' : ''; ?>>
 							<div class="docsbot-preview-row is-bot"><span class="docsbot-preview-avatar" <?php echo $bot_icon ? '' : 'hidden'; ?>><img data-preview-bot-image src="<?php echo esc_url( $bot_icon_url ); ?>" alt="" <?php echo $bot_icon_url ? '' : 'hidden'; ?>><svg data-preview-icon-svg viewBox="<?php echo esc_attr( $bot_icon_data['view_box'] ); ?>" aria-hidden="true" <?php echo $bot_icon_url ? 'hidden' : ''; ?>><path data-preview-icon-path d="<?php echo esc_attr( $bot_icon_data['path'] ); ?>"/></svg></span><div class="docsbot-preview-message"><?php esc_html_e( 'Can I connect you to the support team?', 'docsbot' ); ?></div></div>
 							<button type="button" data-preview="support-label"><?php echo esc_html( $support_label ); ?></button>
@@ -2136,6 +2279,7 @@ final class DocsBot_Admin {
 			'globe'    => '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
 			'calendar' => '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2M14 14h2M8 17h2"/>',
 			'button'   => '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M8 12h8"/>',
+			'lead'     => '<path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M19 8v6M16 11h6"/>',
 			'activity' => '<path d="M4 12h3l2-6 4 12 2-6h5"/>',
 			'skills'   => '<path d="M12 3 4 7l8 4 8-4-8-4Z"/><path d="m4 11 8 4 8-4M4 15l8 4 8-4"/>',
 			'server'   => '<rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/>',

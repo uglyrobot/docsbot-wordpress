@@ -11,7 +11,7 @@ The plugin connects to the DocsBot Admin API from your WordPress server, lets an
 - Literal URL-prefix inclusion and exclusion rules
 - Logged-in user and WordPress role restrictions
 - Membership-aware access for WooCommerce Memberships, MemberPress, Paid Memberships Pro, Restrict Content Pro, WP-Members, and Ultimate Member roles
-- Separate opt-ins for display name, email, and a site-scoped pseudonymous user ID
+- Separate controls for display name, email, and the raw WordPress user ID
 - Private bot support with short-lived HS256 JWTs
 - Cache-safe runtime configuration: identity and signatures are never placed in cached page HTML
 - No dashboard nags or sitewide notices
@@ -57,7 +57,7 @@ The API key never reaches browser JavaScript. For private bots, WordPress checks
 
 URL path rules are placement controls, not an authorization boundary. Sites that need protected chat must also enable a server-verified login, WordPress role, or membership restriction.
 
-Identity sharing is disabled by default. The plugin never sends membership, role, payment, password, or subscription data to DocsBot.
+Identity sharing is enabled by default for new plugin setups. Site owners can independently turn off sending the logged-in visitor's display name, email address, and raw WordPress user ID. The plugin never sends membership, role, payment, password, or subscription data to DocsBot.
 
 For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
 

@@ -12,6 +12,7 @@ final class VisibilityTest extends TestCase {
 
 	public function test_empty_includes_allow_all_paths() {
 		$settings = array( 'include_prefixes' => '', 'exclude_prefixes' => '' );
+		$this->assertTrue( $this->widget->path_is_allowed( '/', $settings ) );
 		$this->assertTrue( $this->widget->path_is_allowed( '/anything', $settings ) );
 	}
 

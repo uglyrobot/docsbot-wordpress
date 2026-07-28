@@ -332,6 +332,7 @@ final class DocsBot_API {
 			'hideSources',
 			'labels',
 			'tools',
+			'leadCollect',
 			'mcpServers',
 		);
 		$body    = array_intersect_key( $fields, array_flip( $allowed ) );
@@ -343,7 +344,9 @@ final class DocsBot_API {
 		return $this->request(
 			'PUT',
 			'/teams/' . rawurlencode( $team_id ) . '/bots/' . rawurlencode( $bot_id ),
-			$body
+			$body,
+			'',
+			true
 		);
 	}
 

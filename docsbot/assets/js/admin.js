@@ -122,7 +122,12 @@
 			}
 			bookingActions.querySelectorAll( '[data-booking-action]' ).forEach( function ( editor ) {
 				var toggle = editor.querySelector( '[data-booking-toggle]' );
-				editor.classList.toggle( 'is-enabled', Boolean( toggle && toggle.checked ) );
+				var enabled = Boolean( toggle && toggle.checked );
+				var body = editor.querySelector( '.docsbot-action-editor__body' );
+				editor.classList.toggle( 'is-enabled', enabled );
+				if ( body ) {
+					body.hidden = ! enabled;
+				}
 			} );
 		};
 		bookingToggles.forEach( function ( toggle ) {
@@ -131,6 +136,77 @@
 			} );
 		} );
 		updateBooking();
+	}
+
+	var leadCollection = document.querySelector( '[data-lead-collection]' );
+	if ( leadCollection ) {
+		var leadToggle = leadCollection.querySelector( '[data-lead-collection-toggle]' );
+		var leadBody = leadCollection.querySelector( '[data-lead-collection-body]' );
+		var leadList = leadCollection.querySelector( '[data-lead-fields]' );
+		var leadTemplate = document.getElementById( 'docsbot-lead-field-template' );
+		var leadAddType = leadCollection.querySelector( '[data-lead-add-type]' );
+		var leadAdd = leadCollection.querySelector( '[data-lead-add-field]' );
+		var leadDragged = null;
+		var nextLeadIndex = leadList ? leadList.children.length : 0;
+		var leadFieldDefaults = function ( field, type ) {
+			var key = type === 'datetime-local' ? 'datetime' : type;
+			var used = Array.prototype.map.call( leadList.querySelectorAll( '[data-lead-key]' ), function ( input ) { return input.value; } );
+			var suffix = 2;
+			while ( used.indexOf( key ) !== -1 ) { key = type + suffix; suffix += 1; }
+			var labels = { tel: 'Phone', url: 'Website', textarea: 'Notes', 'datetime-local': 'Date & Time' };
+			var label = labels[ type ] || type.charAt( 0 ).toUpperCase() + type.slice( 1 );
+			field.querySelector( '[data-lead-key]' ).value = key;
+			field.querySelector( '[data-lead-label]' ).value = label;
+			field.querySelector( '[data-lead-type]' ).value = type;
+			if ( type === 'url' ) { field.querySelector( '[name$="[placeholder]"]' ).value = 'https://example.com'; }
+			if ( type === 'select' ) { updateLeadFieldType( field ); }
+		};
+		var updateLeadTitle = function ( field ) {
+			var title = field.querySelector( '[data-lead-field-title]' );
+			var label = field.querySelector( '[data-lead-label]' );
+			var key = field.querySelector( '[data-lead-key]' );
+			if ( title ) { title.textContent = ( label && label.value.trim() ) || ( key && key.value.trim() ) || 'Untitled field'; }
+		};
+		var updateLeadFieldType = function ( field ) {
+			var type = field.querySelector( '[data-lead-type]' );
+			var options = field.querySelector( '[data-lead-options]' );
+			if ( options ) {
+				options.hidden = ! type || type.value !== 'select';
+				if ( type && type.value === 'select' && ! options.querySelector( '.docsbot-lead-option' ) ) {
+					addLeadOption( field );
+				}
+			}
+		};
+		var addLeadOption = function ( field ) {
+			var list = field.querySelector( '[data-lead-option-list]' );
+			if ( ! list ) { return; }
+			var prefix = field.querySelector( '[data-lead-key]' ).name.replace( '[key]', '' );
+			var index = list.children.length;
+			var row = document.createElement( 'div' );
+			row.className = 'docsbot-lead-option';
+			row.innerHTML = '<input type="text" name="' + prefix + '[options][' + index + '][value]" placeholder="Value"><input type="text" name="' + prefix + '[options][' + index + '][label]" placeholder="Label"><button type="button" class="button-link-delete" data-lead-remove-option>Remove</button>';
+			list.appendChild( row );
+		};
+		var bindLeadField = function ( field ) {
+			field.querySelectorAll( '[data-lead-key], [data-lead-label]' ).forEach( function ( input ) { input.addEventListener( 'input', function () { updateLeadTitle( field ); } ); } );
+			var type = field.querySelector( '[data-lead-type]' );
+			if ( type ) { type.addEventListener( 'change', function () { updateLeadFieldType( field ); } ); }
+			field.addEventListener( 'click', function ( event ) {
+				if ( event.target.closest( '[data-lead-remove]' ) ) { if ( leadList.children.length > 1 ) { field.remove(); } return; }
+				if ( event.target.closest( '[data-lead-add-option]' ) ) { addLeadOption( field ); return; }
+				var option = event.target.closest( '[data-lead-remove-option]' ); if ( option && field.querySelector( '[data-lead-option-list]' ).children.length > 1 ) { option.closest( '.docsbot-lead-option' ).remove(); }
+			} );
+			field.addEventListener( 'dragstart', function () { leadDragged = field; field.classList.add( 'is-dragging' ); } );
+			field.addEventListener( 'dragend', function () { leadDragged = null; field.classList.remove( 'is-dragging' ); } );
+			field.addEventListener( 'dragover', function ( event ) { if ( leadDragged && leadDragged !== field ) { event.preventDefault(); } } );
+			field.addEventListener( 'drop', function ( event ) { if ( leadDragged && leadDragged !== field ) { event.preventDefault(); leadList.insertBefore( leadDragged, field ); } } );
+			updateLeadTitle( field ); updateLeadFieldType( field );
+		};
+		var updateLeadCollection = function () { var enabled = Boolean( leadToggle && leadToggle.checked ); leadCollection.classList.toggle( 'is-enabled', enabled ); if ( leadBody ) { leadBody.hidden = ! enabled; } };
+		leadList.querySelectorAll( '[data-lead-field]' ).forEach( bindLeadField );
+		if ( leadToggle ) { leadToggle.addEventListener( 'change', updateLeadCollection ); }
+		if ( leadAdd ) { leadAdd.addEventListener( 'click', function () { if ( ! leadTemplate || ! leadAddType || ! leadAddType.value ) { return; } var wrapper = document.createElement( 'div' ); wrapper.innerHTML = leadTemplate.innerHTML.split( '__INDEX__' ).join( String( nextLeadIndex++ ) ); var field = wrapper.firstElementChild; if ( field ) { leadList.appendChild( field ); leadFieldDefaults( field, leadAddType.value ); bindLeadField( field ); leadAddType.value = ''; } } ); }
+		updateLeadCollection();
 	}
 
 	var customButtons = document.querySelector( '[data-custom-buttons]' );
@@ -144,7 +220,6 @@
 			var title = editor.querySelector( '[data-custom-button-title]' );
 			var toggle = editor.querySelector( '[name$="[enabled]"]' );
 			var body = editor.querySelector( '.docsbot-action-editor__body' );
-			var picker = editor.querySelector( '[data-icon-picker]' );
 			var updateState = function () {
 				var enabled = Boolean( toggle && toggle.checked );
 				editor.classList.toggle( 'is-enabled', enabled );
@@ -172,96 +247,6 @@
 			}
 			if ( toggle ) {
 				toggle.addEventListener( 'change', updateState );
-			}
-			if ( picker ) {
-				var select = picker.querySelector( '[data-icon-picker-select]' );
-				var trigger = picker.querySelector( '[data-icon-picker-trigger]' );
-				var options = picker.querySelector( '[data-icon-picker-options]' );
-				var label = picker.querySelector( '[data-icon-picker-label]' );
-				var optionButtons = Array.prototype.slice.call( picker.querySelectorAll( '[data-icon-picker-option]' ) );
-				var setIcon = function ( value ) {
-					var selected = picker.querySelector( '[data-icon-picker-option][data-icon="' + value + '"]' );
-					if ( ! selected || ! select ) {
-						return;
-					}
-					select.value = value;
-					if ( label ) {
-						label.textContent = selected.dataset.label;
-					}
-					editor.querySelectorAll( '[data-icon-picker-preview] use, [data-custom-button-header-icon] use' ).forEach( function ( use ) {
-						var href = use.getAttribute( 'href' ) || '';
-						use.setAttribute( 'href', href.split( '#' )[ 0 ] + '#' + value );
-					} );
-					optionButtons.forEach( function ( option ) {
-						var isSelected = option === selected;
-						option.setAttribute( 'aria-selected', isSelected ? 'true' : 'false' );
-						option.tabIndex = isSelected ? 0 : -1;
-					} );
-				};
-				if ( trigger && options ) {
-					trigger.addEventListener( 'click', function () {
-						var opening = options.hidden;
-						options.hidden = ! opening;
-						trigger.setAttribute( 'aria-expanded', opening ? 'true' : 'false' );
-						if ( opening ) {
-							var selected = options.querySelector( '[aria-selected="true"]' );
-							if ( selected ) {
-								selected.focus();
-							}
-						}
-					} );
-					options.addEventListener( 'click', function ( event ) {
-						var option = event.target.closest( '[data-icon-picker-option]' );
-						if ( ! option ) {
-							return;
-						}
-						setIcon( option.dataset.icon );
-						options.hidden = true;
-						trigger.setAttribute( 'aria-expanded', 'false' );
-						trigger.focus();
-					} );
-					picker.addEventListener( 'keydown', function ( event ) {
-						if ( event.key === 'Escape' && ! options.hidden ) {
-							options.hidden = true;
-							trigger.setAttribute( 'aria-expanded', 'false' );
-							trigger.focus();
-							return;
-						}
-						var activeOption = event.target.closest( '[data-icon-picker-option]' );
-						if ( ! activeOption || options.hidden ) {
-							return;
-						}
-						var currentIndex = optionButtons.indexOf( activeOption );
-						var nextIndex = currentIndex;
-						if ( event.key === 'ArrowDown' || event.key === 'ArrowRight' ) {
-							nextIndex = ( currentIndex + 1 ) % optionButtons.length;
-						} else if ( event.key === 'ArrowUp' || event.key === 'ArrowLeft' ) {
-							nextIndex = ( currentIndex - 1 + optionButtons.length ) % optionButtons.length;
-						} else if ( event.key === 'Home' ) {
-							nextIndex = 0;
-						} else if ( event.key === 'End' ) {
-							nextIndex = optionButtons.length - 1;
-						} else if ( event.key.length === 1 && /\S/.test( event.key ) ) {
-							var query = event.key.toLowerCase();
-							for ( var offset = 1; offset <= optionButtons.length; offset += 1 ) {
-								var candidateIndex = ( currentIndex + offset ) % optionButtons.length;
-								if ( optionButtons[ candidateIndex ].dataset.label.toLowerCase().indexOf( query ) === 0 ) {
-									nextIndex = candidateIndex;
-									break;
-								}
-							}
-						} else {
-							return;
-						}
-						event.preventDefault();
-						if ( optionButtons[ nextIndex ] ) {
-							optionButtons[ nextIndex ].focus();
-						}
-					} );
-				}
-				if ( select ) {
-					setIcon( select.value );
-				}
 			}
 			updateState();
 		};
@@ -301,6 +286,13 @@
 					input.value = values[ field ];
 				}
 			} );
+			var generatedIcon = editor.querySelector( '[data-custom-button-icon]' );
+			if ( generatedIcon ) {
+				editor.querySelectorAll( '[data-custom-button-header-icon] use' ).forEach( function ( use ) {
+					var href = use.getAttribute( 'href' ) || '';
+					use.setAttribute( 'href', href.split( '#' )[ 0 ] + '#' + generatedIcon.value );
+				} );
+			}
 			var enabled = editor.querySelector( '[name$="[enabled]"]' );
 			if ( enabled ) {
 				enabled.checked = draft.enabled !== false;
@@ -496,8 +488,6 @@
 		updateText( 'first_message', 'first-message', 'Hi! How can I help?' );
 		updateText( 'input_placeholder', 'placeholder', 'Send a message…' );
 		updateText( 'floating_button', 'button-label', 'Chat with us' );
-		updateText( 'support_label', 'support-label', 'Get support' );
-
 		var footerField = document.querySelector( '[name="footer_message"]' );
 		var footerTarget = preview.querySelector( '[data-preview="footer-message"]' );
 		if ( footerField && footerTarget ) {
@@ -679,11 +669,12 @@
 		var headerCopy = preview.querySelector( '[data-preview="header-copy"]' );
 		if ( logoField && logoImage && headerCopy ) {
 			var updateLogo = function () {
-				var hasLogo = /^https:\/\//i.test( logoField.value.trim() );
+				var logoUrl = logoField.value.trim();
+				var hasLogo = /^https:\/\//i.test( logoUrl );
 				logoImage.hidden = ! hasLogo;
 				headerCopy.hidden = hasLogo;
 				if ( hasLogo ) {
-					logoImage.src = logoField.value.trim();
+					logoImage.src = logoUrl;
 				} else {
 					logoImage.removeAttribute( 'src' );
 				}
