@@ -688,7 +688,11 @@ final class DocsBot_Admin {
 						</div>
 						<template id="docsbot-lead-field-template"><?php $this->lead_field_editor( '__INDEX__', array() ); ?></template>
 						<label class="screen-reader-text" for="docsbot-lead-add-field"><?php esc_html_e( 'Field type', 'docsbot' ); ?></label>
-						<div class="docsbot-lead-add"><select id="docsbot-lead-add-field" data-lead-add-type><option value=""><?php esc_html_e( 'Add new field', 'docsbot' ); ?></option><?php foreach ( $this->lead_field_types() as $type => $label ) : ?><option value="<?php echo esc_attr( $type ); ?>"><?php echo esc_html( $label ); ?></option><?php endforeach; ?></select><button type="button" class="button" data-lead-add-field><?php esc_html_e( 'Add field', 'docsbot' ); ?></button></div>
+						<div class="docsbot-lead-add"><select id="docsbot-lead-add-field" data-lead-add-type><option value=""><?php esc_html_e( 'Add new field', 'docsbot' ); ?></option>
+						<?php
+						foreach ( $this->lead_field_types() as $type => $label ) :
+							?>
+							<option value="<?php echo esc_attr( $type ); ?>"><?php echo esc_html( $label ); ?></option><?php endforeach; ?></select><button type="button" class="button" data-lead-add-field><?php esc_html_e( 'Add field', 'docsbot' ); ?></button></div>
 					</details>
 				</div>
 			</div>
@@ -698,20 +702,34 @@ final class DocsBot_Admin {
 
 	/** Render one lead form field editor. */
 	private function lead_field_editor( $index, $field ) {
-		$types = $this->lead_field_types();
-		$type  = isset( $types[ $field['type'] ?? '' ] ) ? $field['type'] : 'text';
-		$key   = is_string( $field['key'] ?? '' ) ? $field['key'] : '';
-		$label = is_string( $field['label'] ?? '' ) ? $field['label'] : '';
+		$types   = $this->lead_field_types();
+		$type    = isset( $types[ $field['type'] ?? '' ] ) ? $field['type'] : 'text';
+		$key     = is_string( $field['key'] ?? '' ) ? $field['key'] : '';
+		$label   = is_string( $field['label'] ?? '' ) ? $field['label'] : '';
 		$options = isset( $field['options'] ) && is_array( $field['options'] ) ? array_values( $field['options'] ) : array();
-		if ( 'select' === $type && empty( $options ) ) { $options = array( array( 'value' => 'option-1', 'label' => 'Option 1' ) ); }
+		if ( 'select' === $type && empty( $options ) ) {
+			$options = array(
+				array(
+					'value' => 'option-1',
+					'label' => 'Option 1',
+				),
+			); }
 		$prefix = 'lead_collect[fields][' . $index . ']';
 		?>
 		<div class="docsbot-lead-field" data-lead-field draggable="true">
 			<div class="docsbot-lead-field__heading"><strong data-lead-field-title><?php echo esc_html( $label ? $label : ( $key ? $key : __( 'Untitled field', 'docsbot' ) ) ); ?></strong><span><button type="button" class="button-link" data-lead-drag aria-label="<?php esc_attr_e( 'Drag to reorder field', 'docsbot' ); ?>">☰</button><button type="button" class="button-link-delete" data-lead-remove><?php esc_html_e( 'Remove', 'docsbot' ); ?></button></span></div>
-			<div class="docsbot-grid docsbot-grid--3"><div class="docsbot-field"><label><?php esc_html_e( 'Key', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[key]" value="<?php echo esc_attr( $key ); ?>" maxlength="80" data-lead-key></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Label', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[label]" value="<?php echo esc_attr( $label ); ?>" maxlength="200" data-lead-label></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Type', 'docsbot' ); ?><select name="<?php echo esc_attr( $prefix ); ?>[type]" data-lead-type><?php foreach ( $types as $value => $type_label ) : ?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $type, $value ); ?>><?php echo esc_html( $type_label ); ?></option><?php endforeach; ?></select></label></div></div>
+			<div class="docsbot-grid docsbot-grid--3"><div class="docsbot-field"><label><?php esc_html_e( 'Key', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[key]" value="<?php echo esc_attr( $key ); ?>" maxlength="80" data-lead-key></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Label', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[label]" value="<?php echo esc_attr( $label ); ?>" maxlength="200" data-lead-label></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Type', 'docsbot' ); ?><select name="<?php echo esc_attr( $prefix ); ?>[type]" data-lead-type>
+			<?php
+			foreach ( $types as $value => $type_label ) :
+				?>
+				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $type, $value ); ?>><?php echo esc_html( $type_label ); ?></option><?php endforeach; ?></select></label></div></div>
 			<div class="docsbot-grid docsbot-grid--3"><div class="docsbot-field"><label><?php esc_html_e( 'Placeholder', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[placeholder]" value="<?php echo esc_attr( is_string( $field['placeholder'] ?? '' ) ? $field['placeholder'] : '' ); ?>" maxlength="200"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Help Text', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[help]" value="<?php echo esc_attr( is_string( $field['help'] ?? '' ) ? $field['help'] : '' ); ?>" maxlength="500"></label></div><label class="docsbot-checkbox docsbot-lead-required"><input type="checkbox" name="<?php echo esc_attr( $prefix ); ?>[required]" value="1" <?php checked( ! empty( $field['required'] ) ); ?>><span><?php esc_html_e( 'Required', 'docsbot' ); ?></span></label></div>
 			<details class="docsbot-lead-validation"><summary><?php esc_html_e( 'Validation', 'docsbot' ); ?></summary><div class="docsbot-grid docsbot-grid--3"><div class="docsbot-field"><label><?php esc_html_e( 'Pattern', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[pattern]" value="<?php echo esc_attr( is_string( $field['pattern'] ?? '' ) ? $field['pattern'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Min', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[min]" value="<?php echo esc_attr( isset( $field['min'] ) ? (string) $field['min'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Max', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[max]" value="<?php echo esc_attr( isset( $field['max'] ) ? (string) $field['max'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Step', 'docsbot' ); ?><input type="text" name="<?php echo esc_attr( $prefix ); ?>[step]" value="<?php echo esc_attr( isset( $field['step'] ) ? (string) $field['step'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Minimum length', 'docsbot' ); ?><input type="number" min="0" name="<?php echo esc_attr( $prefix ); ?>[minLength]" value="<?php echo esc_attr( isset( $field['minLength'] ) ? (string) $field['minLength'] : '' ); ?>"></label></div><div class="docsbot-field"><label><?php esc_html_e( 'Maximum length', 'docsbot' ); ?><input type="number" min="1" name="<?php echo esc_attr( $prefix ); ?>[maxLength]" value="<?php echo esc_attr( isset( $field['maxLength'] ) ? (string) $field['maxLength'] : '' ); ?>"></label></div></div></details>
-			<div class="docsbot-lead-options" data-lead-options <?php echo 'select' === $type ? '' : 'hidden'; ?>><strong><?php esc_html_e( 'Options', 'docsbot' ); ?></strong><div data-lead-option-list><?php foreach ( $options as $option_index => $option ) : ?><div class="docsbot-lead-option"><input type="text" name="<?php echo esc_attr( $prefix ); ?>[options][<?php echo esc_attr( $option_index ); ?>][value]" value="<?php echo esc_attr( is_array( $option ) ? (string) ( $option['value'] ?? '' ) : (string) $option ); ?>" placeholder="<?php esc_attr_e( 'Value', 'docsbot' ); ?>"><input type="text" name="<?php echo esc_attr( $prefix ); ?>[options][<?php echo esc_attr( $option_index ); ?>][label]" value="<?php echo esc_attr( is_array( $option ) ? (string) ( $option['label'] ?? '' ) : '' ); ?>" placeholder="<?php esc_attr_e( 'Label', 'docsbot' ); ?>"><button type="button" class="button-link-delete" data-lead-remove-option><?php esc_html_e( 'Remove', 'docsbot' ); ?></button></div><?php endforeach; ?></div><button type="button" class="button-link" data-lead-add-option><?php esc_html_e( 'Add option', 'docsbot' ); ?></button></div>
+			<div class="docsbot-lead-options" data-lead-options <?php echo 'select' === $type ? '' : 'hidden'; ?>><strong><?php esc_html_e( 'Options', 'docsbot' ); ?></strong><div data-lead-option-list>
+			<?php
+			foreach ( $options as $option_index => $option ) :
+				?>
+				<div class="docsbot-lead-option"><input type="text" name="<?php echo esc_attr( $prefix ); ?>[options][<?php echo esc_attr( $option_index ); ?>][value]" value="<?php echo esc_attr( is_array( $option ) ? (string) ( $option['value'] ?? '' ) : (string) $option ); ?>" placeholder="<?php esc_attr_e( 'Value', 'docsbot' ); ?>"><input type="text" name="<?php echo esc_attr( $prefix ); ?>[options][<?php echo esc_attr( $option_index ); ?>][label]" value="<?php echo esc_attr( is_array( $option ) ? (string) ( $option['label'] ?? '' ) : '' ); ?>" placeholder="<?php esc_attr_e( 'Label', 'docsbot' ); ?>"><button type="button" class="button-link-delete" data-lead-remove-option><?php esc_html_e( 'Remove', 'docsbot' ); ?></button></div><?php endforeach; ?></div><button type="button" class="button-link" data-lead-add-option><?php esc_html_e( 'Add option', 'docsbot' ); ?></button></div>
 		</div>
 		<?php
 	}
@@ -719,10 +737,44 @@ final class DocsBot_Admin {
 	/**
 	 * @return array<string,string>
 	 */
-	private function lead_field_types() { return array( 'text' => __( 'Text', 'docsbot' ), 'email' => __( 'Email', 'docsbot' ), 'tel' => __( 'Phone', 'docsbot' ), 'url' => __( 'URL', 'docsbot' ), 'number' => __( 'Number', 'docsbot' ), 'textarea' => __( 'Textarea', 'docsbot' ), 'select' => __( 'Select', 'docsbot' ), 'date' => __( 'Date', 'docsbot' ), 'datetime-local' => __( 'Date & Time', 'docsbot' ), 'month' => __( 'Month', 'docsbot' ), 'time' => __( 'Time', 'docsbot' ), 'week' => __( 'Week', 'docsbot' ), 'color' => __( 'Color', 'docsbot' ) ); }
+	private function lead_field_types() {
+		return array(
+			'text'           => __( 'Text', 'docsbot' ),
+			'email'          => __( 'Email', 'docsbot' ),
+			'tel'            => __( 'Phone', 'docsbot' ),
+			'url'            => __( 'URL', 'docsbot' ),
+			'number'         => __( 'Number', 'docsbot' ),
+			'textarea'       => __( 'Textarea', 'docsbot' ),
+			'select'         => __( 'Select', 'docsbot' ),
+			'date'           => __( 'Date', 'docsbot' ),
+			'datetime-local' => __( 'Date & Time', 'docsbot' ),
+			'month'          => __( 'Month', 'docsbot' ),
+			'time'           => __( 'Time', 'docsbot' ),
+			'week'           => __( 'Week', 'docsbot' ),
+			'color'          => __( 'Color', 'docsbot' ),
+		); }
 
 	/** @return array<string,mixed> */
-	private function default_lead_collect() { return array( 'mode' => 'before_response', 'fields' => array( array( 'key' => 'name', 'label' => 'Name', 'type' => 'text', 'required' => true, 'autocomplete' => 'name' ), array( 'key' => 'email', 'label' => 'Email', 'type' => 'email', 'required' => true, 'autocomplete' => 'email' ) ) ); }
+	private function default_lead_collect() {
+		return array(
+			'mode'   => 'before_response',
+			'fields' => array(
+				array(
+					'key'          => 'name',
+					'label'        => 'Name',
+					'type'         => 'text',
+					'required'     => true,
+					'autocomplete' => 'name',
+				),
+				array(
+					'key'          => 'email',
+					'label'        => 'Email',
+					'type'         => 'email',
+					'required'     => true,
+					'autocomplete' => 'email',
+				),
+			),
+		); }
 
 	/**
 	 * Render a complete scheduling provider editor.
@@ -1534,8 +1586,8 @@ final class DocsBot_Admin {
 		} else {
 			$labels['leadCollectMessage'] = substr( $lead_message, 0, 500 );
 		}
-		$support_link                  = $this->post_url( 'support_link' );
-		$result                        = $this->api->update_bot(
+		$support_link = $this->post_url( 'support_link' );
+		$result       = $this->api->update_bot(
 			$settings['team_id'],
 			$settings['bot_id'],
 			array(
@@ -1584,68 +1636,90 @@ final class DocsBot_Admin {
 		if ( '1' !== (string) ( $posted['enabled'] ?? '' ) ) {
 			return false;
 		}
-		$mode = 'before_escalation' === ( $posted['mode'] ?? '' ) ? 'before_escalation' : 'before_response';
+		$mode       = 'before_escalation' === ( $posted['mode'] ?? '' ) ? 'before_escalation' : 'before_response';
 		$raw_fields = isset( $posted['fields'] ) && is_array( $posted['fields'] ) ? array_slice( $posted['fields'], 0, 50 ) : array();
-		$types = $this->lead_field_types();
-		$fields = array();
-		$keys = array();
+		$types      = $this->lead_field_types();
+		$fields     = array();
+		$keys       = array();
 		foreach ( $raw_fields as $raw_field ) {
-			if ( ! is_array( $raw_field ) ) { continue; }
+			if ( ! is_array( $raw_field ) ) {
+				continue; }
 			$key = preg_replace( '/[^A-Za-z0-9_.:\[\]-]+/', '', (string) ( $raw_field['key'] ?? '' ) );
 			$key = is_string( $key ) ? trim( $key ) : '';
 			if ( '' === $key || isset( $keys[ $key ] ) ) {
 				$this->redirect_feedback( 'actions', 'error', __( 'Every lead form field needs a unique key.', 'docsbot' ) );
 			}
-			$keys[ $key ] = true;
-			$type = isset( $types[ $raw_field['type'] ?? '' ] ) ? $raw_field['type'] : 'text';
-			$field = array(
+			$keys[ $key ]   = true;
+			$type           = isset( $types[ $raw_field['type'] ?? '' ] ) ? $raw_field['type'] : 'text';
+			$field          = array(
 				'key'      => substr( $key, 0, 80 ),
 				'type'     => $type,
 				'required' => '1' === (string) ( $raw_field['required'] ?? '' ),
 			);
 			$normalized_key = strtolower( $field['key'] );
-			if ( 'email' === $type ) { $field['autocomplete'] = 'email'; $field['inputMode'] = 'email'; }
-			elseif ( 'tel' === $type ) { $field['autocomplete'] = 'tel'; $field['inputMode'] = 'tel'; }
-			elseif ( 'url' === $type ) { $field['autocomplete'] = 'url'; $field['inputMode'] = 'url'; }
-			elseif ( 'number' === $type ) { $field['inputMode'] = 'numeric'; }
-			elseif ( in_array( $normalized_key, array( 'name', 'fullname', 'full-name' ), true ) ) { $field['autocomplete'] = 'name'; }
-			elseif ( in_array( $normalized_key, array( 'firstname', 'first-name', 'givenname', 'given-name' ), true ) ) { $field['autocomplete'] = 'given-name'; }
-			elseif ( in_array( $normalized_key, array( 'lastname', 'last-name', 'surname', 'familyname', 'family-name' ), true ) ) { $field['autocomplete'] = 'family-name'; }
-			elseif ( in_array( $normalized_key, array( 'company', 'organization', 'org', 'employer' ), true ) ) { $field['autocomplete'] = 'organization'; }
-			foreach ( array( 'label' => 200, 'placeholder' => 200, 'help' => 500, 'pattern' => 500 ) as $name => $limit ) {
-				$value = isset( $raw_field[ $name ] ) ? sanitize_text_field( (string) $raw_field[ $name ] ) : '';
-				if ( '' !== $value ) { $field[ $name ] = substr( $value, 0, $limit ); }
-			}
-			if ( in_array( $type, array( 'number', 'date', 'time', 'datetime-local', 'month', 'week' ), true ) ) {
-				foreach ( array( 'min', 'max', 'step' ) as $name ) {
-					$value = isset( $raw_field[ $name ] ) ? sanitize_text_field( (string) $raw_field[ $name ] ) : '';
-					if ( '' !== $value ) { $field[ $name ] = substr( $value, 0, 100 ); }
-				}
-			}
-			if ( in_array( $type, array( 'text', 'email', 'tel', 'url', 'textarea' ), true ) ) {
-				foreach ( array( 'minLength', 'maxLength' ) as $name ) {
-					if ( isset( $raw_field[ $name ] ) && '' !== (string) $raw_field[ $name ] ) { $field[ $name ] = min( 100000, max( 'minLength' === $name ? 0 : 1, absint( $raw_field[ $name ] ) ) ); }
-				}
-			}
-			if ( ! in_array( $type, array( 'text', 'email', 'tel', 'url' ), true ) ) { unset( $field['pattern'] ); }
-			if ( ! in_array( $type, array( 'text', 'email', 'tel', 'url', 'textarea', 'select' ), true ) ) { unset( $field['placeholder'] ); }
-			if ( 'select' === $type ) {
-				$options = isset( $raw_field['options'] ) && is_array( $raw_field['options'] ) ? array_slice( $raw_field['options'], 0, 100 ) : array();
-				$field['options'] = array();
-				foreach ( $options as $option ) {
-					$value = is_array( $option ) ? preg_replace( '/[^A-Za-z0-9_.:\[\]-]+/', '', (string) ( $option['value'] ?? '' ) ) : '';
-					if ( ! is_string( $value ) || '' === trim( $value ) ) { continue; }
-					$entry = array( 'value' => substr( trim( $value ), 0, 100 ) );
-					$label = is_array( $option ) ? sanitize_text_field( (string) ( $option['label'] ?? '' ) ) : '';
-					if ( '' !== $label ) { $entry['label'] = substr( $label, 0, 200 ); }
-					$field['options'][] = $entry;
-				}
-				if ( empty( $field['options'] ) ) { $this->redirect_feedback( 'actions', 'error', __( 'Every select lead form field needs at least one option.', 'docsbot' ) ); }
-			}
-			$fields[] = $field;
+			if ( 'email' === $type ) {
+				$field['autocomplete'] = 'email';
+				$field['inputMode']    = 'email'; } elseif ( 'tel' === $type ) {
+				$field['autocomplete'] = 'tel';
+				$field['inputMode']    = 'tel'; } elseif ( 'url' === $type ) {
+					$field['autocomplete'] = 'url';
+					$field['inputMode']    = 'url'; } elseif ( 'number' === $type ) {
+					$field['inputMode'] = 'numeric'; } elseif ( in_array( $normalized_key, array( 'name', 'fullname', 'full-name' ), true ) ) {
+							$field['autocomplete'] = 'name'; } elseif ( in_array( $normalized_key, array( 'firstname', 'first-name', 'givenname', 'given-name' ), true ) ) {
+							$field['autocomplete'] = 'given-name'; } elseif ( in_array( $normalized_key, array( 'lastname', 'last-name', 'surname', 'familyname', 'family-name' ), true ) ) {
+								$field['autocomplete'] = 'family-name'; } elseif ( in_array( $normalized_key, array( 'company', 'organization', 'org', 'employer' ), true ) ) {
+								$field['autocomplete'] = 'organization'; }
+								foreach ( array(
+									'label'       => 200,
+									'placeholder' => 200,
+									'help'        => 500,
+									'pattern'     => 500,
+								) as $name => $limit ) {
+									$value = isset( $raw_field[ $name ] ) ? sanitize_text_field( (string) $raw_field[ $name ] ) : '';
+									if ( '' !== $value ) {
+										$field[ $name ] = substr( $value, 0, $limit ); }
+								}
+								if ( in_array( $type, array( 'number', 'date', 'time', 'datetime-local', 'month', 'week' ), true ) ) {
+									foreach ( array( 'min', 'max', 'step' ) as $name ) {
+										$value = isset( $raw_field[ $name ] ) ? sanitize_text_field( (string) $raw_field[ $name ] ) : '';
+										if ( '' !== $value ) {
+											$field[ $name ] = substr( $value, 0, 100 ); }
+									}
+								}
+								if ( in_array( $type, array( 'text', 'email', 'tel', 'url', 'textarea' ), true ) ) {
+									foreach ( array( 'minLength', 'maxLength' ) as $name ) {
+										if ( isset( $raw_field[ $name ] ) && '' !== (string) $raw_field[ $name ] ) {
+											$field[ $name ] = min( 100000, max( 'minLength' === $name ? 0 : 1, absint( $raw_field[ $name ] ) ) ); }
+									}
+								}
+								if ( ! in_array( $type, array( 'text', 'email', 'tel', 'url' ), true ) ) {
+									unset( $field['pattern'] ); }
+								if ( ! in_array( $type, array( 'text', 'email', 'tel', 'url', 'textarea', 'select' ), true ) ) {
+									unset( $field['placeholder'] ); }
+								if ( 'select' === $type ) {
+									$options          = isset( $raw_field['options'] ) && is_array( $raw_field['options'] ) ? array_slice( $raw_field['options'], 0, 100 ) : array();
+									$field['options'] = array();
+									foreach ( $options as $option ) {
+										$value = is_array( $option ) ? preg_replace( '/[^A-Za-z0-9_.:\[\]-]+/', '', (string) ( $option['value'] ?? '' ) ) : '';
+										if ( ! is_string( $value ) || '' === trim( $value ) ) {
+											continue; }
+										$entry = array( 'value' => substr( trim( $value ), 0, 100 ) );
+										$label = is_array( $option ) ? sanitize_text_field( (string) ( $option['label'] ?? '' ) ) : '';
+										if ( '' !== $label ) {
+											$entry['label'] = substr( $label, 0, 200 ); }
+										$field['options'][] = $entry;
+									}
+									if ( empty( $field['options'] ) ) {
+										$this->redirect_feedback( 'actions', 'error', __( 'Every select lead form field needs at least one option.', 'docsbot' ) ); }
+								}
+								$fields[] = $field;
 		}
-		if ( empty( $fields ) ) { $this->redirect_feedback( 'actions', 'error', __( 'Add at least one lead form field before enabling lead collection.', 'docsbot' ) ); }
-		return array( 'mode' => $mode, 'fields' => $fields );
+		if ( empty( $fields ) ) {
+			$this->redirect_feedback( 'actions', 'error', __( 'Add at least one lead form field before enabling lead collection.', 'docsbot' ) ); }
+		return array(
+			'mode'   => $mode,
+			'fields' => $fields,
+		);
 	}
 
 	/**
@@ -1771,39 +1845,39 @@ final class DocsBot_Admin {
 		if ( ! is_array( $bot ) ) {
 			return;
 		}
-		$labels         = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
-		$name           = $bot['name'] ?? $settings['bot_name'];
-		$description    = $bot['description'] ?? __( 'Ask me anything about this site.', 'docsbot' );
-		$first_message  = $labels['firstMessage'] ?? __( 'Hi! How can I help?', 'docsbot' );
-		$placeholder    = $labels['inputPlaceholder'] ?? __( 'Send a message…', 'docsbot' );
-		$button_label   = $labels['floatingButton'] ?? __( 'Chat with us', 'docsbot' );
-		$feedback_yes   = $labels['feedbackYes'] ?? '👍';
-		$feedback_no    = $labels['feedbackNo'] ?? '👎';
-		$helpful_label  = $labels['helpful'] ?? __( 'Rate as helpful', 'docsbot' );
+		$labels          = isset( $bot['labels'] ) && is_array( $bot['labels'] ) ? $bot['labels'] : array();
+		$name            = $bot['name'] ?? $settings['bot_name'];
+		$description     = $bot['description'] ?? __( 'Ask me anything about this site.', 'docsbot' );
+		$first_message   = $labels['firstMessage'] ?? __( 'Hi! How can I help?', 'docsbot' );
+		$placeholder     = $labels['inputPlaceholder'] ?? __( 'Send a message…', 'docsbot' );
+		$button_label    = $labels['floatingButton'] ?? __( 'Chat with us', 'docsbot' );
+		$feedback_yes    = $labels['feedbackYes'] ?? '👍';
+		$feedback_no     = $labels['feedbackNo'] ?? '👎';
+		$helpful_label   = $labels['helpful'] ?? __( 'Rate as helpful', 'docsbot' );
 		$unhelpful_label = $labels['unhelpful'] ?? __( 'Rate as unhelpful', 'docsbot' );
-		$support_label  = $labels['getSupport'] ?? __( 'Get support', 'docsbot' );
-		$footer         = $labels['footerMessage'] ?? '';
-		$logo           = is_string( $bot['logo'] ?? '' ) ? esc_url( $bot['logo'], array( 'https' ) ) : '';
-		$color          = sanitize_hex_color( $bot['color'] ?? '#0891b8' );
-		$color          = $color ? $color : '#0891b8';
-		$red            = hexdec( substr( $color, 1, 2 ) );
-		$green          = hexdec( substr( $color, 3, 2 ) );
-		$blue           = hexdec( substr( $color, 5, 2 ) );
-		$foreground     = ( ( $red * 299 + $green * 587 + $blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
-		$avatar_red     = (int) round( $red + ( 255 - $red ) * 0.6 );
-		$avatar_green   = (int) round( $green + ( 255 - $green ) * 0.6 );
-		$avatar_blue    = (int) round( $blue + ( 255 - $blue ) * 0.6 );
-		$avatar_color   = sprintf( 'rgb(%d, %d, %d)', $avatar_red, $avatar_green, $avatar_blue );
-		$avatar_text    = ( ( $avatar_red * 299 + $avatar_green * 587 + $avatar_blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
-		$alignment      = 'left' === ( $bot['alignment'] ?? 'right' ) ? ' is-left' : '';
-		$header_align   = 'left' === ( $bot['headerAlignment'] ?? 'center' ) ? ' has-left-header' : '';
-		$launcher_value = is_string( $bot['icon'] ?? '' ) ? $bot['icon'] : 'default';
-		$launcher_icon  = $this->preview_icon_data( $launcher_value );
-		$launcher_url   = 0 === strpos( $launcher_value, 'https://' ) ? esc_url( $launcher_value, array( 'https' ) ) : '';
-		$bot_icon       = is_string( $bot['botIcon'] ?? '' ) ? $bot['botIcon'] : '';
-		$bot_icon_data  = $this->preview_icon_data( $bot_icon );
-		$bot_icon_url   = 0 === strpos( $bot_icon, 'https://' ) ? esc_url( $bot_icon, array( 'https' ) ) : '';
-		$preview_style  = sprintf(
+		$support_label   = $labels['getSupport'] ?? __( 'Get support', 'docsbot' );
+		$footer          = $labels['footerMessage'] ?? '';
+		$logo            = is_string( $bot['logo'] ?? '' ) ? esc_url( $bot['logo'], array( 'https' ) ) : '';
+		$color           = sanitize_hex_color( $bot['color'] ?? '#0891b8' );
+		$color           = $color ? $color : '#0891b8';
+		$red             = hexdec( substr( $color, 1, 2 ) );
+		$green           = hexdec( substr( $color, 3, 2 ) );
+		$blue            = hexdec( substr( $color, 5, 2 ) );
+		$foreground      = ( ( $red * 299 + $green * 587 + $blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
+		$avatar_red      = (int) round( $red + ( 255 - $red ) * 0.6 );
+		$avatar_green    = (int) round( $green + ( 255 - $green ) * 0.6 );
+		$avatar_blue     = (int) round( $blue + ( 255 - $blue ) * 0.6 );
+		$avatar_color    = sprintf( 'rgb(%d, %d, %d)', $avatar_red, $avatar_green, $avatar_blue );
+		$avatar_text     = ( ( $avatar_red * 299 + $avatar_green * 587 + $avatar_blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
+		$alignment       = 'left' === ( $bot['alignment'] ?? 'right' ) ? ' is-left' : '';
+		$header_align    = 'left' === ( $bot['headerAlignment'] ?? 'center' ) ? ' has-left-header' : '';
+		$launcher_value  = is_string( $bot['icon'] ?? '' ) ? $bot['icon'] : 'default';
+		$launcher_icon   = $this->preview_icon_data( $launcher_value );
+		$launcher_url    = 0 === strpos( $launcher_value, 'https://' ) ? esc_url( $launcher_value, array( 'https' ) ) : '';
+		$bot_icon        = is_string( $bot['botIcon'] ?? '' ) ? $bot['botIcon'] : '';
+		$bot_icon_data   = $this->preview_icon_data( $bot_icon );
+		$bot_icon_url    = 0 === strpos( $bot_icon, 'https://' ) ? esc_url( $bot_icon, array( 'https' ) ) : '';
+		$preview_style   = sprintf(
 			'--docsbot-preview-color: %1$s; --docsbot-preview-foreground: %2$s; --docsbot-preview-avatar-bg: %3$s; --docsbot-preview-avatar-foreground: %4$s',
 			$color,
 			$foreground,
