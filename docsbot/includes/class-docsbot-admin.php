@@ -700,7 +700,13 @@ final class DocsBot_Admin {
 		<?php
 	}
 
-	/** Render one lead form field editor. */
+	/**
+	 * Render one lead form field editor.
+	 *
+	 * @param int|string          $index Field index.
+	 * @param array<string,mixed> $field Field settings.
+	 * @return void
+	 */
 	private function lead_field_editor( $index, $field ) {
 		$types   = $this->lead_field_types();
 		$type    = isset( $types[ $field['type'] ?? '' ] ) ? $field['type'] : 'text';
@@ -735,6 +741,8 @@ final class DocsBot_Admin {
 	}
 
 	/**
+	 * Return supported lead form field types.
+	 *
 	 * @return array<string,string>
 	 */
 	private function lead_field_types() {
@@ -754,7 +762,11 @@ final class DocsBot_Admin {
 			'color'          => __( 'Color', 'docsbot' ),
 		); }
 
-	/** @return array<string,mixed> */
+	/**
+	 * Return default lead collection settings.
+	 *
+	 * @return array<string,mixed>
+	 */
 	private function default_lead_collect() {
 		return array(
 			'mode'   => 'before_response',
@@ -794,6 +806,7 @@ final class DocsBot_Admin {
 			<div class="docsbot-action-editor__header">
 				<img src="<?php echo esc_url( $logo ); ?>" alt="" width="36" height="36">
 				<span><strong><?php echo esc_html( $label ); ?></strong><small><?php esc_html_e( 'Booking action', 'docsbot' ); ?></small></span>
+				<?php /* translators: %s: booking provider name. */ ?>
 				<label class="docsbot-switch"><input type="checkbox" name="booking[<?php echo esc_attr( $provider ); ?>][enabled]" value="1" data-booking-toggle aria-label="<?php echo esc_attr( sprintf( __( 'Enable %s booking action', 'docsbot' ), $label ) ); ?>" <?php checked( $enabled ); ?>><span aria-hidden="true"></span></label>
 			</div>
 			<div class="docsbot-action-editor__body">
@@ -1710,7 +1723,7 @@ final class DocsBot_Admin {
 										$field['options'][] = $entry;
 									}
 									if ( empty( $field['options'] ) ) {
-										$this->redirect_feedback( 'actions', 'error', __( 'Every select lead form field needs at least one option.', 'docsbot' ) ); }
+						$this->redirect_feedback( 'actions', 'error', __( 'Every select lead form field needs at least one option.', 'docsbot' ) ); }
 								}
 								$fields[] = $field;
 		}
