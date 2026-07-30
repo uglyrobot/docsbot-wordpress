@@ -30,9 +30,9 @@ The plugin connects to the DocsBot Admin API from your WordPress server, lets an
 
 ## Languages
 
-DocsBot includes runtime translations for Spanish, German, French, Brazilian Portuguese, Japanese, and Simplified Chinese. WordPress.org language packs take priority when they are available.
+DocsBot is fully internationalized for community translation through [translate.wordpress.org](https://translate.wordpress.org/).
 
-Import-ready catalogs for the WordPress.org listing are maintained in [`translations/wordpress-org`](translations/wordpress-org). They are translation drafts and must be reviewed by native speakers through the WordPress.org translation process before publication.
+Import-ready catalogs for the WordPress.org listing are maintained in [`translations/wordpress-org`](translations/wordpress-org). They are translation drafts and must be reviewed by native speakers through the WordPress.org translation process before publication. Runtime translation files are intentionally excluded from the installable plugin because WordPress.org generates and distributes language packs.
 
 ## WordPress.org assets
 

@@ -1,6 +1,7 @@
 name: Package release
 
 on:
+  pull_request:
   push:
     tags:
       - "v*"
@@ -71,22 +72,13 @@ jobs:
           node --check docsbot/assets/js/admin.js
           node --check docsbot/assets/js/widget.js
 
-      - name: Validate bundled translations
+      - name: Validate translation sources
         run: |
           sudo apt-get update
           sudo apt-get install --yes gettext
 
-          test "$(find docsbot/languages -maxdepth 1 -name 'docsbot-*.po' | wc -l)" -eq 6
+          test -z "$(find docsbot -type f \( -name '*.po' -o -name '*.mo' \) -print -quit)"
           test "$(find translations/wordpress-org -maxdepth 1 -name 'readme-*.po' | wc -l)" -eq 6
-
-          for catalog in docsbot/languages/docsbot-*.po; do
-            msgfmt --check --check-format --output-file=/dev/null "${catalog}"
-            test -s "${catalog%.po}.mo"
-            compiled="$(mktemp)"
-            msgfmt --output-file="${compiled}" "${catalog}"
-            cmp "${compiled}" "${catalog%.po}.mo"
-            rm "${compiled}"
-          done
 
           for catalog in translations/wordpress-org/readme-*.po; do
             msgfmt --check --check-format --output-file=/dev/null "${catalog}"
@@ -155,6 +147,7 @@ jobs:
           mkdir -p build
           cp -R docsbot build/docsbot
           find build/docsbot -name '.DS_Store' -delete
+          test -z "$(find build/docsbot -type f \( -name '*.po' -o -name '*.mo' \) -print -quit)"
           (
             cd build
             zip -q -r ../docsbot.zip docsbot

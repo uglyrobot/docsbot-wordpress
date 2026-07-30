@@ -121,7 +121,7 @@ Need help connecting a bot or configuring the widget? Start with the [DocsBot wi
 * Added expanded dashboard action categories for Scheduling Tools, Custom Buttons, Skills, and MCP Servers, plus image uploads, voice input, and matching preview controls.
 * Moved support settings into Human Support Escalation and content-related options into Content.
 * Removed editable domain restrictions and now preserves unrestricted bots while transparently adding the WordPress hostname to existing allowlists.
-* Added bundled translations for Spanish, German, French, Brazilian Portuguese, Japanese, and Simplified Chinese.
+* Prepared the plugin for community translation through WordPress.org language packs.
 * Added import-ready WordPress.org listing translation catalogs for the same locales.
 * Added the complete WordPress.org banner and icon asset set.
 * Added dashboard-matched Content, Design, Actions, Deploy, and live widget preview screens.
