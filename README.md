@@ -36,7 +36,15 @@ Import-ready catalogs for the WordPress.org listing are maintained in [`translat
 
 ## WordPress.org assets
 
-The repository includes the complete directory artwork in [`.wordpress-org`](.wordpress-org): standard and Retina banners, PNG and SVG icons, and five screenshots. These files are intentionally kept outside the installable plugin ZIP, as required by the WordPress.org plugin asset layout.
+The repository includes the complete directory artwork in [`.wordpress-org`](.wordpress-org): standard and Retina banners, subtly animated PNG icons, and five screenshots. These files are intentionally kept outside the installable plugin ZIP, as required by the WordPress.org plugin asset layout.
+
+## Publishing to WordPress.org
+
+The release workflow validates and packages every release before publication. Configure the GitHub Actions repository secrets `SVN_USERNAME` and `SVN_PASSWORD` with the case-sensitive WordPress.org SVN username and the separate SVN password from the WordPress.org profile.
+
+For normal releases, update the plugin header version, `DOCSBOT_VERSION`, and the `Stable tag` in `docsbot/readme.txt`, then push the matching `vX.Y.Z` Git tag. A validated tag automatically publishes `docsbot/` to SVN trunk and the `X.Y.Z` SVN tag, while `.wordpress-org/` is synchronized to the SVN assets directory.
+
+The workflow's manual **Publish to WordPress.org SVN** option supports an approved version whose Git tag predates the deployment workflow. It publishes the checked-out branch only after the same validation, metadata, and packaging checks pass.
 
 ## Installation
 
