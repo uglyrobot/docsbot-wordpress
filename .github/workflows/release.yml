@@ -177,7 +177,7 @@ jobs:
           (github.event_name == 'workflow_dispatch' && inputs.publish_svn)
         uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # stable
         env:
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_USERNAME: ${{ vars.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: docsbot
           VERSION: ${{ steps.metadata.outputs.version }}

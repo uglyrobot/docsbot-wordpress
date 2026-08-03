@@ -40,7 +40,7 @@ The repository includes the complete directory artwork in [`.wordpress-org`](.wo
 
 ## Publishing to WordPress.org
 
-The release workflow validates and packages every release before publication. Configure the GitHub Actions repository secrets `SVN_USERNAME` and `SVN_PASSWORD` with the case-sensitive WordPress.org SVN username and the separate SVN password from the WordPress.org profile.
+The release workflow validates and packages every release before publication. Configure the GitHub Actions repository variable `SVN_USERNAME` with the case-sensitive WordPress.org SVN username, and the repository secret `SVN_PASSWORD` with the separate SVN password from the WordPress.org profile.
 
 For normal releases, update the plugin header version, `DOCSBOT_VERSION`, and the `Stable tag` in `docsbot/readme.txt`, then push the matching `vX.Y.Z` Git tag. A validated tag automatically publishes `docsbot/` to SVN trunk and the `X.Y.Z` SVN tag, while `.wordpress-org/` is synchronized to the SVN assets directory.
 
