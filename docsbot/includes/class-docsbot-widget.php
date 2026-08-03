@@ -189,7 +189,7 @@ final class DocsBot_Widget {
 				'useAudioUpload'    => (bool) $settings['use_audio_upload'],
 				'useVoiceAgent'     => (bool) $settings['use_voice_agent'],
 				'linkSafetyEnabled' => (bool) $settings['link_safety_enabled'],
-				'theme'            => $theme,
+				'theme'             => $theme,
 				'headerAlignment'   => (string) $settings['header_alignment'],
 				'horizontalMargin'  => (int) $settings['horizontal_margin'],
 				'verticalMargin'    => (int) $settings['vertical_margin'],

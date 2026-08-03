@@ -1289,7 +1289,7 @@ final class DocsBot_Admin {
 			'bot_privacy'         => in_array( $bot['privacy'] ?? 'public', array( 'public', 'private' ), true ) ? $bot['privacy'] : 'public',
 			'allowed_domains'     => $this->lines_from_array( $bot['allowedDomains'] ?? array() ),
 			'header_alignment'    => in_array( $bot['headerAlignment'] ?? 'center', array( 'left', 'center' ), true ) ? $bot['headerAlignment'] : 'center',
-			'theme'              => in_array( $bot['theme'] ?? 'light', array( 'auto', 'light', 'dark' ), true ) ? $bot['theme'] : 'light',
+			'theme'               => in_array( $bot['theme'] ?? 'light', array( 'auto', 'light', 'dark' ), true ) ? $bot['theme'] : 'light',
 			'link_safety_enabled' => ! empty( $bot['linkSafetyEnabled'] ),
 			'use_image_upload'    => ! empty( $bot['imageUploads'] ),
 			'use_audio_upload'    => ! empty( $bot['audioUploads'] ),
@@ -1353,7 +1353,7 @@ final class DocsBot_Admin {
 		if ( ! empty( $bot['isAgent'] ) ) {
 			$voice_agent            = isset( $bot['voiceAgent'] ) && is_array( $bot['voiceAgent'] ) ? $bot['voiceAgent'] : array();
 			$voice_agent['enabled'] = $this->posted_bool( 'use_voice_agent' );
-			$fields['voiceAgent']    = $voice_agent;
+			$fields['voiceAgent']   = $voice_agent;
 		}
 
 		$result = $this->api->update_bot(

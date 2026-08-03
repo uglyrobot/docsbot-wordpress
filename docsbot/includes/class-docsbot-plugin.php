@@ -127,7 +127,7 @@ final class DocsBot_Plugin {
 			'use_audio_upload'    => false,
 			'use_voice_agent'     => false,
 			'link_safety_enabled' => true,
-			'theme'              => 'light',
+			'theme'               => 'light',
 			'header_alignment'    => 'center',
 			'horizontal_margin'   => 20,
 			'vertical_margin'     => 20,
