@@ -319,6 +319,7 @@ final class DocsBot_API {
 			'description',
 			'allowedDomains',
 			'color',
+			'theme',
 			'icon',
 			'alignment',
 			'botIcon',
@@ -334,6 +335,7 @@ final class DocsBot_API {
 			'tools',
 			'leadCollect',
 			'mcpServers',
+			'voiceAgent',
 		);
 		$body    = array_intersect_key( $fields, array_flip( $allowed ) );
 

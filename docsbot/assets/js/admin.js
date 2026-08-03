@@ -522,12 +522,14 @@
 			'show_agent_activity',
 			'use_image_upload',
 			'use_audio_upload',
+			'use_voice_agent',
 			'show_copy_button',
 			'link_safety_enabled'
 		].forEach( function ( name ) {
 			bindToggle( name, false );
 		} );
 		bindToggle( 'hide_sources', true );
+		bindToggle( 'use_voice_agent', true );
 
 		var showButtonLabel = document.querySelector( '[name="show_button_label"]' );
 		var buttonLabel = preview.querySelector( '[data-preview="button-label"]' );
@@ -560,6 +562,27 @@
 			colorText.addEventListener( 'input', updateColor );
 			updateColor();
 		}
+
+		var themeFields = document.querySelectorAll( '[name="theme"]' );
+		var themeMedia = window.matchMedia ? window.matchMedia( '(prefers-color-scheme: dark)' ) : null;
+		var updateTheme = function () {
+			var selectedTheme = document.querySelector( '[name="theme"]:checked' );
+			var theme = selectedTheme ? selectedTheme.value : ( preview.dataset.previewTheme || 'light' );
+			var isDark = theme === 'dark' || ( theme === 'auto' && themeMedia && themeMedia.matches );
+			preview.dataset.previewTheme = theme;
+			preview.classList.toggle( 'is-dark-theme', !! isDark );
+		};
+		themeFields.forEach( function ( themeField ) {
+			themeField.addEventListener( 'change', updateTheme );
+		} );
+		if ( themeMedia ) {
+			if ( themeMedia.addEventListener ) {
+				themeMedia.addEventListener( 'change', updateTheme );
+			} else if ( themeMedia.addListener ) {
+				themeMedia.addListener( updateTheme );
+			}
+		}
+		updateTheme();
 
 		var alignment = document.querySelector( '[name="alignment"]' );
 		if ( alignment ) {

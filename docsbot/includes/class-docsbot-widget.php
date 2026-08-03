@@ -169,6 +169,11 @@ final class DocsBot_Widget {
 		}
 
 		$identify = $this->build_identify( $user_id, $settings );
+		$theme    = in_array(
+			$settings['theme'],
+			array( 'auto', 'light', 'dark' ),
+			true
+		) ? $settings['theme'] : 'light';
 		$config   = array(
 			'id'      => $settings['team_id'] . '/' . $settings['bot_id'],
 			'options' => array(
@@ -182,7 +187,9 @@ final class DocsBot_Widget {
 				'showAgentActivity' => (bool) $settings['show_agent_activity'],
 				'useImageUpload'    => (bool) $settings['use_image_upload'],
 				'useAudioUpload'    => (bool) $settings['use_audio_upload'],
+				'useVoiceAgent'     => (bool) $settings['use_voice_agent'],
 				'linkSafetyEnabled' => (bool) $settings['link_safety_enabled'],
+				'theme'            => $theme,
 				'headerAlignment'   => (string) $settings['header_alignment'],
 				'horizontalMargin'  => (int) $settings['horizontal_margin'],
 				'verticalMargin'    => (int) $settings['vertical_margin'],

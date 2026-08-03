@@ -16,6 +16,8 @@ function docsbot_fixture_bot() {
 		'signatureKey'      => 'fixture-signature-key',
 		'status'            => 'ready',
 		'color'             => '#0891b8',
+		'theme'             => 'light',
+		'isAgent'           => true,
 		'icon'              => 'robot',
 		'alignment'         => 'right',
 		'botIcon'           => 'robot',
@@ -25,6 +27,13 @@ function docsbot_fixture_bot() {
 		'linkSafetyEnabled' => true,
 		'imageUploads'      => true,
 		'audioUploads'      => true,
+		'voiceAgent'        => array(
+			'enabled'                => false,
+			'model'                  => 'gpt-realtime-2.1',
+			'voice'                  => 'marin',
+			'greeting'               => 'Thanks for calling DocsBot. How can I help?',
+			'maxCallDurationSeconds' => 900,
+		),
 		'supportLink'       => 'https://docsbot.ai/support',
 		'showButtonLabel'   => true,
 		'showCopyButton'    => true,
@@ -272,6 +281,8 @@ add_action(
 				'use_custom_buttons'  => true,
 				'use_image_upload'    => true,
 				'use_audio_upload'    => true,
+				'use_voice_agent'     => false,
+				'theme'               => 'light',
 			)
 		);
 

@@ -389,6 +389,19 @@ final class DocsBot_Admin {
 					<?php $this->checkbox( 'use_image_upload', __( 'Image uploads', 'docsbot' ), ! empty( $settings['use_image_upload'] ) ); ?>
 					<?php $this->checkbox( 'use_audio_upload', __( 'Voice input', 'docsbot' ), ! empty( $settings['use_audio_upload'] ) ); ?>
 				</div>
+				<?php if ( ! empty( $bot['isAgent'] ) ) : ?>
+					<div class="docsbot-option-list docsbot-option-list--standalone">
+						<?php
+						$this->option_toggle(
+							'use_voice_agent',
+							__( 'Advanced voice', 'docsbot' ),
+							__( 'Let visitors talk with this bot in real time from the widget microphone. Requires Standard or higher; configure the model, voice, greeting, and limits in DocsBot Voice settings.', 'docsbot' ),
+							! empty( $settings['use_voice_agent'] ),
+							'sparkles'
+						);
+						?>
+					</div>
+				<?php endif; ?>
 				<?php $this->save_action( __( 'Save content', 'docsbot' ) ); ?>
 			</form>
 		</div>
@@ -443,6 +456,28 @@ final class DocsBot_Admin {
 					);
 					?>
 				</div>
+				<fieldset class="docsbot-field docsbot-theme-field">
+					<legend><?php esc_html_e( 'Theme', 'docsbot' ); ?></legend>
+					<p class="description"><?php esc_html_e( 'Choose light, dark, or auto to follow the visitor’s system color scheme.', 'docsbot' ); ?></p>
+					<div class="docsbot-theme-options">
+						<?php
+						$theme = in_array( $settings['theme'], array( 'auto', 'light', 'dark' ), true ) ? $settings['theme'] : 'light';
+						foreach (
+							array(
+								'auto'  => __( 'Auto', 'docsbot' ),
+								'light' => __( 'Light', 'docsbot' ),
+								'dark'  => __( 'Dark', 'docsbot' ),
+							) as $theme_value => $theme_label
+						) :
+							?>
+							<label class="docsbot-theme-option">
+								<input type="radio" name="theme" value="<?php echo esc_attr( $theme_value ); ?>" <?php checked( $theme, $theme_value ); ?>>
+								<span aria-hidden="true"></span>
+								<strong><?php echo esc_html( $theme_label ); ?></strong>
+							</label>
+						<?php endforeach; ?>
+					</div>
+				</fieldset>
 				<?php
 				$launcher_icons = array(
 					'default'   => __( 'Comments', 'docsbot' ),
@@ -1254,9 +1289,11 @@ final class DocsBot_Admin {
 			'bot_privacy'         => in_array( $bot['privacy'] ?? 'public', array( 'public', 'private' ), true ) ? $bot['privacy'] : 'public',
 			'allowed_domains'     => $this->lines_from_array( $bot['allowedDomains'] ?? array() ),
 			'header_alignment'    => in_array( $bot['headerAlignment'] ?? 'center', array( 'left', 'center' ), true ) ? $bot['headerAlignment'] : 'center',
+			'theme'              => in_array( $bot['theme'] ?? 'light', array( 'auto', 'light', 'dark' ), true ) ? $bot['theme'] : 'light',
 			'link_safety_enabled' => ! empty( $bot['linkSafetyEnabled'] ),
 			'use_image_upload'    => ! empty( $bot['imageUploads'] ),
 			'use_audio_upload'    => ! empty( $bot['audioUploads'] ),
+			'use_voice_agent'     => ! empty( $bot['voiceAgent']['enabled'] ),
 		);
 		$signature_key     = isset( $bot['signatureKey'] ) && is_string( $bot['signatureKey'] )
 			? trim( $bot['signatureKey'] )
@@ -1304,18 +1341,25 @@ final class DocsBot_Admin {
 				'footerMessage'    => $this->post_textarea( 'footer_message', 1000 ),
 			)
 		);
+		$fields = array(
+			'name'              => $this->post_text( 'name', 100 ),
+			'description'       => $this->post_textarea( 'description', 500 ),
+			'showButtonLabel'   => $this->posted_bool( 'show_button_label' ),
+			'showCopyButton'    => $this->posted_bool( 'show_copy_button' ),
+			'hideSources'       => $this->posted_bool( 'hide_sources' ),
+			'linkSafetyEnabled' => $this->posted_bool( 'link_safety_enabled' ),
+			'labels'            => $labels,
+		);
+		if ( ! empty( $bot['isAgent'] ) ) {
+			$voice_agent            = isset( $bot['voiceAgent'] ) && is_array( $bot['voiceAgent'] ) ? $bot['voiceAgent'] : array();
+			$voice_agent['enabled'] = $this->posted_bool( 'use_voice_agent' );
+			$fields['voiceAgent']    = $voice_agent;
+		}
+
 		$result = $this->api->update_bot(
 			$settings['team_id'],
 			$settings['bot_id'],
-			array(
-				'name'              => $this->post_text( 'name', 100 ),
-				'description'       => $this->post_textarea( 'description', 500 ),
-				'showButtonLabel'   => $this->posted_bool( 'show_button_label' ),
-				'showCopyButton'    => $this->posted_bool( 'show_copy_button' ),
-				'hideSources'       => $this->posted_bool( 'hide_sources' ),
-				'linkSafetyEnabled' => $this->posted_bool( 'link_safety_enabled' ),
-				'labels'            => $labels,
-			)
+			$fields
 		);
 		if ( ! is_wp_error( $result ) ) {
 			DocsBot_Plugin::update_settings(
@@ -1324,6 +1368,7 @@ final class DocsBot_Admin {
 					'show_agent_activity' => $this->posted_bool( 'show_agent_activity' ),
 					'use_image_upload'    => $this->posted_bool( 'use_image_upload' ),
 					'use_audio_upload'    => $this->posted_bool( 'use_audio_upload' ),
+					'use_voice_agent'     => ! empty( $bot['isAgent'] ) && $this->posted_bool( 'use_voice_agent' ),
 				)
 			);
 		}
@@ -1342,6 +1387,7 @@ final class DocsBot_Admin {
 		$color            = isset( $_POST['color'] ) ? sanitize_hex_color( wp_unslash( $_POST['color'] ) ) : '';
 		$alignment        = $this->posted_enum( 'alignment', array( 'left', 'right' ), 'right' );
 		$header_alignment = $this->posted_enum( 'header_alignment', array( 'left', 'center' ), 'center' );
+		$theme            = $this->posted_enum( 'theme', array( 'auto', 'light', 'dark' ), 'light' );
 		$icon_choice      = $this->posted_enum( 'icon', array( 'default', 'comments', 'robot', 'life-ring', 'question', 'book', 'custom' ), 'default' );
 		$bot_icon_choice  = $this->posted_enum( 'bot_icon', array( '', 'comment', 'robot', 'life-ring', 'info', 'book', 'custom' ), '' );
 		$icon             = 'custom' === $icon_choice ? $this->post_url( 'icon_custom' ) : $icon_choice;
@@ -1363,6 +1409,7 @@ final class DocsBot_Admin {
 			$settings['bot_id'],
 			array(
 				'color'           => $color,
+				'theme'           => $theme,
 				'icon'            => $icon,
 				'alignment'       => $alignment,
 				'botIcon'         => '' === $bot_icon ? false : $bot_icon,
@@ -1376,6 +1423,7 @@ final class DocsBot_Admin {
 			DocsBot_Plugin::update_settings(
 				array(
 					'header_alignment' => $header_alignment,
+					'theme'            => $theme,
 				)
 			);
 		}
@@ -1875,6 +1923,8 @@ final class DocsBot_Admin {
 		$avatar_blue     = (int) round( $blue + ( 255 - $blue ) * 0.6 );
 		$avatar_color    = sprintf( 'rgb(%d, %d, %d)', $avatar_red, $avatar_green, $avatar_blue );
 		$avatar_text     = ( ( $avatar_red * 299 + $avatar_green * 587 + $avatar_blue * 114 ) / 1000 ) > 155 ? '#0f172a' : '#ffffff';
+		$theme           = in_array( $settings['theme'], array( 'auto', 'light', 'dark' ), true ) ? $settings['theme'] : 'light';
+		$theme_class     = 'dark' === $theme ? ' is-dark-theme' : '';
 		$alignment       = 'left' === ( $bot['alignment'] ?? 'right' ) ? ' is-left' : '';
 		$header_align    = 'left' === ( $bot['headerAlignment'] ?? 'center' ) ? ' has-left-header' : '';
 		$launcher_value  = is_string( $bot['icon'] ?? '' ) ? $bot['icon'] : 'default';
@@ -1891,7 +1941,7 @@ final class DocsBot_Admin {
 			$avatar_text
 		);
 		?>
-		<div class="docsbot-card docsbot-preview-card<?php echo esc_attr( $alignment . $header_align ); ?>" data-docsbot-preview style="<?php echo esc_attr( $preview_style ); ?>">
+		<div class="docsbot-card docsbot-preview-card<?php echo esc_attr( $alignment . $header_align . $theme_class ); ?>" data-docsbot-preview data-preview-theme="<?php echo esc_attr( $theme ); ?>" style="<?php echo esc_attr( $preview_style ); ?>">
 			<div class="docsbot-preview-card__heading">
 				<h2><?php esc_html_e( 'Preview', 'docsbot' ); ?></h2>
 				<div class="docsbot-preview-mode" role="group" aria-label="<?php esc_attr_e( 'Preview mode', 'docsbot' ); ?>">
@@ -1929,7 +1979,17 @@ final class DocsBot_Admin {
 							<button type="button" data-preview="support-label"><?php echo esc_html( $support_label ); ?></button>
 						</div>
 					</div>
-					<div class="docsbot-widget-preview__composer"><div><span data-preview="placeholder"><?php echo esc_html( $placeholder ); ?></span><span class="docsbot-preview-composer-actions"><i data-preview-toggle="use_image_upload" <?php echo empty( $settings['use_image_upload'] ) ? 'hidden' : ''; ?>><svg viewBox="0 0 512 512"><path d="M448 80c8.8 0 16 7.2 16 16v319.8l-93.7-93.7c-12.5-12.5-32.8-12.5-45.3 0L224 423.1 147.3 346.4c-12.5-12.5-32.8-12.5-45.3 0L48 400.4V96c0-8.8 7.2-16 16-16h384zM64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg></i><i data-preview-toggle="use_audio_upload" <?php echo empty( $settings['use_audio_upload'] ) ? 'hidden' : ''; ?>><svg viewBox="0 0 384 512"><path d="M192 0c-53 0-96 43-96 96v160c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464h-48c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24h-48v-33.6C301.8 418.7 368 345.1 368 256v-40c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128S64 326.7 64 256v-40z"/></svg></i><b><svg viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg></b></span></div></div>
+					<div class="docsbot-widget-preview__composer">
+						<div>
+							<span data-preview="placeholder"><?php echo esc_html( $placeholder ); ?></span>
+							<span class="docsbot-preview-composer-actions">
+								<i data-preview-toggle="use_image_upload" <?php echo empty( $settings['use_image_upload'] ) ? 'hidden' : ''; ?>><svg viewBox="0 0 512 512"><path d="M448 80c8.8 0 16 7.2 16 16v319.8l-93.7-93.7c-12.5-12.5-32.8-12.5-45.3 0L224 423.1 147.3 346.4c-12.5-12.5-32.8-12.5-45.3 0L48 400.4V96c0-8.8 7.2-16 16-16h384zM64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg></i>
+								<i data-preview-toggle="use_audio_upload" <?php echo empty( $settings['use_audio_upload'] ) ? 'hidden' : ''; ?>><svg viewBox="0 0 384 512"><path d="M192 0c-53 0-96 43-96 96v160c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464h-48c-13.3 0-24 10.7-24 24s10.7 24 24 24h144c13.3 0 24-10.7 24-24s-10.7-24-24-24h-48v-33.6C301.8 418.7 368 345.1 368 256v-40c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128S64 326.7 64 256v-40z"/></svg></i>
+								<i class="docsbot-preview-voice-orb" data-preview-toggle="use_voice_agent" <?php echo empty( $settings['use_voice_agent'] ) ? 'hidden' : ''; ?>><span></span><span></span><span></span></i>
+								<b data-preview-toggle-inverse="use_voice_agent" <?php echo ! empty( $settings['use_voice_agent'] ) ? 'hidden' : ''; ?>><svg viewBox="0 0 512 512"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg></b>
+							</span>
+						</div>
+					</div>
 					<div class="docsbot-widget-preview__notice" data-preview="footer-message" <?php echo $footer ? '' : 'hidden'; ?>><?php echo esc_html( $footer ); ?></div>
 					<div class="docsbot-widget-preview__footer" <?php echo isset( $bot['branding'] ) && empty( $bot['branding'] ) ? 'hidden' : ''; ?>><?php esc_html_e( 'Powered by DocsBot', 'docsbot' ); ?></div>
 				</div>
@@ -2363,6 +2423,7 @@ final class DocsBot_Admin {
 			'activity' => '<path d="M4 12h3l2-6 4 12 2-6h5"/>',
 			'skills'   => '<path d="M12 3 4 7l8 4 8-4-8-4Z"/><path d="m4 11 8 4 8-4M4 15l8 4 8-4"/>',
 			'server'   => '<rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/>',
+			'sparkles' => '<path d="m12 3 1.2 3.8L17 8l-3.8 1.2L12 13l-1.2-3.8L7 8l3.8-1.2L12 3ZM5 14l.8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8L5 14Zm13-1 1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3Z"/>',
 		);
 		$path  = isset( $paths[ $icon ] ) ? $paths[ $icon ] : $paths['button'];
 		return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' . $path . '</svg>';

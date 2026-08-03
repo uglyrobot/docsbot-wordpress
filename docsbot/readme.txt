@@ -4,7 +4,7 @@ Tags: artificial intelligence, chatbot, customer support, documentation, knowled
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,7 +104,7 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 
 == Support ==
 
-Need help connecting a bot or configuring the widget? Start with the [DocsBot widget documentation](https://docsbot.ai/documentation/developer/embeddable-chat-widget?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=support_docs) or open a topic in the WordPress.org support forum.
+Need help connecting a bot or configuring the widget? Visit [DocsBot.ai](https://docsbot.ai/?utm_source=wordpress.org&utm_medium=plugin&utm_campaign=docsbot_wordpress&utm_content=support) for support.
 
 == Screenshots ==
 
@@ -115,6 +115,12 @@ Need help connecting a bot or configuring the widget? Start with the [DocsBot wi
 5. Deploy by URL path, user role, membership, metadata, and private signing.
 
 == Changelog ==
+
+= 1.0.1 =
+* Added Auto, Light, and Dark widget themes with a live dark-mode preview.
+* Added an Advanced voice switch and matching live voice-orb preview for agent bots.
+* Refined theme controls and launcher preview styling to match the DocsBot dashboard.
+* Directed plugin support requests to DocsBot.ai.
 
 = 1.0.0 =
 * Added WordPress Media Library selection for custom launcher icons, bot avatars, and header logos.
