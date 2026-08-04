@@ -1,6 +1,6 @@
 === DocsBot – Trusted AI Support Agents from Your Knowledge Base ===
 Contributors: uglyrobot
-Tags: artificial intelligence, ai agent, chatbot, customer support, documentation, knowledge base
+Tags: artificial intelligence, ai agent, chatbot, customer support, knowledge base
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
