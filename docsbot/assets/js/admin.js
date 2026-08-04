@@ -186,6 +186,22 @@
 			row.className = 'docsbot-lead-option';
 			row.innerHTML = '<input type="text" name="' + prefix + '[options][' + index + '][value]" placeholder="Value"><input type="text" name="' + prefix + '[options][' + index + '][label]" placeholder="Label"><button type="button" class="button-link-delete" data-lead-remove-option>Remove</button>';
 			list.appendChild( row );
+			reindexLeadOptions( field );
+		};
+		var reindexLeadOptions = function ( field ) {
+			var keyInput = field.querySelector( '[data-lead-key]' );
+			var list = field.querySelector( '[data-lead-option-list]' );
+			if ( ! keyInput || ! list ) { return; }
+			var prefix = keyInput.name.replace( '[key]', '' );
+			list.querySelectorAll( '.docsbot-lead-option' ).forEach( function ( row, index ) {
+				row.querySelectorAll( 'input' ).forEach( function ( input ) {
+					if ( /\[value\]$/.test( input.name ) ) {
+						input.name = prefix + '[options][' + index + '][value]';
+					} else if ( /\[label\]$/.test( input.name ) ) {
+						input.name = prefix + '[options][' + index + '][label]';
+					}
+				} );
+			} );
 		};
 		var bindLeadField = function ( field ) {
 			field.querySelectorAll( '[data-lead-key], [data-lead-label]' ).forEach( function ( input ) { input.addEventListener( 'input', function () { updateLeadTitle( field ); } ); } );
@@ -194,7 +210,7 @@
 			field.addEventListener( 'click', function ( event ) {
 				if ( event.target.closest( '[data-lead-remove]' ) ) { if ( leadList.children.length > 1 ) { field.remove(); } return; }
 				if ( event.target.closest( '[data-lead-add-option]' ) ) { addLeadOption( field ); return; }
-				var option = event.target.closest( '[data-lead-remove-option]' ); if ( option && field.querySelector( '[data-lead-option-list]' ).children.length > 1 ) { option.closest( '.docsbot-lead-option' ).remove(); }
+				var option = event.target.closest( '[data-lead-remove-option]' ); if ( option && field.querySelector( '[data-lead-option-list]' ).children.length > 1 ) { option.closest( '.docsbot-lead-option' ).remove(); reindexLeadOptions( field ); }
 			} );
 			field.addEventListener( 'dragstart', function () { leadDragged = field; field.classList.add( 'is-dragging' ); } );
 			field.addEventListener( 'dragend', function () { leadDragged = null; field.classList.remove( 'is-dragging' ); } );

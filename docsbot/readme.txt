@@ -1,14 +1,14 @@
-=== DocsBot ===
+=== DocsBot – Trusted AI Support Agents from Your Knowledge Base ===
 Contributors: uglyrobot
-Tags: artificial intelligence, chatbot, customer support, documentation, knowledge base
+Tags: artificial intelligence, ai agent, chatbot, customer support, documentation, knowledge base
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Give WordPress visitors instant answers with DocsBot. Match your brand and control exactly where and for whom the widget appears.
+Give visitors trusted AI support from your knowledge base with DocsBot. Match your brand and control where and for whom the widget appears.
 
 == Description ==
 
@@ -115,6 +115,14 @@ Need help connecting a bot or configuring the widget? Visit [DocsBot.ai](https:/
 5. Deploy by URL path, user role, membership, metadata, and private signing.
 
 == Changelog ==
+
+= 1.0.2 =
+* Added responsive dashboard fixes for narrow screens, including flexible fields, preview sizing, stacked mobile controls, and mobile lead-field layouts.
+* Added a first-run onboarding card with a clear account signup, API-key, and bot-connection path.
+* Added UTM tracking to DocsBot links opened from the WordPress admin.
+* Clarified which Content settings are saved to the DocsBot bot and which are WordPress-only embed overrides.
+* Fixed lead-field option indexing after adding, removing, or reordering options.
+* Updated the plugin listing title, description, tags, and WordPress.org banners to emphasize trusted AI support agents from your knowledge base.
 
 = 1.0.1 =
 * Added Auto, Light, and Dark widget themes with a live dark-mode preview.

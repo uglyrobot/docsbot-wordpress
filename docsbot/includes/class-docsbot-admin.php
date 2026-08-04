@@ -216,7 +216,7 @@ final class DocsBot_Admin {
 					<div class="docsbot-card docsbot-help">
 						<h2><?php esc_html_e( 'Need a hand?', 'docsbot' ); ?></h2>
 						<p><?php esc_html_e( 'Find setup guidance and widget documentation from the DocsBot team.', 'docsbot' ); ?></p>
-						<a href="https://docsbot.ai/documentation/developer/embeddable-chat-widget" target="_blank" rel="noopener noreferrer">
+						<a href="<?php echo esc_url( $this->docsbot_link( 'https://docsbot.ai/documentation/developer/embeddable-chat-widget', 'sidebar_widget_docs' ) ); ?>" target="_blank" rel="noopener noreferrer">
 							<?php esc_html_e( 'Read widget docs', 'docsbot' ); ?>
 							<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'docsbot' ); ?></span>
 						</a>
@@ -239,6 +239,38 @@ final class DocsBot_Admin {
 		$teams        = $has_key ? $this->cached_teams() : array();
 		$bots         = $has_key && $settings['team_id'] ? $this->cached_bots( $settings['team_id'] ) : array();
 		?>
+		<?php if ( ! $has_key ) : ?>
+			<div class="docsbot-card docsbot-card--hero docsbot-onboarding">
+				<p class="docsbot-eyebrow"><?php esc_html_e( 'AI support for your WordPress site', 'docsbot' ); ?></p>
+				<h2><?php esc_html_e( 'Turn your content into instant customer support.', 'docsbot' ); ?></h2>
+				<p><?php esc_html_e( 'DocsBot is an AI support agent trained on your documentation, FAQs, and other company content. Add it to your site as a chat widget so visitors can get answers around the clock and reach your team when they need a person.', 'docsbot' ); ?></p>
+				<div class="docsbot-onboarding-steps">
+					<div class="docsbot-onboarding-step">
+						<strong><?php esc_html_e( '1. Create your account', 'docsbot' ); ?></strong>
+						<span><?php esc_html_e( 'Start free with DocsBot.', 'docsbot' ); ?></span>
+					</div>
+					<div class="docsbot-onboarding-step">
+						<strong><?php esc_html_e( '2. Get your API key', 'docsbot' ); ?></strong>
+						<span><?php esc_html_e( 'Copy it from your DocsBot account.', 'docsbot' ); ?></span>
+					</div>
+					<div class="docsbot-onboarding-step">
+						<strong><?php esc_html_e( '3. Connect your bot', 'docsbot' ); ?></strong>
+						<span><?php esc_html_e( 'Choose the team and bot for this site.', 'docsbot' ); ?></span>
+					</div>
+				</div>
+				<div class="docsbot-onboarding-actions">
+					<a class="button button-primary" href="<?php echo esc_url( $this->docsbot_link( 'https://docsbot.ai/register', 'connection_signup' ) ); ?>" target="_blank" rel="noopener noreferrer">
+						<?php esc_html_e( 'Create your free account', 'docsbot' ); ?>
+						<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'docsbot' ); ?></span>
+					</a>
+					<a class="button button-secondary" href="<?php echo esc_url( $this->docsbot_link( 'https://docsbot.ai/', 'connection_learn_more' ) ); ?>" target="_blank" rel="noopener noreferrer">
+						<?php esc_html_e( 'See how DocsBot works', 'docsbot' ); ?>
+						<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'docsbot' ); ?></span>
+					</a>
+				</div>
+				<p class="docsbot-onboarding-note"><?php esc_html_e( 'Already have a DocsBot account? Get your API key below to connect it.', 'docsbot' ); ?></p>
+			</div>
+		<?php endif; ?>
 		<div class="docsbot-card docsbot-card--hero">
 			<p class="docsbot-eyebrow"><?php esc_html_e( 'Step 1', 'docsbot' ); ?></p>
 			<h2><?php esc_html_e( 'Connect your DocsBot account', 'docsbot' ); ?></h2>
@@ -264,7 +296,7 @@ final class DocsBot_Admin {
 							<button type="button" class="button docsbot-reveal" data-reveal="docsbot-api-key" data-show-label="<?php esc_attr_e( 'Show', 'docsbot' ); ?>" data-hide-label="<?php esc_attr_e( 'Hide', 'docsbot' ); ?>" aria-controls="docsbot-api-key" aria-pressed="false"><?php esc_html_e( 'Show', 'docsbot' ); ?></button>
 						</div>
 						<p class="description">
-							<a href="https://docsbot.ai/app/api" target="_blank" rel="noopener noreferrer">
+							<a href="<?php echo esc_url( $this->docsbot_link( 'https://docsbot.ai/app/api', 'connection_api_key' ) ); ?>" target="_blank" rel="noopener noreferrer">
 								<?php esc_html_e( 'Get an API key from DocsBot', 'docsbot' ); ?>
 								<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'docsbot' ); ?></span>
 							</a>
@@ -334,7 +366,7 @@ final class DocsBot_Admin {
 					<div class="docsbot-empty">
 						<h3><?php esc_html_e( 'No bots found in this team', 'docsbot' ); ?></h3>
 						<p><?php esc_html_e( 'If your DocsBot role and plan allow bot creation, create one in DocsBot and return here.', 'docsbot' ); ?></p>
-						<a class="button button-secondary" href="https://docsbot.ai/app/bots" target="_blank" rel="noopener noreferrer">
+						<a class="button button-secondary" href="<?php echo esc_url( $this->docsbot_link( 'https://docsbot.ai/app/bots', 'connection_create_bot' ) ); ?>" target="_blank" rel="noopener noreferrer">
 							<?php esc_html_e( 'Create a bot in DocsBot', 'docsbot' ); ?>
 						</a>
 					</div>
@@ -360,7 +392,7 @@ final class DocsBot_Admin {
 		<div class="docsbot-card">
 			<p class="docsbot-eyebrow"><?php esc_html_e( 'Content', 'docsbot' ); ?></p>
 			<h2><?php esc_html_e( 'Shape the conversation', 'docsbot' ); ?></h2>
-			<p><?php esc_html_e( 'These settings are saved to the selected bot in DocsBot and used anywhere that bot is embedded.', 'docsbot' ); ?></p>
+			<p><?php esc_html_e( 'Bot content settings are saved to the selected bot in DocsBot. WordPress embed overrides are marked separately and apply only to this site.', 'docsbot' ); ?></p>
 			<?php $this->form_open( 'docsbot_remote_content' ); ?>
 				<div class="docsbot-field">
 					<label for="docsbot-name"><?php esc_html_e( 'Bot name', 'docsbot' ); ?></label>
@@ -385,9 +417,15 @@ final class DocsBot_Admin {
 					<?php $this->checkbox( 'show_copy_button', __( 'Let visitors copy answers', 'docsbot' ), ! empty( $bot['showCopyButton'] ) ); ?>
 					<?php $this->checkbox( 'hide_sources', __( 'Hide answer sources', 'docsbot' ), ! empty( $bot['hideSources'] ) ); ?>
 					<?php $this->checkbox( 'link_safety_enabled', __( 'Confirm external links', 'docsbot' ), ! empty( $settings['link_safety_enabled'] ) ); ?>
-					<?php $this->checkbox( 'show_agent_activity', __( 'Agent activity', 'docsbot' ), ! empty( $settings['show_agent_activity'] ) ); ?>
-					<?php $this->checkbox( 'use_image_upload', __( 'Image uploads', 'docsbot' ), ! empty( $settings['use_image_upload'] ) ); ?>
-					<?php $this->checkbox( 'use_audio_upload', __( 'Voice input', 'docsbot' ), ! empty( $settings['use_audio_upload'] ) ); ?>
+				</div>
+				<div class="docsbot-embed-overrides">
+					<h3><?php esc_html_e( 'WordPress embed overrides', 'docsbot' ); ?></h3>
+					<p class="description"><?php esc_html_e( 'These options affect the widget embedded by this WordPress site and do not change other embeds of the selected bot.', 'docsbot' ); ?></p>
+					<div class="docsbot-toggle-grid">
+						<?php $this->checkbox( 'show_agent_activity', __( 'Agent activity', 'docsbot' ), ! empty( $settings['show_agent_activity'] ) ); ?>
+						<?php $this->checkbox( 'use_image_upload', __( 'Image uploads', 'docsbot' ), ! empty( $settings['use_image_upload'] ) ); ?>
+						<?php $this->checkbox( 'use_audio_upload', __( 'Voice input', 'docsbot' ), ! empty( $settings['use_audio_upload'] ) ); ?>
+					</div>
 				</div>
 				<?php if ( ! empty( $bot['isAgent'] ) ) : ?>
 					<div class="docsbot-option-list docsbot-option-list--standalone">
@@ -645,7 +683,7 @@ final class DocsBot_Admin {
 							<?php endforeach; ?>
 						</div>
 					<?php endif; ?>
-					<a class="docsbot-action-add" href="<?php echo esc_url( $bot_root . 'skills' ); ?>" target="_blank" rel="noopener noreferrer">
+					<a class="docsbot-action-add" href="<?php echo esc_url( $this->docsbot_link( $bot_root . 'skills', 'actions_skills' ) ); ?>" target="_blank" rel="noopener noreferrer">
 						<span aria-hidden="true">+</span><?php esc_html_e( 'Add skill in DocsBot', 'docsbot' ); ?>
 					</a>
 				</section>
@@ -670,7 +708,7 @@ final class DocsBot_Admin {
 							</div>
 						<?php endforeach; ?>
 					</div>
-					<a class="docsbot-action-add" href="<?php echo esc_url( $bot_root . 'mcp-connections' ); ?>" target="_blank" rel="noopener noreferrer">
+					<a class="docsbot-action-add" href="<?php echo esc_url( $this->docsbot_link( $bot_root . 'mcp-connections', 'actions_mcp' ) ); ?>" target="_blank" rel="noopener noreferrer">
 						<span aria-hidden="true">+</span><?php esc_html_e( 'Add MCP server in DocsBot', 'docsbot' ); ?>
 					</a>
 				</section>
@@ -1140,7 +1178,7 @@ final class DocsBot_Admin {
 				<?php else : ?>
 					<p><?php esc_html_e( 'The selected bot is public, so no signature key is needed or retained.', 'docsbot' ); ?></p>
 				<?php endif; ?>
-				<a href="https://docsbot.ai/app/bots" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open bot embed settings in DocsBot', 'docsbot' ); ?></a>
+				<a href="<?php echo esc_url( $this->docsbot_link( 'https://docsbot.ai/app/bots', 'deploy_embed_settings' ) ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open bot embed settings in DocsBot', 'docsbot' ); ?></a>
 			</div>
 			<?php $this->save_action( __( 'Save deployment', 'docsbot' ), 'docsbot-save-large' ); ?>
 		</form>
@@ -2277,6 +2315,25 @@ final class DocsBot_Admin {
 				'tab'  => $tab,
 			),
 			admin_url( 'options-general.php' )
+		);
+	}
+
+	/**
+	 * Add attribution parameters to DocsBot links opened from WordPress.
+	 *
+	 * @param string $url     DocsBot URL.
+	 * @param string $content Link placement identifier.
+	 * @return string
+	 */
+	private function docsbot_link( $url, $content ) {
+		return add_query_arg(
+			array(
+				'utm_source'   => 'wordpress',
+				'utm_medium'   => 'plugin',
+				'utm_campaign' => 'docsbot_wordpress',
+				'utm_content'  => sanitize_key( $content ),
+			),
+			$url
 		);
 	}
 
