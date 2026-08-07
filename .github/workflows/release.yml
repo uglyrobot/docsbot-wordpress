@@ -200,13 +200,15 @@ jobs:
           svn checkout "https://plugins.svn.wordpress.org/${SLUG}/assets" "${svn_dir}"
           rsync -rc --delete --exclude='.DS_Store' .wordpress-org/ "${svn_dir}/"
 
-          svn add --force "${svn_dir}" >/dev/null
+          cd "${svn_dir}"
+
+          svn add . --force >/dev/null
           while IFS= read -r path; do
             svn rm --force "${path}"
-          done < <(svn status "${svn_dir}" | awk '/^!/ { sub(/^! +/, ""); print }')
+          done < <(svn status | awk '/^!/ { sub(/^! +/, ""); print }')
 
-          if svn status "${svn_dir}" | grep -q '^[ACDMR]'; then
-            svn commit "${svn_dir}" \
+          if svn status | grep -q '^[ACDMR]'; then
+            svn commit . \
               --message "Synchronize WordPress.org listing assets from GitHub" \
               --no-auth-cache \
               --non-interactive \
