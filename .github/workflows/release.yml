@@ -13,7 +13,7 @@ on:
         default: false
         type: boolean
       publish_svn:
-        description: "Publish to WordPress.org SVN and synchronize listing assets"
+        description: "Publish to WordPress.org SVN; sync changed listing assets and readme"
         required: false
         default: false
         type: boolean
@@ -185,8 +185,8 @@ jobs:
           ASSETS_DIR: .wordpress-org
 
       # The deployment action intentionally exits when this version's SVN tag
-      # already exists. Keep manual banner updates working in that case.
-      - name: Synchronize WordPress.org banner assets
+      # already exists. Keep approved listing-asset and readme updates working.
+      - name: Synchronize changed WordPress.org assets and readme
         if: github.event_name == 'workflow_dispatch' && inputs.publish_svn
         env:
           SVN_USERNAME: ${{ vars.SVN_USERNAME }}
@@ -196,16 +196,56 @@ jobs:
         run: |
           set -euo pipefail
 
+          svn_root="https://plugins.svn.wordpress.org/${SLUG}"
+          comparison_dir="$(mktemp -d)"
+          trap 'rm -rf "${comparison_dir}"' EXIT
+          operations=()
+
+          svn list --depth infinity "${svn_root}/assets" > "${comparison_dir}/remote-assets.txt"
+
+          while IFS= read -r -d '' asset; do
+            relative_path="${asset#.wordpress-org/}"
+            remote_url="${svn_root}/assets/${relative_path}"
+
+            if grep -Fqx -- "${relative_path}" "${comparison_dir}/remote-assets.txt"; then
+              remote_file="$(mktemp "${comparison_dir}/asset.XXXXXX")"
+              svn cat "${remote_url}" > "${remote_file}"
+              cmp -s "${asset}" "${remote_file}" || \
+                operations+=(put "${asset}" "${remote_url}")
+            else
+              operations+=(put "${asset}" "${remote_url}")
+              case "${relative_path}" in
+                *.png) operations+=(propset svn:mime-type image/png "${remote_url}") ;;
+                *.jpg|*.jpeg) operations+=(propset svn:mime-type image/jpeg "${remote_url}") ;;
+                *.gif) operations+=(propset svn:mime-type image/gif "${remote_url}") ;;
+                *.svg) operations+=(propset svn:mime-type image/svg+xml "${remote_url}") ;;
+              esac
+            fi
+          done < <(find .wordpress-org -type f -print0)
+
+          while IFS= read -r relative_path; do
+            [[ "${relative_path}" == */ ]] && continue
+            [[ -f ".wordpress-org/${relative_path}" ]] || \
+              operations+=(rm "${svn_root}/assets/${relative_path}")
+          done < "${comparison_dir}/remote-assets.txt"
+
+          remote_readme="$(mktemp "${comparison_dir}/readme.XXXXXX")"
+          svn cat "${svn_root}/trunk/readme.txt" > "${remote_readme}"
+          cmp -s docsbot/readme.txt "${remote_readme}" || \
+            operations+=(put docsbot/readme.txt "${svn_root}/trunk/readme.txt")
+
+          if (( ${#operations[@]} == 0 )); then
+            echo "No WordPress.org listing asset or readme changes to publish."
+            exit 0
+          fi
+
           svnmucc \
-            --message "Update DocsBot WordPress.org banner assets from GitHub" \
+            --message "Synchronize DocsBot WordPress.org assets and readme from GitHub" \
             --no-auth-cache \
             --non-interactive \
             --username "${SVN_USERNAME}" \
             --password "${SVN_PASSWORD}" \
-            put .wordpress-org/banner-1544x500.png \
-              "https://plugins.svn.wordpress.org/${SLUG}/assets/banner-1544x500.png" \
-            put .wordpress-org/banner-772x250.png \
-              "https://plugins.svn.wordpress.org/${SLUG}/assets/banner-772x250.png"
+            "${operations[@]}"
 
       - name: Attach ZIP to GitHub release
         if: github.ref_type == 'tag'

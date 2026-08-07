@@ -44,7 +44,7 @@ The release workflow validates and packages every release before publication. Co
 
 For normal releases, update the plugin header version, `DOCSBOT_VERSION`, and the `Stable tag` in `docsbot/readme.txt`, then push the matching `vX.Y.Z` Git tag. A validated tag automatically publishes `docsbot/` to SVN trunk and the `X.Y.Z` SVN tag, while `.wordpress-org/` is synchronized to the SVN assets directory.
 
-The workflow's manual **Publish to WordPress.org SVN** option supports an approved version whose Git tag predates the deployment workflow. It publishes the checked-out branch only after the same validation, metadata, and packaging checks pass.
+The workflow's manual **Publish to WordPress.org SVN** option supports an approved version whose Git tag predates the deployment workflow. It runs the same validation, metadata, and packaging checks before publication. If that version is already in WordPress.org SVN, the manual path synchronizes only changed listing assets and `readme.txt`; it does not alter released plugin code or create another version tag.
 
 ## Installation
 
