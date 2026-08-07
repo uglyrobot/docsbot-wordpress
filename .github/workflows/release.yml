@@ -185,8 +185,8 @@ jobs:
           ASSETS_DIR: .wordpress-org
 
       # The deployment action intentionally exits when this version's SVN tag
-      # already exists. Keep manual asset-only updates working in that case.
-      - name: Synchronize WordPress.org listing assets
+      # already exists. Keep manual banner updates working in that case.
+      - name: Synchronize WordPress.org banner assets
         if: github.event_name == 'workflow_dispatch' && inputs.publish_svn
         env:
           SVN_USERNAME: ${{ vars.SVN_USERNAME }}
@@ -196,27 +196,16 @@ jobs:
         run: |
           set -euo pipefail
 
-          svn_dir="${RUNNER_TEMP}/svn-${SLUG}-assets"
-          svn checkout "https://plugins.svn.wordpress.org/${SLUG}/assets" "${svn_dir}"
-          rsync -rc --delete --exclude='.DS_Store' .wordpress-org/ "${svn_dir}/"
-
-          cd "${svn_dir}"
-
-          svn add . --force >/dev/null
-          while IFS= read -r path; do
-            svn rm --force "${path}"
-          done < <(svn status | awk '/^!/ { sub(/^! +/, ""); print }')
-
-          if svn status | grep -q '^[ACDMR]'; then
-            svn commit . \
-              --message "Synchronize WordPress.org listing assets from GitHub" \
-              --no-auth-cache \
-              --non-interactive \
-              --username "${SVN_USERNAME}" \
-              --password "${SVN_PASSWORD}"
-          else
-            echo "No WordPress.org listing asset changes to publish."
-          fi
+          svnmucc \
+            --message "Update DocsBot WordPress.org banner assets from GitHub" \
+            --no-auth-cache \
+            --non-interactive \
+            --username "${SVN_USERNAME}" \
+            --password "${SVN_PASSWORD}" \
+            put .wordpress-org/banner-1544x500.png \
+              "https://plugins.svn.wordpress.org/${SLUG}/assets/banner-1544x500.png" \
+            put .wordpress-org/banner-772x250.png \
+              "https://plugins.svn.wordpress.org/${SLUG}/assets/banner-772x250.png"
 
       - name: Attach ZIP to GitHub release
         if: github.ref_type == 'tag'
