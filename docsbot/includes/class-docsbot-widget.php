@@ -203,9 +203,12 @@ final class DocsBot_Widget {
 		/**
 		 * Filters the widget embed configuration before private-bot signing.
 		 *
-		 * Callbacks may add or change `id`, `options`, and `identify`. Any
-		 * `signature` key is discarded so a filter cannot inject or override
-		 * the JWT. The decrypted signature key is never passed to this filter.
+		 * Callbacks may add or change `options` and `identify`. For public bots,
+		 * `id` may also change. For private bots, `id` is restored to the
+		 * selected team/bot so the mount target stays aligned with the JWT.
+		 * Any `signature` key is discarded so a filter cannot inject or
+		 * override the JWT. The decrypted signature key is never passed to
+		 * this filter.
 		 *
 		 * @since 1.1.0
 		 *
@@ -216,8 +219,9 @@ final class DocsBot_Widget {
 		 *                                      credential fields; never the decrypted
 		 *                                      signature key.
 		 */
-		$filtered = apply_filters( 'docsbot_widget_config', $config, $user_id, $path, $settings );
-		$config   = is_array( $filtered ) ? $filtered : $config;
+		$original_id = isset( $config['id'] ) ? $config['id'] : $settings['team_id'] . '/' . $settings['bot_id'];
+		$filtered    = apply_filters( 'docsbot_widget_config', $config, $user_id, $path, $settings );
+		$config      = is_array( $filtered ) ? $filtered : $config;
 		unset( $config['signature'] );
 
 		$identify = ( isset( $config['identify'] ) && is_array( $config['identify'] ) ) ? $config['identify'] : array();
@@ -231,6 +235,7 @@ final class DocsBot_Widget {
 		}
 
 		if ( 'private' === $settings['bot_privacy'] && '' !== $signature_key ) {
+			$config['id']        = $original_id;
 			$now                 = time();
 			$config['signature'] = DocsBot_Crypto::sign_jwt(
 				array(

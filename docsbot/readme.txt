@@ -104,7 +104,7 @@ DocsBot does not expose a public create-permission flag. When a selected team ha
 
 = Can developers customize the widget embed or private metadata? =
 
-Yes. The plugin applies `docsbot_widget_config` to the embed config before a private-bot JWT is signed. Filters may add options or identify fields. They cannot inject `signature`; WordPress signs the result afterwards. Use `docsbot_private_metadata` for trusted `priv_*` JWT fields, and optionally `docsbot_widget_identify` for public logged-in identity. A filter that returns a non-array is ignored.
+Yes. The plugin applies `docsbot_widget_config` to the embed config before a private-bot JWT is signed. Filters may add options or identify fields. They cannot inject `signature`, and they cannot change `id` for private bots; WordPress restores the selected bot ID and signs the result afterwards. Use `docsbot_private_metadata` for trusted `priv_*` JWT fields, and optionally `docsbot_widget_identify` for public logged-in identity. A filter that returns a non-array is ignored.
 
 Add a widget option:
 
@@ -130,7 +130,7 @@ Need help connecting a bot or configuring the widget? Visit [DocsBot.ai](https:/
 
 = 1.1.0 =
 * Added developer filters so site owners can extend the widget embed config and private-bot JWT metadata.
-* Added `docsbot_widget_config` to change widget options before a private-bot signature is created. Filters cannot inject or override `signature`.
+* Added `docsbot_widget_config` to change widget options before a private-bot signature is created. Filters cannot inject or override `signature`, and cannot change `id` for private bots.
 * Added `docsbot_private_metadata` for trusted `priv_*` fields, such as a WooCommerce customer ID.
 * Added optional `docsbot_widget_identify` for public logged-in identity fields.
 * Documented the hooks with PHP examples in the plugin FAQ and project README.

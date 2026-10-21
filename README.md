@@ -75,7 +75,7 @@ Added in DocsBot 1.1.0. The widget embed configuration is built on the server an
 
 ### `docsbot_widget_config`
 
-Runs in `rest_widget_config()` after `id`, `options`, and optional `identify` are built, and before a private-bot JWT is signed. Context arguments are `$user_id`, `$path`, and `$settings`. The decrypted signature key is never passed in. Any `signature` key in the filtered array is stripped; the plugin computes the signature afterwards.
+Runs in `rest_widget_config()` after `id`, `options`, and optional `identify` are built, and before a private-bot JWT is signed. Context arguments are `$user_id`, `$path`, and `$settings`. The decrypted signature key is never passed in. Any `signature` key in the filtered array is stripped; the plugin computes the signature afterwards. For private bots, `id` is restored to the selected team/bot so the mount target stays aligned with the JWT. Public bots may still change `id`.
 
 ```php
 add_filter(

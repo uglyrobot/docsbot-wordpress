@@ -141,6 +141,7 @@ final class WidgetHooksTest extends TestCase {
 		add_filter(
 			'docsbot_widget_config',
 			static function ( $config, $user_id, $path, $settings ) {
+				$config['id']                          = 'otherteam/otherbot';
 				$config['signature']                   = 'forged-token';
 				$config['options']['horizontalMargin'] = 48;
 				$GLOBALS['docsbot_filter_args']        = array( $config, $user_id, $path, $settings );
@@ -153,6 +154,7 @@ final class WidgetHooksTest extends TestCase {
 		$response = $this->widget->rest_widget_config( new WP_REST_Request( array( 'path' => '/' ) ) );
 		$config   = $response->get_data();
 
+		$this->assertSame( 'team1/bot1', $config['id'] );
 		$this->assertSame( 48, $config['options']['horizontalMargin'] );
 		$this->assertArrayHasKey( 'signature', $config );
 		$this->assertNotSame( 'forged-token', $config['signature'] );
@@ -252,6 +254,49 @@ final class WidgetHooksTest extends TestCase {
 		$config   = $response->get_data();
 
 		$this->assertSame( array( 'name' => 'Ada' ), $config['identify'] );
+	}
+
+	public function test_widget_config_filter_cannot_change_private_bot_id() {
+		DocsBot_Plugin::$settings = $this->deployed_settings(
+			array(
+				'bot_privacy'   => 'private',
+				'signature_key' => DocsBot_Crypto::encrypt( 'unit-test-signature-key' ),
+			)
+		);
+
+		add_filter(
+			'docsbot_widget_config',
+			static function ( $config ) {
+				$config['id'] = 'otherteam/otherbot';
+				return $config;
+			}
+		);
+
+		$response = $this->widget->rest_widget_config( new WP_REST_Request( array( 'path' => '/' ) ) );
+		$config   = $response->get_data();
+
+		$this->assertSame( 'team1/bot1', $config['id'] );
+		$payload = $this->decode_jwt_payload( $config['signature'] );
+		$this->assertSame( 'team1', $payload['team_id'] );
+		$this->assertSame( 'bot1', $payload['bot_id'] );
+	}
+
+	public function test_widget_config_filter_can_change_public_bot_id() {
+		DocsBot_Plugin::$settings = $this->deployed_settings();
+
+		add_filter(
+			'docsbot_widget_config',
+			static function ( $config ) {
+				$config['id'] = 'otherteam/otherbot';
+				return $config;
+			}
+		);
+
+		$response = $this->widget->rest_widget_config( new WP_REST_Request( array( 'path' => '/' ) ) );
+		$config   = $response->get_data();
+
+		$this->assertSame( 'otherteam/otherbot', $config['id'] );
+		$this->assertArrayNotHasKey( 'signature', $config );
 	}
 
 	/**
