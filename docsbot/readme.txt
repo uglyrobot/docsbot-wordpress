@@ -43,9 +43,9 @@ Choose custom launcher icons, bot avatars, and header logos from the WordPress M
 
 = Privacy and security =
 
-Public conversation identity is enabled by default for new plugin setups. You can independently turn off sending a visitor's display name, email address, or raw WordPress user ID. It never sends membership, role, password, payment, or subscription data.
+Public conversation identity is enabled by default for new plugin setups. You can independently turn off sending a visitor's display name, email address, or raw WordPress user ID. It never sends membership, role, password, payment, or subscription data unless a site-specific filter adds it.
 
-Private bots have one exception: a signed request for a logged-in visitor automatically includes the numeric WordPress user ID as private `priv_user_id` metadata. Guest requests do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
+Private bots have one exception: a signed request for a logged-in visitor automatically includes the numeric WordPress user ID as private `priv_user_id` metadata. Guest requests do not include a user ID. Developers can add more trusted `priv_*` fields with the `docsbot_private_metadata` filter. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
 
 WordPress keeps the DocsBot API key on the server and uses private-bot signature keys only to create short-lived tokens. The plugin encrypts both credentials before database storage. Site owners may instead supply them through `wp-config.php` constants.
 
@@ -86,7 +86,7 @@ WordPress checks your access rules before creating a short-lived, server-signed 
 
 = Does the plugin send WordPress user data automatically? =
 
-Public identity sharing is enabled by default for new plugin setups. You can independently turn off sharing a visitor's display name, email address, or raw WordPress user ID. For private bots, signed requests automatically include the logged-in visitor's numeric WordPress user ID as private metadata. Guest requests include no user ID.
+Public identity sharing is enabled by default for new plugin setups. You can independently turn off sharing a visitor's display name, email address, or raw WordPress user ID. For private bots, signed requests automatically include the logged-in visitor's numeric WordPress user ID as private metadata. Guest requests include no user ID. Developers can add more embed options or trusted `priv_*` metadata with the `docsbot_widget_config` and `docsbot_private_metadata` filters.
 
 = What happens if my membership plugin is disabled? =
 
@@ -101,6 +101,18 @@ Page-path rules decide where the widget appears; they do not protect access by t
 = Why can I see a create-bot link even if I cannot create bots? =
 
 DocsBot does not expose a public create-permission flag. When a selected team has no bots, the plugin links to the DocsBot bot page. DocsBot then applies your current role and plan.
+
+= Can developers customize the widget embed or private metadata? =
+
+Yes. The plugin applies `docsbot_widget_config` to the embed config before a private-bot JWT is signed. Filters may add options or identify fields. They cannot inject `signature`; WordPress signs the result afterwards. Use `docsbot_private_metadata` for trusted `priv_*` JWT fields, and optionally `docsbot_widget_identify` for public logged-in identity. A filter that returns a non-array is ignored.
+
+Add a widget option:
+
+`add_filter( 'docsbot_widget_config', function( $config ) { $config['options']['horizontalMargin'] = 32; return $config; }, 10, 1 );`
+
+Add a WooCommerce customer ID to private-bot metadata:
+
+`add_filter( 'docsbot_private_metadata', function( $metadata, $user_id ) { if ( $user_id > 0 && class_exists( 'WooCommerce' ) ) { $customer = new WC_Customer( $user_id ); if ( $customer->get_id() ) { $metadata['priv_wc_customer_id'] = (string) $customer->get_id(); } } return $metadata; }, 10, 2 );`
 
 == Support ==
 
