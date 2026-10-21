@@ -4,7 +4,7 @@ Tags: artificial intelligence, ai agent, chatbot, customer support, knowledge ba
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,13 @@ Need help connecting a bot or configuring the widget? Visit [DocsBot.ai](https:/
 5. Deploy by URL path, user role, membership, metadata, and private signing.
 
 == Changelog ==
+
+= 1.1.0 =
+* Added developer filters so site owners can extend the widget embed config and private-bot JWT metadata.
+* Added `docsbot_widget_config` to change widget options before a private-bot signature is created. Filters cannot inject or override `signature`.
+* Added `docsbot_private_metadata` for trusted `priv_*` fields, such as a WooCommerce customer ID.
+* Added optional `docsbot_widget_identify` for public logged-in identity fields.
+* Documented the hooks with PHP examples in the plugin FAQ and project README.
 
 = 1.0.2 =
 * Added responsive dashboard fixes for narrow screens, including flexible fields, preview sizing, stacked mobile controls, and mobile lead-field layouts.

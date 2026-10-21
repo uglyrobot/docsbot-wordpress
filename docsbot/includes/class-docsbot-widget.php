@@ -207,7 +207,7 @@ final class DocsBot_Widget {
 		 * `signature` key is discarded so a filter cannot inject or override
 		 * the JWT. The decrypted signature key is never passed to this filter.
 		 *
-		 * @since 1.0.3
+		 * @since 1.1.0
 		 *
 		 * @param array<string,mixed> $config   Widget mount configuration.
 		 * @param int                 $user_id  Current WordPress user ID, or 0 for guests.
@@ -356,7 +356,7 @@ final class DocsBot_Widget {
 		 * metadata. Prefer `docsbot_private_metadata` for trusted `priv_*`
 		 * fields that must not appear in chat history.
 		 *
-		 * @since 1.0.3
+		 * @since 1.1.0
 		 *
 		 * @param array<string,string|int> $identify Opt-in public identity fields.
 		 * @param int                      $user_id  WordPress user ID.
@@ -390,7 +390,7 @@ final class DocsBot_Widget {
 		 * integrations. `priv_user_id` is always set from the current
 		 * WordPress user and cannot be injected for guests.
 		 *
-		 * @since 1.0.3
+		 * @since 1.1.0
 		 *
 		 * @param array<string,mixed>  $metadata Signed metadata before empty-object normalization.
 		 * @param int                  $user_id  WordPress user ID, or 0 for guests.

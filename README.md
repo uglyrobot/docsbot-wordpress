@@ -71,7 +71,7 @@ For private bots, signed JWTs for logged-in visitors include the current WordPre
 
 ## Developer hooks
 
-The widget embed configuration is built on the server and returned from `docsbot/v1/widget-config`. Use these filters from a theme or small helper plugin. A filter that returns a non-array is ignored.
+Added in DocsBot 1.1.0. The widget embed configuration is built on the server and returned from `docsbot/v1/widget-config`. Use these filters from a theme or small helper plugin. A filter that returns a non-array is ignored.
 
 ### `docsbot_widget_config`
 
