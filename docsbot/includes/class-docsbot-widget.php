@@ -200,6 +200,32 @@ final class DocsBot_Widget {
 			$config['identify'] = $identify;
 		}
 
+		/**
+		 * Filters the widget embed configuration before private-bot signing.
+		 *
+		 * Callbacks may add or change `options` and `identify`. For public bots,
+		 * `id` may also change. For private bots, `id` is restored to the
+		 * selected team/bot so the mount target stays aligned with the JWT.
+		 * Any `signature` key is discarded so a filter cannot inject or
+		 * override the JWT. The decrypted signature key is never passed to
+		 * this filter.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array<string,mixed> $config   Widget mount configuration.
+		 * @param int                 $user_id  Current WordPress user ID, or 0 for guests.
+		 * @param string              $path     Normalized request path.
+		 * @param array<string,mixed> $settings Plugin settings. May include encrypted
+		 *                                      credential fields; never the decrypted
+		 *                                      signature key.
+		 */
+		$original_id = isset( $config['id'] ) ? $config['id'] : $settings['team_id'] . '/' . $settings['bot_id'];
+		$filtered    = apply_filters( 'docsbot_widget_config', $config, $user_id, $path, $settings );
+		$config      = is_array( $filtered ) ? $filtered : $config;
+		unset( $config['signature'] );
+
+		$identify = ( isset( $config['identify'] ) && is_array( $config['identify'] ) ) ? $config['identify'] : array();
+
 		$signature_key = defined( 'DOCSBOT_SIGNATURE_KEY' ) && '' !== trim( (string) DOCSBOT_SIGNATURE_KEY )
 			? trim( (string) DOCSBOT_SIGNATURE_KEY )
 			: DocsBot_Crypto::decrypt( (string) $settings['signature_key'] );
@@ -209,6 +235,7 @@ final class DocsBot_Widget {
 		}
 
 		if ( 'private' === $settings['bot_privacy'] && '' !== $signature_key ) {
+			$config['id']        = $original_id;
 			$now                 = time();
 			$config['signature'] = DocsBot_Crypto::sign_jwt(
 				array(
@@ -327,7 +354,22 @@ final class DocsBot_Widget {
 			$identify['uid'] = (int) $user_id;
 		}
 
-		return $identify;
+		/**
+		 * Filters public widget identify fields for a logged-in visitor.
+		 *
+		 * This payload is sent to the browser and copied into private-bot JWT
+		 * metadata. Prefer `docsbot_private_metadata` for trusted `priv_*`
+		 * fields that must not appear in chat history.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array<string,string|int> $identify Opt-in public identity fields.
+		 * @param int                      $user_id  WordPress user ID.
+		 * @param array<string,mixed>      $settings Plugin settings.
+		 */
+		$filtered = apply_filters( 'docsbot_widget_identify', $identify, $user_id, $settings );
+
+		return is_array( $filtered ) ? $filtered : $identify;
 	}
 
 	/**
@@ -337,12 +379,35 @@ final class DocsBot_Widget {
 	 *
 	 * @param int                  $user_id  WordPress user ID.
 	 * @param array<string,string> $identify Opt-in public identity fields.
-	 * @return array<string,string>|stdClass
+	 * @return array<string,mixed>|stdClass
 	 */
 	public function build_private_metadata( $user_id, $identify = array() ) {
 		$metadata = is_array( $identify ) ? $identify : array();
 		if ( $user_id > 0 ) {
 			$metadata['priv_user_id'] = (string) (int) $user_id;
+		}
+
+		/**
+		 * Filters trusted JWT metadata for private bots.
+		 *
+		 * Use `priv_*` keys for values that DocsBot should keep out of chat
+		 * history and model context while making them available to authorized
+		 * integrations. `priv_user_id` is always set from the current
+		 * WordPress user and cannot be injected for guests.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array<string,mixed>  $metadata Signed metadata before empty-object normalization.
+		 * @param int                  $user_id  WordPress user ID, or 0 for guests.
+		 * @param array<string,string> $identify Opt-in public identity fields.
+		 */
+		$filtered = apply_filters( 'docsbot_private_metadata', $metadata, $user_id, $identify );
+		$metadata = is_array( $filtered ) ? $filtered : $metadata;
+
+		if ( $user_id > 0 ) {
+			$metadata['priv_user_id'] = (string) (int) $user_id;
+		} else {
+			unset( $metadata['priv_user_id'] );
 		}
 
 		return empty( $metadata ) ? new stdClass() : $metadata;

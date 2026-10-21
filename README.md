@@ -65,9 +65,80 @@ The API key never reaches browser JavaScript. For private bots, WordPress checks
 
 URL path rules are placement controls, not an authorization boundary. Sites that need protected chat must also enable a server-verified login, WordPress role, or membership restriction.
 
-Identity sharing is enabled by default for new plugin setups. Site owners can independently turn off sending the logged-in visitor's display name, email address, and raw WordPress user ID. The plugin never sends membership, role, payment, password, or subscription data to DocsBot.
+Identity sharing is enabled by default for new plugin setups. Site owners can independently turn off sending the logged-in visitor's display name, email address, and raw WordPress user ID. The plugin never sends membership, role, payment, password, or subscription data to DocsBot unless a site-specific filter adds it.
 
-For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
+For private bots, signed JWTs for logged-in visitors include the current WordPress user ID as trusted `priv_user_id` metadata. Guest JWTs do not include a user ID. Developers can add more trusted `priv_*` fields with `docsbot_private_metadata`. DocsBot keeps `priv_*` metadata out of chat history and AI model context while making it available to authorized integrations.
+
+## Developer hooks
+
+Added in DocsBot 1.1.0. The widget embed configuration is built on the server and returned from `docsbot/v1/widget-config`. Use these filters from a theme or small helper plugin. A filter that returns a non-array is ignored.
+
+### `docsbot_widget_config`
+
+Runs in `rest_widget_config()` after `id`, `options`, and optional `identify` are built, and before a private-bot JWT is signed. Context arguments are `$user_id`, `$path`, and `$settings`. The decrypted signature key is never passed in. Any `signature` key in the filtered array is stripped; the plugin computes the signature afterwards. For private bots, `id` is restored to the selected team/bot so the mount target stays aligned with the JWT. Public bots may still change `id`.
+
+```php
+add_filter(
+	'docsbot_widget_config',
+	function ( $config, $user_id, $path, $settings ) {
+		if ( ! isset( $config['options'] ) || ! is_array( $config['options'] ) ) {
+			$config['options'] = array();
+		}
+
+		$config['options']['horizontalMargin'] = 32;
+
+		return $config;
+	},
+	10,
+	4
+);
+```
+
+### `docsbot_private_metadata`
+
+Runs in `build_private_metadata()` so trusted `priv_*` and other JWT metadata can be added for private bots. `priv_user_id` stays bound to the current WordPress user and cannot be injected for guests. An empty result is returned as an object so JSON encoding stays `{}`.
+
+```php
+add_filter(
+	'docsbot_private_metadata',
+	function ( $metadata, $user_id, $identify ) {
+		if ( $user_id <= 0 || ! class_exists( 'WooCommerce' ) ) {
+			return $metadata;
+		}
+
+		$customer = new WC_Customer( $user_id );
+		if ( $customer->get_id() ) {
+			$metadata['priv_wc_customer_id'] = (string) $customer->get_id();
+		}
+
+		return $metadata;
+	},
+	10,
+	3
+);
+```
+
+### `docsbot_widget_identify`
+
+Optional public identity fields for a logged-in visitor. This payload is sent to the browser and copied into private-bot JWT metadata. Use `docsbot_private_metadata` for values that should stay out of chat history.
+
+```php
+add_filter(
+	'docsbot_widget_identify',
+	function ( $identify, $user_id ) {
+		$company = get_user_meta( $user_id, 'company', true );
+		if ( is_string( $company ) && '' !== $company ) {
+			$identify['company'] = $company;
+		}
+
+		return $identify;
+	},
+	10,
+	2
+);
+```
+
+Existing filters: `docsbot_membership_providers` and `docsbot_admin_api_base_url`.
 
 ## External services
 
